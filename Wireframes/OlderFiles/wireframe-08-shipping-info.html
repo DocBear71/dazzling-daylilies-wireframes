@@ -42,52 +42,29 @@
   .site-header h1 { font-size: 26px; font-weight: 700; color: #222; margin-bottom: 4px; }
   .site-header .tagline { font-size: 13px; color: #666; font-style: italic; }
   .top-nav {
-    background: #fff; border-bottom: 3px solid #d0d0d0; padding: 0 24px; overflow-x: hidden;
+    background: #fff; border-bottom: 3px solid #d0d0d0;
+    padding: 0 24px; display: flex; align-items: stretch; height: 48px;
   }
-  .nav-row { display: flex; align-items: stretch; min-height: 44px; flex-wrap: nowrap; }
-  .nav-row-2 { border-top: 1px solid #f0f0f0; }
   .nav-tab {
-    display: inline-flex; align-items: center; padding: 0 16px;
-    font-size: 13px; font-weight: 600; color: #555;
-    border-bottom: 3px solid transparent; margin-bottom: -3px; cursor: pointer; white-space: nowrap;
+    display: inline-flex; align-items: center; padding: 0 20px;
+    font-size: 14px; font-weight: 600; color: #555;
+    border-bottom: 3px solid transparent; margin-bottom: -3px;
+    cursor: pointer; white-space: nowrap;
   }
   .nav-tab.active { color: #4a90d9; border-bottom-color: #4a90d9; }
   .nav-tab.inactive { color: #bbb; cursor: not-allowed; }
   .nav-tab .inactive-note { font-size: 10px; font-weight: 400; color: #ccc; margin-left: 4px; }
-  .nav-tab.bundles-tab { color: #27ae60; }
   .nav-spacer { flex: 1; }
   .nav-cart-btn {
     display: inline-flex; align-items: center; gap: 6px;
-    padding: 0 16px; font-size: 13px; font-weight: 600; color: #4a90d9; cursor: pointer;
+    padding: 0 16px; font-size: 13px; font-weight: 600;
+    color: #4a90d9; cursor: pointer;
   }
   .cart-badge {
     background: #4a90d9; color: #fff; border-radius: 50%;
     width: 18px; height: 18px; font-size: 11px;
     display: inline-flex; align-items: center; justify-content: center;
   }
-  /* Feedback form styles */
-  .ann-feedback-intro { background: #2c3e50; color: #ecf0f1; padding: 24px 32px; font-size: 14px; line-height: 1.7; }
-  .ann-feedback-intro h2 { font-size: 18px; font-weight: 700; margin-bottom: 6px; color: #fff; }
-  .ann-feedback-intro p { color: #bdc3c7; max-width: 680px; }
-  .ann-section-inner { padding: 32px 32px 0; }
-  .feedback-box { margin-top: 12px; background: #fff; border: 1px solid #e0d080; border-radius: 6px; padding: 14px 16px; }
-  .feedback-box label { display: block; font-size: 12px; font-weight: 700; color: #5a4a00; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
-  .feedback-box textarea { width: 100%; padding: 10px 12px; border: 1px solid #d0c060; border-radius: 4px; font-size: 14px; color: #333; background: #fffef5; resize: vertical; min-height: 80px; line-height: 1.6; font-family: inherit; }
-  .feedback-box textarea:focus { outline: 2px solid #f5c518; border-color: transparent; }
-  .feedback-box textarea::placeholder { color: #bbb; }
-  .feedback-form-wrap { background: #fff8e0; border-top: 2px solid #f5c518; padding: 28px 32px 36px; }
-  .feedback-form-heading { font-size: 16px; font-weight: 700; color: #222; margin-bottom: 4px; }
-  .feedback-form-desc { font-size: 13px; color: #666; margin-bottom: 20px; line-height: 1.6; }
-  .your-name-row { display: flex; gap: 14px; margin-bottom: 20px; flex-wrap: wrap; }
-  .your-name-field { flex: 1; min-width: 180px; }
-  .your-name-field label { display: block; font-size: 12px; font-weight: 700; color: #555; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 5px; }
-  .your-name-field input { width: 100%; padding: 10px 12px; border: 1px solid #d0d0d0; border-radius: 4px; font-size: 14px; color: #333; background: #fff; }
-  .submit-btn { display: inline-block; background: #2c3e50; color: #fff; padding: 12px 32px; border-radius: 4px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; }
-  .submit-btn:hover { background: #1a2a3a; }
-  .submit-note { font-size: 12px; color: #888; margin-top: 10px; line-height: 1.6; }
-  .success-message { display: none; background: #d5f5e3; border: 1px solid #6abf6a; border-radius: 6px; padding: 20px 24px; margin-top: 16px; font-size: 14px; color: #1a5c2a; line-height: 1.7; }
-  .success-message strong { display: block; font-size: 16px; margin-bottom: 4px; }
-  .error-message { display: none; background: #fdf2f2; border: 1px solid #e8b4b4; border-radius: 6px; padding: 14px 18px; margin-top: 12px; font-size: 13px; color: #7a2020; }
 
   /* ============================================================
      PAGE LAYOUT: content + sidebar
@@ -368,19 +345,12 @@
   </div>
 
   <nav class="top-nav">
-    <div class="nav-row">
-      <a class="nav-tab active" href="#">Daylilies</a>
-      <a class="nav-tab inactive" href="#">Iris <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Lilies <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab bundles-tab" href="#">Bundles</a>
-      <div class="nav-spacer"></div>
-      <a class="nav-cart-btn" href="#">Cart <span class="cart-badge">0</span></a>
-    </div>
-    <div class="nav-row nav-row-2">
-      <a class="nav-tab inactive" href="#">Dahlias <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Japanese Iris <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Other Perennials <span class="inactive-note">(coming soon)</span></a>
-    </div>
+    <a class="nav-tab active" href="#">Daylilies</a>
+    <a class="nav-tab inactive" href="#">Iris <span class="inactive-note">(coming soon)</span></a>
+    <a class="nav-tab inactive" href="#">Lilies <span class="inactive-note">(coming soon)</span></a>
+    <a class="nav-tab inactive" href="#">Other Perennials <span class="inactive-note">(coming soon)</span></a>
+    <div class="nav-spacer"></div>
+    <a class="nav-cart-btn" href="#">Cart <span class="cart-badge">0</span></a>
   </nav>
 
   <!-- PAGE BODY -->
@@ -675,112 +645,69 @@
 </div><!-- /.page-wrapper -->
 
 
-
-
-<!-- FEEDBACK FORM INJECTION -->
-<div class="ann-feedback-intro">
-  <h2>Page Annotations and Your Feedback</h2>
-  <p>Hi Jean! The annotations above explain what each part of this page does. The questions below need your input. Type your answers and click <strong>Send My Feedback</strong> when done.</p>
-</div>
+<!-- ANNOTATIONS -->
 <div class="annotations">
-  <div class="ann-section-inner">
-  <h2 style="padding-top:24px;">Shipping Information Page (WF08)</h2>
-  <p class="ann-subtitle">Yellow boxes are questions that need your input before the build begins.</p>
-  
+  <h2>Page Annotations: Shipping Information Page (Wireframe 08 of 17)</h2>
+  <p class="ann-subtitle">This is a public-facing content page. It lives at /shipping and is linked from the footer on every page. Jean can edit the body text through the admin Settings panel without developer help. Plain English throughout.</p>
+
   <div class="ann-item">
-    <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-shipping_rates">The current shipping rate is $15.00 for the first plant plus $2.00 for each additional plant. Does this match what you plan to charge?</label>
-      <textarea id="fb-shipping_rates" placeholder="Type your answer here..."></textarea>
-    </div>
+    <strong>Page Layout: Content Column + Sidebar</strong>
+    <p>The main content runs left, covering all five sections in depth. The sidebar on the right holds quick-reference summaries of the most important facts: the rate formula, shipping season dates, and state restrictions. Customers in a hurry can scan the sidebar; customers who want the full story can read the main column.</p>
   </div>
 
   <div class="ann-item">
-    <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-season_dates">The page shows placeholder shipping season dates. What are the actual shipping window dates you plan to use for the first season?</label>
-      <textarea id="fb-season_dates" placeholder="Type your answer here..."></textarea>
-    </div>
+    <strong>Section 1: Shipping Rates Table</strong>
+    <p>A worked-example table showing the shipping cost for 1, 2, 3, 4, 5, and 10 plants. The formula ($15.00 first plant, $2.00 each additional) is shown explicitly in the third column so there is no mystery. This is the same formula used in the cart and checkout summary.</p>
+    <span class="ann-tag business">Business rule: These rates are read from the Settings table, not hard-coded. If Jean updates the rates in the admin Settings panel, the cart recalculates automatically. However, the rates shown on this page are static text that Jean would need to update separately. This is a known limitation worth flagging: if Jean changes the rates in Settings, she should also update this page's text to match. An alternative is to pull the rates dynamically on this page too, so they always stay in sync.</span>
+    <span class="ann-tag decision">Decision needed: Should the rate table on this page pull its numbers dynamically from the Settings table (always in sync with the cart) or be static text that Jean edits manually? Dynamic is more reliable but slightly more complex to build. Static is simpler but creates a risk of the page showing different numbers than the cart.</span>
   </div>
 
   <div class="ann-item">
-    <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-care_instructions">The bare-root care instructions on this page are placeholder text based on standard daylily guidance. Please review them and let Edward know what you would like to change or add.</label>
-      <textarea id="fb-care_instructions" placeholder="Type your answer here..."></textarea>
-    </div>
+    <strong>Section 2: When We Ship</strong>
+    <p>Explains that plants are bare-root divisions and why that is actually a good thing. Sets realistic expectations about timing. The yellow callout box is a placeholder for Jean to fill in her actual shipping season dates. This is content only Jean knows and it will vary year to year.</p>
+    <span class="ann-tag content">Content needed: Jean to provide her actual spring and fall shipping window dates. These should also be updated in the sidebar and in the admin Settings panel each season.</span>
   </div>
 
   <div class="ann-item">
-    <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-flagged_wording">The notice about Texas, Arizona, and Florida says customers should email you about state agricultural requirements. Please review and approve the exact wording before the site goes live.</label>
-      <textarea id="fb-flagged_wording" placeholder="Type your answer here..."></textarea>
-    </div>
+    <strong>Section 3: State Restrictions</strong>
+    <p>Uses the same red and yellow callout boxes as the checkout page so the visual language is consistent. Customers who read this page before ordering will not be surprised by the notices at checkout. The restricted state lists match exactly what is stored in the Settings table.</p>
+    <span class="ann-tag business">Business rule: The blocked and flagged state lists shown here must match the lists in the Settings table exactly. If Jean adds or removes a state from the Settings panel, she should also update this page's text. Same sync issue as the shipping rates above.</span>
   </div>
 
   <div class="ann-item">
-    <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-general">Any other thoughts on the shipping information page?</label>
-      <textarea id="fb-general" placeholder="Type your answer here..."></textarea>
-    </div>
+    <strong>Section 4: Care on Arrival (numbered steps)</strong>
+    <p>Six numbered steps for what to do when bare-root plants arrive. The placeholder copy is based on standard daylily care guidance; Jean should review and rewrite in her voice. This is genuinely useful content that reduces "my plants look dead, what do I do?" emails after orders ship.</p>
+    <span class="ann-tag content">Content needed: Jean to review and approve the care instructions, or rewrite them entirely. This is her expertise and her voice, not a developer's.</span>
   </div>
+
+  <div class="ann-item">
+    <strong>Section 5: Questions</strong>
+    <p>A short closing section with Jean's email and an invitation to ask questions. Keeps the page from ending abruptly and signals that Jean is approachable and personally responsive.</p>
   </div>
-  <div class="feedback-form-wrap">
-    <div class="feedback-form-heading">Send Your Feedback to Edward</div>
-    <p class="feedback-form-desc">Type your answers above, then click the button below to send everything to Edward in one email.</p>
-    <form id="feedback-form-wf08">
-      <input type="hidden" name="_subject" value="WF08 Shipping Information Page Feedback - Dazzling Daylilies">
-      <input type="hidden" name="wireframe" value="WF08 - Shipping Information Page">
-      <input type="hidden" name="shipping_rates" id="h-shipping_rates">
-      <input type="hidden" name="season_dates" id="h-season_dates">
-      <input type="hidden" name="care_instructions" id="h-care_instructions">
-      <input type="hidden" name="flagged_wording" id="h-flagged_wording">
-      <input type="hidden" name="general" id="h-general">
-      <div class="your-name-row">
-        <div class="your-name-field">
-          <label>Your Name</label>
-          <input type="text" name="reviewer_name" value="Jean">
-        </div>
-        <div class="your-name-field">
-          <label>Your Email</label>
-          <input type="email" name="email" placeholder="dazzlingdaylilies@yahoo.com">
-        </div>
-      </div>
-      <button type="submit" class="submit-btn">Send My Feedback &rarr;</button>
-      <p class="submit-note">Sent directly and securely to Edward.</p>
-      <div class="success-message" id="success-wf08"><strong>Thank you, Jean!</strong> Your feedback on the Shipping Information Page has been sent to Edward.</div>
-      <div class="error-message" id="error-wf08">Something went wrong. Please try again or email Edward directly.</div>
-    </form>
+
+  <div class="ann-item">
+    <strong>Sidebar: Quick Rate Reference</strong>
+    <p>A compact blue box showing just the formula and one worked example. Customers who are in the middle of deciding what to order can glance at this without reading the full table. Matches the shipping note in the cart page's order summary.</p>
   </div>
+
+  <div class="ann-item">
+    <strong>Sidebar: Shipping Season</strong>
+    <p>Placeholder dates that Jean needs to fill in. This is the same content as the callout in Section 2, duplicated in the sidebar for quick reference. Jean will need to update this each season.</p>
+    <span class="ann-tag decision">Decision needed: Should the shipping season dates be managed in one place (the admin Settings panel) and displayed automatically on this page and in the sidebar? That would remove the manual update burden. Or should Jean just update the page text herself each season? The Settings panel approach is cleaner long-term.</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>Sidebar: Already Ordered?</strong>
+    <p>A direct link to the Order Status page. Customers reading the shipping page are often past customers wondering where their order is. Putting this link in the sidebar gives them the fastest route to an answer.</p>
+  </div>
+
+  <div class="ann-item">
+    <strong>Jean's Ability to Edit This Page</strong>
+    <p>The contract scope includes an admin Settings panel with a "Shipping policy content" field. In the wireframe plan, that field holds the body text for this page so Jean can update it herself. The page structure (headings, sidebar, rate table) would be fixed in code; only the paragraph text within each section would be editable. If Jean wants to add or remove entire sections, that would require developer involvement.</p>
+    <span class="ann-tag decision">Decision needed: How much control should Jean have over this page? Option A: the entire page body is a single rich-text field she can edit freely (most flexible, but layout could break if she makes big changes). Option B: each section has its own editable text field in Settings (more controlled, harder to accidentally break). Option C: the page is static HTML that Edward updates when Jean asks (simplest to build, slowest to update). Jean should decide based on how often she expects to need changes.</span>
+  </div>
+
 </div>
-<script>
-(function(){
-  var form = document.getElementById('feedback-form-wf08');
-  if (!form) return;
-  var fieldMap = [['shipping_rates', 'h-shipping_rates'],
-    ['season_dates', 'h-season_dates'],
-    ['care_instructions', 'h-care_instructions'],
-    ['flagged_wording', 'h-flagged_wording'],
-    ['general', 'h-general']];
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    fieldMap.forEach(function(p) {
-      var s = document.getElementById(p[0]), d = document.getElementById(p[1]);
-      if (s && d) d.value = s.value.trim() || '(no answer)';
-    });
-    var btn = form.querySelector('.submit-btn');
-    btn.textContent = 'Sending...'; btn.disabled = true;
-    fetch('https://formspree.io/f/mvzyrrrv', {
-      method:'POST', body: new FormData(form), headers: {'Accept':'application/json'}
-    }).then(function(r) {
-      if(r.ok) {
-        document.getElementById('success-wf08').style.display='block';
-        document.getElementById('success-wf08').scrollIntoView({behavior:'smooth'});
-        btn.textContent='Feedback Sent';
-      } else { throw new Error(); }
-    }).catch(function() {
-      document.getElementById('error-wf08').style.display='block';
-      btn.textContent='Send My Feedback →'; btn.disabled=false;
-    });
-  });
-})();
-</script>
+
 </body>
 </html>

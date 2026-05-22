@@ -67,52 +67,29 @@
   .site-header h1 { font-size: 26px; font-weight: 700; color: #222; margin-bottom: 4px; }
   .site-header .tagline { font-size: 13px; color: #666; font-style: italic; }
   .top-nav {
-    background: #fff; border-bottom: 3px solid #d0d0d0; padding: 0 24px; overflow-x: hidden;
+    background: #fff; border-bottom: 3px solid #d0d0d0;
+    padding: 0 24px; display: flex; align-items: stretch; height: 48px;
   }
-  .nav-row { display: flex; align-items: stretch; min-height: 44px; flex-wrap: nowrap; }
-  .nav-row-2 { border-top: 1px solid #f0f0f0; }
   .nav-tab {
-    display: inline-flex; align-items: center; padding: 0 16px;
-    font-size: 13px; font-weight: 600; color: #555;
-    border-bottom: 3px solid transparent; margin-bottom: -3px; cursor: pointer; white-space: nowrap;
+    display: inline-flex; align-items: center; padding: 0 20px;
+    font-size: 14px; font-weight: 600; color: #555;
+    border-bottom: 3px solid transparent; margin-bottom: -3px;
+    cursor: pointer; white-space: nowrap;
   }
   .nav-tab.active { color: #4a90d9; border-bottom-color: #4a90d9; }
   .nav-tab.inactive { color: #bbb; cursor: not-allowed; }
   .nav-tab .inactive-note { font-size: 10px; font-weight: 400; color: #ccc; margin-left: 4px; }
-  .nav-tab.bundles-tab { color: #27ae60; }
   .nav-spacer { flex: 1; }
   .nav-cart-btn {
     display: inline-flex; align-items: center; gap: 6px;
-    padding: 0 16px; font-size: 13px; font-weight: 600; color: #4a90d9; cursor: pointer;
+    padding: 0 16px; font-size: 13px; font-weight: 600;
+    color: #4a90d9; cursor: pointer;
   }
   .cart-badge {
     background: #4a90d9; color: #fff; border-radius: 50%;
     width: 18px; height: 18px; font-size: 11px;
     display: inline-flex; align-items: center; justify-content: center;
   }
-  /* Feedback form styles */
-  .ann-feedback-intro { background: #2c3e50; color: #ecf0f1; padding: 24px 32px; font-size: 14px; line-height: 1.7; }
-  .ann-feedback-intro h2 { font-size: 18px; font-weight: 700; margin-bottom: 6px; color: #fff; }
-  .ann-feedback-intro p { color: #bdc3c7; max-width: 680px; }
-  .ann-section-inner { padding: 32px 32px 0; }
-  .feedback-box { margin-top: 12px; background: #fff; border: 1px solid #e0d080; border-radius: 6px; padding: 14px 16px; }
-  .feedback-box label { display: block; font-size: 12px; font-weight: 700; color: #5a4a00; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
-  .feedback-box textarea { width: 100%; padding: 10px 12px; border: 1px solid #d0c060; border-radius: 4px; font-size: 14px; color: #333; background: #fffef5; resize: vertical; min-height: 80px; line-height: 1.6; font-family: inherit; }
-  .feedback-box textarea:focus { outline: 2px solid #f5c518; border-color: transparent; }
-  .feedback-box textarea::placeholder { color: #bbb; }
-  .feedback-form-wrap { background: #fff8e0; border-top: 2px solid #f5c518; padding: 28px 32px 36px; }
-  .feedback-form-heading { font-size: 16px; font-weight: 700; color: #222; margin-bottom: 4px; }
-  .feedback-form-desc { font-size: 13px; color: #666; margin-bottom: 20px; line-height: 1.6; }
-  .your-name-row { display: flex; gap: 14px; margin-bottom: 20px; flex-wrap: wrap; }
-  .your-name-field { flex: 1; min-width: 180px; }
-  .your-name-field label { display: block; font-size: 12px; font-weight: 700; color: #555; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 5px; }
-  .your-name-field input { width: 100%; padding: 10px 12px; border: 1px solid #d0d0d0; border-radius: 4px; font-size: 14px; color: #333; background: #fff; }
-  .submit-btn { display: inline-block; background: #2c3e50; color: #fff; padding: 12px 32px; border-radius: 4px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; }
-  .submit-btn:hover { background: #1a2a3a; }
-  .submit-note { font-size: 12px; color: #888; margin-top: 10px; line-height: 1.6; }
-  .success-message { display: none; background: #d5f5e3; border: 1px solid #6abf6a; border-radius: 6px; padding: 20px 24px; margin-top: 16px; font-size: 14px; color: #1a5c2a; line-height: 1.7; }
-  .success-message strong { display: block; font-size: 16px; margin-bottom: 4px; }
-  .error-message { display: none; background: #fdf2f2; border: 1px solid #e8b4b4; border-radius: 6px; padding: 14px 18px; margin-top: 12px; font-size: 13px; color: #7a2020; }
 
   /* ============================================================
      CONFIRMATION HERO BAND
@@ -448,19 +425,13 @@
   </div>
 
   <nav class="top-nav">
-    <div class="nav-row">
-      <a class="nav-tab active" href="#">Daylilies</a>
-      <a class="nav-tab inactive" href="#">Iris <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Lilies <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab bundles-tab" href="#">Bundles</a>
-      <div class="nav-spacer"></div>
-      <a class="nav-cart-btn" href="#">Cart <span class="cart-badge">0</span></a>
-    </div>
-    <div class="nav-row nav-row-2">
-      <a class="nav-tab inactive" href="#">Dahlias <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Japanese Iris <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Other Perennials <span class="inactive-note">(coming soon)</span></a>
-    </div>
+    <a class="nav-tab active" href="#">Daylilies</a>
+    <a class="nav-tab inactive" href="#">Iris <span class="inactive-note">(coming soon)</span></a>
+    <a class="nav-tab inactive" href="#">Lilies <span class="inactive-note">(coming soon)</span></a>
+    <a class="nav-tab inactive" href="#">Other Perennials <span class="inactive-note">(coming soon)</span></a>
+    <div class="nav-spacer"></div>
+    <!-- Cart shows 0 after a completed order -->
+    <a class="nav-cart-btn" href="#">Cart <span class="cart-badge">0</span></a>
   </nav>
 
   <!-- CONFIRMATION HERO -->
@@ -676,94 +647,62 @@
 </div><!-- /.page-wrapper -->
 
 
-
-
-<!-- FEEDBACK FORM INJECTION -->
-<div class="ann-feedback-intro">
-  <h2>Page Annotations and Your Feedback</h2>
-  <p>Hi Jean! The annotations above explain what each part of this page does. The questions below need your input. Type your answers and click <strong>Send My Feedback</strong> when done.</p>
-</div>
+<!-- ANNOTATIONS -->
 <div class="annotations">
-  <div class="ann-section-inner">
-  <h2 style="padding-top:24px;">Order Confirmation Page (WF06)</h2>
-  <p class="ann-subtitle">Yellow boxes are questions that need your input before the build begins.</p>
-  
+  <h2>Page Annotations: Order Confirmation Page (Wireframe 06 of 17)</h2>
+  <p class="ann-subtitle">This page appears immediately after a successful payment. It is the only confirmation the customer sees on screen; they also receive an email version. Plain English throughout.</p>
+
   <div class="ann-item">
-    <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-thankyou_note">The thank-you note on the confirmation page is placeholder text. What would you like it to say? A sentence or two in your own voice works best.</label>
-      <textarea id="fb-thankyou_note" placeholder="Type your answer here..."></textarea>
-    </div>
+    <strong>Green Confirmation Banner (top section)</strong>
+    <p>The green checkmark and "Thank You for Your Order!" heading give the customer immediate, unmistakable confirmation that their payment went through and the order is real. The order number is shown prominently inside a bordered box so it is easy to spot and write down. The customer's email address is echoed back so they know where to look for the confirmation email.</p>
+    <span class="ann-tag business">Business rule: The cart is cleared as soon as this page loads. The cart count in the nav shows 0. There is no way to accidentally resubmit the order by refreshing the page.</span>
   </div>
 
   <div class="ann-item">
-    <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-next_steps">The page tells customers "Jean will contact you when your order ships." Does this accurately describe your shipping workflow?</label>
-      <textarea id="fb-next_steps" placeholder="Type your answer here..."></textarea>
-    </div>
+    <strong>Order Number Format (DD-2027-0042)</strong>
+    <p>The format is DD (for Dazzling Daylilies), the year, and a four-digit sequence number. So the 42nd order placed in 2027 is DD-2027-0042. The year resets to 0001 at the start of each calendar year. This makes order numbers human-readable and easy to reference in emails between Jean and her customers.</p>
+    <span class="ann-tag decision">Decision needed: Jean should confirm she is happy with this order number format before coding begins. Alternatives include a simple sequential number (00042), a random alphanumeric code, or a different prefix. Once the format is set and orders start coming in, changing it is disruptive.</span>
   </div>
 
   <div class="ann-item">
-    <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-general">Any other thoughts on the order confirmation page?</label>
-      <textarea id="fb-general" placeholder="Type your answer here..."></textarea>
-    </div>
+    <strong>Order Information Grid</strong>
+    <p>A clean label-and-value layout showing name, email, phone, shipping address, and payment method (card type and last four digits, provided by Square). This gives the customer a full record of what they submitted. The card number shown is only the last four digits; full card numbers are never stored or displayed anywhere in the system.</p>
   </div>
+
+  <div class="ann-item">
+    <strong>Plants Ordered Table</strong>
+    <p>The same format as the cart and checkout summary, with plant thumbnails, names, quantities, and prices. The totals block at the bottom shows subtotal, shipping, and the total that was actually charged. This is the customer's on-screen receipt.</p>
   </div>
-  <div class="feedback-form-wrap">
-    <div class="feedback-form-heading">Send Your Feedback to Edward</div>
-    <p class="feedback-form-desc">Type your answers above, then click the button below to send everything to Edward in one email.</p>
-    <form id="feedback-form-wf06">
-      <input type="hidden" name="_subject" value="WF06 Order Confirmation Page Feedback - Dazzling Daylilies">
-      <input type="hidden" name="wireframe" value="WF06 - Order Confirmation Page">
-      <input type="hidden" name="thankyou_note" id="h-thankyou_note">
-      <input type="hidden" name="next_steps" id="h-next_steps">
-      <input type="hidden" name="general" id="h-general">
-      <div class="your-name-row">
-        <div class="your-name-field">
-          <label>Your Name</label>
-          <input type="text" name="reviewer_name" value="Jean">
-        </div>
-        <div class="your-name-field">
-          <label>Your Email</label>
-          <input type="email" name="email" placeholder="dazzlingdaylilies@yahoo.com">
-        </div>
-      </div>
-      <button type="submit" class="submit-btn">Send My Feedback &rarr;</button>
-      <p class="submit-note">Sent directly and securely to Edward.</p>
-      <div class="success-message" id="success-wf06"><strong>Thank you, Jean!</strong> Your feedback on the Order Confirmation Page has been sent to Edward.</div>
-      <div class="error-message" id="error-wf06">Something went wrong. Please try again or email Edward directly.</div>
-    </form>
+
+  <div class="ann-item">
+    <strong>Note from Jean (personal message section)</strong>
+    <p>A warm personal note from Jean, shown in a lightly tinted panel to distinguish it from the order data above. The placeholder copy ends with "I appreciate you! &mdash; Jean" which matches her actual sign-off style. Jean should read and approve this copy, or replace it entirely with her own words. This same message (or a version of it) appears in the confirmation email.</p>
+    <span class="ann-tag content">Content needed: Jean should approve or rewrite this personal message. It represents her voice and her relationship with her customers.</span>
+    <span class="ann-tag business">Business rule: The confirmation email is sent automatically the moment the order is placed. Jean does NOT need to do anything to trigger it. The email includes the order number, plant list, and totals. It does not include tracking information because Jean sends that personally when the order ships.</span>
   </div>
+
+  <div class="ann-item">
+    <strong>Email Sent Notice (blue box, sidebar)</strong>
+    <p>Reminds the customer to check their spam folder if they do not see the confirmation email. This reduces support questions. The customer's email address is shown again for confirmation.</p>
+  </div>
+
+  <div class="ann-item">
+    <strong>"What Happens Next" Panel</strong>
+    <p>Four numbered steps explaining Jean's workflow: she sees the order, packs and ships when the timing is right, emails personally with tracking, and the customer can check status online at any time. This sets expectations correctly and prevents "where is my order?" emails to Jean during the gap between ordering and shipping.</p>
+    <span class="ann-tag business">Business rule: Jean emails tracking information personally. The system marks the order as Shipped and records the tracking number, but does NOT send an automatic shipping notification email. Customers who want to check status can use the Order Status page.</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>"Track Your Order" Panel</strong>
+    <p>Shows the order number again (prominently, with a prompt to save it) and provides two buttons: "Check Order Status" links to the Order Status page pre-filled with the order number, and "Continue Shopping" returns to the catalog. These are the two most natural next actions for a customer who has just completed an order.</p>
+  </div>
+
+  <div class="ann-item">
+    <strong>Cart Count Shows Zero</strong>
+    <p>The cart badge in the top nav shows 0 after a completed order. The cart is fully cleared once the order confirmation page loads. If a customer clicks the browser back button from this page, they will find an empty cart and cannot accidentally reorder.</p>
+  </div>
+
 </div>
-<script>
-(function(){
-  var form = document.getElementById('feedback-form-wf06');
-  if (!form) return;
-  var fieldMap = [['thankyou_note', 'h-thankyou_note'],
-    ['next_steps', 'h-next_steps'],
-    ['general', 'h-general']];
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    fieldMap.forEach(function(p) {
-      var s = document.getElementById(p[0]), d = document.getElementById(p[1]);
-      if (s && d) d.value = s.value.trim() || '(no answer)';
-    });
-    var btn = form.querySelector('.submit-btn');
-    btn.textContent = 'Sending...'; btn.disabled = true;
-    fetch('https://formspree.io/f/mvzyrrrv', {
-      method:'POST', body: new FormData(form), headers: {'Accept':'application/json'}
-    }).then(function(r) {
-      if(r.ok) {
-        document.getElementById('success-wf06').style.display='block';
-        document.getElementById('success-wf06').scrollIntoView({behavior:'smooth'});
-        btn.textContent='Feedback Sent';
-      } else { throw new Error(); }
-    }).catch(function() {
-      document.getElementById('error-wf06').style.display='block';
-      btn.textContent='Send My Feedback →'; btn.disabled=false;
-    });
-  });
-})();
-</script>
+
 </body>
 </html>

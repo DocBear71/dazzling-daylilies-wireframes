@@ -283,30 +283,6 @@
   .ann-tag.decision { background: #ffd580; }
   .ann-tag.jean { background: #f8d7da; color: #721c24; }
   .ann-tag.new { background: #d5f5e3; color: #1a5c2a; }
-
-  /* Feedback form styles */
-  .ann-feedback-intro { background: #2c3e50; color: #ecf0f1; padding: 24px 32px; font-size: 14px; line-height: 1.7; }
-  .ann-feedback-intro h2 { font-size: 18px; font-weight: 700; margin-bottom: 6px; color: #fff; }
-  .ann-feedback-intro p { color: #bdc3c7; max-width: 680px; }
-  .ann-section-inner { padding: 32px 32px 0; }
-  .feedback-box { margin-top: 12px; background: #fff; border: 1px solid #e0d080; border-radius: 6px; padding: 14px 16px; }
-  .feedback-box label { display: block; font-size: 12px; font-weight: 700; color: #5a4a00; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
-  .feedback-box textarea { width: 100%; padding: 10px 12px; border: 1px solid #d0c060; border-radius: 4px; font-size: 14px; color: #333; background: #fffef5; resize: vertical; min-height: 80px; line-height: 1.6; font-family: inherit; }
-  .feedback-box textarea:focus { outline: 2px solid #f5c518; border-color: transparent; }
-  .feedback-box textarea::placeholder { color: #bbb; }
-  .feedback-form-wrap { background: #fff8e0; border-top: 2px solid #f5c518; padding: 28px 32px 36px; }
-  .feedback-form-heading { font-size: 16px; font-weight: 700; color: #222; margin-bottom: 4px; }
-  .feedback-form-desc { font-size: 13px; color: #666; margin-bottom: 20px; line-height: 1.6; }
-  .your-name-row { display: flex; gap: 14px; margin-bottom: 20px; flex-wrap: wrap; }
-  .your-name-field { flex: 1; min-width: 180px; }
-  .your-name-field label { display: block; font-size: 12px; font-weight: 700; color: #555; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 5px; }
-  .your-name-field input { width: 100%; padding: 10px 12px; border: 1px solid #d0d0d0; border-radius: 4px; font-size: 14px; color: #333; background: #fff; }
-  .submit-btn { display: inline-block; background: #2c3e50; color: #fff; padding: 12px 32px; border-radius: 4px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; }
-  .submit-btn:hover { background: #1a2a3a; }
-  .submit-note { font-size: 12px; color: #888; margin-top: 10px; line-height: 1.6; }
-  .success-message { display: none; background: #d5f5e3; border: 1px solid #6abf6a; border-radius: 6px; padding: 20px 24px; margin-top: 16px; font-size: 14px; color: #1a5c2a; line-height: 1.7; }
-  .success-message strong { display: block; font-size: 16px; margin-bottom: 4px; }
-  .error-message { display: none; background: #fdf2f2; border: 1px solid #e8b4b4; border-radius: 6px; padding: 14px 18px; margin-top: 12px; font-size: 13px; color: #7a2020; }
 </style>
 </head>
 <body>
@@ -696,97 +672,5 @@
 
 </div>
 
-
-<!-- FEEDBACK INTRO -->
-<div class="ann-feedback-intro">
-  <h2>Your Feedback on This Page</h2>
-  <p>Hi Jean! Below are questions about the Admin Plant Editor. Type your answers and click <strong>Send My Feedback</strong> when done. Edward receives all your answers by email.</p>
-</div>
-<div style="background:#fffbe6; border-top:4px solid #f5c518; padding:0;">
-  <div style="padding:24px 32px 0;">
-  <h2 style="font-size:18px; font-weight:700; padding-bottom:8px;">Admin Plant Editor (WF11)</h2>
-    <div class="ann-item" style="padding:20px 0; border-bottom:1px solid #eedc6a;">
-    <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-dropdown_values">The attribute dropdowns (Color, Bloom Size, Ploidy, etc.) have a fixed list of values. If you need to add a new color category or bloom time, Edward would need to update the list for you. Would you prefer a fixed list for now, or would you like to be able to manage these lists yourself from the Settings page?</label>
-      <textarea id="fb-dropdown_values" placeholder="Type your answer here..."></textarea>
-    </div>
-  </div>
-  <div class="ann-item" style="padding:20px 0; border-bottom:1px solid #eedc6a;">
-    <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-bundle_name_required">When you set up a bundle, should the bundle name be required (you must give it a name like "Jean's Sunset Garden Collection") or optional (defaults to "5-Plant Collection" if left blank)?</label>
-      <textarea id="fb-bundle_name_required" placeholder="Type your answer here..."></textarea>
-    </div>
-  </div>
-  <div class="ann-item" style="padding:20px 0; border-bottom:1px solid #eedc6a;">
-    <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-bundle_price_method">For bundle pricing: would you prefer to enter the bundle price as a total dollar amount (e.g., $112.00), or enter a percentage discount (e.g., 10% off) and let the system calculate the price?</label>
-      <textarea id="fb-bundle_price_method" placeholder="Type your answer here..."></textarea>
-    </div>
-  </div>
-  <div class="ann-item" style="padding:20px 0; border-bottom:1px solid #eedc6a;">
-    <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-general">Any other thoughts on the plant editor?</label>
-      <textarea id="fb-general" placeholder="Type your answer here..."></textarea>
-    </div>
-  </div>
-  </div>
-  <div class="feedback-form-wrap">
-    <div class="feedback-form-heading">Send Your Feedback to Edward</div>
-    <p class="feedback-form-desc">Click the button below to send all your answers to Edward in one email.</p>
-    <form id="feedback-form-wf11">
-      <input type="hidden" name="_subject" value="WF11 Admin Plant Editor Feedback - Dazzling Daylilies">
-      <input type="hidden" name="wireframe" value="WF11 - Admin Plant Editor">
-      <input type="hidden" name="dropdown_values" id="h-dropdown_values">
-      <input type="hidden" name="bundle_name_required" id="h-bundle_name_required">
-      <input type="hidden" name="bundle_price_method" id="h-bundle_price_method">
-      <input type="hidden" name="general" id="h-general">
-      <div class="your-name-row">
-        <div class="your-name-field">
-          <label>Your Name</label>
-          <input type="text" name="reviewer_name" value="Jean">
-        </div>
-        <div class="your-name-field">
-          <label>Your Email</label>
-          <input type="email" name="email" placeholder="dazzlingdaylilies@yahoo.com">
-        </div>
-      </div>
-      <button type="submit" class="submit-btn">Send My Feedback &rarr;</button>
-      <p class="submit-note">Sent directly and securely to Edward.</p>
-      <div class="success-message" id="success-wf11"><strong>Thank you, Jean!</strong> Your feedback on the Admin Plant Editor has been sent to Edward successfully.</div>
-      <div class="error-message" id="error-wf11">Something went wrong. Please try again or email Edward directly.</div>
-    </form>
-  </div>
-</div>
-<script>
-(function(){
-  var form = document.getElementById('feedback-form-wf11');
-  if (!form) return;
-  var fieldMap = [['dropdown_values', 'h-dropdown_values'],
-    ['bundle_name_required', 'h-bundle_name_required'],
-    ['bundle_price_method', 'h-bundle_price_method'],
-    ['general', 'h-general']];
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    fieldMap.forEach(function(p) {
-      var s = document.getElementById(p[0]), d = document.getElementById(p[1]);
-      if (s && d) d.value = s.value.trim() || '(no answer)';
-    });
-    var btn = form.querySelector('.submit-btn');
-    btn.textContent = 'Sending...'; btn.disabled = true;
-    fetch('https://formspree.io/f/mvzyrrrv', {
-      method:'POST', body: new FormData(form), headers: {'Accept':'application/json'}
-    }).then(function(r) {
-      if(r.ok) {
-        document.getElementById('success-wf11').style.display='block';
-        document.getElementById('success-wf11').scrollIntoView({behavior:'smooth'});
-        btn.textContent='Feedback Sent';
-      } else { throw new Error(); }
-    }).catch(function() {
-      document.getElementById('error-wf11').style.display='block';
-      btn.textContent='Send My Feedback →'; btn.disabled=false;
-    });
-  });
-})();
-</script>
 </body>
 </html>

@@ -67,52 +67,29 @@
   .site-header h1 { font-size: 26px; font-weight: 700; color: #222; margin-bottom: 4px; }
   .site-header .tagline { font-size: 13px; color: #666; font-style: italic; }
   .top-nav {
-    background: #fff; border-bottom: 3px solid #d0d0d0; padding: 0 24px; overflow-x: hidden;
+    background: #fff; border-bottom: 3px solid #d0d0d0;
+    padding: 0 24px; display: flex; align-items: stretch; height: 48px;
   }
-  .nav-row { display: flex; align-items: stretch; min-height: 44px; flex-wrap: nowrap; }
-  .nav-row-2 { border-top: 1px solid #f0f0f0; }
   .nav-tab {
-    display: inline-flex; align-items: center; padding: 0 16px;
-    font-size: 13px; font-weight: 600; color: #555;
-    border-bottom: 3px solid transparent; margin-bottom: -3px; cursor: pointer; white-space: nowrap;
+    display: inline-flex; align-items: center; padding: 0 20px;
+    font-size: 14px; font-weight: 600; color: #555;
+    border-bottom: 3px solid transparent; margin-bottom: -3px;
+    cursor: pointer; white-space: nowrap;
   }
   .nav-tab.active { color: #4a90d9; border-bottom-color: #4a90d9; }
   .nav-tab.inactive { color: #bbb; cursor: not-allowed; }
   .nav-tab .inactive-note { font-size: 10px; font-weight: 400; color: #ccc; margin-left: 4px; }
-  .nav-tab.bundles-tab { color: #27ae60; }
   .nav-spacer { flex: 1; }
   .nav-cart-btn {
     display: inline-flex; align-items: center; gap: 6px;
-    padding: 0 16px; font-size: 13px; font-weight: 600; color: #4a90d9; cursor: pointer;
+    padding: 0 16px; font-size: 13px; font-weight: 600;
+    color: #4a90d9; cursor: pointer;
   }
   .cart-badge {
     background: #4a90d9; color: #fff; border-radius: 50%;
     width: 18px; height: 18px; font-size: 11px;
     display: inline-flex; align-items: center; justify-content: center;
   }
-  /* Feedback form styles */
-  .ann-feedback-intro { background: #2c3e50; color: #ecf0f1; padding: 24px 32px; font-size: 14px; line-height: 1.7; }
-  .ann-feedback-intro h2 { font-size: 18px; font-weight: 700; margin-bottom: 6px; color: #fff; }
-  .ann-feedback-intro p { color: #bdc3c7; max-width: 680px; }
-  .ann-section-inner { padding: 32px 32px 0; }
-  .feedback-box { margin-top: 12px; background: #fff; border: 1px solid #e0d080; border-radius: 6px; padding: 14px 16px; }
-  .feedback-box label { display: block; font-size: 12px; font-weight: 700; color: #5a4a00; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
-  .feedback-box textarea { width: 100%; padding: 10px 12px; border: 1px solid #d0c060; border-radius: 4px; font-size: 14px; color: #333; background: #fffef5; resize: vertical; min-height: 80px; line-height: 1.6; font-family: inherit; }
-  .feedback-box textarea:focus { outline: 2px solid #f5c518; border-color: transparent; }
-  .feedback-box textarea::placeholder { color: #bbb; }
-  .feedback-form-wrap { background: #fff8e0; border-top: 2px solid #f5c518; padding: 28px 32px 36px; }
-  .feedback-form-heading { font-size: 16px; font-weight: 700; color: #222; margin-bottom: 4px; }
-  .feedback-form-desc { font-size: 13px; color: #666; margin-bottom: 20px; line-height: 1.6; }
-  .your-name-row { display: flex; gap: 14px; margin-bottom: 20px; flex-wrap: wrap; }
-  .your-name-field { flex: 1; min-width: 180px; }
-  .your-name-field label { display: block; font-size: 12px; font-weight: 700; color: #555; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 5px; }
-  .your-name-field input { width: 100%; padding: 10px 12px; border: 1px solid #d0d0d0; border-radius: 4px; font-size: 14px; color: #333; background: #fff; }
-  .submit-btn { display: inline-block; background: #2c3e50; color: #fff; padding: 12px 32px; border-radius: 4px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; }
-  .submit-btn:hover { background: #1a2a3a; }
-  .submit-note { font-size: 12px; color: #888; margin-top: 10px; line-height: 1.6; }
-  .success-message { display: none; background: #d5f5e3; border: 1px solid #6abf6a; border-radius: 6px; padding: 20px 24px; margin-top: 16px; font-size: 14px; color: #1a5c2a; line-height: 1.7; }
-  .success-message strong { display: block; font-size: 16px; margin-bottom: 4px; }
-  .error-message { display: none; background: #fdf2f2; border: 1px solid #e8b4b4; border-radius: 6px; padding: 14px 18px; margin-top: 12px; font-size: 13px; color: #7a2020; }
 
   .page-title-bar {
     background: #f5f5f5;
@@ -563,19 +540,12 @@
   </div>
 
   <nav class="top-nav">
-    <div class="nav-row">
-      <a class="nav-tab active" href="#">Daylilies</a>
-      <a class="nav-tab inactive" href="#">Iris <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Lilies <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab bundles-tab" href="#">Bundles</a>
-      <div class="nav-spacer"></div>
-      <a class="nav-cart-btn" href="#">Cart <span class="cart-badge">0</span></a>
-    </div>
-    <div class="nav-row nav-row-2">
-      <a class="nav-tab inactive" href="#">Dahlias <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Japanese Iris <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Other Perennials <span class="inactive-note">(coming soon)</span></a>
-    </div>
+    <a class="nav-tab active" href="#">Daylilies</a>
+    <a class="nav-tab inactive" href="#">Iris <span class="inactive-note">(coming soon)</span></a>
+    <a class="nav-tab inactive" href="#">Lilies <span class="inactive-note">(coming soon)</span></a>
+    <a class="nav-tab inactive" href="#">Other Perennials <span class="inactive-note">(coming soon)</span></a>
+    <div class="nav-spacer"></div>
+    <a class="nav-cart-btn" href="#">Cart <span class="cart-badge">0</span></a>
   </nav>
 
   <div class="page-title-bar">
@@ -643,19 +613,12 @@
   </div>
 
   <nav class="top-nav">
-    <div class="nav-row">
-      <a class="nav-tab active" href="#">Daylilies</a>
-      <a class="nav-tab inactive" href="#">Iris <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Lilies <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab bundles-tab" href="#">Bundles</a>
-      <div class="nav-spacer"></div>
-      <a class="nav-cart-btn" href="#">Cart <span class="cart-badge">0</span></a>
-    </div>
-    <div class="nav-row nav-row-2">
-      <a class="nav-tab inactive" href="#">Dahlias <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Japanese Iris <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Other Perennials <span class="inactive-note">(coming soon)</span></a>
-    </div>
+    <a class="nav-tab active" href="#">Daylilies</a>
+    <a class="nav-tab inactive" href="#">Iris <span class="inactive-note">(coming soon)</span></a>
+    <a class="nav-tab inactive" href="#">Lilies <span class="inactive-note">(coming soon)</span></a>
+    <a class="nav-tab inactive" href="#">Other Perennials <span class="inactive-note">(coming soon)</span></a>
+    <div class="nav-spacer"></div>
+    <a class="nav-cart-btn" href="#">Cart <span class="cart-badge">0</span></a>
   </nav>
 
   <div class="page-title-bar">
@@ -844,19 +807,12 @@
   </div>
 
   <nav class="top-nav">
-    <div class="nav-row">
-      <a class="nav-tab active" href="#">Daylilies</a>
-      <a class="nav-tab inactive" href="#">Iris <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Lilies <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab bundles-tab" href="#">Bundles</a>
-      <div class="nav-spacer"></div>
-      <a class="nav-cart-btn" href="#">Cart <span class="cart-badge">0</span></a>
-    </div>
-    <div class="nav-row nav-row-2">
-      <a class="nav-tab inactive" href="#">Dahlias <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Japanese Iris <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Other Perennials <span class="inactive-note">(coming soon)</span></a>
-    </div>
+    <a class="nav-tab active" href="#">Daylilies</a>
+    <a class="nav-tab inactive" href="#">Iris <span class="inactive-note">(coming soon)</span></a>
+    <a class="nav-tab inactive" href="#">Lilies <span class="inactive-note">(coming soon)</span></a>
+    <a class="nav-tab inactive" href="#">Other Perennials <span class="inactive-note">(coming soon)</span></a>
+    <div class="nav-spacer"></div>
+    <a class="nav-cart-btn" href="#">Cart <span class="cart-badge">0</span></a>
   </nav>
 
   <div class="page-title-bar">
@@ -1043,94 +999,56 @@
 </div><!-- /.page-wrapper (shipped) -->
 
 
-
-
-<!-- FEEDBACK FORM INJECTION -->
-<div class="ann-feedback-intro">
-  <h2>Page Annotations and Your Feedback</h2>
-  <p>Hi Jean! The annotations above explain what each part of this page does. The questions below need your input. Type your answers and click <strong>Send My Feedback</strong> when done.</p>
-</div>
+<!-- ANNOTATIONS -->
 <div class="annotations">
-  <div class="ann-section-inner">
-  <h2 style="padding-top:24px;">Order Status Page (WF07)</h2>
-  <p class="ann-subtitle">Yellow boxes are questions that need your input before the build begins.</p>
-  
+  <h2>Page Annotations: Order Status Page (Wireframe 07 of 17)</h2>
+  <p class="ann-subtitle">Three states shown in one file: the lookup form, the order found with Processing status, and the order found with Shipped status. Plain English throughout.</p>
+
   <div class="ann-item">
-    <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-status_steps">The order tracker shows four steps: Received, Processing, Shipped, and Delivered. Since the system cannot detect delivery automatically, "Delivered" would rarely be updated. Would you prefer three steps ending at Shipped, or keep all four?</label>
-      <textarea id="fb-status_steps" placeholder="Type your answer here..."></textarea>
-    </div>
+    <strong>State 1: Lookup Form</strong>
+    <p>What a customer sees when they arrive at this page cold, either from a bookmark, from the footer link, or from the confirmation page. Two fields: order number and email address. Both must match an order record in the database for the lookup to succeed. If they don't match, a red error message appears below the form. Jean's email address is shown as a fallback for customers who can't find their order number.</p>
+    <span class="ann-tag business">Business rule: The order number and email address together act as the authentication for guest checkout orders. No password is needed. Both fields must match exactly.</span>
   </div>
 
   <div class="ann-item">
-    <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-tracking_display">Once you enter a tracking number, should the page show a "Track on USPS" button, or just display the tracking number as plain text for the customer to copy? Plain text is more future-proof if you ever change carriers.</label>
-      <textarea id="fb-tracking_display" placeholder="Type your answer here..."></textarea>
-    </div>
+    <strong>Deep-Link Pre-Fill</strong>
+    <p>When a customer clicks "Check Order Status" from the Order Confirmation page, the URL carries the order number as a parameter (e.g., /order-status?order=DD-2027-0042). The order number field is pre-filled automatically. The customer only needs to enter their email address and click Look Up. This was flagged as a note in Wireframe 06.</p>
   </div>
 
   <div class="ann-item">
-    <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-general">Any other thoughts on the order status page?</label>
-      <textarea id="fb-general" placeholder="Type your answer here..."></textarea>
-    </div>
+    <strong>Four-Step Status Tracker</strong>
+    <p>A visual progress indicator showing four stages: Received, Processing, Shipped, Delivered. Completed steps are shown in green with a checkmark. The current active step is highlighted in blue. Future steps are grey. The date each stage was reached appears below each step when it is completed. This tracker updates automatically as Jean advances the order status in her admin panel.</p>
+    <span class="ann-tag decision">Decision needed: Should a "Delivered" step be included even though the system has no way to automatically confirm delivery? The Delivered status would only show if Jean manually marks it, which she is unlikely to do routinely. An alternative is to end the tracker at "Shipped" and let the USPS tracking link handle the rest. Jean should decide.</span>
   </div>
+
+  <div class="ann-item">
+    <strong>Tracking Number Box (Shipped state only)</strong>
+    <p>A green-tinted panel showing the USPS tracking number Jean entered in the admin Order Detail view, the date Jean marked the order shipped, and a "Track on USPS" button that opens the USPS tracking page in a new tab. This panel only appears once Jean has marked the order as Shipped and entered a tracking number. It is invisible in the Received and Processing states.</p>
+    <span class="ann-tag business">Business rule: Jean enters the tracking number manually in the admin Order Detail page when she ships. The system does not auto-generate or auto-update tracking. Jean emails customers personally when she ships; this page is for customers who want to check without waiting for Jean's email.</span>
+    <span class="ann-tag decision">Decision needed: Should the "Track on USPS" button open USPS specifically, or should it be a generic "Track Package" link? Jean uses USPS for shipping, but this could change. If Jean ever switches to UPS or FedEx, a hard-coded USPS link would be wrong. A simple approach: just display the tracking number as plain text and let the customer copy-paste it into any carrier's site. Simpler and more resilient.</span>
   </div>
-  <div class="feedback-form-wrap">
-    <div class="feedback-form-heading">Send Your Feedback to Edward</div>
-    <p class="feedback-form-desc">Type your answers above, then click the button below to send everything to Edward in one email.</p>
-    <form id="feedback-form-wf07">
-      <input type="hidden" name="_subject" value="WF07 Order Status Page Feedback - Dazzling Daylilies">
-      <input type="hidden" name="wireframe" value="WF07 - Order Status Page">
-      <input type="hidden" name="status_steps" id="h-status_steps">
-      <input type="hidden" name="tracking_display" id="h-tracking_display">
-      <input type="hidden" name="general" id="h-general">
-      <div class="your-name-row">
-        <div class="your-name-field">
-          <label>Your Name</label>
-          <input type="text" name="reviewer_name" value="Jean">
-        </div>
-        <div class="your-name-field">
-          <label>Your Email</label>
-          <input type="email" name="email" placeholder="dazzlingdaylilies@yahoo.com">
-        </div>
-      </div>
-      <button type="submit" class="submit-btn">Send My Feedback &rarr;</button>
-      <p class="submit-note">Sent directly and securely to Edward.</p>
-      <div class="success-message" id="success-wf07"><strong>Thank you, Jean!</strong> Your feedback on the Order Status Page has been sent to Edward.</div>
-      <div class="error-message" id="error-wf07">Something went wrong. Please try again or email Edward directly.</div>
-    </form>
+
+  <div class="ann-item">
+    <strong>Order Items and Totals</strong>
+    <p>The full list of plants ordered with quantities and prices, plus the subtotal, shipping, and total. Identical to what was shown on the confirmation page and in the confirmation email. Gives the customer a complete record without needing to dig up the email.</p>
   </div>
+
+  <div class="ann-item">
+    <strong>Contact Jean Box (sidebar)</strong>
+    <p>A warm-toned panel with Jean's email address and a reminder to include the order number. The order number is pre-filled in the suggested text so customers can copy it directly. Reduces friction for customers who need to reach out.</p>
+  </div>
+
+  <div class="ann-item">
+    <strong>"Look Up a Different Order" Link</strong>
+    <p>Appears in the top-right of the order header band once an order is loaded. Returns the customer to the lookup form so they can search for a different order number, useful for customers who placed multiple orders or who are helping a family member.</p>
+  </div>
+
+  <div class="ann-item">
+    <strong>No Login Required</strong>
+    <p>This page works entirely without an account. Order number plus email is the only authentication. Customers can bookmark the page at any URL and return anytime. If they arrive without a pre-filled order number they just enter it in the lookup form.</p>
+  </div>
+
 </div>
-<script>
-(function(){
-  var form = document.getElementById('feedback-form-wf07');
-  if (!form) return;
-  var fieldMap = [['status_steps', 'h-status_steps'],
-    ['tracking_display', 'h-tracking_display'],
-    ['general', 'h-general']];
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    fieldMap.forEach(function(p) {
-      var s = document.getElementById(p[0]), d = document.getElementById(p[1]);
-      if (s && d) d.value = s.value.trim() || '(no answer)';
-    });
-    var btn = form.querySelector('.submit-btn');
-    btn.textContent = 'Sending...'; btn.disabled = true;
-    fetch('https://formspree.io/f/mvzyrrrv', {
-      method:'POST', body: new FormData(form), headers: {'Accept':'application/json'}
-    }).then(function(r) {
-      if(r.ok) {
-        document.getElementById('success-wf07').style.display='block';
-        document.getElementById('success-wf07').scrollIntoView({behavior:'smooth'});
-        btn.textContent='Feedback Sent';
-      } else { throw new Error(); }
-    }).catch(function() {
-      document.getElementById('error-wf07').style.display='block';
-      btn.textContent='Send My Feedback →'; btn.disabled=false;
-    });
-  });
-})();
-</script>
+
 </body>
 </html>

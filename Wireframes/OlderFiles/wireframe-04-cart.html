@@ -78,52 +78,29 @@
   .site-header h1 { font-size: 26px; font-weight: 700; color: #222; margin-bottom: 4px; }
   .site-header .tagline { font-size: 13px; color: #666; font-style: italic; }
   .top-nav {
-    background: #fff; border-bottom: 3px solid #d0d0d0; padding: 0 24px; overflow-x: hidden;
+    background: #fff; border-bottom: 3px solid #d0d0d0;
+    padding: 0 24px; display: flex; align-items: stretch; height: 48px;
   }
-  .nav-row { display: flex; align-items: stretch; min-height: 44px; flex-wrap: nowrap; }
-  .nav-row-2 { border-top: 1px solid #f0f0f0; }
   .nav-tab {
-    display: inline-flex; align-items: center; padding: 0 16px;
-    font-size: 13px; font-weight: 600; color: #555;
-    border-bottom: 3px solid transparent; margin-bottom: -3px; cursor: pointer; white-space: nowrap;
+    display: inline-flex; align-items: center; padding: 0 20px;
+    font-size: 14px; font-weight: 600; color: #555;
+    border-bottom: 3px solid transparent; margin-bottom: -3px;
+    cursor: pointer; white-space: nowrap;
   }
   .nav-tab.active { color: #4a90d9; border-bottom-color: #4a90d9; }
   .nav-tab.inactive { color: #bbb; cursor: not-allowed; }
   .nav-tab .inactive-note { font-size: 10px; font-weight: 400; color: #ccc; margin-left: 4px; }
-  .nav-tab.bundles-tab { color: #27ae60; }
   .nav-spacer { flex: 1; }
   .nav-cart-btn {
     display: inline-flex; align-items: center; gap: 6px;
-    padding: 0 16px; font-size: 13px; font-weight: 600; color: #4a90d9; cursor: pointer;
+    padding: 0 16px; font-size: 13px; font-weight: 600;
+    color: #4a90d9; cursor: pointer;
   }
   .cart-badge {
     background: #4a90d9; color: #fff; border-radius: 50%;
     width: 18px; height: 18px; font-size: 11px;
     display: inline-flex; align-items: center; justify-content: center;
   }
-  /* Feedback form styles */
-  .ann-feedback-intro { background: #2c3e50; color: #ecf0f1; padding: 24px 32px; font-size: 14px; line-height: 1.7; }
-  .ann-feedback-intro h2 { font-size: 18px; font-weight: 700; margin-bottom: 6px; color: #fff; }
-  .ann-feedback-intro p { color: #bdc3c7; max-width: 680px; }
-  .ann-section-inner { padding: 32px 32px 0; }
-  .feedback-box { margin-top: 12px; background: #fff; border: 1px solid #e0d080; border-radius: 6px; padding: 14px 16px; }
-  .feedback-box label { display: block; font-size: 12px; font-weight: 700; color: #5a4a00; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
-  .feedback-box textarea { width: 100%; padding: 10px 12px; border: 1px solid #d0c060; border-radius: 4px; font-size: 14px; color: #333; background: #fffef5; resize: vertical; min-height: 80px; line-height: 1.6; font-family: inherit; }
-  .feedback-box textarea:focus { outline: 2px solid #f5c518; border-color: transparent; }
-  .feedback-box textarea::placeholder { color: #bbb; }
-  .feedback-form-wrap { background: #fff8e0; border-top: 2px solid #f5c518; padding: 28px 32px 36px; }
-  .feedback-form-heading { font-size: 16px; font-weight: 700; color: #222; margin-bottom: 4px; }
-  .feedback-form-desc { font-size: 13px; color: #666; margin-bottom: 20px; line-height: 1.6; }
-  .your-name-row { display: flex; gap: 14px; margin-bottom: 20px; flex-wrap: wrap; }
-  .your-name-field { flex: 1; min-width: 180px; }
-  .your-name-field label { display: block; font-size: 12px; font-weight: 700; color: #555; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 5px; }
-  .your-name-field input { width: 100%; padding: 10px 12px; border: 1px solid #d0d0d0; border-radius: 4px; font-size: 14px; color: #333; background: #fff; }
-  .submit-btn { display: inline-block; background: #2c3e50; color: #fff; padding: 12px 32px; border-radius: 4px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; }
-  .submit-btn:hover { background: #1a2a3a; }
-  .submit-note { font-size: 12px; color: #888; margin-top: 10px; line-height: 1.6; }
-  .success-message { display: none; background: #d5f5e3; border: 1px solid #6abf6a; border-radius: 6px; padding: 20px 24px; margin-top: 16px; font-size: 14px; color: #1a5c2a; line-height: 1.7; }
-  .success-message strong { display: block; font-size: 16px; margin-bottom: 4px; }
-  .error-message { display: none; background: #fdf2f2; border: 1px solid #e8b4b4; border-radius: 6px; padding: 14px 18px; margin-top: 12px; font-size: 13px; color: #7a2020; }
 
   /* Page title bar */
   .page-title-bar {
@@ -445,19 +422,12 @@
   </div>
 
   <nav class="top-nav">
-    <div class="nav-row">
-      <a class="nav-tab active" href="#">Daylilies</a>
-      <a class="nav-tab inactive" href="#">Iris <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Lilies <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab bundles-tab" href="#">Bundles</a>
-      <div class="nav-spacer"></div>
-      <a class="nav-cart-btn" href="#">Cart <span class="cart-badge">3</span></a>
-    </div>
-    <div class="nav-row nav-row-2">
-      <a class="nav-tab inactive" href="#">Dahlias <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Japanese Iris <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Other Perennials <span class="inactive-note">(coming soon)</span></a>
-    </div>
+    <a class="nav-tab active" href="#">Daylilies</a>
+    <a class="nav-tab inactive" href="#">Iris <span class="inactive-note">(coming soon)</span></a>
+    <a class="nav-tab inactive" href="#">Lilies <span class="inactive-note">(coming soon)</span></a>
+    <a class="nav-tab inactive" href="#">Other Perennials <span class="inactive-note">(coming soon)</span></a>
+    <div class="nav-spacer"></div>
+    <a class="nav-cart-btn" href="#">Cart <span class="cart-badge">3</span></a>
   </nav>
 
   <div class="page-title-bar">
@@ -627,19 +597,12 @@
   </div>
 
   <nav class="top-nav">
-    <div class="nav-row">
-      <a class="nav-tab active" href="#">Daylilies</a>
-      <a class="nav-tab inactive" href="#">Iris <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Lilies <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab bundles-tab" href="#">Bundles</a>
-      <div class="nav-spacer"></div>
-      <a class="nav-cart-btn" href="#">Cart <span class="cart-badge">3</span></a>
-    </div>
-    <div class="nav-row nav-row-2">
-      <a class="nav-tab inactive" href="#">Dahlias <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Japanese Iris <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Other Perennials <span class="inactive-note">(coming soon)</span></a>
-    </div>
+    <a class="nav-tab active" href="#">Daylilies</a>
+    <a class="nav-tab inactive" href="#">Iris <span class="inactive-note">(coming soon)</span></a>
+    <a class="nav-tab inactive" href="#">Lilies <span class="inactive-note">(coming soon)</span></a>
+    <a class="nav-tab inactive" href="#">Other Perennials <span class="inactive-note">(coming soon)</span></a>
+    <div class="nav-spacer"></div>
+    <a class="nav-cart-btn" href="#">Cart <span class="cart-badge">0</span></a>
   </nav>
 
   <div class="page-title-bar">
@@ -667,103 +630,65 @@
 </div>
 
 
-
-
-<!-- FEEDBACK FORM INJECTION -->
-<div class="ann-feedback-intro">
-  <h2>Page Annotations and Your Feedback</h2>
-  <p>Hi Jean! The annotations above explain what each part of this page does. The questions below need your input. Type your answers and click <strong>Send My Feedback</strong> when done.</p>
-</div>
+<!-- ANNOTATIONS -->
 <div class="annotations">
-  <div class="ann-section-inner">
-  <h2 style="padding-top:24px;">Cart Page (WF04)</h2>
-  <p class="ann-subtitle">Yellow boxes are questions that need your input before the build begins.</p>
-  
+  <h2>Page Annotations: Cart Page (Wireframe 04 of 17)</h2>
+  <p class="ann-subtitle">Notes for Jean and Edward. Two states are shown: a cart with items and an empty cart. Plain English explanations of what each region does.</p>
+
   <div class="ann-item">
-    <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-qty_multiples">Should customers be allowed to order more than one of the same plant (using the quantity selector shown), or is it limited to one fan per variety?</label>
-      <textarea id="fb-qty_multiples" placeholder="Type your answer here..."></textarea>
-    </div>
+    <strong>Cart Items Table (left column)</strong>
+    <p>Each row shows a small photo thumbnail, the plant name (which links back to the detail page), a brief attribute line, a Remove button, the unit price, a quantity selector, and the line total. The plant name is a link so customers can go back and re-read the details before committing to checkout.</p>
   </div>
 
   <div class="ann-item">
-    <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-empty_cart">The empty cart state shows a message and a link back to the catalog. Does this feel right, or would you like something different shown when the cart is empty?</label>
-      <textarea id="fb-empty_cart" placeholder="Type your answer here..."></textarea>
-    </div>
+    <strong>Quantity Selector</strong>
+    <p>Minus and plus buttons adjust the quantity for each line item. Reducing to zero is the same as removing the item: the row disappears and the order summary updates. This wireframe shows Strawberry Candy with a quantity of 2 to illustrate how a multi-quantity line looks.</p>
+    <span class="ann-tag decision">Decision needed: Should quantity per plant be limited to 1 maximum? (Same question from the Plant Detail wireframe.) If yes, the quantity selector is removed entirely from both the detail page and the cart, simplifying both layouts considerably. Jean should decide based on how she wants to manage her inventory.</span>
   </div>
 
   <div class="ann-item">
-    <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-shipping_display">Shipping is calculated and shown in the cart summary before checkout. Does seeing the shipping cost in the cart (before entering an address) feel right to you?</label>
-      <textarea id="fb-shipping_display" placeholder="Type your answer here..."></textarea>
-    </div>
+    <strong>Remove Button</strong>
+    <p>A small red "Remove" text link under each plant name. Clicking it removes that plant from the cart immediately, with no confirmation step required (removing from a cart is easily undone by adding the plant again, so a confirmation dialog would be annoying friction here).</p>
   </div>
 
   <div class="ann-item">
-    <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-general">Any other thoughts on the cart page not covered above?</label>
-      <textarea id="fb-general" placeholder="Type your answer here..."></textarea>
-    </div>
+    <strong>Continue Shopping Button</strong>
+    <p>Takes the customer back to the catalog. Positioned at the bottom left of the items table, below the last row. It is a secondary (outlined) button rather than a primary blue button because the main action on this page is moving forward to checkout, not going backward.</p>
   </div>
+
+  <div class="ann-item">
+    <strong>Order Summary Panel (right column)</strong>
+    <p>Lists each line item with its total, then shows the subtotal, the shipping calculation broken down, and the grand total. Shipping is calculated live from the Settings table: $15.00 for the first plant, $2.00 for each additional plant. With 4 plants in the example that is $15.00 + ($2.00 &times; 3) = $21.00. The formula is shown in small text below the shipping line so customers understand how it is calculated.</p>
+    <span class="ann-tag business">Business rule: Shipping is always read from the Settings table. The $15 + $2 rate is never hard-coded. Jean can update the rates from the admin Settings page without any developer involvement.</span>
   </div>
-  <div class="feedback-form-wrap">
-    <div class="feedback-form-heading">Send Your Feedback to Edward</div>
-    <p class="feedback-form-desc">Type your answers above, then click the button below to send everything to Edward in one email.</p>
-    <form id="feedback-form-wf04">
-      <input type="hidden" name="_subject" value="WF04 Cart Page Feedback - Dazzling Daylilies">
-      <input type="hidden" name="wireframe" value="WF04 - Cart Page">
-      <input type="hidden" name="qty_multiples" id="h-qty_multiples">
-      <input type="hidden" name="empty_cart" id="h-empty_cart">
-      <input type="hidden" name="shipping_display" id="h-shipping_display">
-      <input type="hidden" name="general" id="h-general">
-      <div class="your-name-row">
-        <div class="your-name-field">
-          <label>Your Name</label>
-          <input type="text" name="reviewer_name" value="Jean">
-        </div>
-        <div class="your-name-field">
-          <label>Your Email</label>
-          <input type="email" name="email" placeholder="dazzlingdaylilies@yahoo.com">
-        </div>
-      </div>
-      <button type="submit" class="submit-btn">Send My Feedback &rarr;</button>
-      <p class="submit-note">Sent directly and securely to Edward.</p>
-      <div class="success-message" id="success-wf04"><strong>Thank you, Jean!</strong> Your feedback on the Cart Page has been sent to Edward.</div>
-      <div class="error-message" id="error-wf04">Something went wrong. Please try again or email Edward directly.</div>
-    </form>
+
+  <div class="ann-item">
+    <strong>"Proceed to Checkout" Button</strong>
+    <p>The primary action button. Full-width inside the summary panel. Takes the customer to the Checkout page. Restricted-state checking does NOT happen here; it happens on the Checkout page after the customer enters their shipping address. Customers from any state can fill a cart.</p>
+    <span class="ann-tag business">Business rule: Restricted-state logic runs at checkout, not at cart. Hawaii, Alaska, Puerto Rico, and territories get a hard block. California, Arizona, Florida, and Texas get a warning notice but can still proceed.</span>
   </div>
+
+  <div class="ann-item">
+    <strong>"No account required" Note</strong>
+    <p>A small line below the checkout button reminding customers that guest checkout is the only option. This is a feature for many customers who dislike creating accounts. It sets the right expectation before they get to the checkout form.</p>
+  </div>
+
+  <div class="ann-item">
+    <strong>Shipping Rate Explanation Box (blue tinted box)</strong>
+    <p>Explains the shipping calculation in plain terms. This reduces customer questions and surprises at checkout. Links to the full Shipping Information page for customers who want the complete policy.</p>
+  </div>
+
+  <div class="ann-item">
+    <strong>Empty Cart State (second variation)</strong>
+    <p>When a customer arrives at the Cart page with nothing in their cart, the items table and order summary are replaced with a centered message and a single "Browse the Daylily Catalog" button. This prevents a broken-looking empty table and gives customers a clear next step.</p>
+  </div>
+
+  <div class="ann-item">
+    <strong>Cart Persistence</strong>
+    <p>The cart is stored in the browser session, meaning it survives page refreshes and tab closings. However, it does not persist across different browsers or devices. If a customer fills a cart on their phone and then switches to their laptop, the cart will be empty on the laptop. This is standard behavior for session-based carts and does not require a customer account to work around.</p>
+  </div>
+
 </div>
-<script>
-(function(){
-  var form = document.getElementById('feedback-form-wf04');
-  if (!form) return;
-  var fieldMap = [['qty_multiples', 'h-qty_multiples'],
-    ['empty_cart', 'h-empty_cart'],
-    ['shipping_display', 'h-shipping_display'],
-    ['general', 'h-general']];
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    fieldMap.forEach(function(p) {
-      var s = document.getElementById(p[0]), d = document.getElementById(p[1]);
-      if (s && d) d.value = s.value.trim() || '(no answer)';
-    });
-    var btn = form.querySelector('.submit-btn');
-    btn.textContent = 'Sending...'; btn.disabled = true;
-    fetch('https://formspree.io/f/mvzyrrrv', {
-      method:'POST', body: new FormData(form), headers: {'Accept':'application/json'}
-    }).then(function(r) {
-      if(r.ok) {
-        document.getElementById('success-wf04').style.display='block';
-        document.getElementById('success-wf04').scrollIntoView({behavior:'smooth'});
-        btn.textContent='Feedback Sent';
-      } else { throw new Error(); }
-    }).catch(function() {
-      document.getElementById('error-wf04').style.display='block';
-      btn.textContent='Send My Feedback →'; btn.disabled=false;
-    });
-  });
-})();
-</script>
+
 </body>
 </html>

@@ -12,57 +12,27 @@
     font-size: 15px;
     background: #f0f0f0;
     color: #222;
+    /* No horizontal scrollbar, ever */
+    overflow-x: hidden;
   }
 
   a { color: #4a90d9; text-decoration: none; }
   a:hover { text-decoration: underline; }
 
-  .photo-placeholder {
-    background: #b0b0b0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    text-align: center;
-    padding: 8px;
-  }
-
   .btn-primary {
-    display: inline-block;
-    background: #4a90d9;
-    color: #fff;
-    padding: 10px 22px;
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    border: none;
+    display: inline-block; background: #4a90d9; color: #fff;
+    padding: 10px 22px; border-radius: 4px; font-size: 14px;
+    font-weight: 600; cursor: pointer; border: none;
   }
   .btn-secondary {
-    display: inline-block;
-    background: #fff;
-    color: #4a90d9;
-    padding: 9px 22px;
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    border: 2px solid #4a90d9;
+    display: inline-block; background: #fff; color: #4a90d9;
+    padding: 9px 22px; border-radius: 4px; font-size: 14px;
+    font-weight: 600; cursor: pointer; border: 2px solid #4a90d9;
   }
   .btn-ghost {
-    display: inline-block;
-    background: transparent;
-    color: #aaa;
-    padding: 9px 22px;
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: default;
-    border: 2px solid #d0d0d0;
+    display: inline-block; background: transparent; color: #aaa;
+    padding: 9px 22px; border-radius: 4px; font-size: 14px;
+    font-weight: 600; cursor: default; border: 2px solid #d0d0d0;
   }
 
   .page-wrapper {
@@ -70,394 +40,253 @@
     margin: 0 auto;
     background: #fff;
     box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+    /* Prevent any child from causing horizontal overflow */
+    overflow-x: hidden;
   }
 
   /* Cookie Banner */
   .cookie-banner {
-    background: #333;
-    color: #eee;
-    padding: 10px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 13px;
-    gap: 16px;
+    background: #333; color: #eee; padding: 10px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 13px; gap: 16px;
   }
   .cookie-dismiss {
-    background: #4a90d9;
-    color: #fff;
-    border: none;
-    padding: 5px 14px;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 12px;
-    white-space: nowrap;
+    background: #4a90d9; color: #fff; border: none;
+    padding: 5px 14px; border-radius: 3px; cursor: pointer; font-size: 12px; white-space: nowrap;
   }
 
   /* Site Header */
   .site-header {
-    background: #e8e8e8;
-    border-bottom: 1px solid #d0d0d0;
-    padding: 28px 24px 20px;
-    text-align: center;
+    background: #e8e8e8; border-bottom: 1px solid #d0d0d0;
+    padding: 28px 24px 20px; text-align: center;
   }
-  .site-header h1 {
-    font-size: 32px;
-    font-weight: 700;
-    color: #222;
-    margin-bottom: 6px;
-  }
-  .site-header .tagline {
-    font-size: 15px;
-    color: #666;
-    font-style: italic;
-  }
+  .site-header h1 { font-size: 32px; font-weight: 700; color: #222; margin-bottom: 6px; }
+  .site-header .tagline { font-size: 15px; color: #666; font-style: italic; }
 
-  /* Top Nav */
+  /* ============================================================
+     TOP NAV: Double-stacked to prevent horizontal overflow
+     Row 1: Daylilies, Iris, Lilies, Bundles, Cart
+     Row 2: Dahlias, Japanese Iris, Other Perennials
+     This pattern ensures no horizontal scrollbar on any screen width.
+  ============================================================ */
   .top-nav {
     background: #fff;
     border-bottom: 3px solid #d0d0d0;
     padding: 0 24px;
+  }
+  .nav-row {
     display: flex;
     align-items: stretch;
-    gap: 4px;
-    height: 48px;
+    min-height: 44px;
+    flex-wrap: nowrap;
+  }
+  .nav-row-2 {
+    border-top: 1px solid #f0f0f0;
   }
   .nav-tab {
-    display: inline-flex;
-    align-items: center;
-    padding: 0 20px;
-    font-size: 14px;
-    font-weight: 600;
-    color: #555;
+    display: inline-flex; align-items: center; padding: 0 16px;
+    font-size: 13px; font-weight: 600; color: #555;
     border-bottom: 3px solid transparent;
     margin-bottom: -3px;
-    cursor: pointer;
-    white-space: nowrap;
+    cursor: pointer; white-space: nowrap;
   }
-  .nav-tab.active {
-    color: #4a90d9;
-    border-bottom-color: #4a90d9;
-  }
-  .nav-tab.inactive {
-    color: #bbb;
-    cursor: not-allowed;
-  }
-  .nav-tab .inactive-note {
-    font-size: 10px;
-    font-weight: 400;
-    color: #ccc;
-    margin-left: 4px;
-  }
+  .nav-tab.active { color: #4a90d9; border-bottom-color: #4a90d9; }
+  .nav-tab.inactive { color: #bbb; cursor: not-allowed; }
+  .nav-tab .inactive-note { font-size: 10px; font-weight: 400; color: #ccc; margin-left: 4px; }
+  .nav-tab.bundles-tab { color: #27ae60; }
+  .nav-tab.bundles-tab.active { border-bottom-color: #27ae60; }
   .nav-spacer { flex: 1; }
   .nav-cart-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 0 16px;
-    font-size: 13px;
-    font-weight: 600;
-    color: #4a90d9;
-    cursor: pointer;
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 0 16px; font-size: 13px; font-weight: 600; color: #4a90d9; cursor: pointer;
   }
   .cart-badge {
-    background: #4a90d9;
-    color: #fff;
-    border-radius: 50%;
-    width: 18px;
-    height: 18px;
-    font-size: 11px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    background: #4a90d9; color: #fff; border-radius: 50%;
+    width: 18px; height: 18px; font-size: 11px;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+
+  /* Nav layout note strip */
+  .nav-layout-note {
+    background: #eef5fb; border-bottom: 1px solid #c0d8f0;
+    padding: 8px 24px; font-size: 12px; color: #1a4a7a;
   }
 
   /* Hero */
   .hero {
-    position: relative;
-    height: 380px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
+    position: relative; height: 380px;
+    display: flex; align-items: center; justify-content: center; overflow: hidden;
   }
   .hero-bg {
-    position: absolute;
-    inset: 0;
-    background: #b0b0b0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+    position: absolute; inset: 0; background: #b0b0b0;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 13px; font-weight: 600;
+    letter-spacing: 0.05em; text-transform: uppercase;
   }
   .hero-overlay {
-    position: relative;
-    background: rgba(255,255,255,0.90);
-    border-radius: 6px;
-    padding: 32px 40px;
-    max-width: 520px;
-    text-align: center;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+    position: relative; background: rgba(255,255,255,0.90);
+    border-radius: 6px; padding: 32px 40px; max-width: 520px;
+    text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.10);
   }
-  .hero-overlay h2 {
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 12px;
-  }
-  .hero-overlay p {
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 20px;
-    line-height: 1.6;
-  }
+  .hero-overlay h2 { font-size: 22px; font-weight: 700; margin-bottom: 12px; }
+  .hero-overlay p { font-size: 14px; color: #555; margin-bottom: 20px; line-height: 1.6; }
 
-  .section-heading {
-    font-size: 20px;
-    font-weight: 700;
-    color: #222;
-    margin-bottom: 4px;
-  }
-  .section-subheading {
-    font-size: 13px;
-    color: #888;
-    margin-bottom: 24px;
-  }
-  .section-divider {
-    border: none;
-    border-top: 2px solid #e8e8e8;
-    margin: 0 24px;
-  }
+  /* Sections */
+  .section-heading { font-size: 20px; font-weight: 700; color: #222; margin-bottom: 4px; }
+  .section-subheading { font-size: 13px; color: #888; margin-bottom: 24px; }
+  .section-divider { border: none; border-top: 2px solid #e8e8e8; margin: 0 24px; }
 
   /* Featured Plants */
-  .featured-section {
-    padding: 40px 24px;
-  }
-  .plant-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
-  }
-  .plant-card {
-    border: 1px solid #d0d0d0;
-    border-radius: 6px;
-    overflow: hidden;
-  }
+  .featured-section { padding: 40px 24px; }
+  .plant-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .plant-card { border: 1px solid #d0d0d0; border-radius: 6px; overflow: hidden; }
   .plant-card-photo {
-    width: 100%;
-    height: 160px;
-    background: #b0b0b0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    color: #fff;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    text-align: center;
-    position: relative;
-    gap: 4px;
-    padding: 8px;
+    width: 100%; height: 160px; background: #b0b0b0;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; color: #fff; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.04em; text-transform: uppercase; text-align: center;
+    position: relative; gap: 4px; padding: 8px;
   }
   .sold-out-badge {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    background: #888;
-    color: #fff;
-    font-size: 10px;
-    font-weight: 700;
-    padding: 3px 8px;
-    border-radius: 3px;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
+    position: absolute; top: 8px; right: 8px;
+    background: #888; color: #fff; font-size: 10px; font-weight: 700;
+    padding: 3px 8px; border-radius: 3px; text-transform: uppercase;
   }
-  .plant-card-body {
-    padding: 12px 14px 14px;
-  }
-  .plant-name {
-    font-size: 14px;
-    font-weight: 700;
-    color: #222;
-    margin-bottom: 4px;
-  }
-  .plant-desc {
-    font-size: 12px;
-    color: #666;
-    line-height: 1.5;
-    margin-bottom: 10px;
-  }
-  .plant-price {
-    font-size: 15px;
-    font-weight: 700;
-    color: #222;
-    margin-bottom: 10px;
-  }
+  .plant-card-body { padding: 12px 14px 14px; }
+  .plant-name { font-size: 14px; font-weight: 700; color: #222; margin-bottom: 4px; }
+  .plant-desc { font-size: 12px; color: #666; line-height: 1.5; margin-bottom: 10px; }
+  .plant-price { font-size: 15px; font-weight: 700; color: #222; margin-bottom: 10px; }
   .plant-price.sold-out { color: #aaa; }
   .plant-card .btn-primary,
-  .plant-card .btn-ghost {
-    width: 100%;
-    text-align: center;
-    padding: 8px 0;
-    font-size: 13px;
-    display: block;
-  }
+  .plant-card .btn-ghost { width: 100%; text-align: center; padding: 8px 0; font-size: 13px; display: block; }
 
   /* About */
-  .about-section {
-    padding: 40px 24px;
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 32px;
-    align-items: start;
-  }
+  .about-section { padding: 40px 24px; display: grid; grid-template-columns: 200px 1fr; gap: 32px; align-items: start; }
   .about-photo {
-    width: 100%;
-    aspect-ratio: 3/4;
-    background: #b0b0b0;
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    text-align: center;
-    padding: 8px;
+    width: 100%; aspect-ratio: 3/4; background: #b0b0b0; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.04em; text-align: center; padding: 8px;
   }
-  .about-content h3 {
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 12px;
-  }
-  .about-content p {
-    font-size: 14px;
-    color: #555;
-    line-height: 1.7;
-    margin-bottom: 12px;
-  }
+  .about-content h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+  .about-content p { font-size: 14px; color: #555; line-height: 1.7; margin-bottom: 12px; }
 
   /* Footer */
-  .site-footer {
-    background: #333;
-    color: #ccc;
-    padding: 32px 24px 20px;
-  }
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 32px;
-    margin-bottom: 28px;
-  }
+  .site-footer { background: #333; color: #ccc; padding: 32px 24px 20px; }
+  .footer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; margin-bottom: 28px; }
   .footer-col h4 {
-    font-size: 13px;
-    font-weight: 700;
-    color: #fff;
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-    margin-bottom: 12px;
+    font-size: 13px; font-weight: 700; color: #fff; text-transform: uppercase;
+    letter-spacing: 0.07em; margin-bottom: 12px;
   }
-  .footer-col p,
-  .footer-col address {
-    font-size: 13px;
-    line-height: 1.7;
-    font-style: normal;
-    color: #bbb;
+  .footer-col p, .footer-col address {
+    font-size: 13px; line-height: 1.7; font-style: normal; color: #bbb;
   }
   .footer-col a { color: #7ab8f5; }
   .footer-links { list-style: none; }
   .footer-links li { margin-bottom: 6px; }
   .footer-links a { font-size: 13px; color: #7ab8f5; }
-  .mc-signup label {
-    display: block;
-    font-size: 12px;
-    color: #bbb;
-    margin-bottom: 6px;
-  }
+  .mc-signup label { display: block; font-size: 12px; color: #bbb; margin-bottom: 6px; }
   .mc-input-row { display: flex; gap: 8px; }
   .mc-input {
-    flex: 1;
-    background: #555;
-    border: 1px solid #777;
-    color: #fff;
-    padding: 7px 10px;
-    border-radius: 3px;
-    font-size: 13px;
+    flex: 1; background: #555; border: 1px solid #777; color: #fff;
+    padding: 7px 10px; border-radius: 3px; font-size: 13px;
+    /* Prevent this input from causing overflow */
+    min-width: 0;
   }
   .mc-btn {
-    background: #4a90d9;
-    color: #fff;
-    border: none;
-    padding: 7px 14px;
-    border-radius: 3px;
-    font-size: 13px;
-    cursor: pointer;
-    white-space: nowrap;
+    background: #4a90d9; color: #fff; border: none; padding: 7px 14px;
+    border-radius: 3px; font-size: 13px; cursor: pointer; white-space: nowrap;
   }
   .footer-bottom {
-    border-top: 1px solid #555;
-    padding-top: 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 12px;
-    color: #888;
+    border-top: 1px solid #555; padding-top: 16px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px; color: #888; flex-wrap: wrap; gap: 8px;
   }
   .footer-bottom a { color: #7ab8f5; }
 
-  /* Annotations */
+  /* ============================================================
+     FEEDBACK FORM STYLES
+  ============================================================ */
+  .ann-feedback-intro {
+    background: #2c3e50; color: #ecf0f1;
+    padding: 24px 32px; font-size: 14px; line-height: 1.7;
+  }
+  .ann-feedback-intro h2 { font-size: 18px; font-weight: 700; margin-bottom: 6px; color: #fff; }
+  .ann-feedback-intro p { color: #bdc3c7; max-width: 680px; }
+
   .annotations {
-    background: #fffbe6;
-    border-top: 4px solid #f5c518;
-    padding: 32px 32px 40px;
-    font-size: 14px;
-    color: #333;
-    line-height: 1.7;
+    background: #fffbe6; border-top: 4px solid #f5c518;
+    padding: 0; font-size: 14px; color: #333; line-height: 1.7;
+    overflow-x: hidden;
   }
-  .annotations h2 {
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 4px;
-  }
-  .annotations .ann-subtitle {
-    font-size: 13px;
-    color: #888;
-    margin-bottom: 28px;
-  }
-  .ann-item {
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #eedc6a;
-  }
-  .ann-item:last-child { border-bottom: none; margin-bottom: 0; }
-  .ann-item strong {
-    display: block;
-    font-size: 14px;
-    font-weight: 700;
-    color: #222;
-    margin-bottom: 4px;
-  }
+  .ann-section-inner { padding: 32px 32px 0; }
+  .annotations h2 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .ann-subtitle { font-size: 13px; color: #888; margin-bottom: 28px; }
+
+  .ann-item { margin-bottom: 0; padding: 20px 0; border-bottom: 1px solid #eedc6a; }
+  .ann-item:last-of-type { border-bottom: none; }
+  .ann-item strong { display: block; font-size: 14px; font-weight: 700; color: #222; margin-bottom: 4px; }
   .ann-tag {
-    display: inline-block;
-    background: #f5c518;
-    color: #333;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 2px 8px;
-    border-radius: 3px;
-    margin-top: 6px;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
+    display: inline-block; background: #f5c518; color: #333;
+    font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 3px;
+    margin-top: 6px; text-transform: uppercase; letter-spacing: 0.04em;
   }
   .ann-tag.decision { background: #ffd580; }
   .ann-tag.content { background: #c8e6c9; color: #1b5e20; }
+  .ann-tag.contract { background: #d5f5e3; color: #1a5c2a; }
+
+  .feedback-box {
+    margin-top: 12px; background: #fff; border: 1px solid #e0d080;
+    border-radius: 6px; padding: 14px 16px;
+  }
+  .feedback-box label {
+    display: block; font-size: 12px; font-weight: 700; color: #5a4a00;
+    text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;
+  }
+  .feedback-box textarea {
+    width: 100%; padding: 10px 12px; border: 1px solid #d0c060; border-radius: 4px;
+    font-size: 14px; color: #333; background: #fffef5; resize: vertical;
+    min-height: 80px; line-height: 1.6; font-family: inherit;
+  }
+  .feedback-box textarea:focus { outline: 2px solid #f5c518; border-color: transparent; }
+  .feedback-box textarea::placeholder { color: #bbb; }
+
+  .feedback-form-wrap {
+    background: #fff8e0; border-top: 2px solid #f5c518; padding: 28px 32px 36px;
+  }
+  .feedback-form-heading { font-size: 16px; font-weight: 700; color: #222; margin-bottom: 4px; }
+  .feedback-form-desc { font-size: 13px; color: #666; margin-bottom: 20px; line-height: 1.6; }
+
+  .your-name-row { display: flex; gap: 14px; margin-bottom: 20px; flex-wrap: wrap; }
+  .your-name-field { flex: 1; min-width: 180px; }
+  .your-name-field label {
+    display: block; font-size: 12px; font-weight: 700; color: #555;
+    text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 5px;
+  }
+  .your-name-field input {
+    width: 100%; padding: 10px 12px; border: 1px solid #d0d0d0;
+    border-radius: 4px; font-size: 14px; color: #333; background: #fff;
+  }
+
+  .submit-btn {
+    display: inline-block; background: #2c3e50; color: #fff;
+    padding: 12px 32px; border-radius: 4px; font-size: 15px;
+    font-weight: 700; border: none; cursor: pointer;
+  }
+  .submit-btn:hover { background: #1a2a3a; }
+  .submit-note { font-size: 12px; color: #888; margin-top: 10px; line-height: 1.6; }
+
+  .success-message {
+    display: none; background: #d5f5e3; border: 1px solid #6abf6a;
+    border-radius: 6px; padding: 20px 24px; margin-top: 16px;
+    font-size: 14px; color: #1a5c2a; line-height: 1.7;
+  }
+  .success-message strong { display: block; font-size: 16px; margin-bottom: 4px; }
+  .error-message {
+    display: none; background: #fdf2f2; border: 1px solid #e8b4b4;
+    border-radius: 6px; padding: 14px 18px; margin-top: 12px;
+    font-size: 13px; color: #7a2020;
+  }
 </style>
 </head>
 <body>
@@ -476,17 +305,32 @@
     <p class="tagline">Iowa-grown daylilies, irises, and perennials shipped to your door</p>
   </div>
 
-  <!-- TOP NAVIGATION -->
+  <!-- TOP NAVIGATION: double-stacked to prevent horizontal overflow -->
   <nav class="top-nav">
-    <a class="nav-tab active" href="#">Daylilies</a>
-    <a class="nav-tab inactive" href="#">Iris <span class="inactive-note">(coming soon)</span></a>
-    <a class="nav-tab inactive" href="#">Lilies <span class="inactive-note">(coming soon)</span></a>
-    <a class="nav-tab inactive" href="#">Other Perennials <span class="inactive-note">(coming soon)</span></a>
-    <div class="nav-spacer"></div>
-    <a class="nav-cart-btn" href="#">
-      Cart <span class="cart-badge">0</span>
-    </a>
+    <!-- Row 1: primary tabs + cart -->
+    <div class="nav-row">
+      <a class="nav-tab active" href="#">Daylilies</a>
+      <a class="nav-tab inactive" href="#">Iris <span class="inactive-note">(coming soon)</span></a>
+      <a class="nav-tab inactive" href="#">Lilies <span class="inactive-note">(coming soon)</span></a>
+      <a class="nav-tab bundles-tab" href="#">Bundles</a>
+      <div class="nav-spacer"></div>
+      <a class="nav-cart-btn" href="#">Cart <span class="cart-badge">0</span></a>
+    </div>
+    <!-- Row 2: additional plant types -->
+    <div class="nav-row nav-row-2">
+      <a class="nav-tab inactive" href="#">Dahlias <span class="inactive-note">(coming soon)</span></a>
+      <a class="nav-tab inactive" href="#">Japanese Iris <span class="inactive-note">(coming soon)</span></a>
+      <a class="nav-tab inactive" href="#">Other Perennials <span class="inactive-note">(coming soon)</span></a>
+    </div>
   </nav>
+
+  <!-- NAV LAYOUT NOTE (wireframe only, not on real site) -->
+  <div class="nav-layout-note">
+    <strong>Wireframe note:</strong> The navigation uses two rows to accommodate all six plant-type tabs
+    plus the Bundles tab without causing a horizontal scrollbar on any screen size. Row 1 holds the most
+    commonly used tabs. Row 2 holds the additional plant categories. Jean should confirm this grouping
+    feels natural, or indicate a different arrangement preference.
+  </div>
 
   <!-- HERO -->
   <div class="hero">
@@ -494,8 +338,8 @@
     <div class="hero-overlay">
       <h2>Beautiful Daylilies, Grown with Care</h2>
       <p>Welcome to Dazzling Daylilies in Fairfax, Iowa. Jean grows and ships
-        bare-root daylilies to gardeners across the country. Every plant is dug
-        fresh and shipped with growing instructions.</p>
+        bare-root daylilies and perennials to gardeners across the country.
+        Every plant is dug fresh and shipped with growing instructions.</p>
       <a class="btn-primary" href="#">Browse the Daylily Catalog</a>
     </div>
   </div>
@@ -564,21 +408,14 @@
     <div class="about-photo">[ photo of Jean or the garden ]</div>
     <div class="about-content">
       <h3>About Jean and Dazzling Daylilies</h3>
-      <p>
-        Hi, I'm Jean, and I've been growing daylilies in Fairfax, Iowa for over twenty years.
+      <p>Hi, I'm Jean, and I've been growing daylilies in Fairfax, Iowa for over twenty years.
         What started as a few plants along the fence has grown into a garden full of hundreds
         of varieties in every color imaginable. Every plant I sell has been grown right here
-        in my own yard, and I dig and ship them fresh when the season is right.
-      </p>
-      <p>
-        I love connecting with other gardeners and helping people find the perfect plant for
+        in my own yard, and I dig and ship them fresh when the season is right.</p>
+      <p>I love connecting with other gardeners and helping people find the perfect plant for
         their space. If you have a question about a variety, a tricky spot in your yard, or
-        you just want to talk daylilies, feel free to reach out. I'm always happy to chat.
-      </p>
-      <p>
-        <strong>Questions?</strong>
-        Email me at <a href="#">dazzlingdaylilies@yahoo.com</a>.
-      </p>
+        you just want to talk daylilies, feel free to reach out. I'm always happy to chat.</p>
+      <p><strong>Questions?</strong> Email me at <a href="mailto:dazzlingdaylilies@yahoo.com">dazzlingdaylilies@yahoo.com</a>.</p>
     </div>
   </div>
 
@@ -591,7 +428,7 @@
         <address>
           Dazzling Daylilies<br>
           Fairfax, Iowa<br>
-          <a href="#">dazzlingdaylilies@yahoo.com</a>
+          <a href="mailto:dazzlingdaylilies@yahoo.com">dazzlingdaylilies@yahoo.com</a>
         </address>
       </div>
 
@@ -630,73 +467,235 @@
 </div><!-- /.page-wrapper -->
 
 
-<!-- ANNOTATIONS -->
+<!-- ============================================================
+     ANNOTATIONS WITH FEEDBACK FORMS
+============================================================ -->
+<div class="ann-feedback-intro">
+  <h2>Page Annotations and Your Feedback</h2>
+  <p>Hi Jean! Below are notes explaining what each part of this page does.
+    Wherever you see a yellow question box, please type your answer or thoughts
+    directly in the text area. When you are done, scroll to the bottom, enter
+    your name and email, and click <strong>Send My Feedback</strong>.
+    Edward will receive all your answers by email.</p>
+</div>
+
 <div class="annotations">
-  <h2>Page Annotations: Homepage (Wireframe 01 of 17)</h2>
-  <p class="ann-subtitle">These notes explain what each region does, what triggers each action, and what decisions this layout commits us to. Plain English for Jean.</p>
+  <div class="ann-section-inner">
+  <h2 style="padding-top:24px;">Homepage (Wireframe 01)</h2>
+  <p class="ann-subtitle">Plain English notes for Jean. Yellow boxes are questions that need your input.</p>
 
   <div class="ann-item">
-    <strong>Cookie Banner (dark strip at the very top)</strong>
-    <p>Shows up once when a customer first visits. It tells them the site only uses essential cookies to make the shopping cart work, nothing else. They click "Got it" and it goes away permanently. No complicated checkboxes or consent flows needed. This is just basic legal hygiene for a US-only site.</p>
+    <strong>Cookie Notice (dark strip at the very top)</strong>
+    <p>Appears once when a customer first visits. It tells them the site only uses cookies to make the
+    shopping cart work, nothing else. They click "Got it" and it disappears permanently. This is just
+    basic legal housekeeping for a US-only site. No decision needed here.</p>
   </div>
 
   <div class="ann-item">
-    <strong>Site Header (business name and tagline)</strong>
-    <p>The name "Dazzling Daylilies" is the main heading. The tagline below it is placeholder copy; Jean should approve or rewrite it. This area will also hold a logo graphic if Jean wants one designed. For now it is just text.</p>
-    <span class="ann-tag content">Content needed: Jean to approve or rewrite tagline</span>
+    <strong>Site Header: Business Name and Tagline</strong>
+    <p>Your business name is the main heading. The tagline below is placeholder copy and needs your approval.
+    This area will also hold your logo once it is finalized. The logo work we have been doing together
+    will live here.</p>
+    <span class="ann-tag content">Content needed</span>
+    <div class="feedback-box">
+      <label for="fb-tagline">Current tagline: "Iowa-grown daylilies, irises, and perennials shipped to your door." Does this sound right to you, or would you like to rewrite it in your own words?</label>
+      <textarea id="fb-tagline" placeholder="Type your thoughts here..."></textarea>
+    </div>
   </div>
 
   <div class="ann-item">
-    <strong>Navigation Tabs (Daylilies, Iris, Lilies, Other Perennials)</strong>
-    <p>These four tabs match Jean's catalog categories. At launch, only Daylilies is clickable. The other three show up grayed out with a "(coming soon)" note so visitors know more is coming. When Jean is ready to add irises or lilies, she turns them on in the admin Settings page and they become active automatically, no developer needed.</p>
-    <span class="ann-tag decision">Decision needed: Should inactive tabs show as grayed-out (as shown here) or be hidden entirely until active? Grayed = signals future categories. Hidden = cleaner but gives no preview.</span>
+    <strong>Navigation: Two-Row Tab Bar</strong>
+    <p>Because your contract includes six plant-type tabs (Daylilies, Iris, Lilies, Dahlias, Japanese Iris,
+    and Other Perennials) plus a Bundles tab, fitting everything in one row would cause the page to scroll
+    sideways on smaller screens. To prevent that, the navigation uses two rows. Row 1 holds Daylilies,
+    Iris, Lilies, and Bundles. Row 2 holds Dahlias, Japanese Iris, and Other Perennials. At launch,
+    only Daylilies is clickable. All others show "(coming soon)" until you activate them from your
+    admin Settings page.</p>
+    <span class="ann-tag contract">Per signed contract Section 3.1: six plant-type tabs</span>
+    <div class="feedback-box">
+      <label for="fb-nav-layout">Does this two-row navigation arrangement feel natural to you? Would you prefer a different grouping of tabs between the two rows? For example, should Bundles be on the second row instead?</label>
+      <textarea id="fb-nav-layout" placeholder="e.g. The grouping looks fine / Move Bundles to the second row / I'd like to discuss this..."></textarea>
+    </div>
+    <div class="feedback-box" style="margin-top:10px;">
+      <label for="fb-inactive-tabs">Should inactive tabs show as grayed-out with "(coming soon)" as shown here, so customers know more categories are coming? Or would you prefer to hide them entirely until you are ready to activate them?</label>
+      <textarea id="fb-inactive-tabs" placeholder="e.g. Show them grayed out / Hide them entirely / I'm not sure..."></textarea>
+    </div>
   </div>
 
   <div class="ann-item">
-    <strong>Cart Button (top right)</strong>
-    <p>Shows how many items are in the customer's cart. Clicking it takes them to the Cart page. The number updates live as they add plants. This appears on every page of the site.</p>
+    <strong>Hero Section (large banner photo with text overlay)</strong>
+    <p>A big welcoming photo fills this area. A white text box sits over it with a short introduction
+    and a button taking customers to the catalog. The white box keeps text readable regardless of what
+    the photo looks like underneath.</p>
+    <span class="ann-tag content">Content needed</span>
+    <div class="feedback-box">
+      <label for="fb-hero-photo">Do you have 1 to 3 garden or bloom photos you would like to use in this banner area? And does the placeholder welcome text sound like you, or would you like to rewrite it?</label>
+      <textarea id="fb-hero-photo" placeholder="e.g. I have photos I can send / The text sounds fine / I want to rewrite it..."></textarea>
+    </div>
   </div>
 
   <div class="ann-item">
-    <strong>Hero Section (large banner with text overlay)</strong>
-    <p>A big, welcoming photo fills this area. The white box over it contains a short introduction and a button that takes customers directly to the catalog. The white box keeps the text readable no matter what the photo looks like behind it.</p>
-    <span class="ann-tag content">Content needed: Jean to provide 1 to 3 candidate garden or bloom photos for this area. Placeholder copy should be reviewed and rewritten in her voice.</span>
-  </div>
-
-  <div class="ann-item">
-    <strong>Featured Plants (4 cards in a row)</strong>
-    <p>Shows four hand-picked plants. Jean (or Edward) controls which plants appear here from the admin panel. On phones and small tablets the cards stack vertically instead of sitting side by side. One card shows the "Sold Out" state so Jean can see how unavailable plants look: gray badge, grayed price, and a disabled button that says "Currently Unavailable."</p>
-    <span class="ann-tag decision">Decision needed: Should sold-out plants still appear on the homepage (as shown) or be filtered out automatically? Showing them keeps the grid full. Hiding them means the grid may look sparse when stock is low.</span>
-  </div>
-
-  <div class="ann-item">
-    <strong>"See All Daylilies" Button</strong>
-    <p>Takes the customer to the full catalog page. It is styled as a secondary (outlined) button rather than the main blue button because the homepage is for browsing and warming up, not an immediate hard sell.</p>
+    <strong>Featured Plants (4 cards)</strong>
+    <p>Shows four hand-picked plants from your catalog. You control which ones appear here from the admin panel.
+    On phones the cards stack vertically. One card shows how a "Sold Out" plant looks: gray badge, grayed price,
+    disabled button reading "Currently Unavailable."</p>
+    <span class="ann-tag decision">Decision needed</span>
+    <div class="feedback-box">
+      <label for="fb-soldout">Should sold-out plants still appear on the homepage with a "Sold Out" badge (as shown), or should they be hidden so only plants available to purchase are displayed?</label>
+      <textarea id="fb-soldout" placeholder="e.g. Show them with a badge / Hide them / Show them only if there are enough in-stock plants to fill the grid..."></textarea>
+    </div>
   </div>
 
   <div class="ann-item">
     <strong>About Jean Section</strong>
-    <p>A photo of Jean or her garden on the left, with a few paragraphs of personal introduction on the right. This is one of the most important sections on the homepage for a small-batch grower because customers buy from a person, not a company. The text shown is placeholder; Jean should write her own bio or Edward can draft it for her to edit.</p>
-    <span class="ann-tag content">Content needed: Jean's photo (or a garden photo) and a short bio (3 to 5 sentences is plenty).</span>
+    <p>Your photo on the left, a personal introduction on the right. This is one of the most important
+    sections on the homepage because your customers are buying from you personally, not a faceless company.
+    The text shown is placeholder copy.</p>
+    <span class="ann-tag content">Content needed</span>
+    <div class="feedback-box">
+      <label for="fb-bio">Would you like to write your own bio here (3 to 5 sentences is perfect), or would you like Edward to draft something for you to review and edit? Also, do you have a photo of yourself or your garden you would like to use?</label>
+      <textarea id="fb-bio" placeholder="e.g. I will write my own / Please draft something for me / I have a garden photo I can send..."></textarea>
+    </div>
   </div>
 
   <div class="ann-item">
     <strong>Footer: Three Columns</strong>
-    <p>Left column: contact info (email address; physical address omitted unless Jean wants it public). Middle column: links to Shipping Information, Order Status Lookup, Privacy Policy, and Terms of Service. Right column: email newsletter signup connected to Mailchimp.</p>
+    <p>Left: contact info (email address shown; street address omitted unless you want it public).
+    Middle: links to Shipping Information, Order Status, Privacy Policy, Terms of Service.
+    Right: email newsletter signup.</p>
+    <div class="feedback-box">
+      <label for="fb-address">Would you like your street address (11247 Scotch Grove LN, Fairfax, Iowa 52228) shown in the footer, or email only?</label>
+      <textarea id="fb-address" placeholder="e.g. Email only please / Yes include my address / I'll decide later..."></textarea>
+    </div>
   </div>
 
   <div class="ann-item">
-    <strong>Footer: Email Signup (Mailchimp)</strong>
-    <p>Customers type their email and click Subscribe. It goes directly into Jean's Mailchimp contact list. Jean can then send seasonal emails: new variety announcements, shipping window reminders, or garden tips. Customers only get added if they sign up here; no emails are sent without their permission. This requires a Mailchimp account and an API key, which gets entered in the admin Settings page once during setup.</p>
+    <strong>Footer: Email Signup</strong>
+    <p>Customers type their email and click Subscribe. The contract originally specified a Mailchimp signup form.
+    Email addresses collected here go into your subscription list so you can send seasonal updates, new
+    variety announcements, and shipping window reminders. Customers only receive emails if they sign up
+    here; nothing is sent without their permission.</p>
   </div>
 
   <div class="ann-item">
-    <strong>Page Width and Mobile Behavior</strong>
-    <p>The content is contained within a 1,160-pixel-wide column, centered on screen. On wide monitors there will be white space on the sides. On phones, the 4-column plant grid collapses to 1 or 2 columns, and the About section stacks vertically (photo on top, text below). Everything is readable without zooming or sideways scrolling.</p>
-    <span class="ann-tag decision">Decision needed: 1,160px is a standard e-commerce width, similar to what PlantFans uses. Happy to adjust if Jean prefers a wider or narrower feel before coding begins.</span>
+    <strong>Page Width</strong>
+    <p>Content is contained in a 1,160-pixel-wide column centered on screen, matching the width PlantFans
+    uses. On wide monitors there will be some white space on the sides. On phones everything reflows to
+    a single column with no sideways scrolling.</p>
+    <div class="feedback-box">
+      <label for="fb-width">Does the overall page width feel comfortable to you, or would you prefer it wider or narrower?</label>
+      <textarea id="fb-width" placeholder="e.g. Looks fine / A bit narrower / Wider please / Happy to discuss..."></textarea>
+    </div>
   </div>
 
-</div>
+  <div class="ann-item">
+    <strong>General Feedback on This Page</strong>
+    <div class="feedback-box">
+      <label for="fb-general">Any other thoughts, questions, or things you want to change on the homepage that are not covered above?</label>
+      <textarea id="fb-general" placeholder="Any thoughts at all are welcome here..."></textarea>
+    </div>
+  </div>
+
+  </div><!-- /.ann-section-inner -->
+
+  <!-- SUBMIT FORM -->
+  <div class="feedback-form-wrap">
+    <div class="feedback-form-heading">Send Your Feedback to Edward</div>
+    <p class="feedback-form-desc">When you are done reading and answering above, click the button below
+      to send everything to Edward. You only need to click once. A confirmation message will appear on
+      this page when your feedback has been sent successfully.</p>
+
+    <form id="feedback-form-wf01">
+      <input type="hidden" name="_subject" value="WF01 Homepage Feedback - Dazzling Daylilies">
+      <input type="hidden" name="wireframe" value="WF01 - Homepage">
+      <input type="hidden" name="tagline_feedback" id="h-tagline">
+      <input type="hidden" name="nav_layout_feedback" id="h-nav">
+      <input type="hidden" name="inactive_tabs_decision" id="h-tabs">
+      <input type="hidden" name="hero_photo_feedback" id="h-hero">
+      <input type="hidden" name="soldout_decision" id="h-soldout">
+      <input type="hidden" name="bio_feedback" id="h-bio">
+      <input type="hidden" name="address_feedback" id="h-address">
+      <input type="hidden" name="width_feedback" id="h-width">
+      <input type="hidden" name="general_feedback" id="h-general">
+
+      <div class="your-name-row">
+        <div class="your-name-field">
+          <label for="reviewer-name">Your Name</label>
+          <input type="text" id="reviewer-name" name="reviewer_name" value="Jean" placeholder="Your name">
+        </div>
+        <div class="your-name-field">
+          <label for="reviewer-email">Your Email (so Edward can reply)</label>
+          <input type="email" id="reviewer-email" name="email" placeholder="dazzlingdaylilies@yahoo.com">
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn">Send My Feedback &rarr;</button>
+      <p class="submit-note">Your answers are sent directly and securely to Edward. This page does not store any personal information.</p>
+
+      <div class="success-message" id="success-msg">
+        <strong>Thank you, Jean!</strong>
+        Your feedback on the Homepage has been sent to Edward successfully.
+        You can now close this tab or continue reviewing other wireframes from the main review page.
+      </div>
+      <div class="error-message" id="error-msg">
+        Something went wrong. Please try again, or email Edward directly at
+        <a href="mailto:docbear71@gmail.com">docbear71@gmail.com</a> with your notes.
+      </div>
+    </form>
+  </div>
+
+</div><!-- /.annotations -->
+
+<script>
+(function() {
+  var form = document.getElementById('feedback-form-wf01');
+  if (!form) return;
+
+  var fieldMap = [
+    ['fb-tagline',      'h-tagline'],
+    ['fb-nav-layout',   'h-nav'],
+    ['fb-inactive-tabs','h-tabs'],
+    ['fb-hero-photo',   'h-hero'],
+    ['fb-soldout',      'h-soldout'],
+    ['fb-bio',          'h-bio'],
+    ['fb-address',      'h-address'],
+    ['fb-width',        'h-width'],
+    ['fb-general',      'h-general']
+  ];
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    fieldMap.forEach(function(pair) {
+      var src = document.getElementById(pair[0]);
+      var dst = document.getElementById(pair[1]);
+      if (src && dst) dst.value = src.value.trim() || '(no answer provided)';
+    });
+
+    var btn = form.querySelector('.submit-btn');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    fetch('https://formspree.io/f/mvzyrrrv', {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(function(r) {
+      if (r.ok) {
+        document.getElementById('success-msg').style.display = 'block';
+        document.getElementById('success-msg').scrollIntoView({ behavior: 'smooth' });
+        btn.textContent = 'Feedback Sent';
+      } else { throw new Error(); }
+    })
+    .catch(function() {
+      document.getElementById('error-msg').style.display = 'block';
+      btn.textContent = 'Send My Feedback \u2192';
+      btn.disabled = false;
+    });
+  });
+})();
+</script>
 
 </body>
 </html>

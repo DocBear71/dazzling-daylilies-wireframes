@@ -423,6 +423,30 @@
   .ann-tag.decision { background: #ffd580; }
   .ann-tag.business { background: #f8d7da; color: #721c24; }
   .ann-tag.content { background: #c8e6c9; color: #1b5e20; }
+
+  /* Feedback form styles */
+  .ann-feedback-intro { background: #2c3e50; color: #ecf0f1; padding: 24px 32px; font-size: 14px; line-height: 1.7; }
+  .ann-feedback-intro h2 { font-size: 18px; font-weight: 700; margin-bottom: 6px; color: #fff; }
+  .ann-feedback-intro p { color: #bdc3c7; max-width: 680px; }
+  .ann-section-inner { padding: 32px 32px 0; }
+  .feedback-box { margin-top: 12px; background: #fff; border: 1px solid #e0d080; border-radius: 6px; padding: 14px 16px; }
+  .feedback-box label { display: block; font-size: 12px; font-weight: 700; color: #5a4a00; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+  .feedback-box textarea { width: 100%; padding: 10px 12px; border: 1px solid #d0c060; border-radius: 4px; font-size: 14px; color: #333; background: #fffef5; resize: vertical; min-height: 80px; line-height: 1.6; font-family: inherit; }
+  .feedback-box textarea:focus { outline: 2px solid #f5c518; border-color: transparent; }
+  .feedback-box textarea::placeholder { color: #bbb; }
+  .feedback-form-wrap { background: #fff8e0; border-top: 2px solid #f5c518; padding: 28px 32px 36px; }
+  .feedback-form-heading { font-size: 16px; font-weight: 700; color: #222; margin-bottom: 4px; }
+  .feedback-form-desc { font-size: 13px; color: #666; margin-bottom: 20px; line-height: 1.6; }
+  .your-name-row { display: flex; gap: 14px; margin-bottom: 20px; flex-wrap: wrap; }
+  .your-name-field { flex: 1; min-width: 180px; }
+  .your-name-field label { display: block; font-size: 12px; font-weight: 700; color: #555; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 5px; }
+  .your-name-field input { width: 100%; padding: 10px 12px; border: 1px solid #d0d0d0; border-radius: 4px; font-size: 14px; color: #333; background: #fff; }
+  .submit-btn { display: inline-block; background: #2c3e50; color: #fff; padding: 12px 32px; border-radius: 4px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; }
+  .submit-btn:hover { background: #1a2a3a; }
+  .submit-note { font-size: 12px; color: #888; margin-top: 10px; line-height: 1.6; }
+  .success-message { display: none; background: #d5f5e3; border: 1px solid #6abf6a; border-radius: 6px; padding: 20px 24px; margin-top: 16px; font-size: 14px; color: #1a5c2a; line-height: 1.7; }
+  .success-message strong { display: block; font-size: 16px; margin-bottom: 4px; }
+  .error-message { display: none; background: #fdf2f2; border: 1px solid #e8b4b4; border-radius: 6px; padding: 14px 18px; margin-top: 12px; font-size: 13px; color: #7a2020; }
 </style>
 </head>
 <body>
@@ -776,69 +800,187 @@ Plants are shipped as bare-root divisions in late spring when conditions are rig
 </div><!-- /.admin-wrapper -->
 
 
-<!-- ANNOTATIONS -->
-<div class="annotations">
-  <h2>Page Annotations: Admin Plant Editor (Wireframe 11 of 17)</h2>
-  <p class="ann-subtitle">This is the form Jean uses to add new plants and edit existing ones. It is the most complex admin page in the system. Plain English throughout.</p>
 
-  <div class="ann-item">
-    <strong>Breadcrumb and "View on Public Site" Link</strong>
-    <p>The breadcrumb shows Dashboard &rsaquo; Plants &rsaquo; Acapulco Sunset so Jean always knows where she is. "View on public site" opens the customer-facing plant detail page in a new tab so Jean can verify how her changes look without leaving the editor.</p>
-  </div>
-
-  <div class="ann-item">
-    <strong>Sticky Save Bar (the floating bar at the top)</strong>
-    <p>Appears as soon as Jean makes any change to the form. It stays visible as she scrolls down the long page so she never has to scroll back to the top to save. Shows an "Unsaved changes" warning in amber. Has both Save Changes and Discard buttons. The Save Changes button in the page heading row does the same thing. Two paths to save, no path to lose work accidentally.</p>
-    <span class="ann-tag decision">Decision needed: Should the browser warn Jean if she tries to navigate away with unsaved changes? A standard browser "Leave page?" dialog would prevent accidental data loss. This is easy to add with a small amount of JavaScript and is strongly recommended for a form this long.</span>
-  </div>
-
-  <div class="ann-item">
-    <strong>Section: Basic Information</strong>
-    <p>Plant Name, Plant Type, URL Slug, Price, Hybridizer, Year Introduced. The price field has a dollar sign prefix so Jean does not need to type it. Internally, prices are stored in cents (2800 for $28.00) but the editor displays and accepts dollars with decimals, converting automatically on save.</p>
-    <span class="ann-tag business">Business rule: Prices are stored in cents internally to avoid floating-point rounding errors. The editor converts between dollars (display) and cents (storage) transparently. Jean never sees or types cents.</span>
-  </div>
-
-  <div class="ann-item">
-    <strong>URL Slug Field</strong>
-    <p>The slug is auto-generated from the plant name when a new plant is created (e.g., "Acapulco Sunset" becomes "acapulco-sunset"). Jean can edit it manually if needed, but changing it after the plant is live will break any bookmarks customers have saved and will also break photo matching for files already uploaded using the old slug name. The "Regenerate" button resets it from the current name. A warning should appear if Jean tries to change the slug of a plant that already has orders or photos.</p>
-    <span class="ann-tag business">Business rule: The slug is the photo-matching key. Photos uploaded with filenames like "acapulco-sunset_1.jpg" attach to this plant automatically. Changing the slug after photos are uploaded means those photos will no longer match unless they are renamed and re-uploaded.</span>
-  </div>
-
-  <div class="ann-item">
-    <strong>Section: Plant Attributes (the dropdowns)</strong>
-    <p>Seven attribute fields, all dropdowns: Color, Bloom Size, Ploidy, Foliage, Bloom Time, Rebloomer, Fragrant, plus a free-text field for Scape Height in inches. All are optional except Plant Type. Dropdown values are fixed at launch based on Jean's catalog; if she needs new values added (a new color category, say), that requires a developer change to the seeder data. This is an acceptable limitation for a catalog this size.</p>
-    <span class="ann-tag decision">Decision needed: Should Jean be able to add new dropdown options herself from the Settings page, or is a fixed list acceptable? A fixed list is simpler to build and sufficient for a catalog of 48 plants. A configurable list gives Jean more flexibility but adds Settings complexity. Worth discussing.</span>
-  </div>
-
-  <div class="ann-item">
-    <strong>Section: Descriptions (three text areas)</strong>
-    <p>Short Description appears on catalog cards and at the top of the detail page. Long Description appears only on the detail page below the attributes. Internal Notes are private and never shown to customers. The Internal Notes field has a yellow background to visually distinguish it and remind Jean it is private. Placeholder text suggests example use cases ("Only 3 fans left. Check before accepting more orders.").</p>
-  </div>
-
-  <div class="ann-item">
-    <strong>Section: Coordinated With</strong>
-    <p>A search-and-chip interface for selecting companion plants. Jean types a plant name, matching results appear below the search box, and she clicks one to add it as a chip. Existing selections appear as blue chips with an &times; to remove. This wireframe shows 5 coordinated plants selected for Acapulco Sunset. The relationship is one-directional: adding Strawberry Candy here does not automatically add Acapulco Sunset to Strawberry Candy's coordinated list. Jean must set both directions manually if she wants the pairing to show on both detail pages.</p>
-    <span class="ann-tag decision">Decision needed (carried forward from Wireframe 03): Should coordinated relationships be bidirectional automatically? If Jean pairs Plant A with Plant B, should Plant B automatically show Plant A as a companion? Auto-bidirectional is more convenient for Jean. Manual is simpler to build and gives Jean more control over which pairings show on which pages.</span>
-  </div>
-
-  <div class="ann-item">
-    <strong>Sidebar: Status Toggles (Active and In Stock)</strong>
-    <p>Two independent toggles in the sidebar. Active controls whether the plant appears on the public catalog at all. In Stock controls whether the plant can be added to a cart. Both can be flipped here without saving the rest of the form. Alternatively, Jean can save the whole form. Either way, the change takes effect immediately on the public site once saved.</p>
-  </div>
-
-  <div class="ann-item">
-    <strong>Sidebar: Photos Panel</strong>
-    <p>Shows up to the first few photos attached to this plant as small squares. The first photo has a "Primary" badge: it is the one shown in catalog cards, the cart, the order sheet, and the order confirmation email. Jean can drag photos to reorder them, changing which is primary. The &times; button removes a photo. The + button opens the upload dialog for this specific plant. "Upload More Photos" is a secondary path to the same action.</p>
-    <span class="ann-tag business">Business rule: Reordering photos changes the primary photo immediately. The primary photo is snapshotted into the order_items table when an order is placed, so changing the primary photo after an order exists does not affect how that order's printed sheet looks.</span>
-  </div>
-
-  <div class="ann-item">
-    <strong>Delete Zone (bottom of the form)</strong>
-    <p>Deliberately placed at the very bottom, below all other content, and styled in red to signal danger. Clicking "Delete This Plant" triggers a confirmation dialog before anything is deleted. The deletion is a soft delete: the plant record is flagged as deleted but not removed from the database. It disappears from the public catalog immediately. Edward can recover it within 30 days if Jean deletes something by mistake. Past orders referencing the plant are completely unaffected.</p>
-    <span class="ann-tag business">Business rule: Soft deletes protect against accidental data loss. The deleted_at timestamp is set; the plant is excluded from all public queries. Order history retains the plant name and photo as a snapshot in the order_items table, so printed order sheets are never affected by plant deletions.</span>
-  </div>
-
+<!-- FEEDBACK FORM -->
+<div class="ann-feedback-intro">
+  <h2>Page Annotations and Your Feedback</h2>
+  <p>Hi Jean! This is the form you will use every time you add or edit a plant in your catalog.
+    It has a lot of fields, but most have sensible defaults and you only fill in what you know.
+    The annotations above explain every section. The questions below need your input before
+    Edward begins building. Click <strong>Send My Feedback</strong> when done.</p>
 </div>
+<div class="annotations">
+  <div class="ann-section-inner">
+  <h2 style="padding-top:24px;">Admin Plant Editor (WF11 &mdash; Original)</h2>
+  <p class="ann-subtitle" style="margin-bottom:24px;">
+    This is the original plant editor without the bundle configuration fields.
+    For the version with bundle setup, see Wireframe 11 (Revised).
+    Answer the questions below about the fields and workflow shown here.
+  </p>
 
+  <div class="ann-item" style="padding:20px 0; border-bottom:1px solid #eedc6a;">
+    <strong>Unsaved Changes Warning</strong>
+    <p style="margin-bottom:8px;">The sticky save bar at the top warns you when you have unsaved changes. There is also an option to show a browser warning if you try to leave the page with unsaved changes.</p>
+    <div class="feedback-box">
+      <label for="fb-wf11-0">Should the browser warn you with a popup if you accidentally try to close the tab or navigate away while you have unsaved changes on this form? This prevents accidentally losing work on a long entry.</label>
+      <textarea id="fb-wf11-0" placeholder="e.g. Yes please / No that would be annoying / I'm not sure..."></textarea>
+    </div>
+  </div>
+
+  <div class="ann-item" style="padding:20px 0; border-bottom:1px solid #eedc6a;">
+    <strong>Plant Type Dropdown</strong>
+    <p style="margin-bottom:8px;">The six plant types are: Daylily, Iris, Lily, Dahlia, Japanese Iris, Other Perennial. These match the six navigation tabs on the public site.</p>
+    <div class="feedback-box">
+      <label for="fb-wf11-1">Are these the correct six plant categories for your catalog? Are any missing or named incorrectly?</label>
+      <textarea id="fb-wf11-1" placeholder="e.g. These look correct / I also sell hostas, where would those go? / Japanese Iris should be listed separately..."></textarea>
+    </div>
+  </div>
+
+  <div class="ann-item" style="padding:20px 0; border-bottom:1px solid #eedc6a;">
+    <strong>URL Slug</strong>
+    <p style="margin-bottom:8px;">The slug is generated automatically from the plant name (Acapulco Sunset becomes acapulco-sunset). It is used in the web address for that plant's page and as the photo filename prefix. Changing it after a plant is live can break things.</p>
+    <div class="feedback-box">
+      <label for="fb-wf11-2">Does the auto-generated slug approach make sense to you? The slug for each plant is shown in the Plants List (Wireframe 10) so you can look it up when naming your photo files.</label>
+      <textarea id="fb-wf11-2" placeholder="e.g. Yes that makes sense / Can I see an example of where it appears? / I have a question about this..."></textarea>
+    </div>
+  </div>
+
+  <div class="ann-item" style="padding:20px 0; border-bottom:1px solid #eedc6a;">
+    <strong>Attribute Dropdowns</strong>
+    <p style="margin-bottom:8px;">Color, Bloom Size, Ploidy, Foliage, Bloom Time, Rebloomer, and Fragrant are all dropdown fields with fixed option lists. If you need a new value added (a new color category, for example), Edward would need to make that change for you.</p>
+    <div class="feedback-box">
+      <label for="fb-wf11-3">Would a fixed list of dropdown options work for you, or would you want to be able to add new options yourself from the Settings page? Also: are there any attribute fields missing that you would want to track for your plants?</label>
+      <textarea id="fb-wf11-3" placeholder="e.g. Fixed list is fine / I would want to manage my own lists / I also track spider form, miniature, doubles..."></textarea>
+    </div>
+  </div>
+
+  <div class="ann-item" style="padding:20px 0; border-bottom:1px solid #eedc6a;">
+    <strong>Short Description vs. Long Description</strong>
+    <p style="margin-bottom:8px;">Short Description appears on the catalog card and at the top of the detail page. Long Description appears only on the detail page below the attributes. Both are optional. Internal Notes are private and never shown to customers.</p>
+    <div class="feedback-box">
+      <label for="fb-wf11-4">Do the three description fields (Short, Long, Internal Notes) cover what you need? Is there anything you would add or change?</label>
+      <textarea id="fb-wf11-4" placeholder="e.g. These three fields are perfect / I would also want a field for care instructions per plant / The short description should have a character limit..."></textarea>
+    </div>
+  </div>
+
+  <div class="ann-item" style="padding:20px 0; border-bottom:1px solid #eedc6a;">
+    <strong>Coordinated With (companion plant selector)</strong>
+    <p style="margin-bottom:8px;">You type a plant name in the search box and select companions from your own catalog. They appear as chips you can remove. The relationship is one-directional: you have to set both directions manually if you want a pairing to appear on both plants' detail pages.</p>
+    <div class="feedback-box">
+      <label for="fb-wf11-5">If you pair Plant A with Plant B here, should Plant B automatically also show Plant A as a companion? Or would you prefer to control each plant's companion list independently?</label>
+      <textarea id="fb-wf11-5" placeholder="e.g. Automatic both ways would be much easier / I want to control each list separately / I'm not sure, let's discuss..."></textarea>
+    </div>
+  </div>
+
+  <div class="ann-item" style="padding:20px 0; border-bottom:1px solid #eedc6a;">
+    <strong>Photo Management (sidebar)</strong>
+    <p style="margin-bottom:8px;">Up to 3 photos per plant. The first photo is the primary (shown in catalog cards, order sheets, and emails). You can drag to reorder them. Clicking the plus button lets you upload photos for this specific plant, as an alternative to the bulk uploader.</p>
+    <div class="feedback-box">
+      <label for="fb-wf11-6">Is 3 photos per plant enough? And does the drag-to-reorder approach for choosing the primary photo feel comfortable, or would you prefer a different way to set the primary photo (like a "Set as Primary" button on each thumbnail)?</label>
+      <textarea id="fb-wf11-6" placeholder="e.g. 3 photos is fine / I would want more / A button would be easier than dragging..."></textarea>
+    </div>
+  </div>
+
+  <div class="ann-item" style="padding:20px 0; border-bottom:1px solid #eedc6a;">
+    <strong>Active and In Stock Toggles (sidebar)</strong>
+    <p style="margin-bottom:8px;">Active controls whether the plant is visible on your public site at all. In Stock controls whether it can be added to a cart. These are independent: you can have a plant be active but sold out (visible with a sold-out badge), or inactive and in-stock (hidden from customers but ready to go live).</p>
+    <div class="feedback-box">
+      <label for="fb-wf11-7">Does this two-toggle approach (Active separately from In Stock) make sense for how you manage your catalog? For example, do you ever want to hide a plant from customers without marking it as sold out?</label>
+      <textarea id="fb-wf11-7" placeholder="e.g. Yes that distinction is useful / One toggle would be simpler / I would use inactive at the end of the season..."></textarea>
+    </div>
+  </div>
+
+  <div class="ann-item" style="padding:20px 0; border-bottom:1px solid #eedc6a;">
+    <strong>Delete Plant (bottom of page)</strong>
+    <p style="margin-bottom:8px;">Deleting a plant hides it from your public catalog immediately but does not permanently erase it. Edward can recover a deleted plant within 30 days. A confirmation dialog appears before anything is deleted. Past orders that included the plant are not affected.</p>
+    <div class="feedback-box">
+      <label for="fb-wf11-8">Does knowing that deleted plants can be recovered within 30 days make you more comfortable using the delete button? Or would you prefer the button say "Deactivate" instead of "Delete" to better describe what actually happens?</label>
+      <textarea id="fb-wf11-8" placeholder="e.g. Good to know about recovery / I would prefer it says Deactivate / I would rarely delete a plant anyway..."></textarea>
+    </div>
+  </div>
+
+  <div class="ann-item" style="padding:20px 0;">
+    <strong>General Feedback on the Plant Editor</strong>
+    <div class="feedback-box">
+      <label for="fb-wf11-9">Any other thoughts on the plant editor? Is there anything you would add, remove, or rearrange? This is the page you will use most often, so your feedback here is especially important.</label>
+      <textarea id="fb-wf11-9" placeholder="Any thoughts at all are welcome here..."></textarea>
+    </div>
+  </div>
+
+  </div><!-- /.ann-section-inner -->
+
+  <div class="feedback-form-wrap">
+    <div class="feedback-form-heading">Send Your Feedback to Edward</div>
+    <p class="feedback-form-desc">Type your answers above, then click the button below to send everything to Edward in one email.</p>
+    <form id="ff-wf11original">
+      <input type="hidden" name="_subject" value="WF11 Admin Plant Editor (Original) Feedback - Dazzling Daylilies">
+      <input type="hidden" name="wireframe" value="WF11 - Admin Plant Editor (Original)">
+      <input type="hidden" name="unsaved_warning" id="h-wf11-0">
+      <input type="hidden" name="plant_types" id="h-wf11-1">
+      <input type="hidden" name="url_slug" id="h-wf11-2">
+      <input type="hidden" name="attribute_dropdowns" id="h-wf11-3">
+      <input type="hidden" name="descriptions" id="h-wf11-4">
+      <input type="hidden" name="coordinated_bidirectional" id="h-wf11-5">
+      <input type="hidden" name="photo_management" id="h-wf11-6">
+      <input type="hidden" name="active_vs_instock" id="h-wf11-7">
+      <input type="hidden" name="delete_deactivate" id="h-wf11-8">
+      <input type="hidden" name="general_feedback" id="h-wf11-9">
+      <div class="your-name-row">
+        <div class="your-name-field">
+          <label>Your Name</label>
+          <input type="text" name="reviewer_name" value="Jean">
+        </div>
+        <div class="your-name-field">
+          <label>Your Email (so Edward can reply)</label>
+          <input type="email" name="email" placeholder="dazzlingdaylilies@yahoo.com">
+        </div>
+      </div>
+      <button type="submit" class="submit-btn">Send My Feedback &rarr;</button>
+      <p class="submit-note">Your answers are sent directly and securely to Edward. This page does not store any personal information.</p>
+      <div class="success-message" id="success-wf11original">
+        <strong>Thank you, Jean!</strong>
+        Your feedback on the Plant Editor has been sent to Edward successfully.
+      </div>
+      <div class="error-message" id="error-wf11original">
+        Something went wrong. Please try again or email Edward directly.
+      </div>
+    </form>
+  </div>
+
+</div><!-- /.annotations -->
+
+<script>
+(function(){
+  var form = document.getElementById('ff-wf11original');
+  if (!form) return;
+  var fieldMap = [
+    ['fb-wf11-0','h-wf11-0'],['fb-wf11-1','h-wf11-1'],['fb-wf11-2','h-wf11-2'],
+    ['fb-wf11-3','h-wf11-3'],['fb-wf11-4','h-wf11-4'],['fb-wf11-5','h-wf11-5'],
+    ['fb-wf11-6','h-wf11-6'],['fb-wf11-7','h-wf11-7'],['fb-wf11-8','h-wf11-8'],
+    ['fb-wf11-9','h-wf11-9']
+  ];
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    fieldMap.forEach(function(p) {
+      var s = document.getElementById(p[0]), d = document.getElementById(p[1]);
+      if (s && d) d.value = s.value.trim() || '(no answer provided)';
+    });
+    var btn = form.querySelector('.submit-btn');
+    btn.textContent = 'Sending...'; btn.disabled = true;
+    fetch('https://formspree.io/f/mvzyrrrv', {
+      method: 'POST', body: new FormData(form), headers: {'Accept': 'application/json'}
+    }).then(function(r) {
+      if (r.ok) {
+        document.getElementById('success-wf11original').style.display = 'block';
+        document.getElementById('success-wf11original').scrollIntoView({behavior: 'smooth'});
+        btn.textContent = 'Feedback Sent';
+      } else { throw new Error(); }
+    }).catch(function() {
+      document.getElementById('error-wf11original').style.display = 'block';
+      btn.textContent = 'Send My Feedback →'; btn.disabled = false;
+    });
+  });
+})();
+</script>
 </body>
 </html>
