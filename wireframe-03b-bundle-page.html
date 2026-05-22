@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wireframe 03b: Coordinated Bundle Page — Dazzling Daylilies</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 15px;
+    background: #f0f0f0;
+    color: #222;
+  }
+
+  a { color: #4a90d9; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .btn-primary {
+    display: inline-block; background: #4a90d9; color: #fff;
+    padding: 12px 28px; border-radius: 4px; font-size: 15px;
+    font-weight: 600; cursor: pointer; border: none;
+  }
+  .btn-bundle {
+    display: block; width: 100%;
+    background: #27ae60; color: #fff;
+    padding: 16px; border-radius: 4px; font-size: 17px;
+    font-weight: 700; cursor: pointer; border: none; text-align: center;
+  }
+  .btn-secondary {
+    display: inline-block; background: #fff; color: #4a90d9;
+    padding: 10px 22px; border-radius: 4px; font-size: 14px;
+    font-weight: 600; border: 2px solid #4a90d9; cursor: pointer;
+  }
+
+  .page-wrapper {
+    max-width: 1160px; margin: 0 auto; background: #fff;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+  }
+
+  /* Shared chrome */
+  .cookie-banner {
+    background: #333; color: #eee; padding: 10px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 13px; gap: 16px;
+  }
+  .cookie-dismiss {
+    background: #4a90d9; color: #fff; border: none;
+    padding: 5px 14px; border-radius: 3px; cursor: pointer; font-size: 12px;
+  }
+  .site-header {
+    background: #e8e8e8; border-bottom: 1px solid #d0d0d0;
+    padding: 20px 24px 16px; text-align: center;
+  }
+  .site-header h1 { font-size: 26px; font-weight: 700; color: #222; margin-bottom: 4px; }
+  .site-header .tagline { font-size: 13px; color: #666; font-style: italic; }
+  .top-nav {
+    background: #fff; border-bottom: 3px solid #d0d0d0;
+    padding: 0 24px; display: flex; align-items: stretch; height: 48px;
+  }
+  .nav-tab {
+    display: inline-flex; align-items: center; padding: 0 20px;
+    font-size: 14px; font-weight: 600; color: #555;
+    border-bottom: 3px solid transparent; margin-bottom: -3px;
+    cursor: pointer; white-space: nowrap;
+  }
+  .nav-tab.active { color: #4a90d9; border-bottom-color: #4a90d9; }
+  .nav-tab.inactive { color: #bbb; cursor: not-allowed; }
+  .nav-tab .inactive-note { font-size: 10px; font-weight: 400; color: #ccc; margin-left: 4px; }
+  .nav-spacer { flex: 1; }
+  .nav-cart-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 0 16px; font-size: 13px; font-weight: 600; color: #4a90d9; cursor: pointer;
+  }
+  .cart-badge {
+    background: #4a90d9; color: #fff; border-radius: 50%;
+    width: 18px; height: 18px; font-size: 11px;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+
+  /* Breadcrumb */
+  .breadcrumb {
+    padding: 12px 24px; font-size: 13px; color: #888;
+    border-bottom: 1px solid #eee; background: #fafafa;
+  }
+  .breadcrumb a { color: #4a90d9; }
+  .breadcrumb .sep { margin: 0 6px; color: #ccc; }
+  .breadcrumb .current { color: #555; font-weight: 600; }
+
+  /* ============================================================
+     PAGE BODY: two-column layout
+  ============================================================ */
+  .bundle-page-body {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 32px;
+    padding: 32px 24px 56px;
+    align-items: start;
+  }
+
+  /* ---- LEFT: Bundle details ---- */
+  .bundle-main {}
+
+  /* Page title area */
+  .bundle-page-header {
+    margin-bottom: 28px;
+  }
+  .bundle-page-label {
+    display: inline-block;
+    background: #6abf6a; color: #fff;
+    font-size: 11px; font-weight: 700;
+    padding: 3px 12px; border-radius: 10px;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    margin-bottom: 10px;
+  }
+  .bundle-page-title {
+    font-size: 26px; font-weight: 700; color: #222;
+    margin-bottom: 8px; line-height: 1.2;
+  }
+  .bundle-page-desc {
+    font-size: 14px; color: #555; line-height: 1.7; max-width: 540px;
+  }
+  .bundle-anchor-link {
+    font-size: 13px; color: #4a90d9; margin-top: 6px; display: block;
+  }
+
+  /* Plant list */
+  .bundle-plants-heading {
+    font-size: 14px; font-weight: 700; color: #333;
+    text-transform: uppercase; letter-spacing: 0.07em;
+    margin-bottom: 16px; padding-bottom: 8px;
+    border-bottom: 2px solid #eee;
+    display: flex; justify-content: space-between; align-items: baseline;
+  }
+  .bundle-plants-heading span { font-size: 12px; color: #aaa; font-weight: 400; text-transform: none; letter-spacing: 0; }
+
+  .bundle-plant-list { margin-bottom: 28px; }
+
+  .bundle-plant-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid #f5f5f5;
+  }
+  .bundle-plant-row:last-child { border-bottom: none; }
+
+  .bpr-photo {
+    width: 80px; height: 80px; border-radius: 6px;
+    background: #b0b0b0; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px; color: #fff; font-weight: 600;
+    text-transform: uppercase; text-align: center; padding: 4px;
+    border: 1px solid #ddd;
+  }
+  .bpr-photo.alt  { background: #9a9a9a; }
+  .bpr-photo.alt2 { background: #aaa; }
+  .bpr-photo.alt3 { background: #c0c0c0; }
+  .bpr-photo.alt4 { background: #a5a5a5; }
+
+  .bpr-info { flex: 1; }
+  .bpr-name {
+    font-size: 16px; font-weight: 700; color: #222;
+    margin-bottom: 3px;
+  }
+  .bpr-name a { color: #222; }
+  .bpr-name a:hover { color: #4a90d9; }
+  .bpr-meta { font-size: 12px; color: #999; margin-bottom: 6px; }
+  .bpr-desc { font-size: 13px; color: #555; line-height: 1.5; }
+
+  .bpr-price-col { text-align: right; flex-shrink: 0; min-width: 80px; }
+  .bpr-individual-price {
+    font-size: 15px; font-weight: 700; color: #222; margin-bottom: 3px;
+  }
+  .bpr-included-label {
+    font-size: 11px; color: #6abf6a; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.04em;
+  }
+
+  /* Savings summary block */
+  .savings-summary {
+    background: #f0faf4;
+    border: 1px solid #b8d9b8;
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+  }
+  .savings-heading {
+    font-size: 13px; font-weight: 700; color: #2a5a2a;
+    text-transform: uppercase; letter-spacing: 0.07em;
+    margin-bottom: 12px;
+  }
+  .savings-row {
+    display: flex; justify-content: space-between;
+    font-size: 14px; margin-bottom: 6px;
+  }
+  .sv-label { color: #555; }
+  .sv-value { font-weight: 600; color: #333; }
+  .savings-row.savings-line .sv-value { color: #27ae60; font-weight: 700; }
+  .savings-divider { border: none; border-top: 1px solid #c8e8c8; margin: 8px 0; }
+  .savings-row.total .sv-label { font-size: 16px; font-weight: 700; color: #1a4a1a; }
+  .savings-row.total .sv-value { font-size: 20px; font-weight: 700; color: #1a5c2a; }
+
+  /* Jean-flagged callout */
+  .jean-flagged-block {
+    background: #fffbec; border: 1px solid #e8d87a; border-radius: 4px;
+    padding: 12px 16px; font-size: 12px; color: #5a4a00; line-height: 1.6;
+    margin-top: 14px;
+  }
+  .jean-flagged-block strong { color: #3a2a00; display: block; margin-bottom: 4px; }
+
+  /* ---- RIGHT: Sidebar ---- */
+  .bundle-sidebar {}
+
+  .sidebar-purchase-card {
+    background: #fff; border: 2px solid #6abf6a; border-radius: 8px;
+    overflow: hidden; margin-bottom: 16px; position: sticky; top: 16px;
+  }
+  .spc-header {
+    background: #f0faf4; padding: 16px 20px;
+    border-bottom: 1px solid #c8e8c8;
+  }
+  .spc-label {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.07em; color: #3a7a3a; margin-bottom: 6px;
+  }
+  .spc-title { font-size: 16px; font-weight: 700; color: #1a4a1a; margin-bottom: 4px; }
+  .spc-plant-count { font-size: 13px; color: #4a7a4a; }
+
+  .spc-body { padding: 18px 20px; }
+
+  /* Mini plant previews in sidebar */
+  .spc-mini-plants {
+    display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px;
+  }
+  .spc-mini-thumb {
+    width: 44px; height: 44px; border-radius: 4px;
+    background: #b0b0b0; display: flex; align-items: center;
+    justify-content: center; font-size: 7px; color: #fff;
+    font-weight: 600; text-align: center; padding: 2px;
+    border: 1px solid #ddd;
+  }
+  .spc-mini-thumb.alt  { background: #9a9a9a; }
+  .spc-mini-thumb.alt2 { background: #aaa; }
+  .spc-mini-thumb.alt3 { background: #c0c0c0; }
+  .spc-mini-thumb.alt4 { background: #a5a5a5; }
+
+  .spc-pricing {
+    margin-bottom: 16px;
+    padding: 12px 14px;
+    background: #f5f5f5; border-radius: 4px;
+  }
+  .spc-bundle-price {
+    font-size: 26px; font-weight: 700; color: #1a5c2a; margin-bottom: 4px;
+  }
+  .spc-was-price {
+    font-size: 13px; color: #aaa; text-decoration: line-through; margin-bottom: 4px;
+  }
+  .spc-savings-pill {
+    display: inline-block; background: #d5f5e3; color: #1a5c2a;
+    font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 10px;
+  }
+
+  .spc-note {
+    font-size: 12px; color: #888; text-align: center;
+    line-height: 1.5; margin-top: 10px;
+  }
+  .spc-note a { font-size: 12px; }
+
+  .spc-shipping-note {
+    font-size: 12px; color: #555; margin-top: 12px;
+    padding-top: 12px; border-top: 1px solid #eee; line-height: 1.6;
+  }
+
+  .back-to-plant {
+    background: #fff; border: 1px solid #e0e0e0; border-radius: 6px;
+    padding: 14px 18px; font-size: 13px; color: #555; line-height: 1.6;
+  }
+  .back-to-plant a { color: #4a90d9; font-weight: 600; }
+
+  /* Footer */
+  .site-footer { background: #333; color: #ccc; padding: 20px 24px; }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #888; }
+  .footer-bottom a { color: #7ab8f5; }
+
+  /* Annotations */
+  .annotations {
+    background: #fffbe6; border-top: 4px solid #f5c518;
+    padding: 32px 32px 40px; font-size: 14px; color: #333; line-height: 1.7;
+  }
+  .annotations h2 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .ann-subtitle { font-size: 13px; color: #888; margin-bottom: 28px; }
+  .ann-item { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #eedc6a; }
+  .ann-item:last-child { border-bottom: none; margin-bottom: 0; }
+  .ann-item strong { display: block; font-size: 14px; font-weight: 700; color: #222; margin-bottom: 4px; }
+  .ann-tag {
+    display: inline-block; background: #f5c518; color: #333;
+    font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 3px;
+    margin-top: 6px; text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .ann-tag.decision { background: #ffd580; }
+  .ann-tag.jean { background: #f8d7da; color: #721c24; }
+  .ann-tag.new { background: #d5f5e3; color: #1a5c2a; }
+</style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <div class="cookie-banner">
+    <span>This site uses only essential cookies to keep your shopping cart working. No tracking or advertising cookies are used.</span>
+    <button class="cookie-dismiss">Got it</button>
+  </div>
+
+  <div class="site-header">
+    <h1><a href="#" style="color:#222;">Dazzling Daylilies</a></h1>
+    <p class="tagline">Iowa-grown daylilies, irises, and perennials shipped to your door</p>
+  </div>
+
+  <nav class="top-nav">
+    <a class="nav-tab active" href="#">Daylilies</a>
+    <a class="nav-tab inactive" href="#">Iris <span class="inactive-note">(coming soon)</span></a>
+    <a class="nav-tab inactive" href="#">Lilies <span class="inactive-note">(coming soon)</span></a>
+    <a class="nav-tab inactive" href="#">Other Perennials <span class="inactive-note">(coming soon)</span></a>
+    <div class="nav-spacer"></div>
+    <a class="nav-cart-btn" href="#">Cart <span class="cart-badge">2</span></a>
+  </nav>
+
+  <div class="breadcrumb">
+    <a href="#">Home</a>
+    <span class="sep">&rsaquo;</span>
+    <a href="#">Daylilies</a>
+    <span class="sep">&rsaquo;</span>
+    <a href="#">Acapulco Sunset</a>
+    <span class="sep">&rsaquo;</span>
+    <span class="current">Jean's Sunset Garden Collection</span>
+  </div>
+
+  <div class="bundle-page-body">
+
+    <!-- LEFT: Bundle details -->
+    <div class="bundle-main">
+
+      <div class="bundle-page-header">
+        <span class="bundle-page-label">Plant Bundle</span>
+        <h1 class="bundle-page-title">Jean's Sunset Garden Collection</h1>
+        <p class="bundle-page-desc">
+          Jean hand-picked these five daylilies to bloom together beautifully in the
+          same garden bed. They complement each other in color, height, and bloom time,
+          giving you a long season of color from early summer through fall.
+        </p>
+        <a class="bundle-anchor-link" href="#">&larr; Back to Acapulco Sunset</a>
+      </div>
+
+      <!-- Plant list -->
+      <div class="bundle-plants-heading">
+        Plants in This Bundle
+        <span>5 plants &bull; each shipped as a bare-root division</span>
+      </div>
+
+      <div class="bundle-plant-list">
+
+        <div class="bundle-plant-row">
+          <div class="bpr-photo">[ photo ]<br>Acapulco Sunset</div>
+          <div class="bpr-info">
+            <div class="bpr-name"><a href="#">Acapulco Sunset</a></div>
+            <div class="bpr-meta">Tetraploid &bull; Midseason &bull; 28&Prime; scape &bull; Orange/Gold</div>
+            <div class="bpr-desc">Rich orange and gold blend with a deep throat. Strong rebloomer with ruffled petals.</div>
+          </div>
+          <div class="bpr-price-col">
+            <div class="bpr-individual-price">$28.00</div>
+            <div class="bpr-included-label">Included</div>
+          </div>
+        </div>
+
+        <div class="bundle-plant-row">
+          <div class="bpr-photo alt">[ photo ]<br>Strawberry Candy</div>
+          <div class="bpr-info">
+            <div class="bpr-name"><a href="#">Strawberry Candy</a></div>
+            <div class="bpr-meta">Diploid &bull; Midseason &bull; 22&Prime; scape &bull; Pink/Rose</div>
+            <div class="bpr-desc">Classic pink and rose blend with a striking eye. One of the most-loved daylilies for good reason.</div>
+          </div>
+          <div class="bpr-price-col">
+            <div class="bpr-individual-price">$22.00</div>
+            <div class="bpr-included-label">Included</div>
+          </div>
+        </div>
+
+        <div class="bundle-plant-row">
+          <div class="bpr-photo alt2">[ photo ]<br>Happy Returns</div>
+          <div class="bpr-info">
+            <div class="bpr-name"><a href="#">Happy Returns</a></div>
+            <div class="bpr-meta">Diploid &bull; Early &bull; 18&Prime; scape &bull; Yellow/Cream</div>
+            <div class="bpr-desc">Clear lemon yellow. One of the most reliable rebloomers available, blooming from June through frost.</div>
+          </div>
+          <div class="bpr-price-col">
+            <div class="bpr-individual-price">$18.00</div>
+            <div class="bpr-included-label">Included</div>
+          </div>
+        </div>
+
+        <div class="bundle-plant-row">
+          <div class="bpr-photo alt3">[ photo ]<br>Frank Gladney</div>
+          <div class="bpr-info">
+            <div class="bpr-name"><a href="#">Frank Gladney</a></div>
+            <div class="bpr-meta">Diploid &bull; Midseason &bull; 24&Prime; scape &bull; Pink/Coral</div>
+            <div class="bpr-desc">Coral pink blend of exceptional size. Very large blooms on branched scapes. A showstopper.</div>
+          </div>
+          <div class="bpr-price-col">
+            <div class="bpr-individual-price">$30.00</div>
+            <div class="bpr-included-label">Included</div>
+          </div>
+        </div>
+
+        <div class="bundle-plant-row">
+          <div class="bpr-photo alt4">[ photo ]<br>Morning Mist</div>
+          <div class="bpr-info">
+            <div class="bpr-name"><a href="#">Morning Mist</a></div>
+            <div class="bpr-meta">Diploid &bull; Early &bull; 20&Prime; scape &bull; Lavender/Cream</div>
+            <div class="bpr-desc">Soft lavender and cream with a delicate watermark. Fragrant and early-blooming.</div>
+          </div>
+          <div class="bpr-price-col">
+            <div class="bpr-individual-price">$26.00</div>
+            <div class="bpr-included-label">Included</div>
+          </div>
+        </div>
+
+      </div><!-- /.bundle-plant-list -->
+
+      <!-- Savings summary -->
+      <div class="savings-summary">
+        <div class="savings-heading">Pricing Summary</div>
+        <div class="savings-row">
+          <span class="sv-label">Acapulco Sunset</span>
+          <span class="sv-value">$28.00</span>
+        </div>
+        <div class="savings-row">
+          <span class="sv-label">Strawberry Candy</span>
+          <span class="sv-value">$22.00</span>
+        </div>
+        <div class="savings-row">
+          <span class="sv-label">Happy Returns</span>
+          <span class="sv-value">$18.00</span>
+        </div>
+        <div class="savings-row">
+          <span class="sv-label">Frank Gladney</span>
+          <span class="sv-value">$30.00</span>
+        </div>
+        <div class="savings-row">
+          <span class="sv-label">Morning Mist</span>
+          <span class="sv-value">$26.00</span>
+        </div>
+        <hr class="savings-divider">
+        <div class="savings-row">
+          <span class="sv-label">Individual total</span>
+          <span class="sv-value">$124.00</span>
+        </div>
+        <div class="savings-row savings-line">
+          <span class="sv-label">Bundle discount</span>
+          <span class="sv-value">&#8722; $12.00</span>
+        </div>
+        <hr class="savings-divider">
+        <div class="savings-row total">
+          <span class="sv-label">Bundle price</span>
+          <span class="sv-value">$112.00</span>
+        </div>
+
+        <div class="jean-flagged-block">
+          <strong>Jean-flagged decisions (all three apply here):</strong>
+          (1) Discount type: fixed dollar savings (as shown) or a percentage Jean defines?
+          (2) Price-setting: does Jean enter $112.00 directly, or enter a discount rule (e.g., 10% off)
+          and let the system calculate?
+          (3) Mix-and-match: can a customer swap one plant in the set for another, or is the bundle
+          fixed exactly as Jean designed it? The wireframe shows a fixed bundle only.
+        </div>
+      </div>
+
+    </div><!-- /.bundle-main -->
+
+    <!-- RIGHT: Sidebar -->
+    <div class="bundle-sidebar">
+
+      <div class="sidebar-purchase-card">
+        <div class="spc-header">
+          <div class="spc-label">Plant Bundle</div>
+          <div class="spc-title">Jean's Sunset Garden Collection</div>
+          <div class="spc-plant-count">5 plants included</div>
+        </div>
+        <div class="spc-body">
+
+          <div class="spc-mini-plants">
+            <div class="spc-mini-thumb">ph</div>
+            <div class="spc-mini-thumb alt">ph</div>
+            <div class="spc-mini-thumb alt2">ph</div>
+            <div class="spc-mini-thumb alt3">ph</div>
+            <div class="spc-mini-thumb alt4">ph</div>
+          </div>
+
+          <div class="spc-pricing">
+            <div class="spc-bundle-price">$112.00</div>
+            <div class="spc-was-price">$124.00 individually</div>
+            <span class="spc-savings-pill">Save $12.00</span>
+          </div>
+
+          <button class="btn-bundle">Add Bundle to Cart</button>
+
+          <p class="spc-note">
+            Adds all 5 plants to your cart at the bundle price.<br>
+            <a href="#">View plants individually</a>
+          </p>
+
+          <div class="spc-shipping-note">
+            Shipping is calculated at checkout based on the number of plants
+            ($15.00 first plant, $2.00 each additional).
+            <a href="#">Shipping information &rarr;</a>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="back-to-plant">
+        Viewing the bundle for <a href="#">Acapulco Sunset</a>.
+        Return to the plant page to browse other coordinated plants individually
+        or add Acapulco Sunset to your cart on its own.
+      </div>
+
+    </div><!-- /.bundle-sidebar -->
+
+  </div><!-- /.bundle-page-body -->
+
+  <footer class="site-footer">
+    <div class="footer-bottom">
+      <span>&copy; 2027 Dazzling Daylilies &bull; Fairfax, Iowa</span>
+      <span>
+        <a href="#">Shipping Info</a> &bull;
+        <a href="#">Privacy Policy</a> &bull;
+        <a href="#">Terms of Service</a>
+      </span>
+    </div>
+  </footer>
+
+</div><!-- /.page-wrapper -->
+
+
+<!-- ANNOTATIONS -->
+<div class="annotations">
+  <h2>Page Annotations: Coordinated Bundle Page (Wireframe 03b — New)</h2>
+  <p class="ann-subtitle">
+    This is a new page with no equivalent in the original wireframe set. It opens when a customer
+    clicks "View Bundle Details" from the bundle panel on a Plant Detail page (Wireframe 03, revised).
+    Plain English throughout.
+  </p>
+
+  <div class="ann-item">
+    <strong>URL and Navigation</strong>
+    <p>This page lives at a URL like /daylilies/acapulco-sunset/bundle. The breadcrumb shows Home &rsaquo; Daylilies &rsaquo; Acapulco Sunset &rsaquo; Jean's Sunset Garden Collection. A "Back to Acapulco Sunset" link at the top and a reference in the sidebar both return the customer to the anchor plant's detail page. The bundle is always associated with one anchor plant; its URL derives from that plant's slug.</p>
+    <span class="ann-tag new">New page</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>Bundle Description (Jean's Voice)</strong>
+    <p>The paragraph below the bundle title is Jean's own description of why these plants work together: bloom timing, color relationships, height. This is entered in the Admin Plant Editor (Wireframe 11, revised) as a bundle description field. Jean should write this in her own words. It is the primary piece of copy that makes the bundle feel curated rather than arbitrary.</p>
+    <span class="ann-tag decision">Decision needed: Should the bundle description field in the admin be required, or optional with no text shown if Jean leaves it blank? A bundle with no description loses the editorial voice that justifies the purchase. Recommended: optional but strongly encouraged, with a placeholder prompt like "Tell customers why these plants go together."</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>Plant List with Full Details</strong>
+    <p>Each plant in the bundle gets a full row: large photo, name (linked to its own detail page), key attributes, a one-sentence description, and the individual price with an "Included" label. This level of detail lets customers evaluate whether the set is right for their garden before committing. Plant names are links so a curious customer can read the full detail page and come back.</p>
+  </div>
+
+  <div class="ann-item">
+    <strong>Pricing Summary Block</strong>
+    <p>Lists each plant's individual price, totals them, shows the discount as a line item, and displays the final bundle price. This transparency builds trust: customers can see exactly what they are getting and exactly how much they are saving. The individual total recalculates automatically if Jean changes any plant's price; only the bundle price itself is set manually by Jean.</p>
+    <span class="ann-tag jean">Jean-flagged: Discount type (fixed dollar vs. percentage) and price-setting method (Jean enters bundle price directly vs. Jean defines a discount rule). Both decisions affect how this summary block displays and how it is stored in the database.</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>"Add Bundle to Cart" Button (sticky sidebar)</strong>
+    <p>The green button in the sidebar is the primary conversion action on this page. Clicking it adds all plants in the bundle to the cart as individual line items, each at the proportional bundle price. The cart then shows five separate rows, each at its allocated bundle price, summing to the bundle total. Shipping is calculated normally based on plant count (5 plants = $15 + $8 = $23 in the example).</p>
+    <span class="ann-tag decision">Decision needed: How should the bundle price be split across individual line items in the cart? Option A: split proportionally by individual price (e.g., Acapulco Sunset represents 22.6% of $124 individual total, so it gets 22.6% of the $112 bundle price). Option B: each plant is shown at its full price with a single bundle discount line item in the cart. Option A is cleaner for order sheets and records. Option B is simpler to implement. Jean should decide based on how she wants the order sheet to look.</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>Shipping Note in Sidebar</strong>
+    <p>A plain-text reminder that shipping is calculated normally at checkout based on plant count, not as a fixed bundle shipping rate. Five plants = $15 + ($2 x 4) = $23. This sets the right expectation before the customer clicks Add to Cart and sees the cart summary.</p>
+  </div>
+
+  <div class="ann-item">
+    <strong>Stock Handling</strong>
+    <p>If any plant in the bundle is sold out, the "Add Bundle to Cart" button should be disabled and a message should indicate which plant is unavailable. A bundle cannot be purchased if any component is out of stock. Jean should mark the bundle as inactive in the admin if she knows a plant will be unavailable for the season.</p>
+    <span class="ann-tag decision">Decision needed: Should Jean be able to mark a bundle as inactive independently of its component plants? Or should the bundle automatically become inactive when any component is sold out? Automatic is safer but may surface bundles as unavailable during brief stock gaps. Manual gives Jean control but requires her to remember to re-activate bundles after restocking.</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>Mix-and-Match (flagged as Jean's decision)</strong>
+    <p>The wireframe shows a fixed bundle: all five plants are predetermined by Jean and cannot be swapped by the customer. This is the simplest approach. If Jean later wants to allow customers to substitute one plant in a set, that requires a significantly more complex UI (a configurator) and is out of scope for the initial build. The fixed-bundle approach is the recommendation for launch.</p>
+    <span class="ann-tag jean">Jean-flagged: Fixed bundle as designed (recommended) vs. mix-and-match configurator. Mix-and-match is a future feature, not a launch requirement.</span>
+  </div>
+
+</div>
+
+</body>
+</html>

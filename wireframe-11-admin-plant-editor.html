@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wireframe 11: Admin Plant Editor — Dazzling Daylilies</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 15px;
+    background: #f0f0f0;
+    color: #222;
+  }
+
+  a { color: #4a90d9; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .admin-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Admin top bar */
+  .admin-topbar {
+    background: #2c3e50; color: #ecf0f1;
+    padding: 0 24px; display: flex; align-items: center;
+    height: 52px; flex-shrink: 0;
+  }
+  .admin-brand {
+    font-size: 15px; font-weight: 700; color: #fff;
+    margin-right: 32px; white-space: nowrap;
+  }
+  .admin-brand span { font-weight: 400; color: #95a5a6; margin-left: 6px; font-size: 12px; }
+  .admin-nav { display: flex; align-items: stretch; height: 100%; flex: 1; }
+  .admin-nav-item {
+    display: inline-flex; align-items: center; padding: 0 18px;
+    font-size: 13px; font-weight: 600; color: #bdc3c7; cursor: pointer;
+    border-bottom: 3px solid transparent; white-space: nowrap;
+  }
+  .admin-nav-item.active { color: #fff; border-bottom-color: #4a90d9; }
+  .admin-nav-spacer { flex: 1; }
+  .admin-nav-right { display: flex; align-items: center; gap: 16px; }
+  .admin-view-site { font-size: 12px; color: #7fb3d3; cursor: pointer; white-space: nowrap; }
+  .admin-logout {
+    font-size: 12px; color: #95a5a6; cursor: pointer;
+    background: none; border: 1px solid #4a5568; border-radius: 3px; padding: 4px 12px;
+  }
+
+  /* Admin body */
+  .admin-body { padding: 28px 24px 48px; flex: 1; }
+
+  /* Breadcrumb */
+  .admin-breadcrumb {
+    font-size: 13px; color: #888; margin-bottom: 16px;
+  }
+  .admin-breadcrumb a { color: #4a90d9; }
+  .admin-breadcrumb .sep { margin: 0 6px; color: #ccc; }
+  .admin-breadcrumb .current { color: #555; font-weight: 600; }
+
+  /* Page heading row */
+  .page-heading-row {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 24px; gap: 16px; flex-wrap: wrap;
+  }
+  .page-heading-row h2 { font-size: 22px; font-weight: 700; color: #222; }
+  .page-heading-row .plant-status-line {
+    font-size: 13px; color: #888;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: #4a90d9; color: #fff; padding: 10px 22px;
+    border-radius: 4px; font-size: 14px; font-weight: 600;
+    cursor: pointer; border: none; white-space: nowrap;
+  }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: #fff; color: #4a90d9; padding: 9px 20px;
+    border-radius: 4px; font-size: 14px; font-weight: 600;
+    border: 2px solid #4a90d9; cursor: pointer; white-space: nowrap;
+  }
+  .btn-danger {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: #fff; color: #c0392b; padding: 9px 20px;
+    border-radius: 4px; font-size: 14px; font-weight: 600;
+    border: 2px solid #e8b4b4; cursor: pointer; white-space: nowrap;
+  }
+  .btn-ghost-sm {
+    background: #fff; color: #888; padding: 6px 12px;
+    border-radius: 3px; font-size: 12px; font-weight: 600;
+    border: 1px solid #d0d0d0; cursor: pointer;
+  }
+
+  /* ============================================================
+     TWO-COLUMN EDITOR LAYOUT
+     Left: all form fields   Right: status panel + photos
+  ============================================================ */
+  .editor-layout {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 28px;
+    align-items: start;
+  }
+
+  /* ---- FORM COLUMN ---- */
+  .form-col {}
+
+  .form-section {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .form-section-header {
+    background: #f5f5f5;
+    border-bottom: 1px solid #e8e8e8;
+    padding: 12px 18px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #444;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .form-section-body {
+    padding: 20px 18px;
+  }
+
+  .form-row {
+    display: grid;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+  .form-row.cols-2 { grid-template-columns: 1fr 1fr; }
+  .form-row.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .form-row.cols-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+  .form-row.single { grid-template-columns: 1fr; }
+  .form-row:last-child { margin-bottom: 0; }
+
+  .form-field {}
+  .form-field label {
+    display: block; font-size: 12px; font-weight: 700;
+    color: #555; text-transform: uppercase; letter-spacing: 0.06em;
+    margin-bottom: 5px;
+  }
+  .form-field label .optional {
+    font-weight: 400; color: #aaa; text-transform: none;
+    letter-spacing: 0; font-size: 11px; margin-left: 4px;
+  }
+  .form-input {
+    width: 100%; padding: 9px 12px;
+    border: 1px solid #d0d0d0; border-radius: 4px;
+    font-size: 14px; color: #333; background: #fafafa;
+  }
+  .form-input:focus { outline: 2px solid #4a90d9; border-color: transparent; }
+  .form-select {
+    width: 100%; padding: 9px 12px;
+    border: 1px solid #d0d0d0; border-radius: 4px;
+    font-size: 14px; color: #333; background: #fafafa; cursor: pointer;
+  }
+  .form-textarea {
+    width: 100%; padding: 9px 12px;
+    border: 1px solid #d0d0d0; border-radius: 4px;
+    font-size: 14px; color: #333; background: #fafafa;
+    resize: vertical; min-height: 80px; line-height: 1.6;
+    font-family: inherit;
+  }
+  .form-textarea.tall { min-height: 140px; }
+  .form-textarea.internal {
+    background: #fffbec;
+    border-color: #e8d87a;
+  }
+
+  .slug-field {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .slug-field .form-input { flex: 1; font-family: monospace; font-size: 13px; color: #666; }
+  .slug-regenerate {
+    font-size: 12px; color: #4a90d9; cursor: pointer;
+    white-space: nowrap; background: none; border: none; padding: 0;
+  }
+
+  /* Coordinated With multi-select */
+  .coord-select-area {
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    background: #fafafa;
+    padding: 10px;
+  }
+  .coord-select-area .coord-search {
+    width: 100%;
+    padding: 7px 10px;
+    border: 1px solid #d0d0d0;
+    border-radius: 3px;
+    font-size: 13px;
+    margin-bottom: 8px;
+    background: #fff;
+  }
+  .coord-select-area .coord-search::placeholder { color: #bbb; }
+  .coord-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+  .coord-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #d6eaf8;
+    color: #1a5276;
+    border-radius: 3px;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .coord-chip-remove {
+    cursor: pointer;
+    color: #4a90d9;
+    font-size: 14px;
+    line-height: 1;
+    font-weight: 700;
+  }
+  .coord-available {
+    font-size: 12px;
+    color: #888;
+    border-top: 1px solid #e8e8e8;
+    padding-top: 8px;
+  }
+  .coord-available-item {
+    padding: 4px 6px;
+    cursor: pointer;
+    border-radius: 3px;
+    color: #444;
+  }
+  .coord-available-item:hover { background: #eef5fb; color: #1a5276; }
+
+  /* ---- RIGHT SIDEBAR ---- */
+  .sidebar-col {}
+
+  .sidebar-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    position: sticky;
+    top: 16px;
+  }
+  .sidebar-card-header {
+    background: #f5f5f5;
+    border-bottom: 1px solid #e8e8e8;
+    padding: 12px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #444;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .sidebar-card-body { padding: 16px; }
+
+  /* Status toggles */
+  .status-toggle-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #f5f5f5;
+  }
+  .status-toggle-row:last-child { border-bottom: none; }
+  .status-toggle-label { font-size: 13px; color: #444; font-weight: 600; }
+  .status-toggle-desc { font-size: 11px; color: #aaa; margin-top: 1px; }
+  .toggle {
+    width: 40px; height: 22px; background: #6abf6a;
+    border-radius: 11px; position: relative; cursor: pointer; flex-shrink: 0;
+  }
+  .toggle::after {
+    content: ''; position: absolute;
+    width: 16px; height: 16px; background: #fff; border-radius: 50%;
+    top: 3px; right: 3px;
+  }
+  .toggle.off { background: #d0d0d0; }
+  .toggle.off::after { right: auto; left: 3px; }
+
+  /* Price field with $ prefix */
+  .price-wrap {
+    position: relative;
+  }
+  .price-prefix {
+    position: absolute;
+    left: 10px; top: 50%; transform: translateY(-50%);
+    font-size: 14px; color: #888; font-weight: 600;
+    pointer-events: none;
+  }
+  .price-wrap .form-input { padding-left: 22px; }
+
+  /* Photos section within sidebar */
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .photo-item {
+    aspect-ratio: 1/1;
+    border-radius: 4px;
+    background: #b0b0b0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 4px;
+    cursor: grab;
+    border: 2px solid transparent;
+  }
+  .photo-item:hover { border-color: #4a90d9; }
+  .photo-item.primary { border-color: #4a90d9; }
+  .photo-item .photo-remove {
+    position: absolute; top: 3px; right: 3px;
+    width: 16px; height: 16px; background: rgba(0,0,0,0.5);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 10px; color: #fff; cursor: pointer; line-height: 1;
+  }
+  .photo-item .primary-badge {
+    position: absolute; bottom: 3px; left: 3px;
+    background: #4a90d9; color: #fff; font-size: 8px;
+    font-weight: 700; padding: 1px 5px; border-radius: 2px;
+    text-transform: uppercase; letter-spacing: 0.03em;
+  }
+  .photo-item.alt1 { background: #9a9a9a; }
+  .photo-item.alt2 { background: #aaa; }
+  .photo-add {
+    aspect-ratio: 1/1;
+    border-radius: 4px;
+    border: 2px dashed #d0d0d0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; color: #d0d0d0; cursor: pointer;
+    background: #fafafa;
+  }
+  .photo-add:hover { border-color: #4a90d9; color: #4a90d9; }
+
+  .photo-hint {
+    font-size: 11px; color: #aaa; text-align: center;
+    line-height: 1.5; margin-top: 4px;
+  }
+
+  /* Delete zone */
+  .delete-zone {
+    border-top: 2px solid #f0f0f0;
+    padding-top: 20px;
+    margin-top: 8px;
+  }
+  .delete-zone-label {
+    font-size: 12px; font-weight: 700; color: #c0392b;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    margin-bottom: 10px;
+  }
+  .delete-zone p {
+    font-size: 12px; color: #888; line-height: 1.6; margin-bottom: 12px;
+  }
+
+  /* Save/Cancel bar */
+  .save-bar {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 20px;
+    position: sticky;
+    top: 16px;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .save-bar .unsaved-note {
+    font-size: 12px; color: #d68910; font-weight: 600;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .save-bar .save-actions { display: flex; gap: 10px; align-items: center; }
+
+  /* Admin footer */
+  .admin-footer {
+    background: #2c3e50; color: #7f8c8d;
+    padding: 12px 24px; font-size: 12px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-shrink: 0;
+  }
+  .admin-footer a { color: #7fb3d3; }
+
+  /* Annotations */
+  .annotations {
+    background: #fffbe6; border-top: 4px solid #f5c518;
+    padding: 32px 32px 40px; font-size: 14px; color: #333; line-height: 1.7;
+  }
+  .annotations h2 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .ann-subtitle { font-size: 13px; color: #888; margin-bottom: 28px; }
+  .ann-item { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #eedc6a; }
+  .ann-item:last-child { border-bottom: none; margin-bottom: 0; }
+  .ann-item strong { display: block; font-size: 14px; font-weight: 700; color: #222; margin-bottom: 4px; }
+  .ann-tag {
+    display: inline-block; background: #f5c518; color: #333;
+    font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 3px;
+    margin-top: 6px; text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .ann-tag.decision { background: #ffd580; }
+  .ann-tag.business { background: #f8d7da; color: #721c24; }
+  .ann-tag.content { background: #c8e6c9; color: #1b5e20; }
+</style>
+</head>
+<body>
+
+<div class="admin-wrapper">
+
+  <!-- ADMIN TOP BAR -->
+  <div class="admin-topbar">
+    <div class="admin-brand">Dazzling Daylilies <span>Admin</span></div>
+    <nav class="admin-nav">
+      <a class="admin-nav-item" href="#">Dashboard</a>
+      <a class="admin-nav-item active" href="#">Plants</a>
+      <a class="admin-nav-item" href="#">Orders</a>
+      <a class="admin-nav-item" href="#">Photos</a>
+      <a class="admin-nav-item" href="#">Settings</a>
+      <div class="admin-nav-spacer"></div>
+      <div class="admin-nav-right">
+        <a class="admin-view-site" href="#">View Public Site &rarr;</a>
+        <button class="admin-logout">Log Out</button>
+      </div>
+    </nav>
+  </div>
+
+  <div class="admin-body">
+
+    <div class="admin-breadcrumb">
+      <a href="#">Dashboard</a>
+      <span class="sep">&rsaquo;</span>
+      <a href="#">Plants</a>
+      <span class="sep">&rsaquo;</span>
+      <span class="current">Acapulco Sunset</span>
+    </div>
+
+    <!-- Page heading -->
+    <div class="page-heading-row">
+      <div>
+        <h2>Edit Plant: Acapulco Sunset</h2>
+        <div class="plant-status-line">
+          Last updated May 17, 2027 &nbsp;&bull;&nbsp;
+          <a href="#" style="font-size:13px;">View on public site &rarr;</a>
+        </div>
+      </div>
+      <div style="display:flex; gap:10px; align-items:center;">
+        <a class="btn-secondary" href="#">Cancel</a>
+        <button class="btn-primary">Save Changes</button>
+      </div>
+    </div>
+
+    <!-- STICKY SAVE BAR (shown when unsaved changes exist) -->
+    <div class="save-bar">
+      <span class="unsaved-note">&#9679; Unsaved changes</span>
+      <div class="save-actions">
+        <button class="btn-secondary" style="padding:8px 16px; font-size:13px;">Discard</button>
+        <button class="btn-primary" style="padding:8px 18px; font-size:13px;">Save Changes</button>
+      </div>
+    </div>
+
+    <!-- EDITOR LAYOUT -->
+    <div class="editor-layout">
+
+      <!-- ===== FORM COLUMN ===== -->
+      <div class="form-col">
+
+        <!-- SECTION: Core Info -->
+        <div class="form-section">
+          <div class="form-section-header">Basic Information</div>
+          <div class="form-section-body">
+
+            <div class="form-row cols-2">
+              <div class="form-field">
+                <label for="plant-name">Plant Name</label>
+                <input class="form-input" id="plant-name" type="text" value="Acapulco Sunset">
+              </div>
+              <div class="form-field">
+                <label for="plant-type">Plant Type</label>
+                <select class="form-select" id="plant-type">
+                  <option selected>Daylily</option>
+                  <option>Iris</option>
+                  <option>Lily</option>
+                  <option>Other Perennial</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row cols-2">
+              <div class="form-field">
+                <label for="plant-slug">URL Slug <span class="optional">(used in web address and photo matching)</span></label>
+                <div class="slug-field">
+                  <input class="form-input" id="plant-slug" type="text" value="acapulco-sunset">
+                  <button class="slug-regenerate">Regenerate</button>
+                </div>
+              </div>
+              <div class="form-field">
+                <label for="plant-price">Price</label>
+                <div class="price-wrap">
+                  <span class="price-prefix">$</span>
+                  <input class="form-input" id="plant-price" type="text" value="28.00">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row cols-2">
+              <div class="form-field">
+                <label for="hybridizer">Hybridizer <span class="optional">(optional)</span></label>
+                <input class="form-input" id="hybridizer" type="text" value="Stamile">
+              </div>
+              <div class="form-field">
+                <label for="year-intro">Year Introduced <span class="optional">(optional)</span></label>
+                <input class="form-input" id="year-intro" type="text" value="1995">
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- SECTION: Plant Attributes -->
+        <div class="form-section">
+          <div class="form-section-header">Plant Attributes</div>
+          <div class="form-section-body">
+
+            <div class="form-row cols-3">
+              <div class="form-field">
+                <label for="color">Color</label>
+                <select class="form-select" id="color">
+                  <option>-- Select --</option>
+                  <option selected>Orange / Gold</option>
+                  <option>Pink / Rose</option>
+                  <option>Purple / Lavender</option>
+                  <option>Red / Burgundy</option>
+                  <option>Yellow / Cream</option>
+                  <option>White / Near-White</option>
+                  <option>Bicolor / Blend</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label for="bloom-size">Bloom Size</label>
+                <select class="form-select" id="bloom-size">
+                  <option>-- Select --</option>
+                  <option>Mini (under 3&Prime;)</option>
+                  <option>Medium (3&Prime;&ndash;5&Prime;)</option>
+                  <option selected>Large (5&Prime;+)</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label for="ploidy">Ploidy</label>
+                <select class="form-select" id="ploidy">
+                  <option>-- Select --</option>
+                  <option>Diploid</option>
+                  <option selected>Tetraploid</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row cols-3">
+              <div class="form-field">
+                <label for="foliage">Foliage</label>
+                <select class="form-select" id="foliage">
+                  <option>-- Select --</option>
+                  <option selected>Dormant</option>
+                  <option>Semi-Evergreen</option>
+                  <option>Evergreen</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label for="bloom-time">Bloom Time</label>
+                <select class="form-select" id="bloom-time">
+                  <option>-- Select --</option>
+                  <option>Early</option>
+                  <option>Early-Midseason</option>
+                  <option selected>Midseason</option>
+                  <option>Midseason-Late</option>
+                  <option>Late</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label for="scape-height">Scape Height (inches) <span class="optional">(optional)</span></label>
+                <input class="form-input" id="scape-height" type="text" value="28">
+              </div>
+            </div>
+
+            <div class="form-row cols-3">
+              <div class="form-field">
+                <label for="rebloomer">Rebloomer</label>
+                <select class="form-select" id="rebloomer">
+                  <option>-- Select --</option>
+                  <option selected>Yes</option>
+                  <option>No</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label for="fragrant">Fragrant</label>
+                <select class="form-select" id="fragrant">
+                  <option>-- Select --</option>
+                  <option>No</option>
+                  <option selected>Slightly</option>
+                  <option>Yes</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <!-- intentionally left as spacer -->
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- SECTION: Descriptions -->
+        <div class="form-section">
+          <div class="form-section-header">Descriptions</div>
+          <div class="form-section-body">
+
+            <div class="form-row single">
+              <div class="form-field">
+                <label for="short-desc">Short Description <span class="optional">(shown on catalog cards and plant detail page — keep to 2 to 3 sentences)</span></label>
+                <textarea class="form-textarea" id="short-desc">Rich orange and gold blend with a deep, warm throat. Wide, ruffled petals and strong branching make this one of the showiest rebloomers in the catalog. Reliable and easy to grow in most climates.</textarea>
+              </div>
+            </div>
+
+            <div class="form-row single">
+              <div class="form-field">
+                <label for="long-desc">Long Description <span class="optional">(shown on plant detail page only — as long as you like)</span></label>
+                <textarea class="form-textarea tall" id="long-desc">Acapulco Sunset is one of those varieties that earns its place in every garden. The blooms open a rich orange with gold edges that deepen as the day goes on, giving it a sunset-like quality that photographs beautifully. The scapes are well-branched with good bud count, and it comes back reliably each season even after Iowa winters.
+
+Plants are shipped as bare-root divisions in late spring when conditions are right for safe transit. Each division is dug fresh and packed with care.</textarea>
+              </div>
+            </div>
+
+            <div class="form-row single">
+              <div class="form-field">
+                <label for="internal-notes">Internal Notes <span class="optional">(private — never shown to customers)</span></label>
+                <textarea class="form-textarea internal" id="internal-notes" placeholder="e.g. Only 3 fans left. Check before accepting more orders. Needs dividing in fall 2027."></textarea>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- SECTION: Coordinated With -->
+        <div class="form-section">
+          <div class="form-section-header">Coordinated With</div>
+          <div class="form-section-body">
+
+            <p style="font-size:13px; color:#666; margin-bottom:14px; line-height:1.6;">
+              Plants selected here appear in the "Coordinated Flowers" section on this plant's detail page. Search and click to add. Click &times; to remove.
+            </p>
+
+            <div class="coord-select-area">
+              <input class="coord-search" type="text" placeholder="Search plants to add...">
+
+              <div class="coord-chips">
+                <span class="coord-chip">Strawberry Candy <span class="coord-chip-remove">&times;</span></span>
+                <span class="coord-chip">Happy Returns <span class="coord-chip-remove">&times;</span></span>
+                <span class="coord-chip">Frank Gladney <span class="coord-chip-remove">&times;</span></span>
+                <span class="coord-chip">Joan Senior <span class="coord-chip-remove">&times;</span></span>
+                <span class="coord-chip">Morning Mist <span class="coord-chip-remove">&times;</span></span>
+              </div>
+
+              <div class="coord-available">
+                <div style="font-size:11px; color:#bbb; margin-bottom:4px;">Search above to add more plants</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- DELETE ZONE -->
+        <div class="delete-zone">
+          <div class="delete-zone-label">Danger Zone</div>
+          <p>
+            Deleting a plant removes it from the public catalog permanently.
+            The plant record is soft-deleted, meaning it can be recovered
+            by Edward within 30 days if needed. Any orders that included
+            this plant are not affected.
+          </p>
+          <button class="btn-danger">Delete This Plant</button>
+        </div>
+
+      </div><!-- /.form-col -->
+
+      <!-- ===== SIDEBAR COLUMN ===== -->
+      <div class="sidebar-col">
+
+        <!-- Status card -->
+        <div class="sidebar-card">
+          <div class="sidebar-card-header">Status</div>
+          <div class="sidebar-card-body">
+
+            <div class="status-toggle-row">
+              <div>
+                <div class="status-toggle-label">Active</div>
+                <div class="status-toggle-desc">Visible to customers</div>
+              </div>
+              <div class="toggle" title="Active"></div>
+            </div>
+
+            <div class="status-toggle-row">
+              <div>
+                <div class="status-toggle-label">In Stock</div>
+                <div class="status-toggle-desc">Available to purchase</div>
+              </div>
+              <div class="toggle" title="In Stock"></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Photos card -->
+        <div class="sidebar-card">
+          <div class="sidebar-card-header">Photos</div>
+          <div class="sidebar-card-body">
+
+            <div class="photo-grid">
+              <div class="photo-item primary">
+                photo 1
+                <div class="primary-badge">Primary</div>
+                <div class="photo-remove">&times;</div>
+              </div>
+              <div class="photo-item alt1">
+                photo 2
+                <div class="photo-remove">&times;</div>
+              </div>
+              <div class="photo-item alt2">
+                photo 3
+                <div class="photo-remove">&times;</div>
+              </div>
+              <div class="photo-add">+</div>
+            </div>
+
+            <p class="photo-hint">
+              Drag photos to reorder. The first photo is the primary image shown in catalog and cart.
+            </p>
+
+            <div style="margin-top:10px;">
+              <button class="btn-ghost-sm" style="width:100%; text-align:center;">Upload More Photos</button>
+            </div>
+
+          </div>
+        </div>
+
+      </div><!-- /.sidebar-col -->
+
+    </div><!-- /.editor-layout -->
+
+  </div><!-- /.admin-body -->
+
+  <div class="admin-footer">
+    <span>Dazzling Daylilies Admin &bull; Logged in as Jean</span>
+    <span><a href="#">View Public Site</a> &bull; <a href="#">Settings</a></span>
+  </div>
+
+</div><!-- /.admin-wrapper -->
+
+
+<!-- ANNOTATIONS -->
+<div class="annotations">
+  <h2>Page Annotations: Admin Plant Editor (Wireframe 11 of 17)</h2>
+  <p class="ann-subtitle">This is the form Jean uses to add new plants and edit existing ones. It is the most complex admin page in the system. Plain English throughout.</p>
+
+  <div class="ann-item">
+    <strong>Breadcrumb and "View on Public Site" Link</strong>
+    <p>The breadcrumb shows Dashboard &rsaquo; Plants &rsaquo; Acapulco Sunset so Jean always knows where she is. "View on public site" opens the customer-facing plant detail page in a new tab so Jean can verify how her changes look without leaving the editor.</p>
+  </div>
+
+  <div class="ann-item">
+    <strong>Sticky Save Bar (the floating bar at the top)</strong>
+    <p>Appears as soon as Jean makes any change to the form. It stays visible as she scrolls down the long page so she never has to scroll back to the top to save. Shows an "Unsaved changes" warning in amber. Has both Save Changes and Discard buttons. The Save Changes button in the page heading row does the same thing. Two paths to save, no path to lose work accidentally.</p>
+    <span class="ann-tag decision">Decision needed: Should the browser warn Jean if she tries to navigate away with unsaved changes? A standard browser "Leave page?" dialog would prevent accidental data loss. This is easy to add with a small amount of JavaScript and is strongly recommended for a form this long.</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>Section: Basic Information</strong>
+    <p>Plant Name, Plant Type, URL Slug, Price, Hybridizer, Year Introduced. The price field has a dollar sign prefix so Jean does not need to type it. Internally, prices are stored in cents (2800 for $28.00) but the editor displays and accepts dollars with decimals, converting automatically on save.</p>
+    <span class="ann-tag business">Business rule: Prices are stored in cents internally to avoid floating-point rounding errors. The editor converts between dollars (display) and cents (storage) transparently. Jean never sees or types cents.</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>URL Slug Field</strong>
+    <p>The slug is auto-generated from the plant name when a new plant is created (e.g., "Acapulco Sunset" becomes "acapulco-sunset"). Jean can edit it manually if needed, but changing it after the plant is live will break any bookmarks customers have saved and will also break photo matching for files already uploaded using the old slug name. The "Regenerate" button resets it from the current name. A warning should appear if Jean tries to change the slug of a plant that already has orders or photos.</p>
+    <span class="ann-tag business">Business rule: The slug is the photo-matching key. Photos uploaded with filenames like "acapulco-sunset_1.jpg" attach to this plant automatically. Changing the slug after photos are uploaded means those photos will no longer match unless they are renamed and re-uploaded.</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>Section: Plant Attributes (the dropdowns)</strong>
+    <p>Seven attribute fields, all dropdowns: Color, Bloom Size, Ploidy, Foliage, Bloom Time, Rebloomer, Fragrant, plus a free-text field for Scape Height in inches. All are optional except Plant Type. Dropdown values are fixed at launch based on Jean's catalog; if she needs new values added (a new color category, say), that requires a developer change to the seeder data. This is an acceptable limitation for a catalog this size.</p>
+    <span class="ann-tag decision">Decision needed: Should Jean be able to add new dropdown options herself from the Settings page, or is a fixed list acceptable? A fixed list is simpler to build and sufficient for a catalog of 48 plants. A configurable list gives Jean more flexibility but adds Settings complexity. Worth discussing.</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>Section: Descriptions (three text areas)</strong>
+    <p>Short Description appears on catalog cards and at the top of the detail page. Long Description appears only on the detail page below the attributes. Internal Notes are private and never shown to customers. The Internal Notes field has a yellow background to visually distinguish it and remind Jean it is private. Placeholder text suggests example use cases ("Only 3 fans left. Check before accepting more orders.").</p>
+  </div>
+
+  <div class="ann-item">
+    <strong>Section: Coordinated With</strong>
+    <p>A search-and-chip interface for selecting companion plants. Jean types a plant name, matching results appear below the search box, and she clicks one to add it as a chip. Existing selections appear as blue chips with an &times; to remove. This wireframe shows 5 coordinated plants selected for Acapulco Sunset. The relationship is one-directional: adding Strawberry Candy here does not automatically add Acapulco Sunset to Strawberry Candy's coordinated list. Jean must set both directions manually if she wants the pairing to show on both detail pages.</p>
+    <span class="ann-tag decision">Decision needed (carried forward from Wireframe 03): Should coordinated relationships be bidirectional automatically? If Jean pairs Plant A with Plant B, should Plant B automatically show Plant A as a companion? Auto-bidirectional is more convenient for Jean. Manual is simpler to build and gives Jean more control over which pairings show on which pages.</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>Sidebar: Status Toggles (Active and In Stock)</strong>
+    <p>Two independent toggles in the sidebar. Active controls whether the plant appears on the public catalog at all. In Stock controls whether the plant can be added to a cart. Both can be flipped here without saving the rest of the form. Alternatively, Jean can save the whole form. Either way, the change takes effect immediately on the public site once saved.</p>
+  </div>
+
+  <div class="ann-item">
+    <strong>Sidebar: Photos Panel</strong>
+    <p>Shows up to the first few photos attached to this plant as small squares. The first photo has a "Primary" badge: it is the one shown in catalog cards, the cart, the order sheet, and the order confirmation email. Jean can drag photos to reorder them, changing which is primary. The &times; button removes a photo. The + button opens the upload dialog for this specific plant. "Upload More Photos" is a secondary path to the same action.</p>
+    <span class="ann-tag business">Business rule: Reordering photos changes the primary photo immediately. The primary photo is snapshotted into the order_items table when an order is placed, so changing the primary photo after an order exists does not affect how that order's printed sheet looks.</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>Delete Zone (bottom of the form)</strong>
+    <p>Deliberately placed at the very bottom, below all other content, and styled in red to signal danger. Clicking "Delete This Plant" triggers a confirmation dialog before anything is deleted. The deletion is a soft delete: the plant record is flagged as deleted but not removed from the database. It disappears from the public catalog immediately. Edward can recover it within 30 days if Jean deletes something by mistake. Past orders referencing the plant are completely unaffected.</p>
+    <span class="ann-tag business">Business rule: Soft deletes protect against accidental data loss. The deleted_at timestamp is set; the plant is excluded from all public queries. Order history retains the plant name and photo as a snapshot in the order_items table, so printed order sheets are never affected by plant deletions.</span>
+  </div>
+
+</div>
+
+</body>
+</html>

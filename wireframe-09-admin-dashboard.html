@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wireframe 09: Admin Dashboard — Dazzling Daylilies</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 15px;
+    background: #f0f0f0;
+    color: #222;
+  }
+
+  a { color: #4a90d9; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ============================================================
+     ADMIN CHROME
+     Distinct from the public site: darker top bar, no plant tabs
+  ============================================================ */
+  .admin-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Admin top bar */
+  .admin-topbar {
+    background: #2c3e50;
+    color: #ecf0f1;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    height: 52px;
+    gap: 0;
+    flex-shrink: 0;
+  }
+  .admin-brand {
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    margin-right: 32px;
+    white-space: nowrap;
+  }
+  .admin-brand span {
+    font-weight: 400;
+    color: #95a5a6;
+    margin-left: 6px;
+    font-size: 12px;
+  }
+  .admin-nav {
+    display: flex;
+    align-items: stretch;
+    height: 100%;
+    flex: 1;
+  }
+  .admin-nav-item {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 18px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #bdc3c7;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+  }
+  .admin-nav-item:hover { color: #fff; }
+  .admin-nav-item.active {
+    color: #fff;
+    border-bottom-color: #4a90d9;
+  }
+  .admin-nav-spacer { flex: 1; }
+  .admin-nav-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .admin-view-site {
+    font-size: 12px;
+    color: #7fb3d3;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .admin-view-site:hover { color: #fff; }
+  .admin-logout {
+    font-size: 12px;
+    color: #95a5a6;
+    cursor: pointer;
+    white-space: nowrap;
+    background: none;
+    border: 1px solid #4a5568;
+    border-radius: 3px;
+    padding: 4px 12px;
+  }
+  .admin-logout:hover { color: #fff; border-color: #7a8898; }
+
+  /* Admin body */
+  .admin-body {
+    padding: 28px 24px 48px;
+    flex: 1;
+  }
+
+  /* Page heading row */
+  .page-heading-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .page-heading-row h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #222;
+  }
+  .page-heading-row .timestamp {
+    font-size: 13px;
+    color: #aaa;
+  }
+
+  /* ============================================================
+     STAT CARDS ROW
+  ============================================================ */
+  .stat-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .stat-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .stat-card-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #aaa;
+  }
+  .stat-card-value {
+    font-size: 32px;
+    font-weight: 700;
+    color: #222;
+    line-height: 1;
+  }
+  .stat-card-value.alert { color: #c0392b; }
+  .stat-card-value.warning { color: #d68910; }
+  .stat-card-sub {
+    font-size: 12px;
+    color: #888;
+  }
+  .stat-card-sub a { font-size: 12px; }
+  /* Accent left border per card type */
+  .stat-card.orders-new { border-left: 4px solid #c0392b; }
+  .stat-card.orders-total { border-left: 4px solid #4a90d9; }
+  .stat-card.plants-active { border-left: 4px solid #6abf6a; }
+  .stat-card.sold-out { border-left: 4px solid #d68910; }
+
+  /* ============================================================
+     QUICK ACTIONS
+  ============================================================ */
+  .quick-actions {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+  .qa-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    white-space: nowrap;
+  }
+  .qa-btn.primary {
+    background: #4a90d9;
+    color: #fff;
+  }
+  .qa-btn.secondary {
+    background: #fff;
+    color: #4a90d9;
+    border: 2px solid #4a90d9;
+  }
+  .qa-btn.warning {
+    background: #fff;
+    color: #d68910;
+    border: 2px solid #d68910;
+  }
+  .qa-icon {
+    width: 18px;
+    height: 18px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .qa-btn.secondary .qa-icon,
+  .qa-btn.warning .qa-icon {
+    background: rgba(0,0,0,0.06);
+  }
+
+  /* ============================================================
+     MAIN CONTENT GRID: orders left, sidebar right
+  ============================================================ */
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 24px;
+    align-items: start;
+  }
+
+  /* ---- RECENT ORDERS TABLE ---- */
+  .section-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .section-card-header {
+    padding: 14px 18px;
+    border-bottom: 1px solid #e8e8e8;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fafafa;
+  }
+  .section-card-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #333;
+  }
+  .section-card-link {
+    font-size: 12px;
+    color: #4a90d9;
+  }
+
+  .orders-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .orders-table thead tr {
+    background: #f5f5f5;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  .orders-table th {
+    padding: 9px 14px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: #aaa;
+    white-space: nowrap;
+  }
+  .orders-table th.right { text-align: right; }
+  .orders-table tbody tr {
+    border-bottom: 1px solid #f5f5f5;
+    cursor: pointer;
+  }
+  .orders-table tbody tr:last-child { border-bottom: none; }
+  .orders-table tbody tr:hover { background: #f9fbff; }
+  .orders-table td {
+    padding: 11px 14px;
+    font-size: 13px;
+    color: #333;
+    vertical-align: middle;
+  }
+  .orders-table td.right { text-align: right; }
+
+  /* New order row highlight */
+  .orders-table tbody tr.new-order {
+    background: #fef9e7;
+  }
+  .orders-table tbody tr.new-order:hover { background: #fdf3c8; }
+
+  .order-num-link {
+    font-weight: 700;
+    color: #4a90d9;
+    font-size: 13px;
+  }
+
+  /* Status badges */
+  .badge {
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+  .badge.new { background: #fdebd0; color: #935116; }
+  .badge.received { background: #fdebd0; color: #935116; }
+  .badge.processing { background: #d6eaf8; color: #1a5276; }
+  .badge.shipped { background: #d5f5e3; color: #1a5c2a; }
+  .badge.delivered { background: #e8e8e8; color: #666; }
+
+  /* New order indicator dot */
+  .new-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #c0392b;
+    border-radius: 50%;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+
+  /* ---- RIGHT SIDEBAR ---- */
+  .dash-sidebar {}
+
+  /* Google Analytics placeholder */
+  .analytics-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .analytics-card-header {
+    padding: 12px 16px;
+    border-bottom: 1px solid #e8e8e8;
+    background: #fafafa;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .analytics-card-title { font-size: 13px; font-weight: 700; color: #333; }
+  .analytics-card-period { font-size: 11px; color: #aaa; }
+  .analytics-body { padding: 16px; }
+  .analytics-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 7px 0;
+    border-bottom: 1px solid #f5f5f5;
+    font-size: 13px;
+  }
+  .analytics-row:last-child { border-bottom: none; }
+  .analytics-label { color: #777; }
+  .analytics-value { font-weight: 700; color: #333; }
+  .analytics-change {
+    font-size: 11px;
+    margin-left: 6px;
+  }
+  .analytics-change.up { color: #27ae60; }
+  .analytics-change.down { color: #c0392b; }
+
+  /* Mini bar chart placeholder */
+  .mini-chart {
+    margin-top: 12px;
+    height: 60px;
+    background: #f5f5f5;
+    border-radius: 4px;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 4px 4px;
+    gap: 3px;
+  }
+  .mini-bar {
+    flex: 1;
+    background: #b0c8e0;
+    border-radius: 2px 2px 0 0;
+    min-height: 4px;
+  }
+  .mini-bar.today { background: #4a90d9; }
+
+  /* Inventory alerts card */
+  .inventory-alerts {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .inv-header {
+    padding: 12px 16px;
+    border-bottom: 1px solid #e8e8e8;
+    background: #fafafa;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .inv-header-title { font-size: 13px; font-weight: 700; color: #333; }
+  .inv-count-badge {
+    background: #d68910;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+  }
+  .inv-item {
+    padding: 10px 16px;
+    border-bottom: 1px solid #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+  }
+  .inv-item:last-child { border-bottom: none; }
+  .inv-plant-name { color: #333; font-weight: 600; }
+  .inv-mark-link { font-size: 12px; color: #4a90d9; }
+
+  /* Notes / reminders card */
+  .reminders-card {
+    background: #fffbec;
+    border: 1px solid #e8d87a;
+    border-radius: 6px;
+    padding: 16px;
+  }
+  .reminders-title {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: #8a7000;
+    margin-bottom: 10px;
+  }
+  .reminder-item {
+    font-size: 13px;
+    color: #5a4a00;
+    padding: 5px 0;
+    border-bottom: 1px solid #eedc6a;
+    display: flex;
+    gap: 8px;
+    line-height: 1.5;
+  }
+  .reminder-item:last-child { border-bottom: none; }
+  .reminder-dot {
+    width: 6px;
+    height: 6px;
+    background: #c8a000;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  /* Footer */
+  .admin-footer {
+    background: #2c3e50;
+    color: #7f8c8d;
+    padding: 12px 24px;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .admin-footer a { color: #7fb3d3; }
+
+  /* Annotations */
+  .annotations {
+    background: #fffbe6; border-top: 4px solid #f5c518;
+    padding: 32px 32px 40px; font-size: 14px; color: #333; line-height: 1.7;
+  }
+  .annotations h2 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .ann-subtitle { font-size: 13px; color: #888; margin-bottom: 28px; }
+  .ann-item { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #eedc6a; }
+  .ann-item:last-child { border-bottom: none; margin-bottom: 0; }
+  .ann-item strong { display: block; font-size: 14px; font-weight: 700; color: #222; margin-bottom: 4px; }
+  .ann-tag {
+    display: inline-block; background: #f5c518; color: #333;
+    font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 3px;
+    margin-top: 6px; text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .ann-tag.decision { background: #ffd580; }
+  .ann-tag.business { background: #f8d7da; color: #721c24; }
+  .ann-tag.content { background: #c8e6c9; color: #1b5e20; }
+</style>
+</head>
+<body>
+
+<div class="admin-wrapper">
+
+  <!-- ADMIN TOP BAR -->
+  <div class="admin-topbar">
+    <div class="admin-brand">
+      Dazzling Daylilies <span>Admin</span>
+    </div>
+    <nav class="admin-nav">
+      <a class="admin-nav-item active" href="#">Dashboard</a>
+      <a class="admin-nav-item" href="#">Plants</a>
+      <a class="admin-nav-item" href="#">Orders</a>
+      <a class="admin-nav-item" href="#">Photos</a>
+      <a class="admin-nav-item" href="#">Settings</a>
+      <div class="admin-nav-spacer"></div>
+      <div class="admin-nav-right">
+        <a class="admin-view-site" href="#">View Public Site &rarr;</a>
+        <button class="admin-logout">Log Out</button>
+      </div>
+    </nav>
+  </div>
+
+  <!-- ADMIN BODY -->
+  <div class="admin-body">
+
+    <!-- Page heading -->
+    <div class="page-heading-row">
+      <h2>Welcome back, Jean</h2>
+      <span class="timestamp">Tuesday, May 19, 2027 &nbsp;&bull;&nbsp; Last login: yesterday at 4:32 PM</span>
+    </div>
+
+    <!-- STAT CARDS -->
+    <div class="stat-cards">
+
+      <div class="stat-card orders-new">
+        <div class="stat-card-label">Orders Needing Attention</div>
+        <div class="stat-card-value alert">4</div>
+        <div class="stat-card-sub">
+          <a href="#">View new orders &rarr;</a>
+        </div>
+      </div>
+
+      <div class="stat-card orders-total">
+        <div class="stat-card-label">Total Orders This Season</div>
+        <div class="stat-card-value">38</div>
+        <div class="stat-card-sub">$1,842 in sales</div>
+      </div>
+
+      <div class="stat-card plants-active">
+        <div class="stat-card-label">Active Plants in Catalog</div>
+        <div class="stat-card-value">48</div>
+        <div class="stat-card-sub">
+          <a href="#">Manage catalog &rarr;</a>
+        </div>
+      </div>
+
+      <div class="stat-card sold-out">
+        <div class="stat-card-label">Plants Currently Sold Out</div>
+        <div class="stat-card-value warning">7</div>
+        <div class="stat-card-sub">
+          <a href="#">Review sold-out plants &rarr;</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- QUICK ACTIONS -->
+    <div class="quick-actions">
+      <button class="qa-btn primary">
+        <span class="qa-icon">+</span> Add New Plant
+      </button>
+      <button class="qa-btn secondary">
+        <span class="qa-icon">&#9776;</span> View All Orders
+      </button>
+      <button class="qa-btn secondary">
+        <span class="qa-icon">&#9654;</span> Upload Photos
+      </button>
+      <button class="qa-btn warning">
+        <span class="qa-icon">!</span> 4 Orders Need Attention
+      </button>
+    </div>
+
+    <!-- DASHBOARD GRID -->
+    <div class="dashboard-grid">
+
+      <!-- LEFT: Recent Orders -->
+      <div class="section-card">
+        <div class="section-card-header">
+          <span class="section-card-title">Recent Orders</span>
+          <a class="section-card-link" href="#">View all orders &rarr;</a>
+        </div>
+        <table class="orders-table">
+          <thead>
+            <tr>
+              <th>Order #</th>
+              <th>Date</th>
+              <th>Customer</th>
+              <th>Plants</th>
+              <th class="right">Total</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <!-- New orders (highlighted) -->
+            <tr class="new-order">
+              <td><span class="new-dot"></span><a class="order-num-link" href="#">DD-2027-0038</a></td>
+              <td style="color:#888;">Today 9:14 AM</td>
+              <td>Margaret T.</td>
+              <td>3 plants</td>
+              <td class="right" style="font-weight:700;">$78.00</td>
+              <td><span class="badge received">New</span></td>
+            </tr>
+
+            <tr class="new-order">
+              <td><span class="new-dot"></span><a class="order-num-link" href="#">DD-2027-0037</a></td>
+              <td style="color:#888;">Today 7:52 AM</td>
+              <td>Robert H.</td>
+              <td>1 plant</td>
+              <td class="right" style="font-weight:700;">$43.00</td>
+              <td><span class="badge received">New</span></td>
+            </tr>
+
+            <tr class="new-order">
+              <td><span class="new-dot"></span><a class="order-num-link" href="#">DD-2027-0036</a></td>
+              <td style="color:#888;">Yesterday 6:03 PM</td>
+              <td>Linda S.</td>
+              <td>5 plants</td>
+              <td class="right" style="font-weight:700;">$134.00</td>
+              <td><span class="badge received">New</span></td>
+            </tr>
+
+            <tr class="new-order">
+              <td><span class="new-dot"></span><a class="order-num-link" href="#">DD-2027-0035</a></td>
+              <td style="color:#888;">Yesterday 2:18 PM</td>
+              <td>Carol W.</td>
+              <td>2 plants</td>
+              <td class="right" style="font-weight:700;">$55.00</td>
+              <td><span class="badge received">New</span></td>
+            </tr>
+
+            <!-- Divider row -->
+            <tr style="background:#f9f9f9;">
+              <td colspan="6" style="padding:6px 14px; font-size:11px; color:#bbb; font-weight:700; text-transform:uppercase; letter-spacing:0.06em;">Earlier orders</td>
+            </tr>
+
+            <tr>
+              <td><a class="order-num-link" href="#">DD-2027-0034</a></td>
+              <td style="color:#888;">May 17</td>
+              <td>Barbara F.</td>
+              <td>4 plants</td>
+              <td class="right" style="font-weight:700;">$111.00</td>
+              <td><span class="badge processing">Processing</span></td>
+            </tr>
+
+            <tr>
+              <td><a class="order-num-link" href="#">DD-2027-0033</a></td>
+              <td style="color:#888;">May 17</td>
+              <td>Patricia M.</td>
+              <td>6 plants</td>
+              <td class="right" style="font-weight:700;">$162.00</td>
+              <td><span class="badge processing">Processing</span></td>
+            </tr>
+
+            <tr>
+              <td><a class="order-num-link" href="#">DD-2027-0032</a></td>
+              <td style="color:#888;">May 16</td>
+              <td>Dorothy K.</td>
+              <td>2 plants</td>
+              <td class="right" style="font-weight:700;">$54.00</td>
+              <td><span class="badge shipped">Shipped</span></td>
+            </tr>
+
+            <tr>
+              <td><a class="order-num-link" href="#">DD-2027-0031</a></td>
+              <td style="color:#888;">May 16</td>
+              <td>Nancy O.</td>
+              <td>3 plants</td>
+              <td class="right" style="font-weight:700;">$87.00</td>
+              <td><span class="badge shipped">Shipped</span></td>
+            </tr>
+
+            <tr>
+              <td><a class="order-num-link" href="#">DD-2027-0030</a></td>
+              <td style="color:#888;">May 15</td>
+              <td>Sandra B.</td>
+              <td>1 plant</td>
+              <td class="right" style="font-weight:700;">$34.00</td>
+              <td><span class="badge shipped">Shipped</span></td>
+            </tr>
+
+            <tr>
+              <td><a class="order-num-link" href="#">DD-2027-0029</a></td>
+              <td style="color:#888;">May 14</td>
+              <td>Susan C.</td>
+              <td>7 plants</td>
+              <td class="right" style="font-weight:700;">$189.00</td>
+              <td><span class="badge delivered">Delivered</span></td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <!-- RIGHT SIDEBAR -->
+      <div class="dash-sidebar">
+
+        <!-- Google Analytics summary -->
+        <div class="analytics-card">
+          <div class="analytics-card-header">
+            <span class="analytics-card-title">Site Visitors</span>
+            <span class="analytics-card-period">Last 7 days</span>
+          </div>
+          <div class="analytics-body">
+            <div class="analytics-row">
+              <span class="analytics-label">Total visitors</span>
+              <span class="analytics-value">312 <span class="analytics-change up">+18%</span></span>
+            </div>
+            <div class="analytics-row">
+              <span class="analytics-label">Page views</span>
+              <span class="analytics-value">1,084</span>
+            </div>
+            <div class="analytics-row">
+              <span class="analytics-label">Most viewed plant</span>
+              <span class="analytics-value" style="font-size:12px;">Strawberry Candy</span>
+            </div>
+            <div class="analytics-row">
+              <span class="analytics-label">Top referrer</span>
+              <span class="analytics-value" style="font-size:12px;">Direct / search</span>
+            </div>
+
+            <!-- Mini bar chart: 7 days of visitors -->
+            <div class="mini-chart">
+              <div class="mini-bar" style="height:30%;"></div>
+              <div class="mini-bar" style="height:45%;"></div>
+              <div class="mini-bar" style="height:40%;"></div>
+              <div class="mini-bar" style="height:60%;"></div>
+              <div class="mini-bar" style="height:75%;"></div>
+              <div class="mini-bar" style="height:55%;"></div>
+              <div class="mini-bar today" style="height:90%;"></div>
+            </div>
+            <div style="font-size:10px; color:#bbb; text-align:right; margin-top:4px;">Today highlighted in blue</div>
+          </div>
+        </div>
+
+        <!-- Sold-out alerts -->
+        <div class="inventory-alerts">
+          <div class="inv-header">
+            <span class="inv-header-title">Sold-Out Plants</span>
+            <span class="inv-count-badge">7</span>
+          </div>
+          <div class="inv-item">
+            <span class="inv-plant-name">Catherine Woodbery</span>
+            <a class="inv-mark-link" href="#">Edit &rarr;</a>
+          </div>
+          <div class="inv-item">
+            <span class="inv-plant-name">Purple Pleasure</span>
+            <a class="inv-mark-link" href="#">Edit &rarr;</a>
+          </div>
+          <div class="inv-item">
+            <span class="inv-plant-name">Bela Lugosi</span>
+            <a class="inv-mark-link" href="#">Edit &rarr;</a>
+          </div>
+          <div class="inv-item" style="font-size:12px; color:#aaa; padding:8px 16px;">
+            + 4 more &nbsp;<a href="#" style="font-size:12px;">View all &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Seasonal reminders -->
+        <div class="reminders-card">
+          <div class="reminders-title">Reminders</div>
+          <div class="reminder-item">
+            <div class="reminder-dot"></div>
+            <span>4 new orders need to be reviewed and processed.</span>
+          </div>
+          <div class="reminder-item">
+            <div class="reminder-dot"></div>
+            <span>Spring shipping season ends soon. Update shipping dates in Settings.</span>
+          </div>
+          <div class="reminder-item">
+            <div class="reminder-dot"></div>
+            <span>7 plants are marked sold out. Restock or hide them before the season ends.</span>
+          </div>
+        </div>
+
+      </div><!-- /.dash-sidebar -->
+
+    </div><!-- /.dashboard-grid -->
+
+  </div><!-- /.admin-body -->
+
+  <!-- ADMIN FOOTER -->
+  <div class="admin-footer">
+    <span>Dazzling Daylilies Admin &bull; Logged in as Jean</span>
+    <span><a href="#">View Public Site</a> &bull; <a href="#">Settings</a></span>
+  </div>
+
+</div><!-- /.admin-wrapper -->
+
+
+<!-- ANNOTATIONS -->
+<div class="annotations">
+  <h2>Page Annotations: Admin Dashboard (Wireframe 09 of 17)</h2>
+  <p class="ann-subtitle">This is the first page Jean sees after logging in. It is Jean's page, not a customer-facing page. The design is deliberately different from the public site: darker top bar, no plant tabs, admin-specific navigation. Plain English throughout.</p>
+
+  <div class="ann-item">
+    <strong>Admin Top Bar (dark navigation)</strong>
+    <p>Completely separate from the public site navigation. The dark color immediately signals to Jean that she is in the admin area, not browsing as a customer. The five navigation items are: Dashboard, Plants, Orders, Photos, and Settings. "View Public Site" opens the customer-facing site in a new tab so Jean can check how things look without logging out. "Log Out" ends her session.</p>
+    <span class="ann-tag business">Security note: The admin area is protected by Laravel Breeze authentication. Jean must log in with her username and password to access any admin page. If she is not logged in and tries to reach an admin URL, she is redirected to the login page automatically.</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>Welcome Message and Last Login Time</strong>
+    <p>"Welcome back, Jean" with the current date and her last login time. The last login timestamp is a light security feature: if Jean sees a login time she doesn't recognize, she knows to change her password. Not shown as an alert, just a quiet reassurance.</p>
+  </div>
+
+  <div class="ann-item">
+    <strong>Stat Cards (four cards across the top)</strong>
+    <p>Four at-a-glance numbers Jean needs every time she opens the admin: orders needing attention (red, because action is required), total orders this season with dollar amount, active plants in the catalog, and plants currently sold out (amber, because it may need attention). Clicking any card navigates to the relevant section. "Orders needing attention" means orders in Received status that Jean has not yet marked as Processing or Shipped.</p>
+    <span class="ann-tag decision">Decision needed: "This season" for the total orders card needs a definition. Does a season reset on January 1st, or does Jean have a specific shipping season (spring/fall) where she would want to see the count reset? Jean should clarify so the stat shows a number that is meaningful to her.</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>Quick Action Buttons</strong>
+    <p>Four buttons for the most common tasks: Add New Plant (goes directly to the blank plant editor), View All Orders, Upload Photos, and a red alert button for the 4 orders needing attention. The alert button duplicates the stat card link but is harder to miss for Jean if she is in a hurry. It disappears when there are zero new orders.</p>
+  </div>
+
+  <div class="ann-item">
+    <strong>Recent Orders Table</strong>
+    <p>Shows the 10 most recent orders. New orders (status: Received, not yet processed) are highlighted in yellow with a red dot indicator. A visual divider separates the new orders from earlier ones. Clicking any row opens the Admin Order Detail page for that order. Columns: order number, date, customer first name and last initial, plant count, total, and status badge.</p>
+    <span class="ann-tag business">Business rule: "New" and "Received" are the same status in the database (fulfillment_status = 'received'). The dashboard shows them as "New" with a red dot to make them visually urgent. The order detail page and orders list use the full status labels (Received, Processing, Shipped, Delivered).</span>
+    <span class="ann-tag decision">Decision needed: The table shows first name and last initial only (e.g., "Margaret T.") for privacy and readability. Should it show the full name? Full names are easier to search mentally but wider columns may crowd the table on smaller screens. Jean's preference.</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>Site Visitors Panel (Google Analytics summary)</strong>
+    <p>A compact summary of the last 7 days pulled from Google Analytics 4: total visitors, page views, most-viewed plant, and top referrer source. The mini bar chart shows daily visitor counts with today highlighted in blue. This is a read-only summary; Jean clicks "View full analytics" (not shown in this wireframe) to open the full GA4 dashboard in a new tab.</p>
+    <span class="ann-tag decision">Decision needed: The GA4 integration requires embedding the GA4 embed API or using a server-side reporting API to pull these numbers. The simpler alternative is to skip the embedded summary entirely and just put a "View Google Analytics" link that opens GA4 in a new tab. The embedded version is nicer but adds meaningful development complexity. Worth discussing whether Jean would actually use it or just open GA4 directly anyway.</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>Sold-Out Plants Panel</strong>
+    <p>Shows the first three sold-out plants with a direct "Edit" link for each, plus a count of additional ones below. Clicking "Edit" opens the Plant Editor for that plant so Jean can restock it (flip the in_stock toggle to true) or hide it (flip is_active to false). This is the fastest path from "I just got more stock" to "the plant is back on the site."</p>
+  </div>
+
+  <div class="ann-item">
+    <strong>Reminders Panel (yellow card)</strong>
+    <p>A simple list of contextual reminders generated from the current state of the database: unprocessed orders, approaching shipping season end dates, sold-out plant count. These are not configurable by Jean; they generate automatically based on system state. The reminders panel is hidden if there is nothing to remind her of.</p>
+    <span class="ann-tag decision">Decision needed: What other automatic reminders would be useful? Possibilities include: "Your Mailchimp list has 50 new subscribers since last login," "3 plants have no photos uploaded," or "Shipping season dates in Settings have not been updated this year." Jean and Edward can add to this list during development.</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>Admin Footer</strong>
+    <p>A minimal dark footer matching the top bar, showing who is logged in and quick links to View Public Site and Settings. Kept very simple since Jean will rarely look at the bottom of this page.</p>
+  </div>
+
+</div>
+
+</body>
+</html>

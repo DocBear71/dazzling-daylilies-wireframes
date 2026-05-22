@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wireframe 06: Order Confirmation — Dazzling Daylilies</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 15px;
+    background: #f0f0f0;
+    color: #222;
+  }
+
+  a { color: #4a90d9; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .btn-primary {
+    display: inline-block;
+    background: #4a90d9;
+    color: #fff;
+    padding: 12px 28px;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    text-align: center;
+  }
+  .btn-secondary {
+    display: inline-block;
+    background: #fff;
+    color: #4a90d9;
+    padding: 10px 22px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    border: 2px solid #4a90d9;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .page-wrapper {
+    max-width: 1160px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+  }
+
+  /* Shared chrome */
+  .cookie-banner {
+    background: #333; color: #eee; padding: 10px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 13px; gap: 16px;
+  }
+  .cookie-dismiss {
+    background: #4a90d9; color: #fff; border: none;
+    padding: 5px 14px; border-radius: 3px; cursor: pointer;
+    font-size: 12px; white-space: nowrap;
+  }
+  .site-header {
+    background: #e8e8e8; border-bottom: 1px solid #d0d0d0;
+    padding: 20px 24px 16px; text-align: center;
+  }
+  .site-header h1 { font-size: 26px; font-weight: 700; color: #222; margin-bottom: 4px; }
+  .site-header .tagline { font-size: 13px; color: #666; font-style: italic; }
+  .top-nav {
+    background: #fff; border-bottom: 3px solid #d0d0d0;
+    padding: 0 24px; display: flex; align-items: stretch; height: 48px;
+  }
+  .nav-tab {
+    display: inline-flex; align-items: center; padding: 0 20px;
+    font-size: 14px; font-weight: 600; color: #555;
+    border-bottom: 3px solid transparent; margin-bottom: -3px;
+    cursor: pointer; white-space: nowrap;
+  }
+  .nav-tab.active { color: #4a90d9; border-bottom-color: #4a90d9; }
+  .nav-tab.inactive { color: #bbb; cursor: not-allowed; }
+  .nav-tab .inactive-note { font-size: 10px; font-weight: 400; color: #ccc; margin-left: 4px; }
+  .nav-spacer { flex: 1; }
+  .nav-cart-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 0 16px; font-size: 13px; font-weight: 600;
+    color: #4a90d9; cursor: pointer;
+  }
+  .cart-badge {
+    background: #4a90d9; color: #fff; border-radius: 50%;
+    width: 18px; height: 18px; font-size: 11px;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+
+  /* ============================================================
+     CONFIRMATION HERO BAND
+  ============================================================ */
+  .confirm-hero {
+    background: #eef6ee;
+    border-bottom: 2px solid #b8d9b8;
+    padding: 36px 24px 32px;
+    text-align: center;
+  }
+  .confirm-checkmark {
+    width: 64px;
+    height: 64px;
+    background: #6abf6a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    font-size: 30px;
+    color: #fff;
+    font-weight: 700;
+  }
+  .confirm-hero h2 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1a4a1a;
+    margin-bottom: 8px;
+  }
+  .confirm-hero .order-number-display {
+    font-size: 18px;
+    color: #2a6a2a;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .confirm-hero .order-number-display span {
+    background: #fff;
+    border: 2px solid #6abf6a;
+    border-radius: 4px;
+    padding: 3px 14px;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #1a4a1a;
+  }
+  .confirm-hero .confirm-subtext {
+    font-size: 14px;
+    color: #3a6a3a;
+    max-width: 520px;
+    margin: 10px auto 0;
+    line-height: 1.7;
+  }
+
+  /* ============================================================
+     CONFIRMATION BODY: two columns
+  ============================================================ */
+  .confirm-body {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 32px;
+    padding: 32px 24px 48px;
+    align-items: start;
+  }
+
+  /* ---- LEFT: order details ---- */
+  .confirm-details {}
+
+  .detail-section {
+    margin-bottom: 32px;
+  }
+  .detail-section-heading {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #888;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eee;
+  }
+
+  /* Info grid (label: value pairs) */
+  .info-grid {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 8px 0;
+  }
+  .info-label {
+    font-size: 13px;
+    color: #888;
+    font-weight: 600;
+    padding: 3px 12px 3px 0;
+  }
+  .info-value {
+    font-size: 13px;
+    color: #333;
+    padding: 3px 0;
+  }
+
+  /* Order items table */
+  .order-items-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .order-items-table thead tr {
+    border-bottom: 2px solid #eee;
+  }
+  .order-items-table th {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: #aaa;
+    padding: 0 12px 8px 0;
+    text-align: left;
+  }
+  .order-items-table th.right { text-align: right; padding-right: 0; }
+  .order-items-table tbody tr {
+    border-bottom: 1px solid #f5f5f5;
+  }
+  .order-items-table tbody tr:last-child { border-bottom: none; }
+  .order-items-table td {
+    padding: 12px 12px 12px 0;
+    vertical-align: middle;
+    font-size: 14px;
+  }
+  .order-items-table td.right { text-align: right; padding-right: 0; }
+
+  .confirm-item-cell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .confirm-thumb {
+    width: 56px;
+    height: 56px;
+    border-radius: 4px;
+    background: #b0b0b0;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 3px;
+  }
+  .confirm-thumb.alt { background: #9a9a9a; }
+  .confirm-thumb.alt2 { background: #aaa; }
+  .confirm-item-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 2px;
+  }
+  .confirm-item-meta { font-size: 12px; color: #999; }
+
+  /* Totals block */
+  .totals-block {
+    margin-top: 16px;
+    border-top: 2px solid #eee;
+    padding-top: 14px;
+  }
+  .totals-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: #555;
+  }
+  .totals-row .t-label { color: #888; }
+  .totals-row .t-value { font-weight: 600; color: #333; }
+  .totals-row.grand {
+    font-size: 16px;
+    font-weight: 700;
+    color: #222;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+    margin-top: 4px;
+  }
+  .totals-row.grand .t-label { color: #222; }
+  .totals-row.grand .t-value { color: #222; font-size: 18px; }
+
+  /* Jean's message */
+  .jean-message {
+    background: #f5f0e8;
+    border: 1px solid #ddd0b8;
+    border-radius: 6px;
+    padding: 20px 22px;
+    margin-top: 0;
+  }
+  .jean-message p {
+    font-size: 14px;
+    color: #5a4a2a;
+    line-height: 1.8;
+    margin-bottom: 10px;
+  }
+  .jean-message p:last-child { margin-bottom: 0; }
+  .jean-message .signature {
+    font-style: italic;
+    color: #7a6040;
+  }
+
+  /* ---- RIGHT: summary panel ---- */
+  .confirm-sidebar {}
+
+  .sidebar-card {
+    background: #f7f7f7;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .sidebar-card-heading {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: #888;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e8e8e8;
+  }
+  .sidebar-card p {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
+  .sidebar-card p:last-child { margin-bottom: 0; }
+  .sidebar-card .highlight {
+    font-weight: 700;
+    color: #333;
+  }
+
+  .order-status-btn {
+    display: block;
+    width: 100%;
+    padding: 11px;
+    background: #fff;
+    color: #4a90d9;
+    font-size: 14px;
+    font-weight: 600;
+    border: 2px solid #4a90d9;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .continue-btn {
+    display: block;
+    width: 100%;
+    padding: 11px;
+    background: #4a90d9;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .email-sent-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: #eef3fb;
+    border: 1px solid #c0d4ee;
+    border-radius: 4px;
+    padding: 12px 14px;
+    font-size: 12px;
+    color: #3a5a8a;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .email-icon {
+    width: 20px;
+    height: 20px;
+    background: #4a90d9;
+    border-radius: 3px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 11px;
+    margin-top: 1px;
+  }
+
+  /* Footer */
+  .site-footer { background: #333; color: #ccc; padding: 20px 24px; }
+  .footer-bottom {
+    display: flex; justify-content: space-between;
+    align-items: center; font-size: 12px; color: #888;
+  }
+  .footer-bottom a { color: #7ab8f5; }
+
+  /* Annotations */
+  .annotations {
+    background: #fffbe6; border-top: 4px solid #f5c518;
+    padding: 32px 32px 40px; font-size: 14px; color: #333; line-height: 1.7;
+  }
+  .annotations h2 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .ann-subtitle { font-size: 13px; color: #888; margin-bottom: 28px; }
+  .ann-item { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #eedc6a; }
+  .ann-item:last-child { border-bottom: none; margin-bottom: 0; }
+  .ann-item strong { display: block; font-size: 14px; font-weight: 700; color: #222; margin-bottom: 4px; }
+  .ann-tag {
+    display: inline-block; background: #f5c518; color: #333;
+    font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 3px;
+    margin-top: 6px; text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .ann-tag.decision { background: #ffd580; }
+  .ann-tag.business { background: #f8d7da; color: #721c24; }
+  .ann-tag.content { background: #c8e6c9; color: #1b5e20; }
+</style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <div class="cookie-banner">
+    <span>This site uses only essential cookies to keep your shopping cart working. No tracking or advertising cookies are used.</span>
+    <button class="cookie-dismiss">Got it</button>
+  </div>
+
+  <div class="site-header">
+    <h1><a href="#" style="color:#222;">Dazzling Daylilies</a></h1>
+    <p class="tagline">Iowa-grown daylilies, irises, and perennials shipped to your door</p>
+  </div>
+
+  <nav class="top-nav">
+    <a class="nav-tab active" href="#">Daylilies</a>
+    <a class="nav-tab inactive" href="#">Iris <span class="inactive-note">(coming soon)</span></a>
+    <a class="nav-tab inactive" href="#">Lilies <span class="inactive-note">(coming soon)</span></a>
+    <a class="nav-tab inactive" href="#">Other Perennials <span class="inactive-note">(coming soon)</span></a>
+    <div class="nav-spacer"></div>
+    <!-- Cart shows 0 after a completed order -->
+    <a class="nav-cart-btn" href="#">Cart <span class="cart-badge">0</span></a>
+  </nav>
+
+  <!-- CONFIRMATION HERO -->
+  <div class="confirm-hero">
+    <div class="confirm-checkmark">&#10003;</div>
+    <h2>Thank You for Your Order!</h2>
+    <div class="order-number-display">
+      Order Number: <span>DD-2027-0042</span>
+    </div>
+    <p class="confirm-subtext">
+      Your order has been received and your payment has been processed.
+      A confirmation email has been sent to <strong>jane@example.com</strong>.
+      Jean will be in touch when your plants are ready to ship.
+    </p>
+  </div>
+
+  <!-- CONFIRMATION BODY -->
+  <div class="confirm-body">
+
+    <!-- LEFT: Order Details -->
+    <div class="confirm-details">
+
+      <!-- Customer and shipping info -->
+      <div class="detail-section">
+        <div class="detail-section-heading">Order Information</div>
+        <div class="info-grid">
+          <span class="info-label">Order Number</span>
+          <span class="info-value">DD-2027-0042</span>
+
+          <span class="info-label">Order Date</span>
+          <span class="info-value">May 19, 2027</span>
+
+          <span class="info-label">Name</span>
+          <span class="info-value">Jane Smith</span>
+
+          <span class="info-label">Email</span>
+          <span class="info-value">jane@example.com</span>
+
+          <span class="info-label">Phone</span>
+          <span class="info-value">(555) 555-5555</span>
+
+          <span class="info-label">Ship To</span>
+          <span class="info-value">
+            Jane Smith<br>
+            123 Main Street<br>
+            Springfield, IL 62701
+          </span>
+
+          <span class="info-label">Payment</span>
+          <span class="info-value">Visa ending in 4242 &mdash; Paid</span>
+        </div>
+      </div>
+
+      <!-- Items ordered -->
+      <div class="detail-section">
+        <div class="detail-section-heading">Plants Ordered</div>
+        <table class="order-items-table">
+          <thead>
+            <tr>
+              <th>Plant</th>
+              <th>Price</th>
+              <th>Qty</th>
+              <th class="right">Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="confirm-item-cell">
+                  <div class="confirm-thumb">photo</div>
+                  <div>
+                    <div class="confirm-item-name">Acapulco Sunset</div>
+                    <div class="confirm-item-meta">Tetraploid &bull; Midseason</div>
+                  </div>
+                </div>
+              </td>
+              <td>$28.00</td>
+              <td>1</td>
+              <td class="right">$28.00</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="confirm-item-cell">
+                  <div class="confirm-thumb alt">photo</div>
+                  <div>
+                    <div class="confirm-item-name">Strawberry Candy</div>
+                    <div class="confirm-item-meta">Diploid &bull; Midseason</div>
+                  </div>
+                </div>
+              </td>
+              <td>$22.00</td>
+              <td>2</td>
+              <td class="right">$44.00</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="confirm-item-cell">
+                  <div class="confirm-thumb alt2">photo</div>
+                  <div>
+                    <div class="confirm-item-name">Happy Returns</div>
+                    <div class="confirm-item-meta">Diploid &bull; Early</div>
+                  </div>
+                </div>
+              </td>
+              <td>$18.00</td>
+              <td>1</td>
+              <td class="right">$18.00</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="totals-block">
+          <div class="totals-row">
+            <span class="t-label">Subtotal</span>
+            <span class="t-value">$90.00</span>
+          </div>
+          <div class="totals-row">
+            <span class="t-label">Shipping (4 plants)</span>
+            <span class="t-value">$21.00</span>
+          </div>
+          <div class="totals-row grand">
+            <span class="t-label">Total Charged</span>
+            <span class="t-value">$111.00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Jean's personal note -->
+      <div class="detail-section">
+        <div class="detail-section-heading">A Note from Jean</div>
+        <div class="jean-message">
+          <p>
+            Thank you so much for your order! I'm thrilled you found some plants
+            you love. I dig and pack everything myself right here in Fairfax, Iowa,
+            so you can be sure your plants are coming from a garden that has been
+            cared for with a lot of love.
+          </p>
+          <p>
+            I'll send you a personal email when your order ships with any care
+            instructions specific to your plants. In the meantime, if you have
+            any questions at all, just reply to your confirmation email or reach
+            out to me at
+            <a href="mailto:dazzlingdaylilies@yahoo.com">dazzlingdaylilies@yahoo.com</a>.
+          </p>
+          <p class="signature">
+            I appreciate you! &nbsp;&mdash; Jean
+          </p>
+        </div>
+      </div>
+
+    </div><!-- /.confirm-details -->
+
+    <!-- RIGHT: Sidebar -->
+    <div class="confirm-sidebar">
+
+      <!-- Email sent notice -->
+      <div class="email-sent-note">
+        <div class="email-icon">&#9993;</div>
+        <span>A confirmation email has been sent to <strong>jane@example.com</strong>. Check your spam folder if you don't see it within a few minutes.</span>
+      </div>
+
+      <!-- What happens next -->
+      <div class="sidebar-card">
+        <div class="sidebar-card-heading">What Happens Next</div>
+        <p>
+          <span class="highlight">1. Jean receives your order</span> and reviews
+          it in her admin panel. She'll see it flagged as a new order requiring attention.
+        </p>
+        <p>
+          <span class="highlight">2. Jean packs and ships your plants</span> when
+          the season and weather are right for safe transit of bare-root divisions.
+        </p>
+        <p>
+          <span class="highlight">3. Jean emails you personally</span> with
+          tracking information and any care tips for your specific plants.
+        </p>
+        <p>
+          <span class="highlight">4. Check your order status anytime</span> using
+          the link below and your order number.
+        </p>
+      </div>
+
+      <!-- Order status link -->
+      <div class="sidebar-card">
+        <div class="sidebar-card-heading">Track Your Order</div>
+        <p>
+          Use your order number and email address to check the status of your
+          order at any time.
+        </p>
+        <p>
+          <span class="highlight">Order Number: DD-2027-0042</span><br>
+          Save this number for your records.
+        </p>
+        <a class="order-status-btn" href="#">Check Order Status</a>
+        <a class="continue-btn" href="#">Continue Shopping</a>
+      </div>
+
+    </div><!-- /.confirm-sidebar -->
+
+  </div><!-- /.confirm-body -->
+
+  <footer class="site-footer">
+    <div class="footer-bottom">
+      <span>&copy; 2027 Dazzling Daylilies &bull; Fairfax, Iowa</span>
+      <span>
+        <a href="#">Shipping Info</a> &bull;
+        <a href="#">Privacy Policy</a> &bull;
+        <a href="#">Terms of Service</a>
+      </span>
+    </div>
+  </footer>
+
+</div><!-- /.page-wrapper -->
+
+
+<!-- ANNOTATIONS -->
+<div class="annotations">
+  <h2>Page Annotations: Order Confirmation Page (Wireframe 06 of 17)</h2>
+  <p class="ann-subtitle">This page appears immediately after a successful payment. It is the only confirmation the customer sees on screen; they also receive an email version. Plain English throughout.</p>
+
+  <div class="ann-item">
+    <strong>Green Confirmation Banner (top section)</strong>
+    <p>The green checkmark and "Thank You for Your Order!" heading give the customer immediate, unmistakable confirmation that their payment went through and the order is real. The order number is shown prominently inside a bordered box so it is easy to spot and write down. The customer's email address is echoed back so they know where to look for the confirmation email.</p>
+    <span class="ann-tag business">Business rule: The cart is cleared as soon as this page loads. The cart count in the nav shows 0. There is no way to accidentally resubmit the order by refreshing the page.</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>Order Number Format (DD-2027-0042)</strong>
+    <p>The format is DD (for Dazzling Daylilies), the year, and a four-digit sequence number. So the 42nd order placed in 2027 is DD-2027-0042. The year resets to 0001 at the start of each calendar year. This makes order numbers human-readable and easy to reference in emails between Jean and her customers.</p>
+    <span class="ann-tag decision">Decision needed: Jean should confirm she is happy with this order number format before coding begins. Alternatives include a simple sequential number (00042), a random alphanumeric code, or a different prefix. Once the format is set and orders start coming in, changing it is disruptive.</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>Order Information Grid</strong>
+    <p>A clean label-and-value layout showing name, email, phone, shipping address, and payment method (card type and last four digits, provided by Square). This gives the customer a full record of what they submitted. The card number shown is only the last four digits; full card numbers are never stored or displayed anywhere in the system.</p>
+  </div>
+
+  <div class="ann-item">
+    <strong>Plants Ordered Table</strong>
+    <p>The same format as the cart and checkout summary, with plant thumbnails, names, quantities, and prices. The totals block at the bottom shows subtotal, shipping, and the total that was actually charged. This is the customer's on-screen receipt.</p>
+  </div>
+
+  <div class="ann-item">
+    <strong>Note from Jean (personal message section)</strong>
+    <p>A warm personal note from Jean, shown in a lightly tinted panel to distinguish it from the order data above. The placeholder copy ends with "I appreciate you! &mdash; Jean" which matches her actual sign-off style. Jean should read and approve this copy, or replace it entirely with her own words. This same message (or a version of it) appears in the confirmation email.</p>
+    <span class="ann-tag content">Content needed: Jean should approve or rewrite this personal message. It represents her voice and her relationship with her customers.</span>
+    <span class="ann-tag business">Business rule: The confirmation email is sent automatically the moment the order is placed. Jean does NOT need to do anything to trigger it. The email includes the order number, plant list, and totals. It does not include tracking information because Jean sends that personally when the order ships.</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>Email Sent Notice (blue box, sidebar)</strong>
+    <p>Reminds the customer to check their spam folder if they do not see the confirmation email. This reduces support questions. The customer's email address is shown again for confirmation.</p>
+  </div>
+
+  <div class="ann-item">
+    <strong>"What Happens Next" Panel</strong>
+    <p>Four numbered steps explaining Jean's workflow: she sees the order, packs and ships when the timing is right, emails personally with tracking, and the customer can check status online at any time. This sets expectations correctly and prevents "where is my order?" emails to Jean during the gap between ordering and shipping.</p>
+    <span class="ann-tag business">Business rule: Jean emails tracking information personally. The system marks the order as Shipped and records the tracking number, but does NOT send an automatic shipping notification email. Customers who want to check status can use the Order Status page.</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>"Track Your Order" Panel</strong>
+    <p>Shows the order number again (prominently, with a prompt to save it) and provides two buttons: "Check Order Status" links to the Order Status page pre-filled with the order number, and "Continue Shopping" returns to the catalog. These are the two most natural next actions for a customer who has just completed an order.</p>
+  </div>
+
+  <div class="ann-item">
+    <strong>Cart Count Shows Zero</strong>
+    <p>The cart badge in the top nav shows 0 after a completed order. The cart is fully cleared once the order confirmation page loads. If a customer clicks the browser back button from this page, they will find an empty cart and cannot accidentally reorder.</p>
+  </div>
+
+</div>
+
+</body>
+</html>

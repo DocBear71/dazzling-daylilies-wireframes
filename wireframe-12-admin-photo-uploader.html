@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wireframe 12: Admin Photo Uploader — Dazzling Daylilies</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 15px;
+    background: #f0f0f0;
+    color: #222;
+  }
+
+  a { color: #4a90d9; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .admin-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Admin top bar */
+  .admin-topbar {
+    background: #2c3e50; color: #ecf0f1;
+    padding: 0 24px; display: flex; align-items: center;
+    height: 52px; flex-shrink: 0;
+  }
+  .admin-brand {
+    font-size: 15px; font-weight: 700; color: #fff;
+    margin-right: 32px; white-space: nowrap;
+  }
+  .admin-brand span { font-weight: 400; color: #95a5a6; margin-left: 6px; font-size: 12px; }
+  .admin-nav { display: flex; align-items: stretch; height: 100%; flex: 1; }
+  .admin-nav-item {
+    display: inline-flex; align-items: center; padding: 0 18px;
+    font-size: 13px; font-weight: 600; color: #bdc3c7; cursor: pointer;
+    border-bottom: 3px solid transparent; white-space: nowrap;
+  }
+  .admin-nav-item.active { color: #fff; border-bottom-color: #4a90d9; }
+  .admin-nav-spacer { flex: 1; }
+  .admin-nav-right { display: flex; align-items: center; gap: 16px; }
+  .admin-view-site { font-size: 12px; color: #7fb3d3; cursor: pointer; white-space: nowrap; }
+  .admin-logout {
+    font-size: 12px; color: #95a5a6; cursor: pointer;
+    background: none; border: 1px solid #4a5568; border-radius: 3px; padding: 4px 12px;
+  }
+
+  .admin-body { padding: 28px 24px 48px; flex: 1; }
+
+  .admin-breadcrumb {
+    font-size: 13px; color: #888; margin-bottom: 16px;
+  }
+  .admin-breadcrumb a { color: #4a90d9; }
+  .admin-breadcrumb .sep { margin: 0 6px; color: #ccc; }
+  .admin-breadcrumb .current { color: #555; font-weight: 600; }
+
+  .page-heading-row {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    margin-bottom: 24px; gap: 16px; flex-wrap: wrap;
+  }
+  .page-heading-row h2 { font-size: 22px; font-weight: 700; color: #222; }
+  .page-heading-row p {
+    font-size: 13px; color: #888; margin-top: 4px; line-height: 1.6; max-width: 560px;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: #4a90d9; color: #fff; padding: 10px 22px;
+    border-radius: 4px; font-size: 14px; font-weight: 600;
+    cursor: pointer; border: none; white-space: nowrap;
+  }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: #fff; color: #4a90d9; padding: 9px 20px;
+    border-radius: 4px; font-size: 14px; font-weight: 600;
+    border: 2px solid #4a90d9; cursor: pointer; white-space: nowrap;
+  }
+  .btn-sm {
+    background: #fff; color: #555; padding: 5px 12px;
+    border-radius: 3px; font-size: 12px; font-weight: 600;
+    border: 1px solid #d0d0d0; cursor: pointer; white-space: nowrap;
+  }
+  .btn-sm.blue { color: #4a90d9; border-color: #4a90d9; }
+  .btn-sm.danger { color: #c0392b; border-color: #e8b4b4; }
+
+  /* ============================================================
+     NAMING CONVENTION HELP BOX
+  ============================================================ */
+  .convention-box {
+    background: #eef5fb;
+    border: 1px solid #c0d8f0;
+    border-radius: 6px;
+    padding: 18px 20px;
+    margin-bottom: 24px;
+  }
+  .convention-box h3 {
+    font-size: 14px; font-weight: 700; color: #1a4a7a; margin-bottom: 10px;
+  }
+  .convention-box p {
+    font-size: 13px; color: #2a5a8a; line-height: 1.7; margin-bottom: 8px;
+  }
+  .convention-box p:last-child { margin-bottom: 0; }
+  .convention-examples {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;
+  }
+  .convention-pill {
+    background: #fff; border: 1px solid #b0c8e0; border-radius: 3px;
+    padding: 4px 12px; font-size: 12px; font-family: monospace; color: #1a4a7a;
+  }
+  .convention-pill.bad {
+    background: #fdf2f2; border-color: #e8b4b4; color: #7a2020;
+    text-decoration: line-through;
+  }
+
+  /* ============================================================
+     STATE 1: DROP ZONE (before upload)
+  ============================================================ */
+  .drop-zone {
+    border: 3px dashed #d0d0d0;
+    border-radius: 8px;
+    padding: 56px 24px;
+    text-align: center;
+    background: #fafafa;
+    margin-bottom: 20px;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .drop-zone.hover {
+    border-color: #4a90d9;
+    background: #eef5fb;
+  }
+  .drop-icon {
+    width: 64px; height: 64px;
+    background: #e8e8e8; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 16px;
+    font-size: 28px; color: #bbb;
+  }
+  .drop-zone h3 {
+    font-size: 18px; font-weight: 700; color: #333; margin-bottom: 8px;
+  }
+  .drop-zone p {
+    font-size: 13px; color: #888; margin-bottom: 16px; line-height: 1.6;
+  }
+  .drop-zone .file-limit {
+    font-size: 12px; color: #bbb; margin-top: 12px;
+  }
+  .browse-btn {
+    background: #4a90d9; color: #fff; border: none;
+    padding: 10px 24px; border-radius: 4px;
+    font-size: 14px; font-weight: 600; cursor: pointer;
+  }
+
+  /* ============================================================
+     VARIATION DIVIDER
+  ============================================================ */
+  .variation-label {
+    background: #e8e8e8;
+    border-top: 3px solid #aaa; border-bottom: 3px solid #aaa;
+    padding: 12px 24px;
+    font-size: 13px; font-weight: 700; color: #555;
+    text-transform: uppercase; letter-spacing: 0.07em;
+    margin: 32px 0 24px;
+  }
+
+  /* ============================================================
+     STATE 2: UPLOAD PROGRESS
+  ============================================================ */
+  .upload-progress-area {
+    border: 1px solid #e0e0e0; border-radius: 6px;
+    overflow: hidden; margin-bottom: 20px;
+  }
+  .upload-progress-header {
+    background: #f5f5f5; border-bottom: 1px solid #e8e8e8;
+    padding: 12px 16px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 13px; font-weight: 700; color: #444;
+  }
+  .upload-count { font-size: 12px; color: #888; font-weight: 400; }
+  .progress-list { padding: 8px 0; }
+  .progress-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 8px 16px;
+    border-bottom: 1px solid #f5f5f5;
+    font-size: 13px;
+  }
+  .progress-item:last-child { border-bottom: none; }
+  .progress-filename {
+    flex: 1; font-family: monospace; font-size: 12px; color: #555;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .progress-bar-wrap {
+    width: 120px; height: 6px; background: #e8e8e8; border-radius: 3px; flex-shrink: 0;
+  }
+  .progress-bar-fill {
+    height: 100%; border-radius: 3px; background: #4a90d9;
+  }
+  .progress-status {
+    font-size: 11px; font-weight: 700; white-space: nowrap;
+    width: 70px; text-align: right;
+  }
+  .progress-status.done { color: #27ae60; }
+  .progress-status.processing { color: #4a90d9; }
+  .progress-status.waiting { color: #aaa; }
+  .progress-status.error { color: #c0392b; }
+
+  /* ============================================================
+     STATE 3: REVIEW TABLE (after upload, before confirm)
+  ============================================================ */
+  .review-intro {
+    background: #eef6ee; border: 1px solid #b8d9b8; border-radius: 6px;
+    padding: 14px 18px; margin-bottom: 16px;
+    font-size: 13px; color: #2a5a2a; line-height: 1.6;
+  }
+  .review-intro strong { display: block; margin-bottom: 2px; }
+
+  .review-table-wrap {
+    border: 1px solid #e0e0e0; border-radius: 6px; overflow: hidden; margin-bottom: 20px;
+  }
+  .review-table {
+    width: 100%; border-collapse: collapse;
+  }
+  .review-table thead tr {
+    background: #f5f5f5; border-bottom: 2px solid #e0e0e0;
+  }
+  .review-table th {
+    padding: 10px 14px; text-align: left;
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.07em; color: #aaa; white-space: nowrap;
+  }
+  .review-table tbody tr { border-bottom: 1px solid #f0f0f0; }
+  .review-table tbody tr:last-child { border-bottom: none; }
+  .review-table tbody tr:hover { background: #fafafa; }
+  .review-table td {
+    padding: 11px 14px; font-size: 13px; color: #333; vertical-align: middle;
+  }
+
+  /* Photo preview thumbnail in review table */
+  .review-thumb {
+    width: 44px; height: 44px; border-radius: 3px;
+    background: #b0b0b0; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 8px; color: #fff; font-weight: 600;
+    text-transform: uppercase; text-align: center; padding: 3px;
+  }
+  .review-thumb.alt { background: #9a9a9a; }
+  .review-thumb.alt2 { background: #aaa; }
+  .review-thumb.alt3 { background: #c0c0c0; }
+
+  .filename-mono { font-family: monospace; font-size: 12px; color: #555; }
+
+  /* Match status */
+  .match-status {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 12px; font-weight: 600; white-space: nowrap;
+  }
+  .match-status.matched { color: #27ae60; }
+  .match-status.unmatched { color: #c0392b; }
+  .match-status.dot {
+    width: 8px; height: 8px; border-radius: 50; display: inline-block;
+  }
+  .dot-green { width: 8px; height: 8px; border-radius: 50%; background: #27ae60; display: inline-block; }
+  .dot-red { width: 8px; height: 8px; border-radius: 50%; background: #c0392b; display: inline-block; }
+  .dot-amber { width: 8px; height: 8px; border-radius: 50%; background: #d68910; display: inline-block; }
+
+  /* Plant assignment cell */
+  .assignment-cell {
+    display: flex; align-items: center; gap: 8px;
+  }
+  .plant-name-matched { font-weight: 700; color: #222; }
+  .reassign-link { font-size: 11px; color: #4a90d9; cursor: pointer; white-space: nowrap; }
+
+  /* Reassign dropdown (inline) */
+  .reassign-select {
+    padding: 5px 8px; border: 1px solid #4a90d9; border-radius: 3px;
+    font-size: 12px; color: #333; background: #fff; cursor: pointer;
+  }
+
+  /* Summary bar above confirm button */
+  .confirm-summary {
+    display: flex; align-items: center; gap: 20px;
+    padding: 14px 18px;
+    background: #f5f5f5; border: 1px solid #e0e0e0; border-radius: 6px;
+    margin-bottom: 16px; flex-wrap: wrap;
+  }
+  .confirm-stat { font-size: 13px; }
+  .confirm-stat span { font-weight: 700; color: #222; }
+  .confirm-stat.green span { color: #27ae60; }
+  .confirm-stat.red span { color: #c0392b; }
+  .confirm-stat.amber span { color: #d68910; }
+  .confirm-actions { margin-left: auto; display: flex; gap: 10px; }
+
+  /* Admin footer */
+  .admin-footer {
+    background: #2c3e50; color: #7f8c8d;
+    padding: 12px 24px; font-size: 12px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-shrink: 0;
+  }
+  .admin-footer a { color: #7fb3d3; }
+
+  /* Annotations */
+  .annotations {
+    background: #fffbe6; border-top: 4px solid #f5c518;
+    padding: 32px 32px 40px; font-size: 14px; color: #333; line-height: 1.7;
+  }
+  .annotations h2 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .ann-subtitle { font-size: 13px; color: #888; margin-bottom: 28px; }
+  .ann-item { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #eedc6a; }
+  .ann-item:last-child { border-bottom: none; margin-bottom: 0; }
+  .ann-item strong { display: block; font-size: 14px; font-weight: 700; color: #222; margin-bottom: 4px; }
+  .ann-tag {
+    display: inline-block; background: #f5c518; color: #333;
+    font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 3px;
+    margin-top: 6px; text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .ann-tag.decision { background: #ffd580; }
+  .ann-tag.business { background: #f8d7da; color: #721c24; }
+  .ann-tag.content { background: #c8e6c9; color: #1b5e20; }
+</style>
+</head>
+<body>
+
+<div class="admin-wrapper">
+
+  <!-- ADMIN TOP BAR -->
+  <div class="admin-topbar">
+    <div class="admin-brand">Dazzling Daylilies <span>Admin</span></div>
+    <nav class="admin-nav">
+      <a class="admin-nav-item" href="#">Dashboard</a>
+      <a class="admin-nav-item" href="#">Plants</a>
+      <a class="admin-nav-item" href="#">Orders</a>
+      <a class="admin-nav-item active" href="#">Photos</a>
+      <a class="admin-nav-item" href="#">Settings</a>
+      <div class="admin-nav-spacer"></div>
+      <div class="admin-nav-right">
+        <a class="admin-view-site" href="#">View Public Site &rarr;</a>
+        <button class="admin-logout">Log Out</button>
+      </div>
+    </nav>
+  </div>
+
+  <div class="admin-body">
+
+    <div class="admin-breadcrumb">
+      <a href="#">Dashboard</a>
+      <span class="sep">&rsaquo;</span>
+      <span class="current">Photo Uploader</span>
+    </div>
+
+    <div class="page-heading-row">
+      <div>
+        <h2>Upload Photos</h2>
+        <p>
+          Upload plant photos in bulk. Photos are automatically matched to plants
+          based on their filename. Name your files using the plant's URL slug
+          (shown in the Plants list) followed by an underscore and a number.
+        </p>
+      </div>
+    </div>
+
+    <!-- NAMING CONVENTION HELP BOX -->
+    <div class="convention-box">
+      <h3>How to Name Your Photo Files</h3>
+      <p>
+        The filename must start with the plant's URL slug, then an underscore,
+        then a number. The slug for each plant is shown in the Plants list under
+        the plant name. Capitalization does not matter. JPEG and PNG are both accepted.
+      </p>
+      <p><strong>Examples of correct filenames:</strong></p>
+      <div class="convention-examples">
+        <span class="convention-pill">acapulco-sunset_1.jpg</span>
+        <span class="convention-pill">acapulco-sunset_2.jpg</span>
+        <span class="convention-pill">strawberry-candy_1.jpg</span>
+        <span class="convention-pill">happy-returns_1.jpg</span>
+        <span class="convention-pill">morning-mist_3.JPG</span>
+      </div>
+      <p style="margin-top:12px;"><strong>Examples of filenames that will NOT match:</strong></p>
+      <div class="convention-examples">
+        <span class="convention-pill bad">AcapulcoSunset.jpg</span>
+        <span class="convention-pill bad">acapulco sunset 1.jpg</span>
+        <span class="convention-pill bad">IMG_4582.jpg</span>
+        <span class="convention-pill bad">photo1.jpg</span>
+      </div>
+    </div>
+
+    <!-- ===== STATE 1: DROP ZONE ===== -->
+    <div class="drop-zone">
+      <div class="drop-icon">&#8593;</div>
+      <h3>Drop photos here to upload</h3>
+      <p>
+        Drag and drop up to 100 photos at once, or click the button below
+        to browse your files. Accepted formats: JPEG, PNG.
+      </p>
+      <button class="browse-btn">Browse Files</button>
+      <p class="file-limit">Maximum 100 photos per upload. Each file must be under 20 MB.</p>
+    </div>
+
+    <!-- ===== STATE 2: UPLOADING IN PROGRESS ===== -->
+    <div class="variation-label">State 2: Upload in Progress</div>
+
+    <div class="upload-progress-area">
+      <div class="upload-progress-header">
+        <span>Uploading Photos</span>
+        <span class="upload-count">12 of 18 complete</span>
+      </div>
+      <div class="progress-list">
+
+        <div class="progress-item">
+          <span class="progress-filename">acapulco-sunset_1.jpg</span>
+          <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:100%;"></div></div>
+          <span class="progress-status done">&#10003; Done</span>
+        </div>
+        <div class="progress-item">
+          <span class="progress-filename">acapulco-sunset_2.jpg</span>
+          <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:100%;"></div></div>
+          <span class="progress-status done">&#10003; Done</span>
+        </div>
+        <div class="progress-item">
+          <span class="progress-filename">always-afternoon_1.jpg</span>
+          <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:100%;"></div></div>
+          <span class="progress-status done">&#10003; Done</span>
+        </div>
+        <div class="progress-item">
+          <span class="progress-filename">bela-lugosi_1.jpg</span>
+          <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:78%;"></div></div>
+          <span class="progress-status processing">78%</span>
+        </div>
+        <div class="progress-item">
+          <span class="progress-filename">bela-lugosi_2.jpg</span>
+          <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:0%;"></div></div>
+          <span class="progress-status waiting">Waiting</span>
+        </div>
+        <div class="progress-item">
+          <span class="progress-filename">strawberry-candy_1.jpg</span>
+          <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:0%;"></div></div>
+          <span class="progress-status waiting">Waiting</span>
+        </div>
+        <div class="progress-item">
+          <span class="progress-filename">IMG_4582.jpg</span>
+          <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:100%; background:#c0392b;"></div></div>
+          <span class="progress-status error">No match</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== STATE 3: REVIEW TABLE ===== -->
+    <div class="variation-label">State 3: Review Matches Before Saving</div>
+
+    <div class="review-intro">
+      <strong>Upload complete. Please review the matches below before saving.</strong>
+      Most photos were matched automatically. A few could not be matched and need
+      to be assigned manually, or you can discard them.
+    </div>
+
+    <div class="review-table-wrap">
+      <table class="review-table">
+        <thead>
+          <tr>
+            <th>Preview</th>
+            <th>Filename</th>
+            <th>Match</th>
+            <th>Assigned Plant</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <!-- Matched rows -->
+          <tr>
+            <td><div class="review-thumb">photo</div></td>
+            <td><span class="filename-mono">acapulco-sunset_1.jpg</span></td>
+            <td><span class="match-status matched"><span class="dot-green"></span> Matched</span></td>
+            <td>
+              <div class="assignment-cell">
+                <span class="plant-name-matched">Acapulco Sunset</span>
+                <span class="reassign-link">Reassign</span>
+              </div>
+            </td>
+            <td><a class="btn-sm danger" href="#">Discard</a></td>
+          </tr>
+
+          <tr>
+            <td><div class="review-thumb alt">photo</div></td>
+            <td><span class="filename-mono">acapulco-sunset_2.jpg</span></td>
+            <td><span class="match-status matched"><span class="dot-green"></span> Matched</span></td>
+            <td>
+              <div class="assignment-cell">
+                <span class="plant-name-matched">Acapulco Sunset</span>
+                <span class="reassign-link">Reassign</span>
+              </div>
+            </td>
+            <td><a class="btn-sm danger" href="#">Discard</a></td>
+          </tr>
+
+          <tr>
+            <td><div class="review-thumb alt2">photo</div></td>
+            <td><span class="filename-mono">always-afternoon_1.jpg</span></td>
+            <td><span class="match-status matched"><span class="dot-green"></span> Matched</span></td>
+            <td>
+              <div class="assignment-cell">
+                <span class="plant-name-matched">Always Afternoon</span>
+                <span class="reassign-link">Reassign</span>
+              </div>
+            </td>
+            <td><a class="btn-sm danger" href="#">Discard</a></td>
+          </tr>
+
+          <tr>
+            <td><div class="review-thumb alt3">photo</div></td>
+            <td><span class="filename-mono">bela-lugosi_1.jpg</span></td>
+            <td><span class="match-status matched"><span class="dot-green"></span> Matched</span></td>
+            <td>
+              <div class="assignment-cell">
+                <span class="plant-name-matched">Bela Lugosi</span>
+                <span class="reassign-link">Reassign</span>
+              </div>
+            </td>
+            <td><a class="btn-sm danger" href="#">Discard</a></td>
+          </tr>
+
+          <tr>
+            <td><div class="review-thumb">photo</div></td>
+            <td><span class="filename-mono">strawberry-candy_1.jpg</span></td>
+            <td><span class="match-status matched"><span class="dot-green"></span> Matched</span></td>
+            <td>
+              <div class="assignment-cell">
+                <span class="plant-name-matched">Strawberry Candy</span>
+                <span class="reassign-link">Reassign</span>
+              </div>
+            </td>
+            <td><a class="btn-sm danger" href="#">Discard</a></td>
+          </tr>
+
+          <!-- Reassign in progress: dropdown showing -->
+          <tr style="background:#fef9e7;">
+            <td><div class="review-thumb alt">photo</div></td>
+            <td><span class="filename-mono">happy-returns_extra.jpg</span></td>
+            <td><span class="match-status" style="color:#d68910;"><span class="dot-amber"></span> Partial</span></td>
+            <td>
+              <div class="assignment-cell">
+                <select class="reassign-select">
+                  <option>-- Select a plant --</option>
+                  <option selected>Happy Returns</option>
+                  <option>Acapulco Sunset</option>
+                  <option>Always Afternoon</option>
+                  <option>Strawberry Candy</option>
+                </select>
+              </div>
+            </td>
+            <td><a class="btn-sm danger" href="#">Discard</a></td>
+          </tr>
+
+          <!-- Unmatched rows -->
+          <tr style="background:#fdf8f8;">
+            <td><div class="review-thumb alt2">photo</div></td>
+            <td><span class="filename-mono">IMG_4582.jpg</span></td>
+            <td><span class="match-status unmatched"><span class="dot-red"></span> No match</span></td>
+            <td>
+              <div class="assignment-cell">
+                <select class="reassign-select">
+                  <option>-- Select a plant --</option>
+                  <option>Acapulco Sunset</option>
+                  <option>Always Afternoon</option>
+                  <option>Bela Lugosi</option>
+                  <option>Happy Returns</option>
+                  <option>Strawberry Candy</option>
+                </select>
+              </div>
+            </td>
+            <td><a class="btn-sm danger" href="#">Discard</a></td>
+          </tr>
+
+          <tr style="background:#fdf8f8;">
+            <td><div class="review-thumb alt3">photo</div></td>
+            <td><span class="filename-mono">garden-wide-shot.jpg</span></td>
+            <td><span class="match-status unmatched"><span class="dot-red"></span> No match</span></td>
+            <td>
+              <div class="assignment-cell">
+                <select class="reassign-select">
+                  <option>-- Select a plant --</option>
+                  <option>Acapulco Sunset</option>
+                  <option>Always Afternoon</option>
+                  <option>Bela Lugosi</option>
+                  <option>Happy Returns</option>
+                  <option>Strawberry Candy</option>
+                </select>
+              </div>
+            </td>
+            <td><a class="btn-sm danger" href="#">Discard</a></td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Confirm summary and action buttons -->
+    <div class="confirm-summary">
+      <div class="confirm-stat green"><span>5</span> photos matched automatically</div>
+      <div class="confirm-stat amber"><span>1</span> partial match needs review</div>
+      <div class="confirm-stat red"><span>2</span> unmatched &mdash; assign or discard</div>
+      <div class="confirm-actions">
+        <button class="btn-secondary">Cancel &amp; Discard All</button>
+        <button class="btn-primary">Confirm and Save Matched Photos</button>
+      </div>
+    </div>
+
+    <p style="font-size:12px; color:#aaa; line-height:1.6;">
+      Unmatched or unassigned photos will be discarded automatically when you save.
+      Saved photos are converted to WebP format and three sizes are generated
+      (thumbnail, medium, large). The originals are kept on file.
+    </p>
+
+  </div><!-- /.admin-body -->
+
+  <div class="admin-footer">
+    <span>Dazzling Daylilies Admin &bull; Logged in as Jean</span>
+    <span><a href="#">View Public Site</a> &bull; <a href="#">Settings</a></span>
+  </div>
+
+</div><!-- /.admin-wrapper -->
+
+
+<!-- ANNOTATIONS -->
+<div class="annotations">
+  <h2>Page Annotations: Admin Photo Uploader (Wireframe 12 of 17)</h2>
+  <p class="ann-subtitle">Three states shown: the empty drop zone, the upload-in-progress view, and the review-and-confirm table. This page handles the bulk photo workflow Jean will use at the start of every season. Plain English throughout.</p>
+
+  <div class="ann-item">
+    <strong>Naming Convention Help Box</strong>
+    <p>Shown prominently at the top of the page, every time Jean visits. It gives her the exact pattern to follow with working examples and explicit examples of filenames that will not work. This box is the first line of defense against upload confusion. Jean should read it carefully the first time she uploads photos and keep it in mind when naming files on her computer before uploading.</p>
+    <span class="ann-tag business">Business rule: The slug is the photo-matching key. A filename of "acapulco-sunset_1.jpg" matches the plant whose slug is "acapulco-sunset." The number after the underscore sets the display order of photos within a plant. Filenames that do not follow this pattern cannot be auto-matched and must be assigned manually in the review step.</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>State 1: Drop Zone</strong>
+    <p>The default view when Jean opens the Photos page. She can drag photos from her computer directly onto the grey dashed area, or click "Browse Files" to use the standard file picker dialog. Both methods accept up to 100 photos at once. JPEG and PNG are accepted. Files over 20 MB are rejected with an error message before upload begins.</p>
+    <span class="ann-tag decision">Decision needed: The 20 MB per-file limit is a reasonable default for high-resolution camera photos, but Jean should confirm her photos are typically under this size. If she shoots in RAW and exports large JPEGs, this limit may need adjusting. The limit exists because of Hostinger's shared hosting constraints on upload size and processing time.</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>State 2: Upload in Progress</strong>
+    <p>Each file shows its filename, a progress bar, and a status label: Done (green checkmark), a percentage for files currently uploading, Waiting for files in the queue, or "No match" for files that uploaded successfully but whose filename did not match any plant slug. The "No match" status in the progress view is informational only; those files are not discarded yet and will appear in the review table where Jean can assign them manually.</p>
+    <span class="ann-tag business">Business rule: On Hostinger shared hosting, long-running processes are not reliable. Photo uploads are handled as standard HTTP file uploads, not background jobs. WebP conversion happens after the upload completes. For a batch of 100 photos, this may take a noticeable amount of time. Jean should not close the browser tab during this process.</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>State 3: Review Table</strong>
+    <p>After all files finish uploading, Jean sees a table with every uploaded photo. Each row shows a small preview thumbnail, the filename, a match status indicator, and the assigned plant. Three match states are shown in this wireframe: green "Matched" (filename matched a plant slug automatically), amber "Partial" (filename partially matched but needs confirmation), and red "No match" (could not be matched at all).</p>
+  </div>
+
+  <div class="ann-item">
+    <strong>Reassign Link and Dropdown</strong>
+    <p>Every row, even correctly matched ones, has a "Reassign" link in case Jean wants to redirect a photo to a different plant. Clicking it replaces the plant name with a dropdown of all plants. The amber "Partial" row (happy-returns_extra.jpg) shows the dropdown already open. Unmatched rows (IMG_4582.jpg, garden-wide-shot.jpg) start with the dropdown open and a "Select a plant" placeholder so Jean can see immediately that action is needed.</p>
+    <span class="ann-tag decision">Decision needed: Should unmatched photos be discarded automatically when Jean clicks "Confirm and Save," or should saving be blocked until every unmatched photo is either assigned or explicitly discarded? Blocking saves is safer but more friction. Auto-discarding is faster but Jean may not notice she lost a photo. The wireframe shows a note at the bottom that unassigned photos are auto-discarded; Jean should confirm she is comfortable with this behavior.</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>Confirm and Save Button</strong>
+    <p>After Jean reviews the table, she clicks "Confirm and Save Matched Photos." This triggers three things: matched and assigned photos are attached to their respective plant records, each photo is converted to WebP in three sizes (thumbnail 300x300, medium 800x800, large 1600x1600), and the originals are retained in storage. Unmatched and unassigned photos are discarded. The process may take a few seconds for large batches.</p>
+    <span class="ann-tag business">Business rule: Photo conversion to WebP uses Spatie Laravel Media Library or a custom service. Three sizes are generated per photo. Original files are kept. The thumbnail is the version used in catalog cards, the cart, the order sheet, and the confirmation email. The large version is used on the plant detail page.</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>Discard Button Per Row</strong>
+    <p>Jean can discard any individual photo from the review table by clicking the red "Discard" button on that row. The row is removed from the table immediately. Discarded photos are not saved to any plant record. This is useful if Jean accidentally included an out-of-focus photo or a non-plant image in the batch.</p>
+  </div>
+
+  <div class="ann-item">
+    <strong>Summary Bar Above the Confirm Button</strong>
+    <p>Shows three counts at a glance: matched automatically (green), partial matches needing review (amber), and unmatched photos (red). Jean can see the overall state of the batch before committing. If the red count is non-zero, she should scroll through the table and either assign or discard those photos before saving.</p>
+  </div>
+
+  <div class="ann-item">
+    <strong>WebP Conversion Note</strong>
+    <p>A short note at the bottom of the page reminds Jean that her photos will be converted automatically. She does not need to do anything special; the system handles the conversion. The originals are kept in case re-conversion is needed. Jean never interacts with the WebP files directly.</p>
+  </div>
+
+</div>
+
+</body>
+</html>

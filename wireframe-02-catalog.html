@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wireframe 02: Catalog Page — Dazzling Daylilies</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 15px;
+    background: #f0f0f0;
+    color: #222;
+  }
+
+  a { color: #4a90d9; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .btn-primary {
+    display: inline-block;
+    background: #4a90d9;
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    text-align: center;
+  }
+  .btn-ghost {
+    display: inline-block;
+    background: transparent;
+    color: #aaa;
+    padding: 7px 18px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: default;
+    border: 2px solid #d0d0d0;
+    text-align: center;
+  }
+
+  .page-wrapper {
+    max-width: 1160px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+  }
+
+  .cookie-banner {
+    background: #333;
+    color: #eee;
+    padding: 10px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    gap: 16px;
+  }
+  .cookie-dismiss {
+    background: #4a90d9;
+    color: #fff;
+    border: none;
+    padding: 5px 14px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .site-header {
+    background: #e8e8e8;
+    border-bottom: 1px solid #d0d0d0;
+    padding: 20px 24px 16px;
+    text-align: center;
+  }
+  .site-header h1 { font-size: 26px; font-weight: 700; color: #222; margin-bottom: 4px; }
+  .site-header .tagline { font-size: 13px; color: #666; font-style: italic; }
+
+  .top-nav {
+    background: #fff;
+    border-bottom: 3px solid #d0d0d0;
+    padding: 0 24px;
+    display: flex;
+    align-items: stretch;
+    height: 48px;
+  }
+  .nav-tab {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -3px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .nav-tab.active { color: #4a90d9; border-bottom-color: #4a90d9; }
+  .nav-tab.inactive { color: #bbb; cursor: not-allowed; }
+  .nav-tab .inactive-note { font-size: 10px; font-weight: 400; color: #ccc; margin-left: 4px; }
+  .nav-spacer { flex: 1; }
+  .nav-cart-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 0 16px; font-size: 13px; font-weight: 600; color: #4a90d9; cursor: pointer;
+  }
+  .cart-badge {
+    background: #4a90d9; color: #fff; border-radius: 50%;
+    width: 18px; height: 18px; font-size: 11px;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+
+  .page-title-bar {
+    background: #f5f5f5;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .page-title-bar h2 { font-size: 22px; font-weight: 700; }
+  .result-count { font-size: 13px; color: #888; }
+
+  .catalog-toolbar {
+    padding: 12px 24px;
+    border-bottom: 1px solid #e8e8e8;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .search-box {
+    flex: 1;
+    max-width: 300px;
+    position: relative;
+  }
+  .search-box input {
+    width: 100%;
+    padding: 8px 12px 8px 10px;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    font-size: 13px;
+    background: #fafafa;
+  }
+  .search-box input::placeholder { color: #aaa; }
+  .sort-row { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+  .sort-row label { font-size: 13px; color: #666; white-space: nowrap; }
+  .sort-select {
+    padding: 7px 28px 7px 10px;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    font-size: 13px;
+    color: #333;
+    background: #fafafa;
+    cursor: pointer;
+  }
+
+  .catalog-body {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    align-items: start;
+  }
+
+  .filter-sidebar {
+    border-right: 1px solid #e0e0e0;
+    padding: 20px 16px;
+  }
+  .filter-sidebar-heading {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #888;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .filter-clear { font-size: 11px; font-weight: 600; color: #4a90d9; cursor: pointer; text-transform: none; letter-spacing: 0; }
+  .filter-group { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #eee; }
+  .filter-group:last-child { border-bottom: none; margin-bottom: 0; }
+  .filter-group-label {
+    font-size: 13px; font-weight: 700; color: #333; margin-bottom: 10px;
+    display: flex; justify-content: space-between; align-items: center; cursor: pointer;
+  }
+  .chevron { color: #aaa; font-size: 10px; }
+  .filter-option { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; cursor: pointer; }
+  .filter-option input[type="checkbox"] { accent-color: #4a90d9; width: 14px; height: 14px; flex-shrink: 0; }
+  .filter-option label { font-size: 13px; color: #444; cursor: pointer; display: flex; justify-content: space-between; width: 100%; }
+  .filter-count { font-size: 11px; color: #aaa; }
+  .price-range-row { display: flex; gap: 8px; align-items: center; }
+  .price-input { width: 70px; padding: 6px 8px; border: 1px solid #d0d0d0; border-radius: 3px; font-size: 13px; }
+  .price-dash { color: #aaa; font-size: 13px; }
+
+  .plant-grid-area { padding: 20px; }
+  .plant-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-bottom: 32px;
+  }
+  .plant-card { border: 1px solid #d0d0d0; border-radius: 6px; overflow: hidden; }
+  .plant-card-photo {
+    width: 100%; height: 170px;
+    background: #b0b0b0;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; color: #fff;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+    text-align: center; position: relative; gap: 4px; padding: 8px;
+  }
+  .plant-card-photo.alt { background: #9a9a9a; }
+  .sold-out-badge {
+    position: absolute; top: 8px; right: 8px;
+    background: #888; color: #fff; font-size: 10px; font-weight: 700;
+    padding: 3px 8px; border-radius: 3px; text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .plant-card-body { padding: 12px 14px 14px; }
+  .plant-name { font-size: 14px; font-weight: 700; color: #222; margin-bottom: 3px; }
+  .plant-meta { font-size: 11px; color: #999; margin-bottom: 6px; }
+  .plant-desc { font-size: 12px; color: #666; line-height: 1.5; margin-bottom: 10px; }
+  .plant-price { font-size: 15px; font-weight: 700; color: #222; margin-bottom: 10px; }
+  .plant-price.sold-out { color: #aaa; }
+  .plant-card .btn-primary,
+  .plant-card .btn-ghost { width: 100%; display: block; padding: 8px 0; font-size: 13px; }
+
+  .pagination {
+    display: flex; align-items: center; justify-content: center;
+    gap: 4px; padding-bottom: 8px;
+  }
+  .page-btn {
+    width: 36px; height: 36px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 1px solid #d0d0d0; border-radius: 4px;
+    font-size: 13px; color: #555; cursor: pointer; background: #fff;
+  }
+  .page-btn.active { background: #4a90d9; color: #fff; border-color: #4a90d9; font-weight: 700; }
+  .page-btn.disabled { color: #ccc; cursor: not-allowed; }
+  .page-ellipsis { font-size: 13px; color: #aaa; padding: 0 4px; }
+
+  .site-footer { background: #333; color: #ccc; padding: 20px 24px; }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #888; }
+  .footer-bottom a { color: #7ab8f5; }
+
+  .annotations {
+    background: #fffbe6; border-top: 4px solid #f5c518;
+    padding: 32px 32px 40px; font-size: 14px; color: #333; line-height: 1.7;
+  }
+  .annotations h2 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .ann-subtitle { font-size: 13px; color: #888; margin-bottom: 28px; }
+  .ann-item { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #eedc6a; }
+  .ann-item:last-child { border-bottom: none; margin-bottom: 0; }
+  .ann-item strong { display: block; font-size: 14px; font-weight: 700; color: #222; margin-bottom: 4px; }
+  .ann-tag {
+    display: inline-block; background: #f5c518; color: #333;
+    font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 3px;
+    margin-top: 6px; text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .ann-tag.decision { background: #ffd580; }
+</style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <div class="cookie-banner">
+    <span>This site uses only essential cookies to keep your shopping cart working. No tracking or advertising cookies are used.</span>
+    <button class="cookie-dismiss">Got it</button>
+  </div>
+
+  <div class="site-header">
+    <h1><a href="#" style="color:#222;">Dazzling Daylilies</a></h1>
+    <p class="tagline">Iowa-grown daylilies, irises, and perennials shipped to your door</p>
+  </div>
+
+  <nav class="top-nav">
+    <a class="nav-tab active" href="#">Daylilies</a>
+    <a class="nav-tab inactive" href="#">Iris <span class="inactive-note">(coming soon)</span></a>
+    <a class="nav-tab inactive" href="#">Lilies <span class="inactive-note">(coming soon)</span></a>
+    <a class="nav-tab inactive" href="#">Other Perennials <span class="inactive-note">(coming soon)</span></a>
+    <div class="nav-spacer"></div>
+    <a class="nav-cart-btn" href="#">Cart <span class="cart-badge">2</span></a>
+  </nav>
+
+  <div class="page-title-bar">
+    <h2>Daylilies</h2>
+    <span class="result-count">Showing 1&ndash;12 of 48 plants</span>
+  </div>
+
+  <div class="catalog-toolbar">
+    <div class="search-box">
+      <input type="text" placeholder="Search by name...">
+    </div>
+    <div class="sort-row">
+      <label for="sort-select">Sort by:</label>
+      <select class="sort-select" id="sort-select">
+        <option selected>Alphabetical (A&ndash;Z)</option>
+        <option>Price: Low to High</option>
+        <option>Price: High to Low</option>
+        <option>Newest First</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="catalog-body">
+
+    <!-- FILTER SIDEBAR -->
+    <aside class="filter-sidebar">
+      <div class="filter-sidebar-heading">
+        Filters <span class="filter-clear">Clear all</span>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-group-label">Color <span class="chevron">&#9660;</span></div>
+        <div class="filter-option"><input type="checkbox" id="f-orange" checked><label for="f-orange">Orange / Gold <span class="filter-count">(11)</span></label></div>
+        <div class="filter-option"><input type="checkbox" id="f-pink"><label for="f-pink">Pink / Rose <span class="filter-count">(9)</span></label></div>
+        <div class="filter-option"><input type="checkbox" id="f-purple"><label for="f-purple">Purple / Lavender <span class="filter-count">(8)</span></label></div>
+        <div class="filter-option"><input type="checkbox" id="f-red"><label for="f-red">Red / Burgundy <span class="filter-count">(7)</span></label></div>
+        <div class="filter-option"><input type="checkbox" id="f-yellow"><label for="f-yellow">Yellow / Cream <span class="filter-count">(7)</span></label></div>
+        <div class="filter-option"><input type="checkbox" id="f-white"><label for="f-white">White / Near-White <span class="filter-count">(4)</span></label></div>
+        <div class="filter-option"><input type="checkbox" id="f-bicolor"><label for="f-bicolor">Bicolor / Blend <span class="filter-count">(2)</span></label></div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-group-label">Bloom Size <span class="chevron">&#9660;</span></div>
+        <div class="filter-option"><input type="checkbox" id="f-large"><label for="f-large">Large (5&Prime;+) <span class="filter-count">(18)</span></label></div>
+        <div class="filter-option"><input type="checkbox" id="f-med"><label for="f-med">Medium (3&Prime;&ndash;5&Prime;) <span class="filter-count">(22)</span></label></div>
+        <div class="filter-option"><input type="checkbox" id="f-mini"><label for="f-mini">Mini (under 3&Prime;) <span class="filter-count">(8)</span></label></div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-group-label">Ploidy <span class="chevron">&#9660;</span></div>
+        <div class="filter-option"><input type="checkbox" id="f-dip"><label for="f-dip">Diploid <span class="filter-count">(20)</span></label></div>
+        <div class="filter-option"><input type="checkbox" id="f-tet"><label for="f-tet">Tetraploid <span class="filter-count">(28)</span></label></div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-group-label">Foliage <span class="chevron">&#9660;</span></div>
+        <div class="filter-option"><input type="checkbox" id="f-dor"><label for="f-dor">Dormant <span class="filter-count">(19)</span></label></div>
+        <div class="filter-option"><input type="checkbox" id="f-sev"><label for="f-sev">Semi-Evergreen <span class="filter-count">(16)</span></label></div>
+        <div class="filter-option"><input type="checkbox" id="f-ev"><label for="f-ev">Evergreen <span class="filter-count">(13)</span></label></div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-group-label">Bloom Time <span class="chevron">&#9660;</span></div>
+        <div class="filter-option"><input type="checkbox" id="f-early"><label for="f-early">Early <span class="filter-count">(10)</span></label></div>
+        <div class="filter-option"><input type="checkbox" id="f-mid"><label for="f-mid">Midseason <span class="filter-count">(24)</span></label></div>
+        <div class="filter-option"><input type="checkbox" id="f-late"><label for="f-late">Late <span class="filter-count">(14)</span></label></div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-group-label">Rebloomer <span class="chevron">&#9660;</span></div>
+        <div class="filter-option"><input type="checkbox" id="f-rebloom"><label for="f-rebloom">Rebloomers only <span class="filter-count">(15)</span></label></div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-group-label">Price Range <span class="chevron">&#9660;</span></div>
+        <div class="price-range-row">
+          <input class="price-input" type="text" placeholder="$18">
+          <span class="price-dash">to</span>
+          <input class="price-input" type="text" placeholder="$65">
+        </div>
+      </div>
+    </aside>
+
+    <!-- PLANT GRID -->
+    <div class="plant-grid-area">
+      <div class="plant-grid">
+
+        <div class="plant-card">
+          <div class="plant-card-photo">[ plant photo ]<br>Acapulco Sunset</div>
+          <div class="plant-card-body">
+            <div class="plant-name">Acapulco Sunset</div>
+            <div class="plant-meta">Tetraploid &bull; Midseason &bull; 28&Prime; scape</div>
+            <div class="plant-desc">Rich orange and gold blend with a deep throat. Strong rebloomer with wide, ruffled petals.</div>
+            <div class="plant-price">$28.00</div>
+            <a class="btn-primary" href="#">View Details</a>
+          </div>
+        </div>
+
+        <div class="plant-card">
+          <div class="plant-card-photo alt">[ plant photo ]<br>Always Afternoon</div>
+          <div class="plant-card-body">
+            <div class="plant-name">Always Afternoon</div>
+            <div class="plant-meta">Tetraploid &bull; Midseason &bull; 22&Prime; scape</div>
+            <div class="plant-desc">Dusty mauve and purple with a bold purple eye. One of the most distinctive patterns in the catalog.</div>
+            <div class="plant-price">$32.00</div>
+            <a class="btn-primary" href="#">View Details</a>
+          </div>
+        </div>
+
+        <div class="plant-card">
+          <div class="plant-card-photo">[ plant photo ]<br>Bela Lugosi</div>
+          <div class="plant-card-body">
+            <div class="plant-name">Bela Lugosi</div>
+            <div class="plant-meta">Tetraploid &bull; Early-Midseason &bull; 34&Prime; scape</div>
+            <div class="plant-desc">Deep, saturated purple with a green-yellow throat. A classic for a reason. Tall, dramatic scapes.</div>
+            <div class="plant-price">$24.00</div>
+            <a class="btn-primary" href="#">View Details</a>
+          </div>
+        </div>
+
+        <div class="plant-card">
+          <div class="plant-card-photo alt">
+            [ plant photo ]<br>Catherine Woodbery
+            <span class="sold-out-badge">Sold Out</span>
+          </div>
+          <div class="plant-card-body">
+            <div class="plant-name">Catherine Woodbery</div>
+            <div class="plant-meta">Diploid &bull; Midseason &bull; 30&Prime; scape</div>
+            <div class="plant-desc">Soft orchid pink with a pale lavender midrib. Fragrant and elegant. A longtime garden favorite.</div>
+            <div class="plant-price sold-out">$22.00 &nbsp;&bull;&nbsp; Sold Out</div>
+            <span class="btn-ghost">Currently Unavailable</span>
+          </div>
+        </div>
+
+        <div class="plant-card">
+          <div class="plant-card-photo">[ plant photo ]<br>Christmas Is</div>
+          <div class="plant-card-body">
+            <div class="plant-name">Christmas Is</div>
+            <div class="plant-meta">Tetraploid &bull; Midseason-Late &bull; 26&Prime; scape</div>
+            <div class="plant-desc">Bright red with a yellow-green throat. Vivid, clean color that holds well even in afternoon heat.</div>
+            <div class="plant-price">$26.00</div>
+            <a class="btn-primary" href="#">View Details</a>
+          </div>
+        </div>
+
+        <div class="plant-card">
+          <div class="plant-card-photo alt">[ plant photo ]<br>Cosmic Hummingbird</div>
+          <div class="plant-card-body">
+            <div class="plant-name">Cosmic Hummingbird</div>
+            <div class="plant-meta">Diploid &bull; Early &bull; 18&Prime; scape</div>
+            <div class="plant-desc">Rosy pink with a bold burgundy eye and green throat. Compact and early, excellent for borders.</div>
+            <div class="plant-price">$20.00</div>
+            <a class="btn-primary" href="#">View Details</a>
+          </div>
+        </div>
+
+        <div class="plant-card">
+          <div class="plant-card-photo">[ plant photo ]<br>Frank Gladney</div>
+          <div class="plant-card-body">
+            <div class="plant-name">Frank Gladney</div>
+            <div class="plant-meta">Diploid &bull; Midseason &bull; 24&Prime; scape</div>
+            <div class="plant-desc">Coral pink blend of exceptional size. Very large blooms on branched scapes. A showstopper.</div>
+            <div class="plant-price">$30.00</div>
+            <a class="btn-primary" href="#">View Details</a>
+          </div>
+        </div>
+
+        <div class="plant-card">
+          <div class="plant-card-photo alt">[ plant photo ]<br>Happy Returns</div>
+          <div class="plant-card-body">
+            <div class="plant-name">Happy Returns</div>
+            <div class="plant-meta">Diploid &bull; Early &bull; 18&Prime; scape</div>
+            <div class="plant-desc">Clear lemon yellow. One of the most reliable rebloomers available, blooming from June through frost.</div>
+            <div class="plant-price">$18.00</div>
+            <a class="btn-primary" href="#">View Details</a>
+          </div>
+        </div>
+
+        <div class="plant-card">
+          <div class="plant-card-photo">[ plant photo ]<br>Heavenly Angel Ice</div>
+          <div class="plant-card-body">
+            <div class="plant-name">Heavenly Angel Ice</div>
+            <div class="plant-meta">Tetraploid &bull; Midseason &bull; 28&Prime; scape</div>
+            <div class="plant-desc">Pale cream with a lavender blush and soft purple eye. Ruffled and elegant, with subtle fragrance.</div>
+            <div class="plant-price">$36.00</div>
+            <a class="btn-primary" href="#">View Details</a>
+          </div>
+        </div>
+
+        <div class="plant-card">
+          <div class="plant-card-photo alt">[ plant photo ]<br>Joan Senior</div>
+          <div class="plant-card-body">
+            <div class="plant-name">Joan Senior</div>
+            <div class="plant-meta">Diploid &bull; Early-Midseason &bull; 25&Prime; scape</div>
+            <div class="plant-desc">Creamy near-white with a lime-green throat. One of the best near-whites available. Dependable bloomer.</div>
+            <div class="plant-price">$22.00</div>
+            <a class="btn-primary" href="#">View Details</a>
+          </div>
+        </div>
+
+        <div class="plant-card">
+          <div class="plant-card-photo">[ plant photo ]<br>Luxury Lace</div>
+          <div class="plant-card-body">
+            <div class="plant-name">Luxury Lace</div>
+            <div class="plant-meta">Diploid &bull; Midseason &bull; 32&Prime; scape</div>
+            <div class="plant-desc">Lavender pink with heavily laced and ruffled edges. An AHS award winner with outstanding substance.</div>
+            <div class="plant-price">$28.00</div>
+            <a class="btn-primary" href="#">View Details</a>
+          </div>
+        </div>
+
+        <div class="plant-card">
+          <div class="plant-card-photo alt">[ plant photo ]<br>Morning Mist</div>
+          <div class="plant-card-body">
+            <div class="plant-name">Morning Mist</div>
+            <div class="plant-meta">Diploid &bull; Early &bull; 20&Prime; scape</div>
+            <div class="plant-desc">Soft lavender and cream with a delicate watermark. Fragrant and early-blooming. A lovely start to the season.</div>
+            <div class="plant-price">$26.00</div>
+            <a class="btn-primary" href="#">View Details</a>
+          </div>
+        </div>
+
+      </div><!-- /.plant-grid -->
+
+      <div class="pagination">
+        <span class="page-btn disabled">&laquo;</span>
+        <span class="page-btn active">1</span>
+        <span class="page-btn">2</span>
+        <span class="page-btn">3</span>
+        <span class="page-btn">4</span>
+        <span class="page-ellipsis">...</span>
+        <span class="page-btn">8</span>
+        <span class="page-btn">&raquo;</span>
+      </div>
+    </div>
+
+  </div><!-- /.catalog-body -->
+
+  <footer class="site-footer">
+    <div class="footer-bottom">
+      <span>&copy; 2027 Dazzling Daylilies &bull; Fairfax, Iowa</span>
+      <span>
+        <a href="#">Shipping Info</a> &bull;
+        <a href="#">Privacy Policy</a> &bull;
+        <a href="#">Terms of Service</a>
+      </span>
+    </div>
+  </footer>
+
+</div><!-- /.page-wrapper -->
+
+
+<!-- ANNOTATIONS -->
+<div class="annotations">
+  <h2>Page Annotations: Catalog Page (Wireframe 02 of 17)</h2>
+  <p class="ann-subtitle">Notes for Jean and Edward. Plain English explanations of what each region does and what decisions this layout commits us to.</p>
+
+  <div class="ann-item">
+    <strong>Page Title and Result Count</strong>
+    <p>"Daylilies" is the page heading. The result count on the right ("Showing 1-12 of 48 plants") updates automatically as customers apply filters or search. If filters narrow the results all the way to zero, the grid shows a message like "No plants match your current filters" with a link to clear them and start over.</p>
+  </div>
+
+  <div class="ann-item">
+    <strong>Search Box</strong>
+    <p>Customers type a plant name and the grid filters in real time. Typing "sunset" would immediately show only plants with "sunset" in the name. This wireframe shows it searching by name only, which is the most predictable behavior for plant browsers.</p>
+    <span class="ann-tag decision">Decision needed: Should search also match color, hybridizer name, or description text? Name-only is simpler and more predictable. Broader search is more powerful but can produce surprising results. Jean should weigh in.</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>Sort Dropdown</strong>
+    <p>Defaults to Alphabetical A to Z. This matches how Jean organizes her catalog and how daylily buyers are used to browsing. Other options: Price low to high, Price high to low, and Newest First (by year introduced or the date Jean added the plant to the catalog).</p>
+  </div>
+
+  <div class="ann-item">
+    <strong>Filter Sidebar (left column)</strong>
+    <p>Seven filter categories matching the plant data in the database: Color, Bloom Size, Ploidy, Foliage, Bloom Time, Rebloomer, and Price Range. Filters work together: checking "Orange/Gold" and "Rebloomer only" shows only orange/gold rebloomers. The count next to each option (e.g., "Orange / Gold (11)") shows how many plants match that value. "Clear all" at the top removes all active filters at once.</p>
+    <span class="ann-tag decision">Decision needed: Should the filter counts in parentheses be included? They are helpful but add some development complexity. If Jean does not want them, they are easy to drop.</span>
+    <span class="ann-tag decision">Decision needed: Should filter sections be collapsible (clicking the label hides/shows the options)? The chevron arrows suggest they can collapse. This helps on pages with many plants. Or we can leave all sections always open.</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>Plant Grid (3 columns, 12 cards shown)</strong>
+    <p>Each card shows a photo placeholder, plant name, a key-attributes line (ploidy, bloom time, scape height), a short description, the price, and a "View Details" button. The alternating slightly darker grey on the photo placeholders is just to distinguish cards visually in the wireframe; real photos will look completely different. Sold-out plants (Catherine Woodbery) show a grey badge on the photo, grayed price, and a disabled "Currently Unavailable" button.</p>
+    <span class="ann-tag decision">Decision needed: 3 columns vs 4 columns. Three columns leaves more room for the short description on each card, which helps customers browse without clicking into every detail page. Four columns fits more plants per row. The homepage used 4 columns; the catalog could stay at 3 for readability, or match the homepage at 4. Jean's call.</span>
+    <span class="ann-tag decision">Decision needed: Should sold-out plants appear at all in the catalog, or be filtered out automatically? Showing them lets customers see the full range and contact Jean if interested. Hiding them keeps the catalog clean. Jean should decide what she prefers.</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>Attribute Line on Each Card</strong>
+    <p>The small grey text under each plant name ("Tetraploid &bull; Midseason &bull; 28 inch scape") gives experienced daylily buyers the most important facts at a glance. Casual buyers can ignore it. These pull directly from the plant's database record and cost nothing extra to display.</p>
+  </div>
+
+  <div class="ann-item">
+    <strong>Pagination</strong>
+    <p>Shows 12 plants per page with numbered navigation at the bottom. Page 1 is active in this wireframe. With 48 total plants the example shows 8 pages at 12 per page. The dots (...) compress middle pages when there are many.</p>
+    <span class="ann-tag decision">Decision needed: How many plants per page? 12 is easy to browse, 24 reduces page-clicking, and "show all" is how PlantFans works (everything on one page, scroll down). More plants per page means a heavier page load on mobile. Jean should decide what her customers are used to.</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>Cart Count (top right, showing "2")</strong>
+    <p>Shown as 2 here to demonstrate the live count. In real use it starts at 0 and increases as plants are added. It updates without reloading the page.</p>
+  </div>
+
+  <div class="ann-item">
+    <strong>Mobile Behavior (not shown)</strong>
+    <p>On phones and small tablets, the filter sidebar collapses. A "Filter" button appears above the grid; tapping it opens the filters in a slide-in panel. The 3-column grid drops to 1 or 2 columns. This is standard behavior and will be built during development.</p>
+  </div>
+
+</div>
+
+</body>
+</html>

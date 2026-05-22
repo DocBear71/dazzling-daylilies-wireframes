@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wireframe 03: Plant Detail Page — Dazzling Daylilies</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 15px;
+    background: #f0f0f0;
+    color: #222;
+  }
+
+  a { color: #4a90d9; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .btn-primary {
+    display: inline-block;
+    background: #4a90d9;
+    color: #fff;
+    padding: 12px 28px;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-secondary {
+    display: inline-block;
+    background: #fff;
+    color: #4a90d9;
+    padding: 10px 22px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    border: 2px solid #4a90d9;
+    cursor: pointer;
+  }
+  .btn-ghost {
+    display: inline-block;
+    background: transparent;
+    color: #aaa;
+    padding: 11px 28px;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 600;
+    border: 2px solid #d0d0d0;
+    cursor: default;
+  }
+
+  .page-wrapper {
+    max-width: 1160px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+  }
+
+  /* Shared header / nav — same as previous wireframes */
+  .cookie-banner {
+    background: #333; color: #eee; padding: 10px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 13px; gap: 16px;
+  }
+  .cookie-dismiss {
+    background: #4a90d9; color: #fff; border: none;
+    padding: 5px 14px; border-radius: 3px; cursor: pointer; font-size: 12px; white-space: nowrap;
+  }
+  .site-header {
+    background: #e8e8e8; border-bottom: 1px solid #d0d0d0;
+    padding: 20px 24px 16px; text-align: center;
+  }
+  .site-header h1 { font-size: 26px; font-weight: 700; color: #222; margin-bottom: 4px; }
+  .site-header .tagline { font-size: 13px; color: #666; font-style: italic; }
+  .top-nav {
+    background: #fff; border-bottom: 3px solid #d0d0d0;
+    padding: 0 24px; display: flex; align-items: stretch; height: 48px;
+  }
+  .nav-tab {
+    display: inline-flex; align-items: center; padding: 0 20px;
+    font-size: 14px; font-weight: 600; color: #555;
+    border-bottom: 3px solid transparent; margin-bottom: -3px; cursor: pointer; white-space: nowrap;
+  }
+  .nav-tab.active { color: #4a90d9; border-bottom-color: #4a90d9; }
+  .nav-tab.inactive { color: #bbb; cursor: not-allowed; }
+  .nav-tab .inactive-note { font-size: 10px; font-weight: 400; color: #ccc; margin-left: 4px; }
+  .nav-spacer { flex: 1; }
+  .nav-cart-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 0 16px; font-size: 13px; font-weight: 600; color: #4a90d9; cursor: pointer;
+  }
+  .cart-badge {
+    background: #4a90d9; color: #fff; border-radius: 50%;
+    width: 18px; height: 18px; font-size: 11px;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+
+  /* Breadcrumb */
+  .breadcrumb {
+    padding: 12px 24px;
+    font-size: 13px;
+    color: #888;
+    border-bottom: 1px solid #eee;
+    background: #fafafa;
+  }
+  .breadcrumb a { color: #4a90d9; }
+  .breadcrumb .sep { margin: 0 6px; color: #ccc; }
+  .breadcrumb .current { color: #555; font-weight: 600; }
+
+  /* ============================================================
+     MAIN PRODUCT LAYOUT
+  ============================================================ */
+  .product-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 32px 24px 40px;
+    align-items: start;
+  }
+
+  /* --- LEFT: Photo Column --- */
+  .photo-column {}
+
+  .main-photo {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: #b0b0b0;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+    text-align: center;
+    padding: 16px;
+  }
+
+  .photo-thumbnails {
+    display: flex;
+    gap: 10px;
+  }
+  .thumb {
+    width: 80px;
+    height: 80px;
+    border-radius: 4px;
+    background: #b0b0b0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    border: 2px solid transparent;
+    flex-shrink: 0;
+    text-align: center;
+    padding: 4px;
+  }
+  .thumb.active { border-color: #4a90d9; }
+  .thumb.alt1 { background: #9a9a9a; }
+  .thumb.alt2 { background: #aaa; }
+
+  /* --- RIGHT: Info Column --- */
+  .info-column {}
+
+  .plant-name-heading {
+    font-size: 28px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+
+  .plant-byline {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 20px;
+  }
+
+  .plant-price-display {
+    font-size: 26px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 20px;
+  }
+  .plant-price-display.sold-out { color: #aaa; }
+
+  /* Attributes table */
+  .attr-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 24px;
+  }
+  .attr-table tr {
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .attr-table tr:last-child { border-bottom: none; }
+  .attr-table td {
+    padding: 7px 0;
+    font-size: 13px;
+    vertical-align: top;
+  }
+  .attr-label {
+    color: #888;
+    width: 140px;
+    font-weight: 600;
+    padding-right: 12px;
+  }
+  .attr-value { color: #333; }
+
+  .plant-short-desc {
+    font-size: 14px;
+    color: #444;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    padding: 16px;
+    background: #f7f7f7;
+    border-left: 3px solid #d0d0d0;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .add-to-cart-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .qty-selector {
+    display: flex;
+    align-items: center;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .qty-btn {
+    width: 36px;
+    height: 44px;
+    background: #f0f0f0;
+    border: none;
+    font-size: 18px;
+    color: #555;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 300;
+  }
+  .qty-value {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 600;
+    color: #222;
+    border-left: 1px solid #d0d0d0;
+    border-right: 1px solid #d0d0d0;
+  }
+
+  .in-stock-note {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 20px;
+  }
+  .in-stock-note .dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #6abf6a;
+    margin-right: 5px;
+  }
+  .in-stock-note .dot.out { background: #ccc; }
+
+  .plant-long-desc {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.8;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+  }
+  .plant-long-desc h4 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: #888;
+    margin-bottom: 10px;
+  }
+
+  /* ============================================================
+     COORDINATED FLOWERS SECTION
+  ============================================================ */
+  .coord-section {
+    padding: 0 24px 48px;
+    border-top: 2px solid #f0f0f0;
+    margin-top: 8px;
+  }
+  .coord-heading {
+    font-size: 18px;
+    font-weight: 700;
+    color: #222;
+    padding-top: 32px;
+    margin-bottom: 6px;
+  }
+  .coord-subheading {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 24px;
+  }
+  .coord-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+  }
+  .coord-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.15s;
+  }
+  .coord-card:hover { border-color: #4a90d9; }
+  .coord-photo {
+    width: 100%;
+    aspect-ratio: 1/1;
+    background: #b0b0b0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 600;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    text-align: center;
+    padding: 6px;
+  }
+  .coord-photo.alt1 { background: #9a9a9a; }
+  .coord-photo.alt2 { background: #aaa; }
+  .coord-photo.alt3 { background: #c0c0c0; }
+  .coord-photo.alt4 { background: #a5a5a5; }
+  .coord-card-name {
+    padding: 8px 10px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #333;
+    text-align: center;
+    line-height: 1.3;
+  }
+  .coord-card-price {
+    padding: 0 10px 8px;
+    font-size: 12px;
+    color: #888;
+    text-align: center;
+  }
+
+  /* Footer */
+  .site-footer { background: #333; color: #ccc; padding: 20px 24px; }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #888; }
+  .footer-bottom a { color: #7ab8f5; }
+
+  /* Annotations */
+  .annotations {
+    background: #fffbe6; border-top: 4px solid #f5c518;
+    padding: 32px 32px 40px; font-size: 14px; color: #333; line-height: 1.7;
+  }
+  .annotations h2 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .ann-subtitle { font-size: 13px; color: #888; margin-bottom: 28px; }
+  .ann-item { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #eedc6a; }
+  .ann-item:last-child { border-bottom: none; margin-bottom: 0; }
+  .ann-item strong { display: block; font-size: 14px; font-weight: 700; color: #222; margin-bottom: 4px; }
+  .ann-tag {
+    display: inline-block; background: #f5c518; color: #333;
+    font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 3px;
+    margin-top: 6px; text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .ann-tag.decision { background: #ffd580; }
+  .ann-tag.content { background: #c8e6c9; color: #1b5e20; }
+</style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <div class="cookie-banner">
+    <span>This site uses only essential cookies to keep your shopping cart working. No tracking or advertising cookies are used.</span>
+    <button class="cookie-dismiss">Got it</button>
+  </div>
+
+  <div class="site-header">
+    <h1><a href="#" style="color:#222;">Dazzling Daylilies</a></h1>
+    <p class="tagline">Iowa-grown daylilies, irises, and perennials shipped to your door</p>
+  </div>
+
+  <nav class="top-nav">
+    <a class="nav-tab active" href="#">Daylilies</a>
+    <a class="nav-tab inactive" href="#">Iris <span class="inactive-note">(coming soon)</span></a>
+    <a class="nav-tab inactive" href="#">Lilies <span class="inactive-note">(coming soon)</span></a>
+    <a class="nav-tab inactive" href="#">Other Perennials <span class="inactive-note">(coming soon)</span></a>
+    <div class="nav-spacer"></div>
+    <a class="nav-cart-btn" href="#">Cart <span class="cart-badge">2</span></a>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <a href="#">Home</a>
+    <span class="sep">&rsaquo;</span>
+    <a href="#">Daylilies</a>
+    <span class="sep">&rsaquo;</span>
+    <span class="current">Acapulco Sunset</span>
+  </div>
+
+  <!-- MAIN PRODUCT SECTION -->
+  <div class="product-layout">
+
+    <!-- LEFT: Photos -->
+    <div class="photo-column">
+      <div class="main-photo">[ Main photo — Acapulco Sunset ]<br><br>Large display image<br>switches when thumbnail is clicked</div>
+      <div class="photo-thumbnails">
+        <div class="thumb active">[ photo 1 ]</div>
+        <div class="thumb alt1">[ photo 2 ]</div>
+        <div class="thumb alt2">[ photo 3 ]</div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Plant Info -->
+    <div class="info-column">
+
+      <h1 class="plant-name-heading">Acapulco Sunset</h1>
+      <div class="plant-byline">Hybridizer: Stamile &nbsp;&bull;&nbsp; Introduced: 1995</div>
+
+      <div class="plant-price-display">$28.00</div>
+
+      <table class="attr-table">
+        <tr>
+          <td class="attr-label">Plant Type</td>
+          <td class="attr-value">Daylily</td>
+        </tr>
+        <tr>
+          <td class="attr-label">Color</td>
+          <td class="attr-value">Orange / Gold blend</td>
+        </tr>
+        <tr>
+          <td class="attr-label">Bloom Size</td>
+          <td class="attr-value">5.5 inches (Large)</td>
+        </tr>
+        <tr>
+          <td class="attr-label">Scape Height</td>
+          <td class="attr-value">28 inches</td>
+        </tr>
+        <tr>
+          <td class="attr-label">Ploidy</td>
+          <td class="attr-value">Tetraploid</td>
+        </tr>
+        <tr>
+          <td class="attr-label">Foliage</td>
+          <td class="attr-value">Dormant</td>
+        </tr>
+        <tr>
+          <td class="attr-label">Bloom Time</td>
+          <td class="attr-value">Midseason</td>
+        </tr>
+        <tr>
+          <td class="attr-label">Rebloomer</td>
+          <td class="attr-value">Yes</td>
+        </tr>
+        <tr>
+          <td class="attr-label">Fragrant</td>
+          <td class="attr-value">Slightly</td>
+        </tr>
+      </table>
+
+      <div class="plant-short-desc">
+        Rich orange and gold blend with a deep, warm throat. Wide, ruffled petals and strong branching make this one of the showiest rebloomers in the catalog. Reliable and easy to grow in most climates.
+      </div>
+
+      <div class="in-stock-note">
+        <span class="dot"></span> In stock and ready to ship
+      </div>
+
+      <div class="add-to-cart-row">
+        <div class="qty-selector">
+          <button class="qty-btn">&#8722;</button>
+          <div class="qty-value">1</div>
+          <button class="qty-btn">+</button>
+        </div>
+        <button class="btn-primary">Add to Cart</button>
+      </div>
+
+      <div class="plant-long-desc">
+        <h4>About This Plant</h4>
+        <p>
+          Acapulco Sunset is one of those varieties that earns its place in every garden. The blooms open a rich orange with gold edges that deepen as the day goes on, giving it a sunset-like quality that photographs beautifully. The scapes are well-branched with good bud count, and it comes back reliably each season even after Iowa winters.
+        </p>
+        <br>
+        <p>
+          Plants are shipped as bare-root divisions in late spring when conditions are right for safe transit. Each division is dug fresh and packed with care. Jean includes planting instructions with every order.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- COORDINATED FLOWERS -->
+  <div class="coord-section">
+    <div class="coord-heading">Coordinated Flowers</div>
+    <div class="coord-subheading">Plants that pair beautifully with Acapulco Sunset</div>
+
+    <div class="coord-grid">
+
+      <a class="coord-card" href="#">
+        <div class="coord-photo">[ photo ]<br>Strawberry Candy</div>
+        <div class="coord-card-name">Strawberry Candy</div>
+        <div class="coord-card-price">$22.00</div>
+      </a>
+
+      <a class="coord-card" href="#">
+        <div class="coord-photo alt1">[ photo ]<br>Happy Returns</div>
+        <div class="coord-card-name">Happy Returns</div>
+        <div class="coord-card-price">$18.00</div>
+      </a>
+
+      <a class="coord-card" href="#">
+        <div class="coord-photo alt2">[ photo ]<br>Frank Gladney</div>
+        <div class="coord-card-name">Frank Gladney</div>
+        <div class="coord-card-price">$30.00</div>
+      </a>
+
+      <a class="coord-card" href="#">
+        <div class="coord-photo alt3">[ photo ]<br>Joan Senior</div>
+        <div class="coord-card-name">Joan Senior</div>
+        <div class="coord-card-price">$22.00</div>
+      </a>
+
+      <a class="coord-card" href="#">
+        <div class="coord-photo alt4">[ photo ]<br>Morning Mist</div>
+        <div class="coord-card-name">Morning Mist</div>
+        <div class="coord-card-price">$26.00</div>
+      </a>
+
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-bottom">
+      <span>&copy; 2027 Dazzling Daylilies &bull; Fairfax, Iowa</span>
+      <span>
+        <a href="#">Shipping Info</a> &bull;
+        <a href="#">Privacy Policy</a> &bull;
+        <a href="#">Terms of Service</a>
+      </span>
+    </div>
+  </footer>
+
+</div><!-- /.page-wrapper -->
+
+
+<!-- ANNOTATIONS -->
+<div class="annotations">
+  <h2>Page Annotations: Plant Detail Page (Wireframe 03 of 17)</h2>
+  <p class="ann-subtitle">Notes for Jean and Edward. Plain English explanations of what each region does and what decisions this layout commits us to.</p>
+
+  <div class="ann-item">
+    <strong>Breadcrumb Navigation (the "Home &rsaquo; Daylilies &rsaquo; Acapulco Sunset" line)</strong>
+    <p>Shows customers where they are in the site and gives them a one-click way back to the catalog without using the browser's back button. "Daylilies" links to the catalog page. "Home" links to the homepage. The current page name (Acapulco Sunset) is plain text, not a link, since customers are already on it.</p>
+  </div>
+
+  <div class="ann-item">
+    <strong>Main Photo and Thumbnail Row</strong>
+    <p>The large square photo is the main display image. Up to three photos can be associated with each plant. The three thumbnails below it are clickable: tapping one swaps it into the main display area. The active thumbnail has a blue border to show which photo is currently displayed. If a plant only has one photo, only one thumbnail appears. If it has no photos yet, a placeholder is shown.</p>
+    <span class="ann-tag decision">Decision needed: Should the main photo be square (1:1 ratio, as shown) or a taller portrait format (3:4 or 4:5) to better showcase tall scape shots? Square is safer for consistency across different photo compositions. Jean should consider what shape her photos tend to be.</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>Plant Name, Hybridizer, and Year</strong>
+    <p>The plant name is the largest element on the page. Hybridizer and year appear in smaller text directly below it. These two fields are useful to experienced daylily buyers who specifically seek out certain hybridizers or vintage varieties.</p>
+  </div>
+
+  <div class="ann-item">
+    <strong>Price</strong>
+    <p>Displayed prominently in large text near the top, before the attribute table. Customers should not have to hunt for the price. If a plant is sold out, this area shows the price in grey with "Sold Out" text and the Add to Cart button is replaced with a disabled "Currently Unavailable" button.</p>
+  </div>
+
+  <div class="ann-item">
+    <strong>Attribute Table (the data grid)</strong>
+    <p>Shows the key plant characteristics: Plant Type, Color, Bloom Size, Scape Height, Ploidy, Foliage, Bloom Time, Rebloomer, and Fragrant. These pull directly from the plant's database record. Any field Jean left blank when entering the plant is simply omitted from the table rather than showing "N/A."</p>
+    <span class="ann-tag decision">Decision needed: Are these the right attributes to show, and in this order? Jean may want to add, remove, or reorder them. This is easy to change before coding begins but harder to adjust after the data model is locked in.</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>Short Description (the highlighted block)</strong>
+    <p>Jean's brief summary of the plant, shown in a lightly shaded panel. This is the one or two sentences that appear on catalog cards as well, so it doubles as the catalog-page description. It should be concise and punchy, around 2 to 3 sentences.</p>
+  </div>
+
+  <div class="ann-item">
+    <strong>In Stock / Sold Out Indicator</strong>
+    <p>A small colored dot and text line shows availability at a glance: green dot for "In stock and ready to ship," grey dot for "Currently sold out." This is driven by the in_stock field Jean toggles in the admin panel.</p>
+  </div>
+
+  <div class="ann-item">
+    <strong>Quantity Selector and Add to Cart Button</strong>
+    <p>The minus and plus buttons adjust the quantity before adding to cart. Default is 1. The quantity selector is included here in case a customer wants two fans of the same variety; Jean should confirm whether she wants to allow quantities greater than 1 per plant, or limit each plant to 1 per order.</p>
+    <span class="ann-tag decision">Decision needed: Should customers be able to order more than 1 of the same plant? Some growers allow it; others sell only one fan per customer per order. This affects the quantity selector: if the answer is "max 1," the selector can be removed entirely and the button just says "Add to Cart."</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>Long Description (About This Plant)</strong>
+    <p>Jean's full write-up for the plant, shown below the short description and Add to Cart button. This is where she can tell the story of the variety, give growing tips, or share why she loves it. There is no character limit. If Jean leaves this blank for a plant, this section is hidden entirely.</p>
+  </div>
+
+  <div class="ann-item">
+    <strong>Coordinated Flowers Section</strong>
+    <p>A row of 5 plants that Jean has hand-picked as good companions to this one. Each card shows a photo thumbnail, the plant name, and the price. Clicking any card navigates to that plant's detail page. Jean sets these pairings in the admin Plant Editor using the "Coordinated With" multi-select field. The spec calls for 3, 5, 7, or 9 coordinated plants (always an odd number for visual balance). This wireframe shows 5.</p>
+    <span class="ann-tag decision">Decision needed: Should the Coordinated Flowers section show a fixed number (always 5, say) or however many Jean assigns up to a maximum? If she assigns 3 for one plant and 9 for another, both would be valid. A fixed count is more visually consistent but less flexible.</span>
+    <span class="ann-tag decision">Decision needed: Should coordinated plants that are sold out still appear in this section? Showing them keeps the layout stable; hiding them could leave the section looking thin or uneven.</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>Page Layout: Two Columns</strong>
+    <p>Photos on the left, all plant info on the right. This is the standard e-commerce product page layout and matches what daylily buyers expect from sites like Petal Pushers and Debra's. On mobile, the columns stack: photos on top, info below.</p>
+  </div>
+
+</div>
+
+</body>
+</html>
