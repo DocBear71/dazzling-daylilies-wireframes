@@ -600,10 +600,10 @@
 (function(){
   var form = document.getElementById('feedback-form-wf17');
   if (!form) return;
-  var fieldMap = [['fb-label_printer', 'h-label_printer'],
-    ['fb-return_address_label', 'h-return_address_label'],
-    ['fb-live_plants_notice', 'h-live_plants_notice'],
-    ['fb-general', 'h-general']];
+  var fieldMap = [['label_printer', 'h-label_printer'],
+    ['return_address_label', 'h-return_address_label'],
+    ['live_plants_notice', 'h-live_plants_notice'],
+    ['general', 'h-general']];
   form.addEventListener('submit', function(e) {
     e.preventDefault();
     fieldMap.forEach(function(p) {

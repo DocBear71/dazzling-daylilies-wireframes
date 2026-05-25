@@ -444,7 +444,7 @@
 
   <div class="site-header">
     <h1><a href="#" style="color:#222;">Dazzling Daylilies</a></h1>
-    <p class="tagline">Hand-dug daylilies and perennials, grown with care in Fairfax, Iowa</p>
+    <p class="tagline">Iowa-grown daylilies, irises, and perennials shipped to your door</p>
   </div>
 
   <nav class="top-nav">
@@ -452,7 +452,7 @@
       <a class="nav-tab active" href="#">Daylilies</a>
       <a class="nav-tab inactive" href="#">Iris <span class="inactive-note">(coming soon)</span></a>
       <a class="nav-tab inactive" href="#">Lilies <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab bundles-tab" href="#">Collections</a>
+      <a class="nav-tab bundles-tab" href="#">Bundles</a>
       <div class="nav-spacer"></div>
       <a class="nav-cart-btn" href="#">Cart <span class="cart-badge">0</span></a>
     </div>
@@ -739,9 +739,9 @@
 (function(){
   var form = document.getElementById('feedback-form-wf06');
   if (!form) return;
-  var fieldMap = [['fb-thankyou_note', 'h-thankyou_note'],
-    ['fb-next_steps', 'h-next_steps'],
-    ['fb-general', 'h-general']];
+  var fieldMap = [['thankyou_note', 'h-thankyou_note'],
+    ['next_steps', 'h-next_steps'],
+    ['general', 'h-general']];
   form.addEventListener('submit', function(e) {
     e.preventDefault();
     fieldMap.forEach(function(p) {

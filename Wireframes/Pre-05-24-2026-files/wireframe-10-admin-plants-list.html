@@ -1065,10 +1065,10 @@
 (function(){
   var form = document.getElementById('feedback-form-wf10');
   if (!form) return;
-  var fieldMap = [['fb-plants_per_page_admi', 'h-plants_per_page_admi'],
-    ['fb-active_toggle', 'h-active_toggle'],
-    ['fb-bulk_actions', 'h-bulk_actions'],
-    ['fb-general', 'h-general']];
+  var fieldMap = [['plants_per_page_admi', 'h-plants_per_page_admi'],
+    ['active_toggle', 'h-active_toggle'],
+    ['bulk_actions', 'h-bulk_actions'],
+    ['general', 'h-general']];
   form.addEventListener('submit', function(e) {
     e.preventDefault();
     fieldMap.forEach(function(p) {

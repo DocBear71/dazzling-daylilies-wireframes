@@ -350,8 +350,8 @@
     <div class="decision-entry">
       <div class="decision-header">
         <span class="decision-id">D-002</span>
-        <span class="decision-title">Bundles tab name: confirmed as "Collections"</span>
-        <span class="entry-status status-decided">Decided &mdash; committed</span>
+        <span class="decision-title">Bundles tab name: "Bundles" vs. another label</span>
+        <span class="entry-status status-jean">Jean to decide</span>
       </div>
       <div class="decision-body">
         <p>The standalone bundle catalog page uses the tab label "Bundles." Jean may prefer a different name that better fits her brand voice.</p>
@@ -365,11 +365,8 @@
           <li class="opt-rec"><strong>Recommendation:</strong> Jean decides. Whatever she picks becomes the tab label, the page heading, and the term used throughout the admin guide.</li>
         </ul>
       </div>
-      <div class="committed-block">
-        <strong>Committed:</strong> Jean confirmed "Collections" as the tab label on May 23, 2026. All wireframes, the index page, and the admin Settings toggle should use "Collections." The URL remains /bundles unless Jean requests otherwise.
-      </div>
       <div class="decision-footer">
-        <span class="wf-ref">WF03c, WF03 revised, all public nav, index.html</span>
+        <span class="wf-ref">WF03c, WF03 revised, all public nav</span>
       </div>
     </div>
 
@@ -568,33 +565,11 @@
       <span class="section-wf-ref">WF03 revised, WF03b, WF03c, WF11 revised</span>
     </div>
 
-
-    <div class="decision-entry">
-      <div class="decision-header">
-        <span class="decision-id">D-011b</span>
-        <span class="decision-title">Plant attribute abbreviation system and display order: confirmed</span>
-        <span class="entry-status status-decided">Decided &mdash; committed</span>
-      </div>
-      <div class="decision-body">
-        <p>Jean confirmed the abbreviated attribute display format for the plant detail page on May 23, 2026. Rather than a full attribute table, each plant shows a compact single-line abbreviation string. The confirmed abbreviations and their display order are:</p>
-        <p><strong>Display order:</strong> Bloom Size &bull; Foliage (Dor/Ev/Sev) &bull; Genetics (Dip/Tet) &bull; Bloom Season (EE/E/EM/M/ML/L/VL) &bull; Fragrant (FR) &bull; Special Forms (Dbl/Spider/UFO/Poly/Noc) &bull; Rebloomer (Re) &bull; Scape Height</p>
-        <p><strong>Example:</strong> 5.5" Dor Tet M FR Re 28"</p>
-        <p>A customer-facing abbreviation key is also confirmed as a required UI element on the plant detail page. Implementation options: tooltip on hover over each abbreviation, or a collapsible "What do these mean?" section. To be finalized in the design phase.</p>
-        <p>Fan size (DF = Double Fan, SF = Single Fan) is always stated on each listing. Customers can order multiple fans of the same variety using the quantity selector.</p>
-      </div>
-      <div class="committed-block">
-        <strong>Committed:</strong> Abbreviated single-line attribute display replaces the full attribute table on the plant detail page. The plant editor stores full field values; the abbreviated display is rendered from those stored values. The plant_type, color, bloom_size, ploidy, foliage, bloom_time, rebloomer, and fragrant database columns remain unchanged. A ships_as field (DF or SF) is added to the plants table.
-      </div>
-      <div class="decision-footer">
-        <span class="wf-ref">WF03 all variants, WF11, plants table schema</span>
-      </div>
-    </div>
-
     <div class="decision-entry">
       <div class="decision-header">
         <span class="decision-id">D-012</span>
-        <span class="decision-title">Bundle discount type: fixed dollar amount only, no percentage</span>
-        <span class="entry-status status-decided">Decided &mdash; committed</span>
+        <span class="decision-title">Bundle discount type: fixed dollar amount vs. percentage</span>
+        <span class="entry-status status-jean">Jean to decide</span>
       </div>
       <div class="decision-body">
         <p>Jean sets a bundle price in the Plant Editor. The wireframes show the discount as both a dollar amount ("Save $12.00") and a percentage ("9.7% off"), calculated automatically from the bundle price vs. individual total. Jean needs to decide which format she wants shown to customers.</p>
@@ -671,8 +646,8 @@
     <div class="decision-entry">
       <div class="decision-header">
         <span class="decision-id">D-016</span>
-        <span class="decision-title">Bundle photo strip on the bundles catalog page: cap at 5 photos with +N more indicator</span>
-        <span class="entry-status status-decided">Decided &mdash; committed</span>
+        <span class="decision-title">Bundle photo strip on the bundles catalog page: show all photos vs. cap at 5</span>
+        <span class="entry-status status-open">Open &mdash; needs a decision</span>
       </div>
       <div class="decision-body">
         <p>For 7 and 9-plant bundles, showing all photos as narrow slivers in the card photo strip looks visually awkward. Capping at 5 visible photos with a "+N more" indicator keeps all cards consistent.</p>
@@ -762,26 +737,6 @@
       </div>
       <div class="decision-footer">
         <span class="wf-ref">WF05</span>
-      </div>
-    </div>
-
-
-    <div class="decision-entry">
-      <div class="decision-header">
-        <span class="decision-id">D-019b</span>
-        <span class="decision-title">Local pickup option at checkout: confirmed and in scope</span>
-        <span class="entry-status status-decided">Decided &mdash; committed</span>
-      </div>
-      <div class="decision-body">
-        <p>Jean confirmed on May 23, 2026 that she wants to offer local pickup at her Fairfax, Iowa address as an alternative to shipping. Customers pay online and select pickup at checkout. No shipping charge applies to pickup orders.</p>
-        <p>This adds the following to the build scope (absorbed, not a change order per Edward's decision):</p>
-        <p>Checkout: a "Shipping or Local Pickup?" toggle before the address section. Selecting pickup hides shipping address fields, shows pickup instructions, and zeroes out shipping cost. Order confirmation email: different text for pickup orders ("Jean will contact you to arrange a pickup time"). Order status page: "Ready for Pickup" status instead of "Shipped." Admin order list: visual indicator distinguishing pickup from shipped orders. Order sheet: "LOCAL PICKUP" label so Jean does not accidentally pack and ship a pickup order.</p>
-      </div>
-      <div class="committed-block">
-        <strong>Committed:</strong> Local pickup is absorbed into scope. Wireframes WF05 (Checkout), WF06 (Order Confirmation), WF07 (Order Status), WF14 (Order Detail), and WF16 (Order Sheet) all need pickup-specific variations added. The orders table needs a fulfillment_type column (shipped/pickup). The settings table needs a pickup_address field for the instructions shown at checkout.
-      </div>
-      <div class="decision-footer">
-        <span class="wf-ref">WF05, WF06, WF07, WF14, WF16, orders table schema</span>
       </div>
     </div>
 
@@ -1195,7 +1150,7 @@
           <tr>
             <td>Homepage tagline</td>
             <td>WF01, all pages</td>
-            <td>Current placeholder: "Hand-dug daylilies and perennials, grown with care in Fairfax, Iowa." Jean to approve or rewrite.</td>
+            <td>Current placeholder: "Iowa-grown daylilies, irises, and perennials shipped to your door." Jean to approve or rewrite.</td>
           </tr>
           <tr>
             <td>Thank-you note on order sheet</td>

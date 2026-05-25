@@ -941,10 +941,10 @@
 (function(){
   var form = document.getElementById('feedback-form-wf09');
   if (!form) return;
-  var fieldMap = [['fb-stats_season', 'h-stats_season'],
-    ['fb-ga_dashboard', 'h-ga_dashboard'],
-    ['fb-low_stock', 'h-low_stock'],
-    ['fb-general', 'h-general']];
+  var fieldMap = [['stats_season', 'h-stats_season'],
+    ['ga_dashboard', 'h-ga_dashboard'],
+    ['low_stock', 'h-low_stock'],
+    ['general', 'h-general']];
   form.addEventListener('submit', function(e) {
     e.preventDefault();
     fieldMap.forEach(function(p) {

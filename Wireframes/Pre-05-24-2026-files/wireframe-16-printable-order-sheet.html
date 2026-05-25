@@ -745,10 +745,10 @@
 (function(){
   var form = document.getElementById('feedback-form-wf16');
   if (!form) return;
-  var fieldMap = [['fb-return_address', 'h-return_address'],
-    ['fb-name_on_sheet', 'h-name_on_sheet'],
-    ['fb-thankyou_on_sheet', 'h-thankyou_on_sheet'],
-    ['fb-general', 'h-general']];
+  var fieldMap = [['return_address', 'h-return_address'],
+    ['name_on_sheet', 'h-name_on_sheet'],
+    ['thankyou_on_sheet', 'h-thankyou_on_sheet'],
+    ['general', 'h-general']];
   form.addEventListener('submit', function(e) {
     e.preventDefault();
     fieldMap.forEach(function(p) {

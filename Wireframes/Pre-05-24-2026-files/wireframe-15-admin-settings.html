@@ -934,11 +934,11 @@ Jean will email you personally when your order ships with the tracking number an
 (function(){
   var form = document.getElementById('feedback-form-wf15');
   if (!form) return;
-  var fieldMap = [['fb-shipping_dates', 'h-shipping_dates'],
-    ['fb-email_from', 'h-email_from'],
-    ['fb-thankyou_text', 'h-thankyou_text'],
-    ['fb-care_instructions_te', 'h-care_instructions_te'],
-    ['fb-general', 'h-general']];
+  var fieldMap = [['shipping_dates', 'h-shipping_dates'],
+    ['email_from', 'h-email_from'],
+    ['thankyou_text', 'h-thankyou_text'],
+    ['care_instructions_te', 'h-care_instructions_te'],
+    ['general', 'h-general']];
   form.addEventListener('submit', function(e) {
     e.preventDefault();
     fieldMap.forEach(function(p) {

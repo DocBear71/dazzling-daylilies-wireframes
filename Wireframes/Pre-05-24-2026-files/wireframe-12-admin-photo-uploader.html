@@ -781,10 +781,10 @@
 (function(){
   var form = document.getElementById('feedback-form-wf12');
   if (!form) return;
-  var fieldMap = [['fb-filename_convention', 'h-filename_convention'],
-    ['fb-unmatched_photos', 'h-unmatched_photos'],
-    ['fb-max_photos', 'h-max_photos'],
-    ['fb-general', 'h-general']];
+  var fieldMap = [['filename_convention', 'h-filename_convention'],
+    ['unmatched_photos', 'h-unmatched_photos'],
+    ['max_photos', 'h-max_photos'],
+    ['general', 'h-general']];
   form.addEventListener('submit', function(e) {
     e.preventDefault();
     fieldMap.forEach(function(p) {

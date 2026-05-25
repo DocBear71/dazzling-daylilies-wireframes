@@ -809,10 +809,10 @@
 (function(){
   var form = document.getElementById('feedback-form-wf13');
   if (!form) return;
-  var fieldMap = [['fb-season_definition_or', 'h-season_definition_or'],
-    ['fb-new_order_highlight', 'h-new_order_highlight'],
-    ['fb-csv_export', 'h-csv_export'],
-    ['fb-general', 'h-general']];
+  var fieldMap = [['season_definition_or', 'h-season_definition_or'],
+    ['new_order_highlight', 'h-new_order_highlight'],
+    ['csv_export', 'h-csv_export'],
+    ['general', 'h-general']];
   form.addEventListener('submit', function(e) {
     e.preventDefault();
     fieldMap.forEach(function(p) {

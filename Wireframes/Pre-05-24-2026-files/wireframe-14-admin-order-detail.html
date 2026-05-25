@@ -855,10 +855,10 @@
 (function(){
   var form = document.getElementById('feedback-form-wf14');
   if (!form) return;
-  var fieldMap = [['fb-tracking_required', 'h-tracking_required'],
-    ['fb-internal_notes', 'h-internal_notes'],
-    ['fb-refund_button', 'h-refund_button'],
-    ['fb-general', 'h-general']];
+  var fieldMap = [['tracking_required', 'h-tracking_required'],
+    ['internal_notes', 'h-internal_notes'],
+    ['refund_button', 'h-refund_button'],
+    ['general', 'h-general']];
   form.addEventListener('submit', function(e) {
     e.preventDefault();
     fieldMap.forEach(function(p) {

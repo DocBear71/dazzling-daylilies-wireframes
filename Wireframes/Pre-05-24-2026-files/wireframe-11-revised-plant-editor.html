@@ -761,10 +761,10 @@
 (function(){
   var form = document.getElementById('feedback-form-wf11');
   if (!form) return;
-  var fieldMap = [['fb-dropdown_values', 'h-dropdown_values'],
-    ['fb-bundle_name_required', 'h-bundle_name_required'],
-    ['fb-bundle_price_method', 'h-bundle_price_method'],
-    ['fb-general', 'h-general']];
+  var fieldMap = [['dropdown_values', 'h-dropdown_values'],
+    ['bundle_name_required', 'h-bundle_name_required'],
+    ['bundle_price_method', 'h-bundle_price_method'],
+    ['general', 'h-general']];
   form.addEventListener('submit', function(e) {
     e.preventDefault();
     fieldMap.forEach(function(p) {

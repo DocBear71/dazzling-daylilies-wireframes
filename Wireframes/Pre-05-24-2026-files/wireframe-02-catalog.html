@@ -285,7 +285,7 @@
 
   <div class="site-header">
     <h1><a href="#" style="color:#222;">Dazzling Daylilies</a></h1>
-    <p class="tagline">Hand-dug daylilies and perennials, grown with care in Fairfax, Iowa</p>
+    <p class="tagline">Iowa-grown daylilies, irises, and perennials shipped to your door</p>
   </div>
 
   <nav class="top-nav">
@@ -293,7 +293,7 @@
       <a class="nav-tab active" href="#">Daylilies</a>
       <a class="nav-tab inactive" href="#">Iris <span class="inactive-note">(coming soon)</span></a>
       <a class="nav-tab inactive" href="#">Lilies <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab bundles-tab" href="#">Collections</a>
+      <a class="nav-tab bundles-tab" href="#">Bundles</a>
       <div class="nav-spacer"></div>
       <a class="nav-cart-btn" href="#">Cart <span class="cart-badge">2</span></a>
     </div>
@@ -649,13 +649,13 @@
 (function(){
   var form = document.getElementById('feedback-form-wf02');
   if (!form) return;
-  var fieldMap = [['fb-search_scope', 'h-search_scope'],
-    ['fb-filter_counts', 'h-filter_counts'],
-    ['fb-filter_collapsible', 'h-filter_collapsible'],
-    ['fb-grid_columns', 'h-grid_columns'],
-    ['fb-plants_per_page', 'h-plants_per_page'],
-    ['fb-soldout_catalog', 'h-soldout_catalog'],
-    ['fb-general', 'h-general']];
+  var fieldMap = [['search_scope', 'h-search_scope'],
+    ['filter_counts', 'h-filter_counts'],
+    ['filter_collapsible', 'h-filter_collapsible'],
+    ['grid_columns', 'h-grid_columns'],
+    ['plants_per_page', 'h-plants_per_page'],
+    ['soldout_catalog', 'h-soldout_catalog'],
+    ['general', 'h-general']];
   form.addEventListener('submit', function(e) {
     e.preventDefault();
     fieldMap.forEach(function(p) {
