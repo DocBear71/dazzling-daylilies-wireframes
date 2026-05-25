@@ -56,7 +56,7 @@
   .site-header h1 { font-size: 26px; font-weight: 700; color: #222; margin-bottom: 4px; }
   .site-header .tagline { font-size: 13px; color: #666; font-style: italic; }
 
-  /* Top Nav — updated to include Bundles tab */
+  /* Top Nav — updated to include Collections tab */
   .top-nav {
     background: #fff; border-bottom: 3px solid #d0d0d0;
     padding: 0 24px; display: flex; align-items: stretch; height: 48px;
@@ -146,6 +146,27 @@
     display: flex;
     height: 100px;
     overflow: hidden;
+  }
+  /* Two-row grid for 7 and 9-plant bundles so photos are not squished */
+  .bundle-card-photos--two-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr 1fr;
+    height: 110px;
+    overflow: hidden;
+  }
+  .bundle-card-photos--two-row .bcp-photo {
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    font-size: 7px;
+    flex: unset;
+  }
+  .bundle-card-photos--two-row .bcp-photo:nth-child(5n) {
+    border-right: none;
+  }
+  .bundle-card-photos--two-row .bcp-photo:last-child {
+    border-right: none;
+    border-bottom: none;
   }
   .bcp-photo {
     flex: 1;
@@ -315,7 +336,7 @@
 <body>
 
 <!-- ============================================================
-     STATE 1: BUNDLES PAGE WITH ACTIVE BUNDLES
+     STATE 1: Collections PAGE WITH ACTIVE Collections
 ============================================================ -->
 <div class="page-wrapper">
 
@@ -335,27 +356,25 @@
       <a class="nav-tab active" href="#">Daylilies</a>
       <a class="nav-tab inactive" href="#">Iris <span class="inactive-note">(coming soon)</span></a>
       <a class="nav-tab inactive" href="#">Lilies <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab bundles-tab" href="#">Collections</a>
-      <div class="nav-spacer"></div>
-      <a class="nav-cart-btn" href="#">Cart <span class="cart-badge">2</span></a>
-    </div>
-    <div class="nav-row nav-row-2">
+      
       <a class="nav-tab inactive" href="#">Dahlias <span class="inactive-note">(coming soon)</span></a>
       <a class="nav-tab inactive" href="#">Japanese Iris <span class="inactive-note">(coming soon)</span></a>
       <a class="nav-tab inactive" href="#">Other Perennials <span class="inactive-note">(coming soon)</span></a>
+	  <a class="nav-tab bundles-tab" href="#">Collections</a>
+      <a class="nav-cart-btn" href="#">Cart <span class="cart-badge">2</span></a>
     </div>
   </nav>
 
   <div class="nav-update-note">
     <span class="nav-update-badge">Nav updated</span>
-    A "Bundles" tab has been added to the top navigation on all public pages.
+    A "Collections" tab has been added to the top navigation on all public pages.
     Like the other tabs, it can be toggled on or off from the admin Settings page.
   </div>
 
   <!-- PAGE TITLE BAR -->
   <div class="page-title-bar">
     <h2>Collections</h2>
-    <span class="result-count">Showing 6 of 6 bundles</span>
+    <span class="result-count">Showing 6 of 6 Collections</span>
   </div>
 
   <!-- TOOLBAR -->
@@ -373,9 +392,9 @@
     <span class="filter-label">Plant Type:</span>
     <select class="filter-select">
       <option selected>All types</option>
-      <option>Daylily bundles</option>
-      <option>Iris bundles</option>
-      <option>Mixed bundles</option>
+      <option>Daylily Collections</option>
+      <option>Iris Collections</option>
+      <option>Mixed Collections</option>
     </select>
 
     <div class="toolbar-spacer"></div>
@@ -431,7 +450,7 @@
           <div class="bundle-anchor-note">
             Curated with <a href="#">Acapulco Sunset</a>
           </div>
-          <a class="btn-bundle" href="#">View Bundle &amp; Add to Cart</a>
+          <a class="btn-bundle" href="#">View Collection &amp; Add to Cart</a>
         </div>
       </div>
 
@@ -465,21 +484,25 @@
           <div class="bundle-anchor-note">
             Curated with <a href="#">Happy Returns</a>
           </div>
-          <a class="btn-bundle" href="#">View Bundle &amp; Add to Cart</a>
+          <a class="btn-bundle" href="#">View Collection &amp; Add to Cart</a>
         </div>
       </div>
 
       <!-- Bundle 3: 7-plant -->
       <div class="bundle-card">
         <div class="bundle-card-photo-wrap">
-          <div class="bundle-card-photos">
-            <div class="bcp-photo">photo</div>
-            <div class="bcp-photo alt3">photo</div>
-            <div class="bcp-photo alt1">photo</div>
-            <div class="bcp-photo alt5">photo</div>
-            <div class="bcp-photo alt2">photo</div>
-            <div class="bcp-photo alt4">photo</div>
-            <div class="bcp-photo">photo</div>
+          <!-- 7-plant: two-row grid (4 top + 3 bottom) -->
+          <div class="bundle-card-photos bundle-card-photos--two-row">
+            <div class="bcp-photo">ph</div>
+            <div class="bcp-photo alt3">ph</div>
+            <div class="bcp-photo alt1">ph</div>
+            <div class="bcp-photo alt5">ph</div>
+            <div class="bcp-photo alt2">ph</div>
+            <div class="bcp-photo alt4">ph</div>
+            <div class="bcp-photo">ph</div>
+            <div class="bcp-photo" style="visibility:hidden; border:none;"></div>
+            <div class="bcp-photo" style="visibility:hidden; border:none;"></div>
+            <div class="bcp-photo" style="visibility:hidden; border:none;"></div>
           </div>
           <span class="bundle-savings-badge">Save $22.00</span>
         </div>
@@ -507,7 +530,7 @@
           <div class="bundle-anchor-note">
             Curated with <a href="#">Bela Lugosi</a>
           </div>
-          <a class="btn-bundle" href="#">View Bundle &amp; Add to Cart</a>
+          <a class="btn-bundle" href="#">View Collection &amp; Add to Cart</a>
         </div>
       </div>
 
@@ -545,23 +568,25 @@
           <div class="bundle-anchor-note">
             Curated with <a href="#">Bela Lugosi</a>
           </div>
-          <a class="btn-bundle" href="#">View Bundle &amp; Add to Cart</a>
+          <a class="btn-bundle" href="#">View Collection &amp; Add to Cart</a>
         </div>
       </div>
 
       <!-- Bundle 5: 9-plant -->
       <div class="bundle-card">
         <div class="bundle-card-photo-wrap">
-          <div class="bundle-card-photos">
-            <div class="bcp-photo">p</div>
-            <div class="bcp-photo alt1">p</div>
-            <div class="bcp-photo alt2">p</div>
-            <div class="bcp-photo alt3">p</div>
-            <div class="bcp-photo alt4">p</div>
-            <div class="bcp-photo alt5">p</div>
-            <div class="bcp-photo alt6">p</div>
-            <div class="bcp-photo">p</div>
-            <div class="bcp-photo alt2">p</div>
+          <!-- 9-plant: two-row grid (5 top + 4 bottom) -->
+          <div class="bundle-card-photos bundle-card-photos--two-row">
+            <div class="bcp-photo">ph</div>
+            <div class="bcp-photo alt1">ph</div>
+            <div class="bcp-photo alt2">ph</div>
+            <div class="bcp-photo alt3">ph</div>
+            <div class="bcp-photo alt4">ph</div>
+            <div class="bcp-photo alt5">ph</div>
+            <div class="bcp-photo alt6">ph</div>
+            <div class="bcp-photo">ph</div>
+            <div class="bcp-photo alt2">ph</div>
+            <div class="bcp-photo" style="visibility:hidden; border:none;"></div>
           </div>
           <span class="bundle-savings-badge">Save $30.00</span>
         </div>
@@ -591,7 +616,7 @@
           <div class="bundle-anchor-note">
             Curated with <a href="#">Acapulco Sunset</a>
           </div>
-          <a class="btn-bundle" href="#">View Bundle &amp; Add to Cart</a>
+          <a class="btn-bundle" href="#">View Collection &amp; Add to Cart</a>
         </div>
       </div>
 
@@ -625,7 +650,7 @@
           <div class="bundle-anchor-note">
             Curated with <a href="#">Christmas Is</a>
           </div>
-          <a class="btn-bundle" href="#">View Bundle &amp; Add to Cart</a>
+          <a class="btn-bundle" href="#">View Collection &amp; Add to Cart</a>
         </div>
       </div>
 
@@ -643,13 +668,13 @@
     </div>
   </footer>
 
-</div><!-- /.page-wrapper (with bundles) -->
+</div><!-- /.page-wrapper (with Collections) -->
 
 
 <!-- ============================================================
-     STATE 2: EMPTY STATE (no bundles configured yet)
+     STATE 2: EMPTY STATE (no Collections configured yet)
 ============================================================ -->
-<div class="variation-label">Variation: Empty State (no bundles configured yet)</div>
+<div class="variation-label">Variation: Empty State (no Collections configured yet)</div>
 
 <div class="page-wrapper" style="margin-top:0; box-shadow:none; border-top:none;">
 
@@ -675,9 +700,9 @@
 
   <div class="empty-state">
     <div class="empty-state-icon">&#127807;</div>
-    <h3>Plant Bundles Coming Soon</h3>
+    <h3>Plant Collections Coming Soon</h3>
     <p>
-      Bundles are curated sets of plants that Jean hand-picks to grow and
+      Collections are curated sets of plants that Jean hand-picks to grow and
       bloom beautifully together. Each bundle includes three, five, seven,
       or nine plants at a special combined price, saving you money compared
       to buying each plant individually.
@@ -709,7 +734,7 @@
 <!-- FEEDBACK FORM -->
 <div class="ann-feedback-intro">
   <h2>Page Annotations and Your Feedback</h2>
-  <p>Hi Jean! This is the standalone page at /bundles listing all your active bundles, browsable without visiting any individual plant page. It includes filters by bundle size and plant type, and shows two states: a populated grid and an empty state. Read the notes above, then answer the questions below. Click <strong>Send My Feedback</strong> when done and Edward will receive everything by email.</p>
+  <p>Hi Jean! This is the standalone page at /Collections listing all your active Collections, browsable without visiting any individual plant page. It includes filters by Collection size and plant type, and shows two states: a populated grid and an empty state. Read the notes above, then answer the questions below. Click <strong>Send My Feedback</strong> when done and Edward will receive everything by email.</p>
 </div>
 <div class="annotations">
   <div class="ann-section-inner">
@@ -717,37 +742,37 @@
   <p class="ann-subtitle" style="margin-bottom:24px;">Yellow boxes are questions that need your input before the build begins. The notes above each box explain the context.</p>
   <div class="ann-item">
     <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-wf03c-0">The navigation tab for this page says "Bundles." Would you prefer a different name such as "Collections," "Garden Collections," or "Plant Sets"? Whatever you choose becomes the tab label and page heading throughout the site.</label>
-      <textarea id="fb-wf03c-0" placeholder="Type your answer here..."></textarea>
+      <label for="fb-wf03c-0">The navigation tab for this page now says "Collections." </label>
+      <textarea id="fb-wf03c-0" placeholder="No response required..."></textarea>
     </div>
   </div>
   <div class="ann-item">
     <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-wf03c-1">For 7 and 9-plant bundles, showing all photos as narrow slivers looks a little cramped. Should large bundles cap the photo strip at 5 visible photos with a "+N more" indicator, or always show every photo?</label>
-      <textarea id="fb-wf03c-1" placeholder="Type your answer here..."></textarea>
+      <label for="fb-wf03c-1">For 7 and 9-plant Collections, we have moved to a two row setting of images. How does this look, or would you prefer the +N ?</strong></label>
+      <textarea id="fb-wf03c-1" placeholder="Type answer here...." style="background:#f0faf4; border-color:#6abf6a;"></textarea>
     </div>
   </div>
   <div class="ann-item">
     <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-wf03c-2">Each bundle card shows a small note: "Curated with Acapulco Sunset" linking to the anchor plant. Is this useful to customers, or should it be left off the card?</label>
+      <label for="fb-wf03c-2">Each Collection card shows a small note: "Curated with Acapulco Sunset" linking to the anchor plant. Is this useful to customers, or should it be left off the card?</label>
       <textarea id="fb-wf03c-2" placeholder="Type your answer here..."></textarea>
     </div>
   </div>
   <div class="ann-item">
     <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-wf03c-3">The card button says "View Bundle and Add to Cart," taking customers to the bundle detail page first. Would you prefer a direct "Add Bundle to Cart" button on the card itself for returning customers who already know the bundle?</label>
+      <label for="fb-wf03c-3">The card button says "View Collection and Add to Cart," taking customers to the Collection detail page first. Would you prefer a direct "Add Collection to Cart" button on the card itself for returning customers who already know the bundle?</label>
       <textarea id="fb-wf03c-3" placeholder="Type your answer here..."></textarea>
     </div>
   </div>
   <div class="ann-item">
     <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-wf03c-4">The Bundles tab can be turned on or off from your admin Settings page, the same way the plant-type tabs work. Does this feel like the right level of control, or would you like it to appear and disappear automatically based on whether you have active bundles?</label>
+      <label for="fb-wf03c-4">The Collections tab can be turned on or off from your admin Settings page, the same way the plant-type tabs work. Does this feel like the right level of control, or would you like it to appear and disappear automatically based on whether you have active Collections?</label>
       <textarea id="fb-wf03c-4" placeholder="Type your answer here..."></textarea>
     </div>
   </div>
   <div class="ann-item">
     <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-wf03c-5">Any other thoughts on the bundles catalog page?</label>
+      <label for="fb-wf03c-5">Any other thoughts on the Collections catalog page?</label>
       <textarea id="fb-wf03c-5" placeholder="Type your answer here..."></textarea>
     </div>
   </div>
