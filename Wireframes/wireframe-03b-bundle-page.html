@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wireframe 03b: Coordinated Bundle Page — Dazzling Daylilies</title>
+<title>Wireframe 03b: Coordinated Collections Page — Dazzling Daylilies</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -293,41 +293,115 @@
   }
   .annotations h2 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
   .ann-subtitle { font-size: 13px; color: #888; margin-bottom: 28px; }
-  .ann-item { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #eedc6a; }
-  .ann-item:last-child { border-bottom: none; margin-bottom: 0; }
-  .ann-item strong { display: block; font-size: 14px; font-weight: 700; color: #222; margin-bottom: 4px; }
-  .ann-tag {
-    display: inline-block; background: #f5c518; color: #333;
-    font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 3px;
-    margin-top: 6px; text-transform: uppercase; letter-spacing: 0.04em;
-  }
   .ann-tag.decision { background: #ffd580; }
   .ann-tag.jean { background: #f8d7da; color: #721c24; }
   .ann-tag.new { background: #d5f5e3; color: #1a5c2a; }
 
   /* Feedback form styles */
-  .ann-feedback-intro { background: #2c3e50; color: #ecf0f1; padding: 24px 32px; font-size: 14px; line-height: 1.7; }
-  .ann-feedback-intro h2 { font-size: 18px; font-weight: 700; margin-bottom: 6px; color: #fff; }
-  .ann-feedback-intro p { color: #bdc3c7; max-width: 680px; }
   .ann-section-inner { padding: 32px 32px 0; }
-  .feedback-box { margin-top: 12px; background: #fff; border: 1px solid #e0d080; border-radius: 6px; padding: 14px 16px; }
-  .feedback-box label { display: block; font-size: 12px; font-weight: 700; color: #5a4a00; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
-  .feedback-box textarea { width: 100%; padding: 10px 12px; border: 1px solid #d0c060; border-radius: 4px; font-size: 14px; color: #333; background: #fffef5; resize: vertical; min-height: 80px; line-height: 1.6; font-family: inherit; }
-  .feedback-box textarea:focus { outline: 2px solid #f5c518; border-color: transparent; }
-  .feedback-box textarea::placeholder { color: #bbb; }
-  .feedback-form-wrap { background: #fff8e0; border-top: 2px solid #f5c518; padding: 28px 32px 36px; }
-  .feedback-form-heading { font-size: 16px; font-weight: 700; color: #222; margin-bottom: 4px; }
-  .feedback-form-desc { font-size: 13px; color: #666; margin-bottom: 20px; line-height: 1.6; }
-  .your-name-row { display: flex; gap: 14px; margin-bottom: 20px; flex-wrap: wrap; }
-  .your-name-field { flex: 1; min-width: 180px; }
-  .your-name-field label { display: block; font-size: 12px; font-weight: 700; color: #555; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 5px; }
-  .your-name-field input { width: 100%; padding: 10px 12px; border: 1px solid #d0d0d0; border-radius: 4px; font-size: 14px; color: #333; background: #fff; }
-  .submit-btn { display: inline-block; background: #2c3e50; color: #fff; padding: 12px 32px; border-radius: 4px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; }
-  .submit-btn:hover { background: #1a2a3a; }
-  .submit-note { font-size: 12px; color: #888; margin-top: 10px; line-height: 1.6; }
-  .success-message { display: none; background: #d5f5e3; border: 1px solid #6abf6a; border-radius: 6px; padding: 20px 24px; margin-top: 16px; font-size: 14px; color: #1a5c2a; line-height: 1.7; }
-  .success-message strong { display: block; font-size: 16px; margin-bottom: 4px; }
-  .error-message { display: none; background: #fdf2f2; border: 1px solid #e8b4b4; border-radius: 6px; padding: 14px 18px; margin-top: 12px; font-size: 13px; color: #7a2020; }
+
+  /* ── Approval form styles ───────────────────────── */
+  .approval-intro {
+    background: #2c3e50; color: #ecf0f1; padding: 24px 32px;
+    font-size: 14px; line-height: 1.7;
+  }
+  .approval-intro h2 { font-size: 18px; font-weight: 700; margin-bottom: 6px; color: #fff; }
+  .approval-intro p  { color: #bdc3c7; max-width: 680px; }
+
+  .annotations { max-width: 860px; margin: 0 auto; padding: 0 24px 48px; }
+  .ann-section-inner { padding-top: 8px; }
+  .ann-subtitle { font-size: 13px; color: #888; margin-bottom: 20px; margin-top: 2px; }
+
+  .ann-item {
+    background: #fff; border: 1px solid #e0e0e0; border-left: 4px solid #2c3e50;
+    border-radius: 4px; padding: 14px 18px; margin-bottom: 14px; font-size: 14px;
+    line-height: 1.7; color: #333;
+  }
+  .ann-item strong { display: block; font-size: 14px; font-weight: 700; margin-bottom: 4px; color: #1a2a3a; }
+  .ann-item p { margin: 0; }
+
+  .ann-tag {
+    display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; padding: 2px 8px; border-radius: 10px; margin-top: 8px;
+  }
+  .ann-tag.decision  { background: #fde8c8; color: #7a3c00; }
+  .ann-tag.content   { background: #ddeeff; color: #003366; }
+  .ann-tag.contract  { background: #d5f5e3; color: #1a5c2a; }
+  .ann-tag.confirmed { background: #d5f5e3; color: #1a5c2a; }
+  .ann-tag.info      { background: #f0f0f0; color: #555; }
+
+  /* Approval form */
+  .approval-form-wrap {
+    background: #f0f7ff; border-top: 3px solid #2c3e50;
+    padding: 32px 32px 40px; margin-top: 8px;
+  }
+  .approval-form-heading {
+    font-size: 18px; font-weight: 700; color: #1a2a3a; margin-bottom: 6px;
+  }
+  .approval-form-desc {
+    font-size: 13px; color: #555; margin-bottom: 24px; line-height: 1.6;
+  }
+  .approval-radio-group { display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
+  .approval-radio-label {
+    display: flex; align-items: center; gap: 8px; cursor: pointer;
+    font-size: 15px; font-weight: 600; color: #1a2a3a; padding: 12px 20px;
+    border: 2px solid #c8d8e8; border-radius: 6px; background: #fff;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .approval-radio-label input[type="radio"] { accent-color: #2c3e50; width: 18px; height: 18px; }
+  .approval-radio-label.approved  { border-color: #6abf6a; }
+  .approval-radio-label.changes   { border-color: #e8a040; }
+  .approval-radio-label input:checked ~ span.approved-text  { color: #1a5c2a; }
+  .approval-radio-label input:checked ~ span.changes-text   { color: #7a4400; }
+
+  .reason-field { margin-bottom: 20px; display: none; }
+  .reason-field.visible { display: block; }
+  .approval-label {
+    display: block; font-size: 12px; font-weight: 700; color: #555;
+    text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;
+  }
+  .approval-textarea {
+    width: 100%; padding: 10px 12px; border: 1px solid #c0c8d0;
+    border-radius: 4px; font-size: 14px; color: #333; background: #fff;
+    resize: vertical; min-height: 90px; line-height: 1.6; font-family: inherit;
+    box-sizing: border-box;
+  }
+  .approval-textarea:focus { outline: 2px solid #2c3e50; border-color: transparent; }
+  .approval-textarea::placeholder { color: #bbb; }
+
+  .approval-name-row { display: flex; gap: 14px; margin-bottom: 20px; flex-wrap: wrap; }
+  .approval-name-field { flex: 1; min-width: 180px; }
+  .approval-name-field label {
+    display: block; font-size: 12px; font-weight: 700; color: #555;
+    text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 5px;
+  }
+  .approval-name-field input {
+    width: 100%; padding: 10px 12px; border: 1px solid #c0c8d0;
+    border-radius: 4px; font-size: 14px; color: #333; background: #fff;
+    box-sizing: border-box;
+  }
+
+  .approval-submit-btn {
+    display: inline-block; background: #2c3e50; color: #fff;
+    padding: 13px 36px; border-radius: 4px; font-size: 15px;
+    font-weight: 700; border: none; cursor: pointer; letter-spacing: 0.02em;
+  }
+  .approval-submit-btn:hover { background: #1a2a3a; }
+  .approval-submit-btn:disabled { background: #999; cursor: default; }
+  .approval-submit-note { font-size: 12px; color: #888; margin-top: 10px; line-height: 1.6; }
+
+  .approval-success {
+    display: none; background: #d5f5e3; border: 1px solid #6abf6a;
+    border-radius: 6px; padding: 20px 24px; margin-top: 16px;
+    font-size: 14px; color: #1a5c2a; line-height: 1.7;
+  }
+  .approval-success strong { display: block; font-size: 16px; margin-bottom: 4px; }
+  .approval-error {
+    display: none; background: #fdf2f2; border: 1px solid #e8b4b4;
+    border-radius: 6px; padding: 14px 18px; margin-top: 12px;
+    font-size: 13px; color: #7a2020;
+  }
+
 </style>
 </head>
 <body>
@@ -376,7 +450,7 @@
     <div class="bundle-main">
 
       <div class="bundle-page-header">
-        <span class="bundle-page-label">Plant Bundle</span>
+        <span class="bundle-page-label">Plant Collections</span>
         <h1 class="bundle-page-title">Jean's Sunset Garden Collection</h1>
         <p class="bundle-page-desc">
           Jean hand-picked these five daylilies to bloom together beautifully in the
@@ -388,7 +462,7 @@
 
       <!-- Plant list -->
       <div class="bundle-plants-heading">
-        Plants in This Bundle
+        Plants in This Collection
         <span>5 plants &bull; each shipped as a bare-root division</span>
       </div>
 
@@ -490,22 +564,13 @@
           <span class="sv-value">$124.00</span>
         </div>
         <div class="savings-row savings-line">
-          <span class="sv-label">Bundle discount</span>
+          <span class="sv-label">Collection discount</span>
           <span class="sv-value">&#8722; $12.00</span>
         </div>
         <hr class="savings-divider">
         <div class="savings-row total">
-          <span class="sv-label">Bundle price</span>
+          <span class="sv-label">Collection price</span>
           <span class="sv-value">$112.00</span>
-        </div>
-
-        <div class="jean-flagged-block">
-          <strong>Jean-flagged decisions (all three apply here):</strong>
-          (1) Discount type: fixed dollar savings (as shown) or a percentage Jean defines?
-          (2) Price-setting: does Jean enter $112.00 directly, or enter a discount rule (e.g., 10% off)
-          and let the system calculate?
-          (3) Mix-and-match: can a customer swap one plant in the set for another, or is the bundle
-          fixed exactly as Jean designed it? The wireframe shows a fixed bundle only.
         </div>
       </div>
 
@@ -516,7 +581,7 @@
 
       <div class="sidebar-purchase-card">
         <div class="spc-header">
-          <div class="spc-label">Plant Bundle</div>
+          <div class="spc-label">Plant Collection</div>
           <div class="spc-title">Jean's Sunset Garden Collection</div>
           <div class="spc-plant-count">5 plants included</div>
         </div>
@@ -536,10 +601,10 @@
             <span class="spc-savings-pill">Save $12.00</span>
           </div>
 
-          <button class="btn-bundle">Add Bundle to Cart</button>
+          <button class="btn-bundle">Add Collection to Cart</button>
 
           <p class="spc-note">
-            Adds all 5 plants to your cart at the bundle price.<br>
+            Adds all 5 plants to your cart at the Collection price.<br>
             <a href="#">View plants individually</a>
           </p>
 
@@ -553,7 +618,7 @@
       </div>
 
       <div class="back-to-plant">
-        Viewing the bundle for <a href="#">Acapulco Sunset</a>.
+        Viewing the Collection for <a href="#">Acapulco Sunset</a>.
         Return to the plant page to browse other coordinated plants individually
         or add Acapulco Sunset to your cart on its own.
       </div>
@@ -578,123 +643,152 @@
 
 
 <!-- FEEDBACK FORM -->
-<div class="ann-feedback-intro">
-  <h2>Page Annotations and Your Feedback</h2>
-  <p>Hi Jean! This is the dedicated page customers see when they click "View Bundle Details." It shows all plants in the bundle with full details, pricing, and the Add Bundle to Cart button. Read the notes above, then answer the questions below. Click <strong>Send My Feedback</strong> when done and Edward will receive everything by email.</p>
+<div class="approval-intro">
+  <h2>Wireframe Notes: WF03b &mdash; Collection Detail Page</h2>
+  <p>Hi Jean! The notes below explain what each part of this page does and confirm
+    the decisions we have already made together. When you have finished reading,
+    please use the <strong>Approval Form</strong> at the bottom of this page to let
+    Edward know whether the page looks right or whether you would like any changes.</p>
 </div>
 <div class="annotations">
   <div class="ann-section-inner">
-  <h2 style="padding-top:24px;">Bundle Detail Page (WF03b)</h2>
-  <p class="ann-subtitle" style="margin-bottom:24px;">Yellow boxes are questions that need your input before the build begins. The notes above each box explain the context.</p>
-  <div class="ann-item">
-    <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-wf03b-0">The top of this page shows your description of why these plants go together (e.g., "Jean hand-picked these five daylilies..."). Should this description be required when setting up a bundle, or optional?</label>
-      <textarea id="fb-wf03b-0" placeholder="Type your answer here..."></textarea>
-    </div>
-  </div>
-  <div class="ann-item">
-    <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-wf03b-1">You set a single bundle price (e.g., $112.00) and the system calculates and shows the savings automatically. Would you prefer to instead enter a percentage discount (e.g., 10% off) and let the system calculate the bundle price from that?</label>
-      <textarea id="fb-wf03b-1" placeholder="Type your answer here..."></textarea>
-    </div>
-  </div>
-  <div class="ann-item">
-    <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-wf03b-2">The pricing summary shows: individual total ($124.00), discount line (-$12.00), and bundle price ($112.00). It also shows the percentage saved (9.7%). Should the percentage be shown, or just the dollar amounts?</label>
-      <textarea id="fb-wf03b-2" placeholder="Type your answer here..."></textarea>
-    </div>
-  </div>
-  <div class="ann-item">
-    <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-wf03b-3">If any plant in a bundle sells out, the Add Bundle to Cart button is disabled and a message explains which plant is unavailable. Should this happen automatically, or do you want to control bundle availability manually?</label>
-      <textarea id="fb-wf03b-3" placeholder="Type your answer here..."></textarea>
-    </div>
-  </div>
-  <div class="ann-item">
-    <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-wf03b-4">Currently bundles are fixed sets you define. Customers cannot swap out individual plants. Is the fixed bundle approach right for launch, or would you want customers to be able to substitute one plant in the set?</label>
-      <textarea id="fb-wf03b-4" placeholder="Type your answer here..."></textarea>
-    </div>
-  </div>
-  <div class="ann-item">
-    <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-wf03b-5">Any other thoughts on the bundle detail page?</label>
-      <textarea id="fb-wf03b-5" placeholder="Type your answer here..."></textarea>
-    </div>
-  </div>
-  </div>
-  <div class="feedback-form-wrap">
-    <div class="feedback-form-heading">Send Your Feedback to Edward</div>
-    <p class="feedback-form-desc">Type your answers in the boxes above, then click the button below to send everything to Edward in one email.</p>
-    <form id="ff-wf03b">
-      <input type="hidden" name="_subject" value="WF03b Bundle Detail Page Feedback - Dazzling Daylilies">
-      <input type="hidden" name="wireframe" value="WF03b - Bundle Detail Page">
-      <input type="hidden" name="bundle_desc_required" id="h-wf03b-0">
-      <input type="hidden" name="pricing_method" id="h-wf03b-1">
-      <input type="hidden" name="savings_display" id="h-wf03b-2">
-      <input type="hidden" name="sold_out_handling" id="h-wf03b-3">
-      <input type="hidden" name="mix_and_match" id="h-wf03b-4">
-      <input type="hidden" name="general" id="h-wf03b-5">
-      <div class="your-name-row">
-        <div class="your-name-field">
-          <label>Your Name</label>
-          <input type="text" name="reviewer_name" value="Jean">
+  <p style="color:#888;font-size:13px;padding:20px 0;">All decisions for this page have been confirmed. Please use the approval form below.</p>
+</div>
+
+  <!-- APPROVAL FORM -->
+  <div class="approval-form-wrap">
+    <div class="approval-form-heading">Wireframe Approval: WF03b &mdash; Collection Detail Page</div>
+    <p class="approval-form-desc">
+      Please review the wireframe above and the notes on this page, then let Edward know
+      whether this page is approved as shown or whether you would like changes made before
+      the build begins. Your response goes directly to Edward by email.
+    </p>
+
+    <form id="approval-form-wf03b">
+      <input type="hidden" name="_subject" value="WF03b Collection Detail Page Approval - Dazzling Daylilies">
+      <input type="hidden" name="wireframe" value="WF03b - Collection Detail Page">
+      <input type="hidden" name="approval_status" id="h-approval-approval-form-wf03b">
+      <input type="hidden" name="change_reason"   id="h-reason-approval-form-wf03b">
+      <input type="hidden" name="general_comments" id="h-comments-approval-form-wf03b">
+
+      <div class="approval-radio-group">
+        <label class="approval-radio-label approved">
+          <input type="radio" name="approval_choice" value="Approved" id="radio-approved-approval-form-wf03b">
+          <span class="approved-text">&#10003;&nbsp; Approved &mdash; looks great!</span>
+        </label>
+        <label class="approval-radio-label changes">
+          <input type="radio" name="approval_choice" value="Changes Needed" id="radio-changes-approval-form-wf03b">
+          <span class="changes-text">&#9998;&nbsp; Changes Needed</span>
+        </label>
+      </div>
+
+      <div class="reason-field" id="reason-field-approval-form-wf03b">
+        <label class="approval-label" for="textarea-reason-approval-form-wf03b">
+          What would you like changed? (required)
+        </label>
+        <textarea class="approval-textarea" id="textarea-reason-approval-form-wf03b"
+          placeholder="Please describe what you would like adjusted on this page..."></textarea>
+      </div>
+
+      <div style="margin-bottom: 20px;">
+        <label class="approval-label" for="textarea-comments-approval-form-wf03b">
+          Any other comments or questions? (optional)
+        </label>
+        <textarea class="approval-textarea" id="textarea-comments-approval-form-wf03b"
+          placeholder="Any other thoughts, questions, or notes for Edward..."></textarea>
+      </div>
+
+      <div class="approval-name-row">
+        <div class="approval-name-field">
+          <label for="name-approval-form-wf03b">Your Name</label>
+          <input type="text" id="name-approval-form-wf03b" name="reviewer_name" value="Jean" placeholder="Your name">
         </div>
-        <div class="your-name-field">
-          <label>Your Email (so Edward can reply)</label>
-          <input type="email" name="email" placeholder="dazzlingdaylilies@yahoo.com">
+        <div class="approval-name-field">
+          <label for="email-approval-form-wf03b">Your Email (so Edward can reply)</label>
+          <input type="email" id="email-approval-form-wf03b" name="email" placeholder="dazzlingdaylilies@yahoo.com">
         </div>
       </div>
-      <button type="submit" class="submit-btn">Send My Feedback &rarr;</button>
-      <p class="submit-note">Your answers are sent directly and securely to Edward. This page does not store any personal information.</p>
-      <div class="success-message" id="success-wf03b">
+
+      <button type="submit" class="approval-submit-btn">Send My Response &rarr;</button>
+      <p class="approval-submit-note">Your response is sent directly and securely to Edward. This page does not store any personal information.</p>
+
+      <div class="approval-success" id="success-approval-form-wf03b">
         <strong>Thank you, Jean!</strong>
-        Your feedback on the Bundle Detail Page has been sent to Edward successfully.
-        You can now close this tab or go back to the main review page to continue reviewing other wireframes.
+        Your response on WF03b (Collection Detail Page) has been sent to Edward successfully.
+        You can now close this tab or continue reviewing other wireframes from the main review page.
       </div>
-      <div class="error-message" id="error-wf03b">
-        Something went wrong sending your feedback. Please try again, or email Edward directly.
+      <div class="approval-error" id="error-approval-form-wf03b">
+        Something went wrong. Please try again, or email Edward directly at
+        <a href="mailto:edward@docbear-ent.com">edward@docbear-ent.com</a> with your notes.
       </div>
     </form>
-  </div>
-</div>
+  </div><!-- /.approval-form-wrap -->
+
+</div><!-- /.annotations -->
+
 <script>
-(function(){
-  var form = document.getElementById('ff-wf03b');
+(function() {
+  var form     = document.getElementById('approval-form-wf03b');
   if (!form) return;
-  var fieldMap = [['fb-wf03b-0', 'h-wf03b-0'],
-    ['fb-wf03b-1', 'h-wf03b-1'],
-    ['fb-wf03b-2', 'h-wf03b-2'],
-    ['fb-wf03b-3', 'h-wf03b-3'],
-    ['fb-wf03b-4', 'h-wf03b-4'],
-    ['fb-wf03b-5', 'h-wf03b-5']];
+
+  var radios   = form.querySelectorAll('input[type="radio"]');
+  var reasonFld = document.getElementById('reason-field-approval-form-wf03b');
+  var reasonTA  = document.getElementById('textarea-reason-approval-form-wf03b');
+
+  radios.forEach(function(r) {
+    r.addEventListener('change', function() {
+      if (r.value === 'Changes Needed' && r.checked) {
+        reasonFld.classList.add('visible');
+        reasonTA.required = true;
+      } else {
+        reasonFld.classList.remove('visible');
+        reasonTA.required = false;
+      }
+    });
+  });
+
   form.addEventListener('submit', function(e) {
     e.preventDefault();
-    fieldMap.forEach(function(pair) {
-      var src = document.getElementById(pair[0]);
-      var dst = document.getElementById(pair[1]);
-      if (src && dst) dst.value = src.value.trim() || '(no answer provided)';
-    });
-    var btn = form.querySelector('.submit-btn');
+
+    var chosen = form.querySelector('input[name="approval_choice"]:checked');
+    if (!chosen) {
+      alert('Please select Approved or Changes Needed before sending.');
+      return;
+    }
+    if (chosen.value === 'Changes Needed' && !reasonTA.value.trim()) {
+      reasonTA.focus();
+      alert('Please describe what you would like changed.');
+      return;
+    }
+
+    document.getElementById('h-approval-approval-form-wf03b').value = chosen.value;
+    document.getElementById('h-reason-approval-form-wf03b').value   = reasonTA.value.trim() || '(no changes requested)';
+    document.getElementById('h-comments-approval-form-wf03b').value = document.getElementById('textarea-comments-approval-form-wf03b').value.trim() || '(none)';
+
+    var btn = form.querySelector('.approval-submit-btn');
     btn.textContent = 'Sending...';
     btn.disabled = true;
+
     fetch('https://formspree.io/f/mvzyrrrv', {
       method: 'POST',
       body: new FormData(form),
       headers: { 'Accept': 'application/json' }
-    }).then(function(r) {
+    })
+    .then(function(r) {
       if (r.ok) {
-        document.getElementById('success-wf03b').style.display = 'block';
-        document.getElementById('success-wf03b').scrollIntoView({ behavior: 'smooth' });
-        btn.textContent = 'Feedback Sent';
+        document.getElementById('success-approval-form-wf03b').style.display = 'block';
+        document.getElementById('success-approval-form-wf03b').scrollIntoView({ behavior: 'smooth' });
+        btn.textContent = 'Response Sent';
       } else { throw new Error(); }
-    }).catch(function() {
-      document.getElementById('error-wf03b').style.display = 'block';
-      btn.textContent = 'Send My Feedback →';
+    })
+    .catch(function() {
+      document.getElementById('error-approval-form-wf03b').style.display = 'block';
+      btn.textContent = 'Send My Response →';
       btn.disabled = false;
     });
   });
 })();
 </script>
+
 </body>
 </html>

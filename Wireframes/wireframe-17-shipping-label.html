@@ -51,222 +51,110 @@
     font-size: 12px; color: #aaa; line-height: 1.5; max-width: 400px;
   }
 
-  /* ============================================================
-     LABEL CANVAS
-     4 x 6 inch label at 96dpi screen resolution = 384 x 576px
-     We display it slightly larger for readability on screen.
-  ============================================================ */
-  .label-canvas {
+
+  /* ── Batch controls ──────────────────────────────────────────── */
+  .batch-controls {
+    background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 6px;
+    padding: 24px 28px; margin-bottom: 28px;
+  }
+  .batch-controls-heading { font-size: 16px; font-weight: 700; color: #1a2a3a; margin-bottom: 6px; }
+  .batch-controls-desc { font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 18px; max-width: 640px; }
+
+  .order-checklist { border: 1px solid #e0e0e0; border-radius: 4px; overflow: hidden; margin-bottom: 18px; }
+  .order-check-row {
+    display: flex; align-items: center; gap: 12px; padding: 10px 14px;
+    border-bottom: 1px solid #f0f0f0; cursor: pointer; font-size: 13px;
     background: #fff;
-    width: 480px;
-    /* 4:6 ratio */
-    min-height: 720px;
-    margin: 0 auto;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.15);
-    border: 1px solid #ccc;
+  }
+  .order-check-row:last-child { border-bottom: none; }
+  .order-check-row:hover { background: #f5f9ff; }
+  .order-check-row input[type="checkbox"] { width: 16px; height: 16px; flex-shrink: 0; accent-color: #2c3e50; }
+  .order-check-num { font-weight: 700; color: #2c3e50; min-width: 120px; }
+  .order-check-name { flex: 1; color: #444; }
+  .order-check-date { font-size: 11px; color: #aaa; white-space: nowrap; }
+
+  .batch-print-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+
+  .print-controls { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; flex-wrap: wrap; }
+  .print-btn {
+    background: #2c3e50; color: #fff; border: none; padding: 11px 22px;
+    border-radius: 4px; font-size: 14px; font-weight: 700; cursor: pointer;
+  }
+  .print-btn:hover { background: #1a2a3a; }
+  .close-btn {
+    background: #fff; color: #555; border: 1px solid #ccc; padding: 11px 18px;
+    border-radius: 4px; font-size: 14px; font-weight: 600; cursor: pointer;
+  }
+  .print-note { font-size: 12px; color: #aaa; line-height: 1.5; max-width: 360px; }
+
+  /* ── Sheet preview label ──────────────────────────────────────── */
+  .sheet-preview-label {
+    font-size: 12px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; color: #888; margin-bottom: 10px;
+  }
+  .sheet-note {
+    font-size: 12px; color: #aaa; margin-top: 12px; line-height: 1.6;
+    max-width: 640px;
+  }
+
+  /* ── Avery 5163 sheet: 8.5 x 11, 2 cols x 5 rows ─────────────── */
+  /*    Each label: 4" wide x 2" tall                               */
+  /*    At 96dpi: 384px x 192px. Scale for wireframe readability.   */
+  .avery-sheet {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 2px solid #bbb;
     border-radius: 4px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
-
-  /* --- RETURN ADDRESS (top strip) --- */
-  .return-address-strip {
-    background: #f5f5f5;
-    border-bottom: 1px solid #ddd;
-    padding: 14px 20px;
-  }
-  .ra-label {
-    font-size: 9px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: #aaa;
-    margin-bottom: 5px;
-  }
-  .ra-business {
-    font-size: 13px;
-    font-weight: 700;
-    color: #222;
-    margin-bottom: 2px;
-  }
-  .ra-address {
-    font-size: 12px;
-    color: #555;
-    line-height: 1.5;
-  }
-
-  /* --- CENTER SECTION: TO address + order number --- */
-  .label-center {
-    flex: 1;
-    padding: 24px 20px 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .to-section {}
-  .to-label {
-    font-size: 9px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: #aaa;
-    margin-bottom: 10px;
-  }
-  .to-name {
-    font-size: 22px;
-    font-weight: 700;
-    color: #222;
-    margin-bottom: 6px;
-    line-height: 1.2;
-  }
-  .to-address-line {
-    font-size: 16px;
-    color: #333;
-    line-height: 1.6;
-  }
-
-  /* --- DIVIDER --- */
-  .label-divider {
-    border: none;
-    border-top: 1px solid #ddd;
-    margin: 16px 0;
-  }
-
-  /* --- ORDER REFERENCE --- */
-  .order-ref {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-  }
-  .order-ref-left {}
-  .order-ref-label {
-    font-size: 9px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: #aaa;
-    margin-bottom: 4px;
-  }
-  .order-ref-num {
-    font-size: 16px;
-    font-weight: 700;
-    color: #222;
-    letter-spacing: 0.02em;
-  }
-  .order-ref-date {
-    font-size: 11px;
-    color: #888;
-    margin-top: 2px;
-  }
-
-  /* Barcode placeholder */
-  .barcode-placeholder {
-    width: 100px;
-    height: 48px;
     background: #e8e8e8;
-    border: 1px dashed #bbb;
-    border-radius: 2px;
+    width: 760px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  }
+
+  .avery-label {
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 10px 12px;
+    min-height: 100px;
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  .avery-label.selected { background: #fff; }
+  .avery-label.empty {
+    background: #fafafa;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-    gap: 3px;
   }
-  .barcode-lines {
-    display: flex; gap: 2px; align-items: flex-end; height: 24px;
-  }
-  .b-line {
-    width: 2px; background: #aaa; border-radius: 1px;
-  }
-  .barcode-note {
-    font-size: 8px; color: #bbb; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.08em;
-  }
+  .al-empty-note { font-size: 11px; color: #ccc; font-style: italic; }
 
-  /* --- LIVE PLANTS NOTICE --- */
-  .live-plants-strip {
-    background: #d5f5e3;
-    border-top: 2px solid #6abf6a;
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  /* Return address */
+  .al-from { margin-bottom: 5px; }
+  .al-from-biz {
+    display: block; font-size: 9px; font-weight: 700;
+    color: #333; text-transform: uppercase; letter-spacing: 0.06em;
   }
-  .live-plants-icon {
-    font-size: 20px;
-    flex-shrink: 0;
-  }
-  .live-plants-text {
-    font-size: 12px;
-    font-weight: 700;
-    color: #1a5c2a;
+  .al-from-addr { font-size: 8px; color: #777; line-height: 1.4; }
+
+  /* Ship-to */
+  .al-to-name { font-size: 14px; font-weight: 700; color: #111; margin-bottom: 2px; }
+  .al-to-addr { font-size: 11px; color: #333; line-height: 1.5; flex: 1; }
+
+  /* Order reference */
+  .al-ref { font-size: 9px; color: #888; margin-top: 4px; }
+
+  /* Live plants notice */
+  .al-plants {
+    font-size: 8px; font-weight: 700; color: #1a5c2a;
+    background: #d5f5e3; border: 1px solid #6abf6a;
+    border-radius: 2px; padding: 3px 6px; margin-top: 5px;
+    text-transform: uppercase; letter-spacing: 0.04em;
     line-height: 1.4;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
   }
-  .live-plants-sub {
-    font-size: 10px;
-    color: #3a8a5a;
-    font-weight: 400;
-    text-transform: none;
-    letter-spacing: 0;
-    margin-top: 1px;
-  }
-
-  /* ============================================================
-     SECOND VARIATION: label with tracking number pre-filled
-  ============================================================ */
-  .variation-label {
-    background: #e8e8e8;
-    border-top: 3px solid #aaa; border-bottom: 3px solid #aaa;
-    padding: 12px 24px; margin: 36px 0 24px;
-    font-size: 13px; font-weight: 700; color: #555;
-    text-transform: uppercase; letter-spacing: 0.07em;
-  }
-
-  .tracking-section {
-    margin-top: 0;
-    padding: 10px 20px;
-    background: #f5f5f5;
-    border-top: 1px solid #e0e0e0;
-  }
-  .tracking-ref-label {
-    font-size: 9px; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.12em;
-    color: #aaa; margin-bottom: 4px;
-  }
-  .tracking-num-display {
-    font-size: 12px; font-weight: 700;
-    color: #333; font-family: monospace;
-    letter-spacing: 0.06em;
-  }
-
-  /* ============================================================
-     PRINT MEDIA QUERY
-  ============================================================ */
-  @media print {
-    body { background: #fff; }
-    .screen-header,
-    .print-controls,
-    .variation-label,
-    .annotations { display: none !important; }
-    .screen-wrapper { padding: 0; max-width: 100%; }
-    .label-canvas {
-      box-shadow: none;
-      border: 1px solid #ccc;
-      width: 4in;
-      min-height: 6in;
-      margin: 0;
-      page-break-after: always;
-    }
-    .label-canvas + .label-canvas {
-      margin-top: 0.25in;
-    }
-  }
-
+  
   /* ============================================================
      ANNOTATIONS
   ============================================================ */
@@ -277,41 +165,117 @@
   }
   .annotations h2 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
   .ann-subtitle { font-size: 13px; color: #888; margin-bottom: 28px; }
-  .ann-item { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #eedc6a; }
-  .ann-item:last-child { border-bottom: none; margin-bottom: 0; }
-  .ann-item strong { display: block; font-size: 14px; font-weight: 700; color: #222; margin-bottom: 4px; }
-  .ann-tag {
-    display: inline-block; background: #f5c518; color: #333;
-    font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 3px;
-    margin-top: 6px; text-transform: uppercase; letter-spacing: 0.04em;
-  }
   .ann-tag.decision { background: #ffd580; }
   .ann-tag.business { background: #f8d7da; color: #721c24; }
   .ann-tag.content { background: #c8e6c9; color: #1b5e20; }
 
   /* Feedback form styles */
-  .ann-feedback-intro { background: #2c3e50; color: #ecf0f1; padding: 24px 32px; font-size: 14px; line-height: 1.7; }
-  .ann-feedback-intro h2 { font-size: 18px; font-weight: 700; margin-bottom: 6px; color: #fff; }
-  .ann-feedback-intro p { color: #bdc3c7; max-width: 680px; }
   .ann-section-inner { padding: 32px 32px 0; }
-  .feedback-box { margin-top: 12px; background: #fff; border: 1px solid #e0d080; border-radius: 6px; padding: 14px 16px; }
-  .feedback-box label { display: block; font-size: 12px; font-weight: 700; color: #5a4a00; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
-  .feedback-box textarea { width: 100%; padding: 10px 12px; border: 1px solid #d0c060; border-radius: 4px; font-size: 14px; color: #333; background: #fffef5; resize: vertical; min-height: 80px; line-height: 1.6; font-family: inherit; }
-  .feedback-box textarea:focus { outline: 2px solid #f5c518; border-color: transparent; }
-  .feedback-box textarea::placeholder { color: #bbb; }
-  .feedback-form-wrap { background: #fff8e0; border-top: 2px solid #f5c518; padding: 28px 32px 36px; }
-  .feedback-form-heading { font-size: 16px; font-weight: 700; color: #222; margin-bottom: 4px; }
-  .feedback-form-desc { font-size: 13px; color: #666; margin-bottom: 20px; line-height: 1.6; }
-  .your-name-row { display: flex; gap: 14px; margin-bottom: 20px; flex-wrap: wrap; }
-  .your-name-field { flex: 1; min-width: 180px; }
-  .your-name-field label { display: block; font-size: 12px; font-weight: 700; color: #555; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 5px; }
-  .your-name-field input { width: 100%; padding: 10px 12px; border: 1px solid #d0d0d0; border-radius: 4px; font-size: 14px; color: #333; background: #fff; }
-  .submit-btn { display: inline-block; background: #2c3e50; color: #fff; padding: 12px 32px; border-radius: 4px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; }
-  .submit-btn:hover { background: #1a2a3a; }
-  .submit-note { font-size: 12px; color: #888; margin-top: 10px; line-height: 1.6; }
-  .success-message { display: none; background: #d5f5e3; border: 1px solid #6abf6a; border-radius: 6px; padding: 20px 24px; margin-top: 16px; font-size: 14px; color: #1a5c2a; line-height: 1.7; }
-  .success-message strong { display: block; font-size: 16px; margin-bottom: 4px; }
-  .error-message { display: none; background: #fdf2f2; border: 1px solid #e8b4b4; border-radius: 6px; padding: 14px 18px; margin-top: 12px; font-size: 13px; color: #7a2020; }
+
+  /* ── Approval form styles ───────────────────────── */
+  .approval-intro {
+    background: #2c3e50; color: #ecf0f1; padding: 24px 32px;
+    font-size: 14px; line-height: 1.7;
+  }
+  .approval-intro h2 { font-size: 18px; font-weight: 700; margin-bottom: 6px; color: #fff; }
+  .approval-intro p  { color: #bdc3c7; max-width: 680px; }
+
+  .annotations { max-width: 860px; margin: 0 auto; padding: 0 24px 48px; }
+  .ann-section-inner { padding-top: 8px; }
+  .ann-subtitle { font-size: 13px; color: #888; margin-bottom: 20px; margin-top: 2px; }
+
+  .ann-item {
+    background: #fff; border: 1px solid #e0e0e0; border-left: 4px solid #2c3e50;
+    border-radius: 4px; padding: 14px 18px; margin-bottom: 14px; font-size: 14px;
+    line-height: 1.7; color: #333;
+  }
+  .ann-item strong { display: block; font-size: 14px; font-weight: 700; margin-bottom: 4px; color: #1a2a3a; }
+  .ann-item p { margin: 0; }
+
+  .ann-tag {
+    display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; padding: 2px 8px; border-radius: 10px; margin-top: 8px;
+  }
+  .ann-tag.decision  { background: #fde8c8; color: #7a3c00; }
+  .ann-tag.content   { background: #ddeeff; color: #003366; }
+  .ann-tag.contract  { background: #d5f5e3; color: #1a5c2a; }
+  .ann-tag.confirmed { background: #d5f5e3; color: #1a5c2a; }
+  .ann-tag.info      { background: #f0f0f0; color: #555; }
+
+  /* Approval form */
+  .approval-form-wrap {
+    background: #f0f7ff; border-top: 3px solid #2c3e50;
+    padding: 32px 32px 40px; margin-top: 8px;
+  }
+  .approval-form-heading {
+    font-size: 18px; font-weight: 700; color: #1a2a3a; margin-bottom: 6px;
+  }
+  .approval-form-desc {
+    font-size: 13px; color: #555; margin-bottom: 24px; line-height: 1.6;
+  }
+  .approval-radio-group { display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
+  .approval-radio-label {
+    display: flex; align-items: center; gap: 8px; cursor: pointer;
+    font-size: 15px; font-weight: 600; color: #1a2a3a; padding: 12px 20px;
+    border: 2px solid #c8d8e8; border-radius: 6px; background: #fff;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .approval-radio-label input[type="radio"] { accent-color: #2c3e50; width: 18px; height: 18px; }
+  .approval-radio-label.approved  { border-color: #6abf6a; }
+  .approval-radio-label.changes   { border-color: #e8a040; }
+  .approval-radio-label input:checked ~ span.approved-text  { color: #1a5c2a; }
+  .approval-radio-label input:checked ~ span.changes-text   { color: #7a4400; }
+
+  .reason-field { margin-bottom: 20px; display: none; }
+  .reason-field.visible { display: block; }
+  .approval-label {
+    display: block; font-size: 12px; font-weight: 700; color: #555;
+    text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;
+  }
+  .approval-textarea {
+    width: 100%; padding: 10px 12px; border: 1px solid #c0c8d0;
+    border-radius: 4px; font-size: 14px; color: #333; background: #fff;
+    resize: vertical; min-height: 90px; line-height: 1.6; font-family: inherit;
+    box-sizing: border-box;
+  }
+  .approval-textarea:focus { outline: 2px solid #2c3e50; border-color: transparent; }
+  .approval-textarea::placeholder { color: #bbb; }
+
+  .approval-name-row { display: flex; gap: 14px; margin-bottom: 20px; flex-wrap: wrap; }
+  .approval-name-field { flex: 1; min-width: 180px; }
+  .approval-name-field label {
+    display: block; font-size: 12px; font-weight: 700; color: #555;
+    text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 5px;
+  }
+  .approval-name-field input {
+    width: 100%; padding: 10px 12px; border: 1px solid #c0c8d0;
+    border-radius: 4px; font-size: 14px; color: #333; background: #fff;
+    box-sizing: border-box;
+  }
+
+  .approval-submit-btn {
+    display: inline-block; background: #2c3e50; color: #fff;
+    padding: 13px 36px; border-radius: 4px; font-size: 15px;
+    font-weight: 700; border: none; cursor: pointer; letter-spacing: 0.02em;
+  }
+  .approval-submit-btn:hover { background: #1a2a3a; }
+  .approval-submit-btn:disabled { background: #999; cursor: default; }
+  .approval-submit-note { font-size: 12px; color: #888; margin-top: 10px; line-height: 1.6; }
+
+  .approval-success {
+    display: none; background: #d5f5e3; border: 1px solid #6abf6a;
+    border-radius: 6px; padding: 20px 24px; margin-top: 16px;
+    font-size: 14px; color: #1a5c2a; line-height: 1.7;
+  }
+  .approval-success strong { display: block; font-size: 16px; margin-bottom: 4px; }
+  .approval-error {
+    display: none; background: #fdf2f2; border: 1px solid #e8b4b4;
+    border-radius: 6px; padding: 14px 18px; margin-top: 12px;
+    font-size: 13px; color: #7a2020;
+  }
+
+  /* ── Orphaned old CSS removed ─────────────────────────────────── */
+
 </style>
 </head>
 <body>
@@ -328,154 +292,117 @@
     </p>
   </div>
 
-  <div class="print-controls">
-    <button class="print-btn">&#9113; Print Shipping Label</button>
-    <button class="close-btn">&larr; Back to Order</button>
-    <span class="print-note">
-      Formatted for standard 4&Prime; &times; 6&Prime; shipping labels.
-      Set your printer to 4 &times; 6 label paper, no scaling.
-      Use your browser's Print dialog and turn off "Fit to page."
-    </span>
+  <!-- BATCH ORDER SELECTION -->
+  <div class="batch-controls">
+    <div class="batch-controls-heading">Select Orders to Print</div>
+    <p class="batch-controls-desc">
+      Check the orders below, then click <strong>Print Labels</strong>.
+      All selected labels print together on one Avery 5163 sheet
+      (2 columns &times; 5 rows, 10 labels per sheet). Print one sheet at a time
+      to avoid running a partially-used sheet through the printer again.
+    </p>
+
+    <div class="order-checklist">
+      <label class="order-check-row">
+        <input type="checkbox" checked>
+        <span class="order-check-num">DD-2027-0036</span>
+        <span class="order-check-name">Linda Sorensen &mdash; Austin, TX</span>
+        <span class="order-check-date">May 19, 2027</span>
+      </label>
+      <label class="order-check-row">
+        <input type="checkbox" checked>
+        <span class="order-check-num">DD-2027-0037</span>
+        <span class="order-check-name">Robert Kaminski &mdash; Denver, CO</span>
+        <span class="order-check-date">May 19, 2027</span>
+      </label>
+      <label class="order-check-row">
+        <input type="checkbox" checked>
+        <span class="order-check-num">DD-2027-0038</span>
+        <span class="order-check-name">Patricia Walsh &mdash; Nashville, TN</span>
+        <span class="order-check-date">May 20, 2027</span>
+      </label>
+      <label class="order-check-row">
+        <input type="checkbox">
+        <span class="order-check-num">DD-2027-0039</span>
+        <span class="order-check-name">Marcus Hill &mdash; Omaha, NE</span>
+        <span class="order-check-date">May 20, 2027</span>
+      </label>
+      <label class="order-check-row">
+        <input type="checkbox">
+        <span class="order-check-num">DD-2027-0040</span>
+        <span class="order-check-name">Susan Brandt &mdash; Columbus, OH</span>
+        <span class="order-check-date">May 21, 2027</span>
+      </label>
+    </div>
+
+    <div class="batch-print-row">
+      <button class="print-btn">&#9113;&nbsp; Print 3 Labels</button>
+      <button class="close-btn">&larr; Back to Orders</button>
+      <span class="print-note">
+        Prints on Avery 5163 label sheets (2&Prime; &times; 4&Prime;, 10 per sheet).
+        Load the sheet into your printer and select actual size &mdash; do not scale.
+      </span>
+    </div>
   </div>
 
-  <!-- ===== LABEL: basic (no tracking number yet) ===== -->
-  <div class="label-canvas">
+  <!-- AVERY 5163 SHEET PREVIEW -->
+  <div class="sheet-preview-label">Preview: Avery 5163 Sheet (10 labels &mdash; 2 columns &times; 5 rows)</div>
 
-    <!-- Return address -->
-    <div class="return-address-strip">
-      <div class="ra-label">From</div>
-      <div class="ra-business">Dazzling Daylilies &nbsp;&bull;&nbsp; Jean [ Last Name ]</div>
-      <div class="ra-address">
-        [ Jean's street address ]<br>
-        Fairfax, IA &nbsp;[ ZIP ]
+  <div class="avery-sheet">
+
+    <!-- Row 1 -->
+    <div class="avery-label selected">
+      <div class="al-from">
+        <span class="al-from-biz">Dazzling Daylilies</span>
+        <span class="al-from-addr">Jean Stallman &bull; 11247 Scotch Grove Ln &bull; Fairfax, IA 52228</span>
       </div>
+      <div class="al-to-name">Linda Sorensen</div>
+      <div class="al-to-addr">4821 Bluebonnet Trail<br>Austin, TX &nbsp;78704</div>
+      <div class="al-ref">Order DD-2027-0036</div>
+      <div class="al-plants">&#127807; LIVE PLANTS &mdash; Open promptly. Handle with care. Do not leave in heat or cold.</div>
     </div>
 
-    <!-- Main label body -->
-    <div class="label-center">
-
-      <div class="to-section">
-        <div class="to-label">Ship To</div>
-        <div class="to-name">Linda Sorensen</div>
-        <div class="to-address-line">
-          4821 Bluebonnet Trail<br>
-          Austin, TX &nbsp;78704
-        </div>
+    <div class="avery-label selected">
+      <div class="al-from">
+        <span class="al-from-biz">Dazzling Daylilies</span>
+        <span class="al-from-addr">Jean Stallman &bull; 11247 Scotch Grove Ln &bull; Fairfax, IA 52228</span>
       </div>
-
-      <hr class="label-divider">
-
-      <!-- Order reference + barcode placeholder -->
-      <div class="order-ref">
-        <div class="order-ref-left">
-          <div class="order-ref-label">Order Reference</div>
-          <div class="order-ref-num">DD-2027-0036</div>
-          <div class="order-ref-date">May 19, 2027</div>
-        </div>
-        <div class="barcode-placeholder">
-          <div class="barcode-lines">
-            <div class="b-line" style="height:100%;"></div>
-            <div class="b-line" style="height:80%;"></div>
-            <div class="b-line" style="height:100%;"></div>
-            <div class="b-line" style="height:60%;"></div>
-            <div class="b-line" style="height:100%;"></div>
-            <div class="b-line" style="height:80%;"></div>
-            <div class="b-line" style="height:100%;"></div>
-            <div class="b-line" style="height:70%;"></div>
-            <div class="b-line" style="height:100%;"></div>
-            <div class="b-line" style="height:90%;"></div>
-            <div class="b-line" style="height:100%;"></div>
-            <div class="b-line" style="height:65%;"></div>
-            <div class="b-line" style="height:100%;"></div>
-          </div>
-          <div class="barcode-note">[ barcode ]</div>
-        </div>
-      </div>
-
+      <div class="al-to-name">Robert Kaminski</div>
+      <div class="al-to-addr">992 Aspen Ridge Drive<br>Denver, CO &nbsp;80203</div>
+      <div class="al-ref">Order DD-2027-0037</div>
+      <div class="al-plants">&#127807; LIVE PLANTS &mdash; Open promptly. Handle with care. Do not leave in heat or cold.</div>
     </div>
 
-    <!-- Live plants notice -->
-    <div class="live-plants-strip">
-      <div class="live-plants-icon">&#127807;</div>
-      <div>
-        <div class="live-plants-text">Live Plants</div>
-        <div class="live-plants-sub">Open promptly &bull; Do not leave in heat or cold</div>
+    <!-- Row 2 -->
+    <div class="avery-label selected">
+      <div class="al-from">
+        <span class="al-from-biz">Dazzling Daylilies</span>
+        <span class="al-from-addr">Jean Stallman &bull; 11247 Scotch Grove Ln &bull; Fairfax, IA 52228</span>
       </div>
+      <div class="al-to-name">Patricia Walsh</div>
+      <div class="al-to-addr">317 Cedarwood Court<br>Nashville, TN &nbsp;37201</div>
+      <div class="al-ref">Order DD-2027-0038</div>
+      <div class="al-plants">&#127807; LIVE PLANTS &mdash; Open promptly. Handle with care. Do not leave in heat or cold.</div>
     </div>
 
-  </div><!-- /.label-canvas -->
-
-
-  <!-- ===== VARIATION: label with USPS tracking pre-printed ===== -->
-  <div class="variation-label">Variation: Label with USPS Tracking Number Pre-Printed</div>
-
-  <div class="label-canvas">
-
-    <div class="return-address-strip">
-      <div class="ra-label">From</div>
-      <div class="ra-business">Dazzling Daylilies &nbsp;&bull;&nbsp; Jean [ Last Name ]</div>
-      <div class="ra-address">
-        [ Jean's street address ]<br>
-        Fairfax, IA &nbsp;[ ZIP ]
-      </div>
+    <div class="avery-label empty">
+      <div class="al-empty-note">[ empty label ]</div>
     </div>
 
-    <div class="label-center">
+    <!-- Rows 3-5: empty -->
+    <div class="avery-label empty"><div class="al-empty-note">[ empty label ]</div></div>
+    <div class="avery-label empty"><div class="al-empty-note">[ empty label ]</div></div>
+    <div class="avery-label empty"><div class="al-empty-note">[ empty label ]</div></div>
+    <div class="avery-label empty"><div class="al-empty-note">[ empty label ]</div></div>
+    <div class="avery-label empty"><div class="al-empty-note">[ empty label ]</div></div>
+    <div class="avery-label empty"><div class="al-empty-note">[ empty label ]</div></div>
 
-      <div class="to-section">
-        <div class="to-label">Ship To</div>
-        <div class="to-name">Linda Sorensen</div>
-        <div class="to-address-line">
-          4821 Bluebonnet Trail<br>
-          Austin, TX &nbsp;78704
-        </div>
-      </div>
+  </div><!-- /.avery-sheet -->
 
-      <hr class="label-divider">
-
-      <div class="order-ref">
-        <div class="order-ref-left">
-          <div class="order-ref-label">Order Reference</div>
-          <div class="order-ref-num">DD-2027-0036</div>
-          <div class="order-ref-date">May 19, 2027</div>
-        </div>
-        <div class="barcode-placeholder">
-          <div class="barcode-lines">
-            <div class="b-line" style="height:100%;"></div>
-            <div class="b-line" style="height:80%;"></div>
-            <div class="b-line" style="height:100%;"></div>
-            <div class="b-line" style="height:60%;"></div>
-            <div class="b-line" style="height:100%;"></div>
-            <div class="b-line" style="height:80%;"></div>
-            <div class="b-line" style="height:100%;"></div>
-            <div class="b-line" style="height:70%;"></div>
-            <div class="b-line" style="height:100%;"></div>
-            <div class="b-line" style="height:90%;"></div>
-            <div class="b-line" style="height:100%;"></div>
-            <div class="b-line" style="height:65%;"></div>
-            <div class="b-line" style="height:100%;"></div>
-          </div>
-          <div class="barcode-note">[ barcode ]</div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Tracking number strip -->
-    <div class="tracking-section">
-      <div class="tracking-ref-label">USPS Tracking</div>
-      <div class="tracking-num-display">9400111899223756430891</div>
-    </div>
-
-    <div class="live-plants-strip">
-      <div class="live-plants-icon">&#127807;</div>
-      <div>
-        <div class="live-plants-text">Live Plants</div>
-        <div class="live-plants-sub">Open promptly &bull; Do not leave in heat or cold</div>
-      </div>
-    </div>
-
-  </div><!-- /.label-canvas (with tracking) -->
+  <p class="sheet-note">
+    3 of 10 labels used on this sheet. The remaining 7 labels are blank and will not print.
+    Do not re-feed a partially-used sheet through your printer.
+  </p>
 
 </div><!-- /.screen-wrapper -->
 
@@ -483,19 +410,17 @@
 <!-- ANNOTATIONS -->
 <div class="annotations">
   <h2>Page Annotations: Printable Shipping Label (Wireframe 17 of 17)</h2>
-  <p class="ann-subtitle">The final wireframe. Two label variations shown: one without a tracking number (for when Jean prints the label before entering tracking) and one with the USPS tracking number pre-printed on the label itself. Plain English throughout.</p>
+  <p class="ann-subtitle">Reference notes for WF17. Decisions confirmed during wireframe review are noted below.</p>
 
   <div class="ann-item">
     <strong>Label Dimensions: 4 x 6 Inches</strong>
     <p>Standard USPS/shipping label size. Jean needs a label printer that supports 4 x 6 labels, or she can print on full-sheet label paper and trim. The most common options are a dedicated thermal label printer (Dymo, Rollo, MUNBYN) or an inkjet/laser printer with Avery-style 4 x 6 label sheets. Jean should confirm which she has or plans to use, since the print setup instructions in her admin guide will differ.</p>
-    <span class="ann-tag decision">Decision needed: Does Jean already have a label printer, or does she plan to use regular label sheets on her existing printer? This affects how the print dialog instructions are written in the admin guide, and whether we need to accommodate any printer-specific quirks in the CSS.</span>
-  </div>
+    </div>
 
   <div class="ann-item">
     <strong>Return Address Strip (top)</strong>
     <p>Grey background to visually distinguish the from-address from the to-address. Shows Jean's business name and full return address. The business name is shown as "Dazzling Daylilies &bull; Jean [ Last Name ]" as a placeholder. Jean should confirm how she wants her name to appear: business name only, or business name and personal name.</p>
-    <span class="ann-tag content">Content needed: Jean's full street address and ZIP code for the return address. Also her preference for how her name appears: "Dazzling Daylilies" only, or "Dazzling Daylilies &bull; Jean [Last Name]."</span>
-  </div>
+    </div>
 
   <div class="ann-item">
     <strong>To Address (main body)</strong>
@@ -510,8 +435,7 @@
   <div class="ann-item">
     <strong>Barcode Placeholder</strong>
     <p>The grey barcode illustration is a placeholder only. The actual label does not generate a scannable barcode in this system: Jean uses her own USPS account (Click-N-Ship, Pirateship, or similar) to purchase postage and generate real USPS barcodes. This label is an addressing label, not a postage label. Jean affixes her USPS postage separately.</p>
-    <span class="ann-tag decision">Decision needed: Should the system attempt to generate a real USPS barcode from the order address using the USPS API, or should Jean handle postage externally as she likely already does? Integrating with USPS Click-N-Ship or a third-party service like Pirateship is meaningful added scope and cost. For a first launch, external postage purchase is the simpler and more practical approach.</span>
-  </div>
+    </div>
 
   <div class="ann-item">
     <strong>Live Plants Notice Strip (green, bottom)</strong>
@@ -537,95 +461,153 @@
 
 
 <!-- FEEDBACK INTRO -->
-<div class="ann-feedback-intro">
-  <h2>Your Feedback on This Page</h2>
-  <p>Hi Jean! Below are questions about the Printable Shipping Label. Type your answers and click <strong>Send My Feedback</strong> when done. Edward receives all your answers by email.</p>
+<div class="approval-intro">
+  <h2>Wireframe Notes: WF17 &mdash; Shipping Label</h2>
+  <p>Hi Jean! The notes below explain what each part of this page does and confirm
+    the decisions we have already made together. When you have finished reading,
+    please use the <strong>Approval Form</strong> at the bottom of this page to let
+    Edward know whether the page looks right or whether you would like any changes.</p>
 </div>
-<div style="background:#fffbe6; border-top:4px solid #f5c518; padding:0;">
-  <div style="padding:24px 32px 0;">
-  <h2 style="font-size:18px; font-weight:700; padding-bottom:8px;">Printable Shipping Label (WF17)</h2>
-    <div class="ann-item" style="padding:20px 0; border-bottom:1px solid #eedc6a;">
-    <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-label_printer">The shipping label is formatted for a 4x6 inch label. Do you have a thermal label printer (like a Dymo or Rollo), or will you print on label sheets using your regular printer? This affects the setup instructions Edward will write for you.</label>
-      <textarea id="fb-label_printer" placeholder="Type your answer here..."></textarea>
-    </div>
-  </div>
-  <div class="ann-item" style="padding:20px 0; border-bottom:1px solid #eedc6a;">
-    <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-return_address_label">Please confirm the exact return address for the shipping label: name line, street, city, state, ZIP.</label>
-      <textarea id="fb-return_address_label" placeholder="Type your answer here..."></textarea>
-    </div>
-  </div>
-  <div class="ann-item" style="padding:20px 0; border-bottom:1px solid #eedc6a;">
-    <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-live_plants_notice">The label includes a "Live Plants" notice at the bottom to alert postal workers. Is there anything else you would like on the label, such as "Fragile" or "This Side Up"?</label>
-      <textarea id="fb-live_plants_notice" placeholder="Type your answer here..."></textarea>
-    </div>
-  </div>
-  <div class="ann-item" style="padding:20px 0; border-bottom:1px solid #eedc6a;">
-    <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-general">Any other thoughts on the shipping label?</label>
-      <textarea id="fb-general" placeholder="Type your answer here..."></textarea>
-    </div>
-  </div>
-  </div>
-  <div class="feedback-form-wrap">
-    <div class="feedback-form-heading">Send Your Feedback to Edward</div>
-    <p class="feedback-form-desc">Click the button below to send all your answers to Edward in one email.</p>
-    <form id="feedback-form-wf17">
-      <input type="hidden" name="_subject" value="WF17 Printable Shipping Label Feedback - Dazzling Daylilies">
-      <input type="hidden" name="wireframe" value="WF17 - Printable Shipping Label">
-      <input type="hidden" name="label_printer" id="h-label_printer">
-      <input type="hidden" name="return_address_label" id="h-return_address_label">
-      <input type="hidden" name="live_plants_notice" id="h-live_plants_notice">
-      <input type="hidden" name="general" id="h-general">
-      <div class="your-name-row">
-        <div class="your-name-field">
-          <label>Your Name</label>
-          <input type="text" name="reviewer_name" value="Jean">
+<div class="annotations">
+  <div class="ann-section-inner">
+  <p style="color:#888;font-size:13px;padding:20px 0;">All decisions for this page have been confirmed. Please use the approval form below.</p>
+</div>
+
+
+  <!-- APPROVAL FORM -->
+  <div class="approval-form-wrap">
+    <div class="approval-form-heading">Wireframe Approval: WF17 &mdash; Shipping Label</div>
+    <p class="approval-form-desc">
+      Please review the wireframe above and the notes on this page, then let Edward know
+      whether this page is approved as shown or whether you would like changes made before
+      the build begins. Your response goes directly to Edward by email.
+    </p>
+
+    <form id="approval-form-wf17">
+      <input type="hidden" name="_subject" value="WF17 Shipping Label Approval - Dazzling Daylilies">
+      <input type="hidden" name="wireframe" value="WF17 - Shipping Label">
+      <input type="hidden" name="approval_status" id="h-approval-approval-form-wf17">
+      <input type="hidden" name="change_reason"   id="h-reason-approval-form-wf17">
+      <input type="hidden" name="general_comments" id="h-comments-approval-form-wf17">
+
+      <div class="approval-radio-group">
+        <label class="approval-radio-label approved">
+          <input type="radio" name="approval_choice" value="Approved" id="radio-approved-approval-form-wf17">
+          <span class="approved-text">&#10003;&nbsp; Approved &mdash; looks great!</span>
+        </label>
+        <label class="approval-radio-label changes">
+          <input type="radio" name="approval_choice" value="Changes Needed" id="radio-changes-approval-form-wf17">
+          <span class="changes-text">&#9998;&nbsp; Changes Needed</span>
+        </label>
+      </div>
+
+      <div class="reason-field" id="reason-field-approval-form-wf17">
+        <label class="approval-label" for="textarea-reason-approval-form-wf17">
+          What would you like changed? (required)
+        </label>
+        <textarea class="approval-textarea" id="textarea-reason-approval-form-wf17"
+          placeholder="Please describe what you would like adjusted on this page..."></textarea>
+      </div>
+
+      <div style="margin-bottom: 20px;">
+        <label class="approval-label" for="textarea-comments-approval-form-wf17">
+          Any other comments or questions? (optional)
+        </label>
+        <textarea class="approval-textarea" id="textarea-comments-approval-form-wf17"
+          placeholder="Any other thoughts, questions, or notes for Edward..."></textarea>
+      </div>
+
+      <div class="approval-name-row">
+        <div class="approval-name-field">
+          <label for="name-approval-form-wf17">Your Name</label>
+          <input type="text" id="name-approval-form-wf17" name="reviewer_name" value="Jean" placeholder="Your name">
         </div>
-        <div class="your-name-field">
-          <label>Your Email</label>
-          <input type="email" name="email" placeholder="dazzlingdaylilies@yahoo.com">
+        <div class="approval-name-field">
+          <label for="email-approval-form-wf17">Your Email (so Edward can reply)</label>
+          <input type="email" id="email-approval-form-wf17" name="email" placeholder="dazzlingdaylilies@yahoo.com">
         </div>
       </div>
-      <button type="submit" class="submit-btn">Send My Feedback &rarr;</button>
-      <p class="submit-note">Sent directly and securely to Edward.</p>
-      <div class="success-message" id="success-wf17"><strong>Thank you, Jean!</strong> Your feedback on the Printable Shipping Label has been sent to Edward successfully.</div>
-      <div class="error-message" id="error-wf17">Something went wrong. Please try again or email Edward directly.</div>
+
+      <button type="submit" class="approval-submit-btn">Send My Response &rarr;</button>
+      <p class="approval-submit-note">Your response is sent directly and securely to Edward. This page does not store any personal information.</p>
+
+      <div class="approval-success" id="success-approval-form-wf17">
+        <strong>Thank you, Jean!</strong>
+        Your response on WF17 (Shipping Label) has been sent to Edward successfully.
+        You can now close this tab or continue reviewing other wireframes from the main review page.
+      </div>
+      <div class="approval-error" id="error-approval-form-wf17">
+        Something went wrong. Please try again, or email Edward directly at
+        <a href="mailto:edward@docbear-ent.com">edward@docbear-ent.com</a> with your notes.
+      </div>
     </form>
-  </div>
-</div>
+  </div><!-- /.approval-form-wrap -->
+
+</div><!-- /.annotations -->
+
 <script>
-(function(){
-  var form = document.getElementById('feedback-form-wf17');
+(function() {
+  var form     = document.getElementById('approval-form-wf17');
   if (!form) return;
-  var fieldMap = [['fb-label_printer', 'h-label_printer'],
-    ['fb-return_address_label', 'h-return_address_label'],
-    ['fb-live_plants_notice', 'h-live_plants_notice'],
-    ['fb-general', 'h-general']];
+
+  var radios   = form.querySelectorAll('input[type="radio"]');
+  var reasonFld = document.getElementById('reason-field-approval-form-wf17');
+  var reasonTA  = document.getElementById('textarea-reason-approval-form-wf17');
+
+  radios.forEach(function(r) {
+    r.addEventListener('change', function() {
+      if (r.value === 'Changes Needed' && r.checked) {
+        reasonFld.classList.add('visible');
+        reasonTA.required = true;
+      } else {
+        reasonFld.classList.remove('visible');
+        reasonTA.required = false;
+      }
+    });
+  });
+
   form.addEventListener('submit', function(e) {
     e.preventDefault();
-    fieldMap.forEach(function(p) {
-      var s = document.getElementById(p[0]), d = document.getElementById(p[1]);
-      if (s && d) d.value = s.value.trim() || '(no answer)';
-    });
-    var btn = form.querySelector('.submit-btn');
-    btn.textContent = 'Sending...'; btn.disabled = true;
+
+    var chosen = form.querySelector('input[name="approval_choice"]:checked');
+    if (!chosen) {
+      alert('Please select Approved or Changes Needed before sending.');
+      return;
+    }
+    if (chosen.value === 'Changes Needed' && !reasonTA.value.trim()) {
+      reasonTA.focus();
+      alert('Please describe what you would like changed.');
+      return;
+    }
+
+    document.getElementById('h-approval-approval-form-wf17').value = chosen.value;
+    document.getElementById('h-reason-approval-form-wf17').value   = reasonTA.value.trim() || '(no changes requested)';
+    document.getElementById('h-comments-approval-form-wf17').value = document.getElementById('textarea-comments-approval-form-wf17').value.trim() || '(none)';
+
+    var btn = form.querySelector('.approval-submit-btn');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
     fetch('https://formspree.io/f/mvzyrrrv', {
-      method:'POST', body: new FormData(form), headers: {'Accept':'application/json'}
-    }).then(function(r) {
-      if(r.ok) {
-        document.getElementById('success-wf17').style.display='block';
-        document.getElementById('success-wf17').scrollIntoView({behavior:'smooth'});
-        btn.textContent='Feedback Sent';
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(function(r) {
+      if (r.ok) {
+        document.getElementById('success-approval-form-wf17').style.display = 'block';
+        document.getElementById('success-approval-form-wf17').scrollIntoView({ behavior: 'smooth' });
+        btn.textContent = 'Response Sent';
       } else { throw new Error(); }
-    }).catch(function() {
-      document.getElementById('error-wf17').style.display='block';
-      btn.textContent='Send My Feedback →'; btn.disabled=false;
+    })
+    .catch(function() {
+      document.getElementById('error-approval-form-wf17').style.display = 'block';
+      btn.textContent = 'Send My Response →';
+      btn.disabled = false;
     });
   });
 })();
 </script>
+
 </body>
 </html>

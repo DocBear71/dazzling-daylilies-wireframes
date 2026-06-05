@@ -172,7 +172,7 @@
   .coord-chip-remove { cursor: pointer; color: #4a90d9; font-size: 14px; line-height: 1; font-weight: 700; }
 
   /* ============================================================
-     NEW: Bundle configuration area
+     NEW: Collection configuration area
   ============================================================ */
   .bundle-config-area {
     margin-top: 16px;
@@ -203,7 +203,7 @@
   .toggle.off::after { right: auto; left: 3px; }
   .toggle-text { font-size: 13px; font-weight: 600; color: #555; }
 
-  .bundle-fields { /* shown when bundle toggle is ON */ }
+  .bundle-fields { /* shown when collection toggle is ON */ }
 
   .bundle-preview {
     background: #f0faf4;
@@ -234,10 +234,14 @@
   .sidebar-card { background: #fff; border: 1px solid #e0e0e0; border-radius: 6px; overflow: hidden; margin-bottom: 16px; position: sticky; top: 16px; }
   .sidebar-card-header { background: #f5f5f5; border-bottom: 1px solid #e8e8e8; padding: 12px 16px; font-size: 13px; font-weight: 700; color: #444; text-transform: uppercase; letter-spacing: 0.06em; }
   .sidebar-card-body { padding: 16px; }
-  .status-toggle-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #f5f5f5; }
-  .status-toggle-row:last-child { border-bottom: none; }
-  .status-toggle-label { font-size: 13px; color: #444; font-weight: 600; }
-  .status-toggle-desc { font-size: 11px; color: #aaa; margin-top: 1px; }
+  .status-select-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #888; margin-bottom: 5px; }
+  .status-select { width: 100%; padding: 9px 10px; border: 1px solid #d0d0d0; border-radius: 4px; font-size: 13px; color: #333; background: #fff; margin-bottom: 14px; }
+  .qty-field-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #888; margin-bottom: 5px; }
+  .qty-field-row { display: flex; align-items: center; gap: 10px; }
+  .qty-field-input { width: 80px; padding: 9px 10px; border: 1px solid #d0d0d0; border-radius: 4px; font-size: 14px; font-weight: 600; color: #333; text-align: center; }
+  .qty-field-input:disabled { background: #f5f5f5; color: #bbb; border-color: #e8e8e8; }
+  .qty-field-hint { font-size: 11px; color: #aaa; line-height: 1.5; }
+  .qty-auto-note { font-size: 11px; color: #1a5c2a; background: #f0faf4; border: 1px solid #a8ddb8; border-radius: 4px; padding: 7px 10px; margin-top: 10px; line-height: 1.5; }
 
   .photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
   .photo-item { aspect-ratio: 1/1; border-radius: 4px; background: #b0b0b0; position: relative; display: flex; align-items: center; justify-content: center; font-size: 9px; color: #fff; font-weight: 600; text-transform: uppercase; text-align: center; padding: 4px; cursor: grab; border: 2px solid transparent; }
@@ -272,41 +276,115 @@
   }
   .annotations h2 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
   .ann-subtitle { font-size: 13px; color: #888; margin-bottom: 28px; }
-  .ann-item { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #eedc6a; }
-  .ann-item:last-child { border-bottom: none; margin-bottom: 0; }
-  .ann-item strong { display: block; font-size: 14px; font-weight: 700; color: #222; margin-bottom: 4px; }
-  .ann-tag {
-    display: inline-block; background: #f5c518; color: #333;
-    font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 3px;
-    margin-top: 6px; text-transform: uppercase; letter-spacing: 0.04em;
-  }
   .ann-tag.decision { background: #ffd580; }
   .ann-tag.jean { background: #f8d7da; color: #721c24; }
   .ann-tag.new { background: #d5f5e3; color: #1a5c2a; }
 
   /* Feedback form styles */
-  .ann-feedback-intro { background: #2c3e50; color: #ecf0f1; padding: 24px 32px; font-size: 14px; line-height: 1.7; }
-  .ann-feedback-intro h2 { font-size: 18px; font-weight: 700; margin-bottom: 6px; color: #fff; }
-  .ann-feedback-intro p { color: #bdc3c7; max-width: 680px; }
   .ann-section-inner { padding: 32px 32px 0; }
-  .feedback-box { margin-top: 12px; background: #fff; border: 1px solid #e0d080; border-radius: 6px; padding: 14px 16px; }
-  .feedback-box label { display: block; font-size: 12px; font-weight: 700; color: #5a4a00; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
-  .feedback-box textarea { width: 100%; padding: 10px 12px; border: 1px solid #d0c060; border-radius: 4px; font-size: 14px; color: #333; background: #fffef5; resize: vertical; min-height: 80px; line-height: 1.6; font-family: inherit; }
-  .feedback-box textarea:focus { outline: 2px solid #f5c518; border-color: transparent; }
-  .feedback-box textarea::placeholder { color: #bbb; }
-  .feedback-form-wrap { background: #fff8e0; border-top: 2px solid #f5c518; padding: 28px 32px 36px; }
-  .feedback-form-heading { font-size: 16px; font-weight: 700; color: #222; margin-bottom: 4px; }
-  .feedback-form-desc { font-size: 13px; color: #666; margin-bottom: 20px; line-height: 1.6; }
-  .your-name-row { display: flex; gap: 14px; margin-bottom: 20px; flex-wrap: wrap; }
-  .your-name-field { flex: 1; min-width: 180px; }
-  .your-name-field label { display: block; font-size: 12px; font-weight: 700; color: #555; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 5px; }
-  .your-name-field input { width: 100%; padding: 10px 12px; border: 1px solid #d0d0d0; border-radius: 4px; font-size: 14px; color: #333; background: #fff; }
-  .submit-btn { display: inline-block; background: #2c3e50; color: #fff; padding: 12px 32px; border-radius: 4px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; }
-  .submit-btn:hover { background: #1a2a3a; }
-  .submit-note { font-size: 12px; color: #888; margin-top: 10px; line-height: 1.6; }
-  .success-message { display: none; background: #d5f5e3; border: 1px solid #6abf6a; border-radius: 6px; padding: 20px 24px; margin-top: 16px; font-size: 14px; color: #1a5c2a; line-height: 1.7; }
-  .success-message strong { display: block; font-size: 16px; margin-bottom: 4px; }
-  .error-message { display: none; background: #fdf2f2; border: 1px solid #e8b4b4; border-radius: 6px; padding: 14px 18px; margin-top: 12px; font-size: 13px; color: #7a2020; }
+
+  /* ── Approval form styles ───────────────────────── */
+  .approval-intro {
+    background: #2c3e50; color: #ecf0f1; padding: 24px 32px;
+    font-size: 14px; line-height: 1.7;
+  }
+  .approval-intro h2 { font-size: 18px; font-weight: 700; margin-bottom: 6px; color: #fff; }
+  .approval-intro p  { color: #bdc3c7; max-width: 680px; }
+
+  .annotations { max-width: 860px; margin: 0 auto; padding: 0 24px 48px; }
+  .ann-section-inner { padding-top: 8px; }
+  .ann-subtitle { font-size: 13px; color: #888; margin-bottom: 20px; margin-top: 2px; }
+
+  .ann-item {
+    background: #fff; border: 1px solid #e0e0e0; border-left: 4px solid #2c3e50;
+    border-radius: 4px; padding: 14px 18px; margin-bottom: 14px; font-size: 14px;
+    line-height: 1.7; color: #333;
+  }
+  .ann-item strong { display: block; font-size: 14px; font-weight: 700; margin-bottom: 4px; color: #1a2a3a; }
+  .ann-item p { margin: 0; }
+
+  .ann-tag {
+    display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; padding: 2px 8px; border-radius: 10px; margin-top: 8px;
+  }
+  .ann-tag.decision  { background: #fde8c8; color: #7a3c00; }
+  .ann-tag.content   { background: #ddeeff; color: #003366; }
+  .ann-tag.contract  { background: #d5f5e3; color: #1a5c2a; }
+  .ann-tag.confirmed { background: #d5f5e3; color: #1a5c2a; }
+  .ann-tag.info      { background: #f0f0f0; color: #555; }
+
+  /* Approval form */
+  .approval-form-wrap {
+    background: #f0f7ff; border-top: 3px solid #2c3e50;
+    padding: 32px 32px 40px; margin-top: 8px;
+  }
+  .approval-form-heading {
+    font-size: 18px; font-weight: 700; color: #1a2a3a; margin-bottom: 6px;
+  }
+  .approval-form-desc {
+    font-size: 13px; color: #555; margin-bottom: 24px; line-height: 1.6;
+  }
+  .approval-radio-group { display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
+  .approval-radio-label {
+    display: flex; align-items: center; gap: 8px; cursor: pointer;
+    font-size: 15px; font-weight: 600; color: #1a2a3a; padding: 12px 20px;
+    border: 2px solid #c8d8e8; border-radius: 6px; background: #fff;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .approval-radio-label input[type="radio"] { accent-color: #2c3e50; width: 18px; height: 18px; }
+  .approval-radio-label.approved  { border-color: #6abf6a; }
+  .approval-radio-label.changes   { border-color: #e8a040; }
+  .approval-radio-label input:checked ~ span.approved-text  { color: #1a5c2a; }
+  .approval-radio-label input:checked ~ span.changes-text   { color: #7a4400; }
+
+  .reason-field { margin-bottom: 20px; display: none; }
+  .reason-field.visible { display: block; }
+  .approval-label {
+    display: block; font-size: 12px; font-weight: 700; color: #555;
+    text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;
+  }
+  .approval-textarea {
+    width: 100%; padding: 10px 12px; border: 1px solid #c0c8d0;
+    border-radius: 4px; font-size: 14px; color: #333; background: #fff;
+    resize: vertical; min-height: 90px; line-height: 1.6; font-family: inherit;
+    box-sizing: border-box;
+  }
+  .approval-textarea:focus { outline: 2px solid #2c3e50; border-color: transparent; }
+  .approval-textarea::placeholder { color: #bbb; }
+
+  .approval-name-row { display: flex; gap: 14px; margin-bottom: 20px; flex-wrap: wrap; }
+  .approval-name-field { flex: 1; min-width: 180px; }
+  .approval-name-field label {
+    display: block; font-size: 12px; font-weight: 700; color: #555;
+    text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 5px;
+  }
+  .approval-name-field input {
+    width: 100%; padding: 10px 12px; border: 1px solid #c0c8d0;
+    border-radius: 4px; font-size: 14px; color: #333; background: #fff;
+    box-sizing: border-box;
+  }
+
+  .approval-submit-btn {
+    display: inline-block; background: #2c3e50; color: #fff;
+    padding: 13px 36px; border-radius: 4px; font-size: 15px;
+    font-weight: 700; border: none; cursor: pointer; letter-spacing: 0.02em;
+  }
+  .approval-submit-btn:hover { background: #1a2a3a; }
+  .approval-submit-btn:disabled { background: #999; cursor: default; }
+  .approval-submit-note { font-size: 12px; color: #888; margin-top: 10px; line-height: 1.6; }
+
+  .approval-success {
+    display: none; background: #d5f5e3; border: 1px solid #6abf6a;
+    border-radius: 6px; padding: 20px 24px; margin-top: 16px;
+    font-size: 14px; color: #1a5c2a; line-height: 1.7;
+  }
+  .approval-success strong { display: block; font-size: 16px; margin-bottom: 4px; }
+  .approval-error {
+    display: none; background: #fdf2f2; border: 1px solid #e8b4b4;
+    border-radius: 6px; padding: 14px 18px; margin-top: 12px;
+    font-size: 13px; color: #7a2020;
+  }
+
 </style>
 </head>
 <body>
@@ -314,7 +392,7 @@
 <!-- REVISION BANNER (outside admin wrapper so it spans full width) -->
 <div class="revision-banner">
   <span class="revision-badge">Revised</span>
-  Wireframe 11 updated to add bundle configuration fields inside the Coordinated With section.
+  Wireframe 11 updated to add collection configuration fields inside the Coordinated With section.
   All other sections are unchanged from the original. The new content is marked with a green border.
 </div>
 
@@ -466,11 +544,11 @@
         <!-- ===================================================
              COORDINATED WITH: REVISED SECTION
              Original chip interface is preserved.
-             New bundle configuration fields are added below it.
+             New collection configuration fields are added below it.
         =================================================== -->
         <div class="form-section new-section">
           <div class="form-section-header">
-            Coordinated With &amp; Bundle
+            Coordinated With &amp; Collection
             <span class="new-badge">Updated</span>
           </div>
           <div class="form-section-body">
@@ -478,7 +556,7 @@
             <p style="font-size:13px; color:#666; margin-bottom:14px; line-height:1.6;">
               Select plants that pair well with this one. These appear in the
               Coordinated Flowers section on this plant's detail page.
-              If you set a bundle price below, customers can also purchase the
+              If you set a collection price below, customers can also purchase the
               full set at a discount.
             </p>
 
@@ -492,14 +570,14 @@
                 <span class="coord-chip">Joan Senior <span class="coord-chip-remove">&times;</span></span>
                 <span class="coord-chip">Morning Mist <span class="coord-chip-remove">&times;</span></span>
               </div>
-              <div style="font-size:11px; color:#bbb; padding-top:4px;">5 plants selected &bull; Valid bundle size (3, 5, 7, or 9 plants)</div>
+              <div style="font-size:11px; color:#bbb; padding-top:4px;">5 plants selected &bull; Valid collection size (3, 5, 7, or 9 plants)</div>
             </div>
 
             <!-- ===== NEW: Bundle Configuration ===== -->
             <div class="bundle-config-area">
 
               <div style="font-size:12px; font-weight:700; color:#555; text-transform:uppercase; letter-spacing:0.07em; margin-bottom:12px;">
-                Bundle Offer
+                Collection Offer
                 <span style="font-size:11px; font-weight:400; color:#aaa; text-transform:none; letter-spacing:0; margin-left:8px;">
                   Offer this set at a discounted price on the plant detail page
                 </span>
@@ -507,29 +585,29 @@
 
               <div class="bundle-enable-row">
                 <div>
-                  <div class="bundle-enable-label">Enable bundle offer for this plant</div>
+                  <div class="bundle-enable-label">Enable collection offer for this plant</div>
                   <div class="bundle-enable-desc">
-                    When on, a "Bundle &amp; Save" panel appears on this plant's public detail page
+                    When on, a "Collection &amp; Save" panel appears on this plant's public detail page
                     with the plants listed above and the price below.
                   </div>
                 </div>
                 <div class="toggle-wrap">
-                  <div class="toggle" title="Bundle enabled"></div>
+                  <div class="toggle" title="Collection enabled"></div>
                   <span class="toggle-text">On</span>
                 </div>
               </div>
 
-              <!-- Bundle fields (shown when toggle is ON) -->
+              <!-- Collection fields (shown when toggle is ON) -->
               <div class="bundle-fields">
 
                 <div class="form-row cols-2" style="margin-top:14px;">
                   <div class="form-field">
-                    <label>Bundle Name <span class="optional">(optional)</span></label>
+                    <label>Collection Name <span class="optional">(optional)</span></label>
                     <input class="form-input" type="text" value="Jean's Sunset Garden Collection"
                       placeholder="e.g. Jean's Sunset Garden Collection">
                   </div>
                   <div class="form-field">
-                    <label>Bundle Price</label>
+                    <label>Collection Price</label>
                     <div class="price-wrap">
                       <span class="price-prefix">$</span>
                       <input class="form-input" type="text" value="112.00"
@@ -540,38 +618,26 @@
 
                 <div class="form-row single" style="margin-bottom:0;">
                   <div class="form-field">
-                    <label>Bundle Description <span class="optional">(optional, shown on bundle page)</span></label>
-                    <textarea class="form-textarea" placeholder="Tell customers why these plants go together. For example: bloom timing, color relationships, height variation. This appears at the top of the bundle detail page.">Jean hand-picked these five daylilies to bloom together beautifully in the same garden bed. They complement each other in color, height, and bloom time, giving you a long season of color from early summer through fall.</textarea>
+                    <label>Collection Description <span class="optional">(optional, shown on collection page)</span></label>
+                    <textarea class="form-textarea" placeholder="Tell customers why these plants go together. For example: bloom timing, color relationships, height variation. This appears at the top of the collection detail page.">Jean hand-picked these five daylilies to bloom together beautifully in the same garden bed. They complement each other in color, height, and bloom time, giving you a long season of color from early summer through fall.</textarea>
                   </div>
                 </div>
 
-                <!-- Live preview of bundle pricing -->
+                <!-- Live preview of collection pricing -->
                 <div class="bundle-preview">
-                  <div class="bundle-preview-heading">Bundle Price Preview</div>
+                  <div class="bundle-preview-heading">Collection Price Preview</div>
                   <div class="bundle-preview-row">
                     <span class="bp-label">Individual total (5 plants)</span>
                     <span class="bp-value">$124.00</span>
                   </div>
                   <div class="bundle-preview-row">
-                    <span class="bp-label">Bundle price (as entered)</span>
+                    <span class="bp-label">Collection price (as entered)</span>
                     <span class="bp-value">$112.00</span>
                   </div>
                   <div class="bundle-preview-row">
                     <span class="bp-label">Customer savings</span>
-                    <span class="bp-savings">$12.00 (9.7% off)</span>
+                    <span class="bp-savings">$12.00</span>
                   </div>
-                </div>
-
-                <div class="jean-flagged-inline">
-                  <strong>Jean-flagged decisions:</strong>
-                  (1) Should the discount be shown as a fixed dollar amount ("Save $12.00"), a percentage
-                  ("Save 10%"), or both? The preview above shows both automatically once a bundle price
-                  is entered. Jean decides what appears on the public page.
-                  (2) Jean sets the bundle price as a single number (as shown here). The system
-                  calculates and displays the savings. Alternatively, Jean could enter a
-                  discount percentage and let the system calculate the bundle price.
-                  (3) Mix-and-match vs. fixed bundle: the bundle is fixed as defined by the chips
-                  above. This is recommended for launch. Mix-and-match is a future option.
                 </div>
 
               </div><!-- /.bundle-fields -->
@@ -594,22 +660,26 @@
       <div class="sidebar-col">
 
         <div class="sidebar-card">
-          <div class="sidebar-card-header">Status</div>
+          <div class="sidebar-card-header">Status &amp; Inventory</div>
           <div class="sidebar-card-body">
-            <div class="status-toggle-row">
-              <div>
-                <div class="status-toggle-label">Active</div>
-                <div class="status-toggle-desc">Visible to customers</div>
-              </div>
-              <div class="toggle"></div>
+
+            <div class="status-select-label">Plant Status</div>
+            <select class="status-select" id="plant-status-select" onchange="updateQtyState()">
+              <option value="active">Active &mdash; visible and purchasable</option>
+              <option value="sold_out">Sold Out &mdash; visible, cannot purchase</option>
+              <option value="held">Held for Increase &mdash; visible, not for sale</option>
+              <option value="draft">Draft &mdash; hidden from customers</option>
+            </select>
+
+            <div class="qty-field-label">Quantity on Hand</div>
+            <div class="qty-field-row">
+              <input class="qty-field-input" id="qty-on-hand" type="number" min="0" value="3" placeholder="0">
+              <div class="qty-field-hint">fans available<br>to sell</div>
             </div>
-            <div class="status-toggle-row">
-              <div>
-                <div class="status-toggle-label">In Stock</div>
-                <div class="status-toggle-desc">Available to purchase</div>
-              </div>
-              <div class="toggle"></div>
+            <div class="qty-auto-note" id="qty-auto-note">
+              &#10003; When a purchase reduces this to 0, the system automatically sets status to <strong>Sold Out</strong>.
             </div>
+
           </div>
         </div>
 
@@ -644,53 +714,47 @@
 <!-- ANNOTATIONS -->
 <div class="annotations">
   <h2>Page Annotations: Admin Plant Editor — Revised (Wireframe 11)</h2>
-  <p class="ann-subtitle">
-    This revision adds bundle configuration fields to the bottom of the Coordinated With section.
-    All other sections (Basic Information, Plant Attributes, Descriptions, Status, Photos, Delete Zone)
-    are identical to the original Wireframe 11. Only the green-bordered section changed.
-  </p>
+  <p class="ann-subtitle">Reference notes for WF11-REVISED. Decisions confirmed during wireframe review are noted below.</p>
 
   <div class="ann-item">
     <strong>What Changed from Original Wireframe 11</strong>
-    <p>The Coordinated With section now has two parts. The top part (chip selector for picking companion plants) is unchanged. A new "Bundle Offer" subsection appears below it, separated by a horizontal rule. The section header and border are now green to signal it is updated. Everything else on the page is untouched.</p>
+    <p>The Coordinated With section now has two parts. The top part (chip selector for picking companion plants) is unchanged. A new "Collection Offer" subsection appears below it, separated by a horizontal rule. The section header and border are now green to signal it is updated. Everything else on the page is untouched.</p>
     <span class="ann-tag new">Updated section</span>
   </div>
 
   <div class="ann-item">
-    <strong>Valid Bundle Size Indicator</strong>
-    <p>Below the chip selector, a small line of text counts the currently selected plants and notes whether the count is a valid bundle size (3, 5, 7, or 9). This helps Jean know at a glance whether her current selection is eligible for a bundle offer. If she has 4 chips selected, the indicator would read "4 plants selected &bull; Not a valid bundle size (must be 3, 5, 7, or 9)" and the bundle toggle would be disabled until she adds or removes a plant.</p>
-    <span class="ann-tag decision">Decision needed: Should the system enforce the 3/5/7/9 rule strictly (the toggle is disabled for invalid counts), or should it allow Jean to create bundles of any size? Strict enforcement prevents accidental even-number bundles but may feel rigid. The spec calls for odd numbers for visual balance on the public page. Strict enforcement is the recommendation.</span>
+    <strong>Valid Collection Size Indicator</strong>
+    <p>Below the chip selector, a small line of text counts the currently selected plants and notes whether the count is a valid collection size (3, 5, 7, or 9). This helps Jean know at a glance whether her current selection is eligible for a collection offer. If she has 4 chips selected, the indicator would read "4 plants selected &bull; Not a valid collection size (must be 3, 5, 7, or 9)" and the collection toggle would be disabled until she adds or removes a plant.</p>
+    </div>
+
+  <div class="ann-item">
+    <strong>Collection Enable Toggle</strong>
+    <p>Jean can have companion plants configured without offering a collection. If she has the chips set but the toggle is off, the editorial Coordinated Flowers grid still appears on the public plant detail page, but no collection panel is shown. The toggle is the switch between "these are editorial companions" and "these are a purchasable collection." Jean can turn the collection on or off at any time without losing the collection name, price, or description she has entered.</p>
   </div>
 
   <div class="ann-item">
-    <strong>Bundle Enable Toggle</strong>
-    <p>Jean can have companion plants configured without offering a bundle. If she has the chips set but the toggle is off, the editorial Coordinated Flowers grid still appears on the public plant detail page, but no bundle panel is shown. The toggle is the switch between "these are editorial companions" and "these are a purchasable bundle." Jean can turn the bundle on or off at any time without losing the bundle name, price, or description she has entered.</p>
+    <strong>Collection Name Field</strong>
+    <p>Optional. A human-friendly name for the collection set, like "Jean's Sunset Garden Collection." Shown on the collection detail page (Wireframe 03b) as the page title. If Jean leaves it blank, the system uses a default like "5-Plant Collection." The name adds the personal, curated quality that makes the collection feel like Jean's recommendation rather than an automated upsell.</p>
   </div>
 
   <div class="ann-item">
-    <strong>Bundle Name Field</strong>
-    <p>Optional. A human-friendly name for the bundle set, like "Jean's Sunset Garden Collection." Shown on the bundle detail page (Wireframe 03b) as the page title. If Jean leaves it blank, the system uses a default like "5-Plant Collection." The name adds the personal, curated quality that makes the bundle feel like Jean's recommendation rather than an automated upsell.</p>
+    <strong>Collection Price Field</strong>
+    <p>Jean enters a single dollar amount for the entire collection. The system calculates and displays the individual total and the savings automatically in the live preview below. Jean does not need to calculate anything; she just decides what she wants to charge for the set as a whole.</p>
+    </div>
+
+  <div class="ann-item">
+    <strong>Collection Description Field</strong>
+    <p>Optional free-text field. Jean's own explanation of why these plants go together: bloom timing, color combinations, height, garden use. This appears at the top of the collection detail page (Wireframe 03b) and is the most important piece of copy for making the collection feel curated and trustworthy. Placeholder text in the field prompts Jean with an example of what to write.</p>
   </div>
 
   <div class="ann-item">
-    <strong>Bundle Price Field</strong>
-    <p>Jean enters a single dollar amount for the entire bundle. The system calculates and displays the individual total and the savings automatically in the live preview below. Jean does not need to calculate anything; she just decides what she wants to charge for the set as a whole.</p>
-    <span class="ann-tag jean">Jean-flagged: Should Jean enter the bundle price directly (as shown), or enter a discount percentage and let the system calculate the bundle price? Both approaches are shown in the live preview below the fields. Direct price entry gives Jean more control. Percentage-based is simpler if she wants a consistent discount rule across all bundles.</span>
-  </div>
-
-  <div class="ann-item">
-    <strong>Bundle Description Field</strong>
-    <p>Optional free-text field. Jean's own explanation of why these plants go together: bloom timing, color combinations, height, garden use. This appears at the top of the bundle detail page (Wireframe 03b) and is the most important piece of copy for making the bundle feel curated and trustworthy. Placeholder text in the field prompts Jean with an example of what to write.</p>
-  </div>
-
-  <div class="ann-item">
-    <strong>Live Bundle Price Preview</strong>
-    <p>As Jean types a bundle price, the preview box below the fields updates in real time to show: the individual total (sum of all plant prices in the set), the bundle price she entered, and the customer savings in both dollars and percentage. This lets Jean see immediately whether her bundle price makes sense before saving. If the bundle price is higher than the individual total, the savings would show as negative and Jean would see a warning.</p>
+    <strong>Live Collection Price Preview</strong>
+    <p>As Jean types a collection price, the preview box below the fields updates in real time to show: the individual total (sum of all plant prices in the set), the collection price she entered, and the customer savings in both dollars and percentage. This lets Jean see immediately whether her collection price makes sense before saving. If the collection price is higher than the individual total, the savings would show as negative and Jean would see a warning.</p>
   </div>
 
   <div class="ann-item">
     <strong>Database Changes Required</strong>
-    <p>The plant_coordinations table needs three new columns: bundle_enabled (boolean, default false), bundle_price_cents (integer, nullable), bundle_name (string, nullable), and bundle_description (text, nullable). The bundle_enabled flag is what controls whether the panel shows on the public page. The price, name, and description are only used when bundle_enabled is true.</p>
+    <p>The plant_coordinations table needs three new columns to support collections: collection_enabled (boolean, default false), collection_price_cents (integer, nullable), collection_name (string, nullable), and collection_description (text, nullable). The collection_enabled flag is what controls whether the Collection panel shows on the public page. The price, name, and description are only used when a collection offer is active.</p>
     <span class="ann-tag new">Schema change: plant_coordinations table</span>
   </div>
 
@@ -698,95 +762,171 @@
 
 
 <!-- FEEDBACK INTRO -->
-<div class="ann-feedback-intro">
-  <h2>Your Feedback on This Page</h2>
-  <p>Hi Jean! Below are questions about the Admin Plant Editor. Type your answers and click <strong>Send My Feedback</strong> when done. Edward receives all your answers by email.</p>
+<div class="approval-intro">
+  <h2>Wireframe Notes: WF11-REVISED &mdash; Admin Plant Editor (Revised)</h2>
+  <p>Hi Jean! The notes below explain what each part of this page does and confirm
+    the decisions we have already made together. When you have finished reading,
+    please use the <strong>Approval Form</strong> at the bottom of this page to let
+    Edward know whether the page looks right or whether you would like any changes.</p>
 </div>
-<div style="background:#fffbe6; border-top:4px solid #f5c518; padding:0;">
-  <div style="padding:24px 32px 0;">
-  <h2 style="font-size:18px; font-weight:700; padding-bottom:8px;">Admin Plant Editor (WF11)</h2>
-    <div class="ann-item" style="padding:20px 0; border-bottom:1px solid #eedc6a;">
-    <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-dropdown_values">The attribute dropdowns (Color, Bloom Size, Ploidy, etc.) have a fixed list of values. If you need to add a new color category or bloom time, Edward would need to update the list for you. Would you prefer a fixed list for now, or would you like to be able to manage these lists yourself from the Settings page?</label>
-      <textarea id="fb-dropdown_values" placeholder="Type your answer here..."></textarea>
-    </div>
-  </div>
-  <div class="ann-item" style="padding:20px 0; border-bottom:1px solid #eedc6a;">
-    <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-bundle_name_required">When you set up a bundle, should the bundle name be required (you must give it a name like "Jean's Sunset Garden Collection") or optional (defaults to "5-Plant Collection" if left blank)?</label>
-      <textarea id="fb-bundle_name_required" placeholder="Type your answer here..."></textarea>
-    </div>
-  </div>
-  <div class="ann-item" style="padding:20px 0; border-bottom:1px solid #eedc6a;">
-    <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-bundle_price_method">For bundle pricing: would you prefer to enter the bundle price as a total dollar amount (e.g., $112.00), or enter a percentage discount (e.g., 10% off) and let the system calculate the price?</label>
-      <textarea id="fb-bundle_price_method" placeholder="Type your answer here..."></textarea>
-    </div>
-  </div>
-  <div class="ann-item" style="padding:20px 0; border-bottom:1px solid #eedc6a;">
-    <div class="feedback-box" style="margin-top:0;">
-      <label for="fb-general">Any other thoughts on the plant editor?</label>
-      <textarea id="fb-general" placeholder="Type your answer here..."></textarea>
-    </div>
-  </div>
-  </div>
-  <div class="feedback-form-wrap">
-    <div class="feedback-form-heading">Send Your Feedback to Edward</div>
-    <p class="feedback-form-desc">Click the button below to send all your answers to Edward in one email.</p>
-    <form id="feedback-form-wf11">
-      <input type="hidden" name="_subject" value="WF11 Admin Plant Editor Feedback - Dazzling Daylilies">
-      <input type="hidden" name="wireframe" value="WF11 - Admin Plant Editor">
-      <input type="hidden" name="dropdown_values" id="h-dropdown_values">
-      <input type="hidden" name="bundle_name_required" id="h-bundle_name_required">
-      <input type="hidden" name="bundle_price_method" id="h-bundle_price_method">
-      <input type="hidden" name="general" id="h-general">
-      <div class="your-name-row">
-        <div class="your-name-field">
-          <label>Your Name</label>
-          <input type="text" name="reviewer_name" value="Jean">
+
+<div class="annotations">
+  <div class="ann-section-inner">
+  <p style="color:#888;font-size:13px;padding:20px 0;">All decisions for this page have been confirmed. Please use the approval form below.</p>
+</div>
+
+  <!-- APPROVAL FORM -->
+  <div class="approval-form-wrap">
+    <div class="approval-form-heading">Wireframe Approval: WF11-REVISED &mdash; Admin Plant Editor (Revised)</div>
+    <p class="approval-form-desc">
+      Please review the wireframe above and the notes on this page, then let Edward know
+      whether this page is approved as shown or whether you would like changes made before
+      the build begins. Your response goes directly to Edward by email.
+    </p>
+
+    <form id="approval-form-wf11revised">
+      <input type="hidden" name="_subject" value="WF11-REVISED Admin Plant Editor (Revised) Approval - Dazzling Daylilies">
+      <input type="hidden" name="wireframe" value="WF11-REVISED - Admin Plant Editor (Revised)">
+      <input type="hidden" name="approval_status" id="h-approval-approval-form-wf11revised">
+      <input type="hidden" name="change_reason"   id="h-reason-approval-form-wf11revised">
+      <input type="hidden" name="general_comments" id="h-comments-approval-form-wf11revised">
+
+      <div class="approval-radio-group">
+        <label class="approval-radio-label approved">
+          <input type="radio" name="approval_choice" value="Approved" id="radio-approved-approval-form-wf11revised">
+          <span class="approved-text">&#10003;&nbsp; Approved &mdash; looks great!</span>
+        </label>
+        <label class="approval-radio-label changes">
+          <input type="radio" name="approval_choice" value="Changes Needed" id="radio-changes-approval-form-wf11revised">
+          <span class="changes-text">&#9998;&nbsp; Changes Needed</span>
+        </label>
+      </div>
+
+      <div class="reason-field" id="reason-field-approval-form-wf11revised">
+        <label class="approval-label" for="textarea-reason-approval-form-wf11revised">
+          What would you like changed? (required)
+        </label>
+        <textarea class="approval-textarea" id="textarea-reason-approval-form-wf11revised"
+          placeholder="Please describe what you would like adjusted on this page..."></textarea>
+      </div>
+
+      <div style="margin-bottom: 20px;">
+        <label class="approval-label" for="textarea-comments-approval-form-wf11revised">
+          Any other comments or questions? (optional)
+        </label>
+        <textarea class="approval-textarea" id="textarea-comments-approval-form-wf11revised"
+          placeholder="Any other thoughts, questions, or notes for Edward..."></textarea>
+      </div>
+
+      <div class="approval-name-row">
+        <div class="approval-name-field">
+          <label for="name-approval-form-wf11revised">Your Name</label>
+          <input type="text" id="name-approval-form-wf11revised" name="reviewer_name" value="Jean" placeholder="Your name">
         </div>
-        <div class="your-name-field">
-          <label>Your Email</label>
-          <input type="email" name="email" placeholder="dazzlingdaylilies@yahoo.com">
+        <div class="approval-name-field">
+          <label for="email-approval-form-wf11revised">Your Email (so Edward can reply)</label>
+          <input type="email" id="email-approval-form-wf11revised" name="email" placeholder="dazzlingdaylilies@yahoo.com">
         </div>
       </div>
-      <button type="submit" class="submit-btn">Send My Feedback &rarr;</button>
-      <p class="submit-note">Sent directly and securely to Edward.</p>
-      <div class="success-message" id="success-wf11"><strong>Thank you, Jean!</strong> Your feedback on the Admin Plant Editor has been sent to Edward successfully.</div>
-      <div class="error-message" id="error-wf11">Something went wrong. Please try again or email Edward directly.</div>
+
+      <button type="submit" class="approval-submit-btn">Send My Response &rarr;</button>
+      <p class="approval-submit-note">Your response is sent directly and securely to Edward. This page does not store any personal information.</p>
+
+      <div class="approval-success" id="success-approval-form-wf11revised">
+        <strong>Thank you, Jean!</strong>
+        Your response on WF11-REVISED (Admin Plant Editor (Revised)) has been sent to Edward successfully.
+        You can now close this tab or continue reviewing other wireframes from the main review page.
+      </div>
+      <div class="approval-error" id="error-approval-form-wf11revised">
+        Something went wrong. Please try again, or email Edward directly at
+        <a href="mailto:edward@docbear-ent.com">edward@docbear-ent.com</a> with your notes.
+      </div>
     </form>
-  </div>
-</div>
+  </div><!-- /.approval-form-wrap -->
+
+</div><!-- /.annotations -->
+
 <script>
-(function(){
-  var form = document.getElementById('feedback-form-wf11');
+function updateQtyState() {
+  var sel = document.getElementById('plant-status-select');
+  var qtyInput = document.getElementById('qty-on-hand');
+  var qtyNote  = document.getElementById('qty-auto-note');
+  if (!sel || !qtyInput) return;
+  var val = sel.value;
+  // Quantity is meaningful only when Active or Sold Out
+  if (val === 'held' || val === 'draft') {
+    qtyInput.disabled = true;
+    qtyNote.style.display = 'none';
+  } else {
+    qtyInput.disabled = false;
+    qtyNote.style.display = 'block';
+  }
+}
+// Run on load
+document.addEventListener('DOMContentLoaded', updateQtyState);
+
+(function() {
+  var form     = document.getElementById('approval-form-wf11revised');
   if (!form) return;
-  var fieldMap = [['fb-dropdown_values', 'h-dropdown_values'],
-    ['fb-bundle_name_required', 'h-bundle_name_required'],
-    ['fb-bundle_price_method', 'h-bundle_price_method'],
-    ['fb-general', 'h-general']];
+
+  var radios   = form.querySelectorAll('input[type="radio"]');
+  var reasonFld = document.getElementById('reason-field-approval-form-wf11revised');
+  var reasonTA  = document.getElementById('textarea-reason-approval-form-wf11revised');
+
+  radios.forEach(function(r) {
+    r.addEventListener('change', function() {
+      if (r.value === 'Changes Needed' && r.checked) {
+        reasonFld.classList.add('visible');
+        reasonTA.required = true;
+      } else {
+        reasonFld.classList.remove('visible');
+        reasonTA.required = false;
+      }
+    });
+  });
+
   form.addEventListener('submit', function(e) {
     e.preventDefault();
-    fieldMap.forEach(function(p) {
-      var s = document.getElementById(p[0]), d = document.getElementById(p[1]);
-      if (s && d) d.value = s.value.trim() || '(no answer)';
-    });
-    var btn = form.querySelector('.submit-btn');
-    btn.textContent = 'Sending...'; btn.disabled = true;
+
+    var chosen = form.querySelector('input[name="approval_choice"]:checked');
+    if (!chosen) {
+      alert('Please select Approved or Changes Needed before sending.');
+      return;
+    }
+    if (chosen.value === 'Changes Needed' && !reasonTA.value.trim()) {
+      reasonTA.focus();
+      alert('Please describe what you would like changed.');
+      return;
+    }
+
+    document.getElementById('h-approval-approval-form-wf11revised').value = chosen.value;
+    document.getElementById('h-reason-approval-form-wf11revised').value   = reasonTA.value.trim() || '(no changes requested)';
+    document.getElementById('h-comments-approval-form-wf11revised').value = document.getElementById('textarea-comments-approval-form-wf11revised').value.trim() || '(none)';
+
+    var btn = form.querySelector('.approval-submit-btn');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
     fetch('https://formspree.io/f/mvzyrrrv', {
-      method:'POST', body: new FormData(form), headers: {'Accept':'application/json'}
-    }).then(function(r) {
-      if(r.ok) {
-        document.getElementById('success-wf11').style.display='block';
-        document.getElementById('success-wf11').scrollIntoView({behavior:'smooth'});
-        btn.textContent='Feedback Sent';
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(function(r) {
+      if (r.ok) {
+        document.getElementById('success-approval-form-wf11revised').style.display = 'block';
+        document.getElementById('success-approval-form-wf11revised').scrollIntoView({ behavior: 'smooth' });
+        btn.textContent = 'Response Sent';
       } else { throw new Error(); }
-    }).catch(function() {
-      document.getElementById('error-wf11').style.display='block';
-      btn.textContent='Send My Feedback →'; btn.disabled=false;
+    })
+    .catch(function() {
+      document.getElementById('error-approval-form-wf11revised').style.display = 'block';
+      btn.textContent = 'Send My Response →';
+      btn.disabled = false;
     });
   });
 })();
 </script>
+
 </body>
 </html>

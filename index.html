@@ -3,34 +3,40 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dazzling Daylilies — Wireframe Review</title>
+<title>Dazzling Daylilies &mdash; Wireframe Approval Review</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    font-size: 15px;
-    background: #f0f0f0;
-    color: #222;
-    overflow-x: hidden;
+    font-size: 15px; background: #f0f0f0; color: #222; overflow-x: hidden;
   }
 
-  /* Header */
-  .site-header {
-    background: #2c3e50; color: #fff; padding: 32px 40px 28px;
-  }
+  .site-header { background: #2c3e50; color: #fff; padding: 32px 40px 28px; }
   .site-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 6px; }
-  .site-header p { font-size: 14px; color: #95a5a6; line-height: 1.6; max-width: 640px; }
+  .site-header p { font-size: 14px; color: #95a5a6; line-height: 1.6; max-width: 660px; }
   .site-header .meta {
     margin-top: 14px; font-size: 12px; color: #7f8c8d;
     display: flex; gap: 24px; flex-wrap: wrap;
   }
   .site-header .meta strong { color: #bdc3c7; margin-right: 4px; }
 
-  /* Instructions box */
-  .instructions {
-    max-width: 960px; margin: 28px auto; padding: 0 24px;
+  .status-banner {
+    background: #1a5c2a; color: #d5f5e3; padding: 12px 40px;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.02em;
+    display: flex; align-items: center; gap: 10px;
   }
+  .status-banner .dot {
+    width: 8px; height: 8px; background: #6abf6a;
+    border-radius: 50%; flex-shrink: 0;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .instructions { max-width: 960px; margin: 28px auto; padding: 0 24px; }
   .instructions-box {
     background: #eef5fb; border: 1px solid #c0d8f0; border-radius: 6px;
     padding: 20px 24px; font-size: 13px; color: #1a4a7a; line-height: 1.7;
@@ -38,10 +44,8 @@
   .instructions-box strong { color: #1a3a6a; }
   .instructions-box p + p { margin-top: 8px; }
 
-  /* Main content */
   .main { max-width: 960px; margin: 0 auto; padding: 0 24px 56px; }
 
-  /* Section headings */
   .section-heading {
     font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
     color: #888; margin-bottom: 12px; margin-top: 36px; padding-bottom: 8px;
@@ -49,17 +53,15 @@
   }
   .section-heading:first-child { margin-top: 0; }
 
-  /* Section intro text */
   .section-intro {
     font-size: 13px; color: #666; line-height: 1.6;
     margin-bottom: 14px; padding: 10px 14px;
     background: #fafafa; border-left: 3px solid #d0d0d0; border-radius: 0 4px 4px 0;
   }
 
-  /* Link grid */
   .link-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 8px; }
-  .link-grid.single { grid-template-columns: 1fr; }
-  .link-grid.triple { grid-template-columns: repeat(3, 1fr); }
+  .link-grid.single   { grid-template-columns: 1fr; }
+  .link-grid.triple   { grid-template-columns: repeat(3, 1fr); }
 
   .wf-link {
     display: flex; align-items: flex-start; gap: 12px;
@@ -68,18 +70,20 @@
     transition: border-color 0.15s, box-shadow 0.15s;
   }
   .wf-link:hover { border-color: #4a90d9; box-shadow: 0 2px 8px rgba(74,144,217,0.12); }
+  .wf-link.pending {
+    background: #fafafa; border-color: #d0d0d0; opacity: 0.75; cursor: default;
+    pointer-events: none;
+  }
 
   .wf-num {
     font-size: 11px; font-weight: 700; color: #aaa;
     background: #f5f5f5; border-radius: 4px; padding: 3px 8px;
     white-space: nowrap; flex-shrink: 0; margin-top: 2px; font-family: monospace;
   }
-  .wf-num.original  { background: #f5f5f5; color: #777; }
-  .wf-num.revised   { background: #eef5fb; color: #4a90d9; }
-  .wf-num.new       { background: #f0faf4; color: #27ae60; }
-  .wf-num.contract  { background: #d5f5e3; color: #1a5c2a; }
-  .wf-num.doc       { background: #f5f0fb; color: #7a3a9a; }
-  .wf-num.compare   { background: #fff8e0; color: #8a6000; }
+  .wf-num.confirmed  { background: #d5f5e3; color: #1a5c2a; }
+  .wf-num.revised    { background: #eef5fb; color: #4a90d9; }
+  .wf-num.pending-wf { background: #fff8e0; color: #8a6000; }
+  .wf-num.doc        { background: #f5f0fb; color: #7a3a9a; }
 
   .wf-info {}
   .wf-title { font-size: 14px; font-weight: 700; color: #222; margin-bottom: 3px; line-height: 1.3; }
@@ -90,22 +94,22 @@
     border-radius: 8px; margin-left: 6px; vertical-align: middle;
     text-transform: uppercase; letter-spacing: 0.04em;
   }
-  .badge-revised  { background: #d6eaf8; color: #1a5276; }
-  .badge-new      { background: #d5f5e3; color: #1a5c2a; }
-  .badge-contract { background: #d5f5e3; color: #1a5c2a; }
-  .badge-original { background: #f0f0f0; color: #777; }
-  .badge-compare  { background: #fff8e0; color: #8a6000; }
+  .badge-confirmed { background: #d5f5e3; color: #1a5c2a; }
+  .badge-revised   { background: #d6eaf8; color: #1a5276; }
+  .badge-pending   { background: #fff8e0; color: #8a6000; }
+  .badge-new       { background: #d5f5e3; color: #1a5c2a; }
 
-  /* Comparison callout box */
-  .compare-box {
-    background: #fffbe6; border: 1px solid #e8d87a; border-radius: 6px;
-    padding: 14px 18px; margin-bottom: 10px; font-size: 13px; color: #5a4a00; line-height: 1.6;
+  .new-features-box {
+    background: #f0faf4; border: 1px solid #a8ddb8; border-radius: 6px;
+    padding: 16px 20px; margin-bottom: 14px; font-size: 13px;
+    color: #1a4a2a; line-height: 1.7;
   }
-  .compare-box strong { color: #3a2a00; display: block; margin-bottom: 4px; }
+  .new-features-box strong { display: block; color: #1a3a1a; margin-bottom: 6px; font-size: 13px; }
+  .new-features-box ul { padding-left: 18px; }
+  .new-features-box li { margin-bottom: 3px; }
 
-  /* Page footer */
   .page-footer {
-    max-width: 960px; margin: 0 auto 0; padding: 20px 24px;
+    max-width: 960px; margin: 0 auto; padding: 20px 24px;
     border-top: 1px solid #ddd; font-size: 12px; color: #aaa; line-height: 1.7;
   }
 </style>
@@ -113,295 +117,292 @@
 <body>
 
 <div class="site-header">
-  <h1>Dazzling Daylilies &mdash; Wireframe Review</h1>
+  <h1>Dazzling Daylilies &mdash; Wireframe Approval Review</h1>
   <p>
-    All wireframes, flow diagrams, and the design decisions document are listed here.
-    Click any link to open that page in your browser. Scroll to the bottom of each
-    wireframe to read the annotations and answer the feedback questions.
+    All wireframes for your website are listed below. Each page shows what that part of
+    your site will look like, along with reference notes explaining what each section does.
+    Please review each page and use the approval form at the bottom to let Edward know
+    whether it looks right or whether you would like changes.
   </p>
   <div class="meta">
-    <span><strong>Client:</strong> Jean Stallman &mdash; Dazzling Daylilies</span>
+    <span><strong>Client:</strong> Jean Stallman, Dazzling Daylilies, Fairfax, Iowa</span>
     <span><strong>Developer:</strong> Edward G. McKeown, Doc Bear Enterprises LLC</span>
-    <span><strong>Status:</strong> Awaiting Jean's review and feedback</span>
+    <span><strong>Updated:</strong> June 2026</span>
   </div>
+</div>
+
+<div class="status-banner">
+  <span class="dot"></span>
+  Wireframe approval phase: all pages updated based on your feedback. Please review and approve each page before the build begins.
 </div>
 
 <div class="instructions">
   <div class="instructions-box">
     <p>
-      <strong>Hi Jean!</strong> Each link below opens a wireframe page showing what part of your
-      website will look like. These are deliberately simple grey-and-white sketches, not the
-      final design. Colors, photos, and fonts come later.
+      <strong>Hi Jean!</strong> Thank you for all of your thoughtful feedback on the wireframes.
+      Everything has been updated based on your answers and the decisions we made together.
+      These are still deliberately simple grey-and-white sketches. Colors, photos, and fonts
+      come in the design phase after approval.
     </p>
     <p>
-      Scroll to the bottom of each page to read the annotations (plain English notes explaining
-      what each section does) and the yellow feedback boxes where you can type your answers.
-      When you are done on a page, click <strong>Send My Feedback</strong> and Edward will
-      receive your answers by email. You can review pages in any order.
-    </p>
-    <p>
-      <strong>Plant Detail Pages (WF03):</strong> There are four versions of the plant detail
-      page for you to compare. Please review all four and tell Edward which layout and features
-      feel right. This is the most important page on your site, so your feedback here matters most.
+      For each page below: click the link to open the wireframe, read the notes at the bottom,
+      and use the <strong>approval form</strong> to tell Edward whether the page is approved
+      as shown or whether you would like any changes. You can review pages in any order.
+      Two new wireframes (WF18 and WF19) are still being prepared and will be added here soon.
     </p>
   </div>
 </div>
 
 <div class="main">
 
-  <!-- ============================================================
-       CUSTOMER-FACING PAGES
-  ============================================================ -->
+  <!-- NEW FEATURES SUMMARY -->
+  <div class="section-heading">New Features Added Since Your Last Review</div>
+  <div class="new-features-box">
+    <strong>Based on your feedback, the following features have been added to the build plan:</strong>
+    <ul>
+      <li><strong>Local Pickup:</strong> Customers can pay online and pick up at your house. No shipping charge for pickup orders.</li>
+      <li><strong>Held for Increase Status:</strong> List a plant so customers can see it exists, without being able to order it, while it grows out.</li>
+      <li><strong>Notify Me When Available:</strong> Customers on sold-out plant pages can request an email notification when it is back in stock.</li>
+      <li><strong>Quantity Tracking:</strong> Stock counts on all plants. System automatically marks a plant sold out when the last one is purchased.</li>
+      <li><strong>Preferred Ship Date:</strong> Customers can enter a preferred shipping date at checkout. Shown on your order detail and printed order sheet.</li>
+      <li><strong>Coupon Codes:</strong> You create and manage coupon codes from the admin panel. Customers enter them at checkout.</li>
+      <li><strong>Shipping Season Banner:</strong> A banner appears on your site automatically when a shipping window is active, showing what is currently shipping and the dates.</li>
+      <li><strong>FAQ Section on Shipping Page:</strong> You add, edit, and reorder frequently asked questions from your admin panel. They appear automatically on the Shipping Information page.</li>
+      <li><strong>End of Season Reports:</strong> Sales by plant category with totals, and sales by customer. Details being confirmed with Jean.</li>
+      <li><strong>Batch Shipping Labels:</strong> Select multiple orders and print all of their shipping labels on one Avery 5163 sheet.</li>
+      <li><strong>Printable Inventory Report:</strong> A printable hard copy of your full inventory by plant category, sorted alphabetically. (WF18, coming soon.)</li>
+    </ul>
+  </div>
+
+  <!-- CUSTOMER-FACING PAGES -->
   <div class="section-heading">Customer-Facing Pages</div>
 
   <div class="link-grid">
 
-    <a class="wf-link" href="Wireframes/wireframe-01-homepage.html">
-      <span class="wf-num original">WF 01</span>
+    <a class="wf-link" href="wireframes/wireframe-01-homepage.html">
+      <span class="wf-num confirmed">WF 01</span>
       <div class="wf-info">
         <div class="wf-title">Homepage</div>
-        <div class="wf-desc">First page customers see. Hero banner, featured plants, About Jean, footer with email signup. Six-tab navigation with double-stacked layout.</div>
+        <div class="wf-desc">First page customers see. Hero banner with your photos, featured plants grid, About Jean section, footer with email signup. Navigation updated with confirmed tab layout and inactive tabs hidden until you activate them.</div>
       </div>
     </a>
 
-    <a class="wf-link" href="Wireframes/wireframe-02-catalog.html">
-      <span class="wf-num original">WF 02</span>
+    <a class="wf-link" href="wireframes/wireframe-02-catalog.html">
+      <span class="wf-num confirmed">WF 02</span>
       <div class="wf-info">
         <div class="wf-title">Catalog Page</div>
-        <div class="wf-desc">Main browsing page. Filter sidebar with 7 filters, sort options, plant card grid, pagination. Shows sold-out badge state.</div>
+        <div class="wf-desc">Main browsing page. Collapsible filter sidebar, 4-column grid with abbreviated plant info, alphabet jump bar for navigation within the selected tab. Sold-out badge shown on unavailable plants.</div>
       </div>
     </a>
 
   </div>
 
-  <!-- ============================================================
-       PLANT DETAIL PAGE: FOUR VERSIONS FOR COMPARISON
-  ============================================================ -->
-  <div class="section-heading">Plant Detail Page &mdash; Four Versions to Compare</div>
-
-  <div class="compare-box">
-    <strong>Please review all four versions below and tell Edward which you prefer.</strong>
-    The main question is layout: photos on the LEFT with info on the RIGHT (side-by-side),
-    or photos on TOP with info BELOW (stacked). Your signed contract specifies the stacked layout,
-    but Edward wants you to see both before the build begins. The bundle feature (panel and separate
-    catalog page) is new and also needs your input. Scroll to the bottom of each wireframe to
-    answer the questions.
+  <!-- PLANT DETAIL PAGES -->
+  <div class="section-heading">Plant Detail Page</div>
+  <div class="section-intro">
+    One confirmed version of the plant detail page is shown below. The original and
+    contract-layout versions have been retired based on your feedback.
   </div>
 
-  <div class="link-grid">
+  <div class="link-grid single">
 
-    <a class="wf-link" href="Wireframes/wireframe-03-plant-detail.html">
-      <span class="wf-num original">WF 03</span>
-      <div class="wf-info">
-        <div class="wf-title">Plant Detail &mdash; Original <span class="wf-badge badge-original">Original</span></div>
-        <div class="wf-desc">Two-column layout: photos LEFT, info RIGHT. No bundle panel. The starting point before any revisions. Review first for context.</div>
-      </div>
-    </a>
-
-    <a class="wf-link" href="Wireframes/wireframe-03-revised-plant-detail.html">
+    <a class="wf-link" href="wireframes/wireframe-03-revised-plant-detail.html">
       <span class="wf-num revised">WF 03</span>
       <div class="wf-info">
-        <div class="wf-title">Plant Detail &mdash; With Bundle Panel <span class="wf-badge badge-revised">Revised</span></div>
-        <div class="wf-desc">Two-column layout with the new Bundle offer panel added above the Coordinated Flowers section. Same side-by-side photo/info structure as original.</div>
-      </div>
-    </a>
-
-    <a class="wf-link" href="Wireframes/wireframe-03-contract-layout-plant-detail.html">
-      <span class="wf-num contract">WF 03</span>
-      <div class="wf-info">
-        <div class="wf-title">Plant Detail &mdash; Contract Layout <span class="wf-badge badge-contract">Contract</span></div>
-        <div class="wf-desc">Stacked layout per signed contract Section 3.1: photos on TOP, all info BELOW. All six navigation tabs shown. Bundle panel included.</div>
-      </div>
-    </a>
-
-    <a class="wf-link" href="Wireframes/wireframe-03b-bundle-page.html">
-      <span class="wf-num new">WF 03b</span>
-      <div class="wf-info">
-        <div class="wf-title">Bundle Detail Page <span class="wf-badge badge-new">New</span></div>
-        <div class="wf-desc">Opens when a customer clicks "View Bundle Details." Shows all plants in the bundle with full details, individual prices, pricing summary, and Add Bundle to Cart.</div>
+        <div class="wf-title">Plant Detail Page <span class="wf-badge badge-confirmed">Confirmed Layout</span></div>
+        <div class="wf-desc">Two-column layout: photos left, plant info right. Abbreviated attribute display (e.g. 5.5&quot; Dor Tet M FR Re 28&quot;), abbreviation key, DF/SF fan size, quantity selector, Coordinated Flowers grid, and collection panel. Updated per your confirmed decisions.</div>
       </div>
     </a>
 
   </div>
 
-  <div class="link-grid single" style="margin-top:10px;">
-    <a class="wf-link" href="Wireframes/wireframe-03c-bundles-page.html">
-      <span class="wf-num new">WF 03c</span>
-      <div class="wf-info">
-        <div class="wf-title">Collections Catalog Page <span class="wf-badge badge-new">New</span></div>
-        <div class="wf-desc">Standalone page at /collections listing every active bundle. Browsable without visiting any individual plant. Includes filters by bundle size and plant type, and an empty state for when no bundles are configured yet.</div>
-      </div>
-    </a>
-  </div>
-
-  <!-- ============================================================
-       SHOPPING AND CHECKOUT
-  ============================================================ -->
-  <div class="section-heading">Shopping and Checkout</div>
+  <!-- COLLECTIONS PAGES -->
+  <div class="section-heading">Collections Pages</div>
 
   <div class="link-grid">
 
-    <a class="wf-link" href="Wireframes/wireframe-04-cart.html">
-      <span class="wf-num original">WF 04</span>
+    <a class="wf-link" href="wireframes/wireframe-03b-bundle-page.html">
+      <span class="wf-num confirmed">WF 03b</span>
       <div class="wf-info">
-        <div class="wf-title">Cart Page</div>
-        <div class="wf-desc">Shopping cart with line items, quantity controls, shipping calculation, and Proceed to Checkout. Includes empty cart state variation.</div>
+        <div class="wf-title">Collection Detail Page</div>
+        <div class="wf-desc">Individual collection page. collection price with automatic savings display, optional description, component plant list, Add Collection to Cart button. collection panel appears after the Coordinated Flowers grid.</div>
       </div>
     </a>
 
-    <a class="wf-link" href="Wireframes/wireframe-05-checkout.html">
-      <span class="wf-num original">WF 05</span>
+    <a class="wf-link" href="wireframes/wireframe-03c-bundles-page.html">
+      <span class="wf-num confirmed">WF 03c</span>
       <div class="wf-info">
-        <div class="wf-title">Checkout Page</div>
-        <div class="wf-desc">Customer info, shipping address, Square payment. Shows all three state scenarios: normal checkout, hard-blocked state (CA/HI/AK/PR), and flagged-state notice (TX/AZ/FL).</div>
-      </div>
-    </a>
-
-    <a class="wf-link" href="Wireframes/wireframe-06-order-confirmation.html">
-      <span class="wf-num original">WF 06</span>
-      <div class="wf-info">
-        <div class="wf-title">Order Confirmation</div>
-        <div class="wf-desc">Page customers see after placing an order. Order number, plant list, totals, Jean's personal note, link to check status later.</div>
-      </div>
-    </a>
-
-    <a class="wf-link" href="Wireframes/wireframe-07-order-status.html">
-      <span class="wf-num original">WF 07</span>
-      <div class="wf-info">
-        <div class="wf-title">Order Status Page</div>
-        <div class="wf-desc">Order lookup by order number plus email. Three states shown: lookup form, order in processing, and shipped with tracking number.</div>
+        <div class="wf-title">Collections Catalog Page</div>
+        <div class="wf-desc">Browsing page for all available collections. Two-row photo grid for 7 and 9-plant collections. &ldquo;Curated with&rdquo; anchor plant shown. Direct Add Collection to Cart button on each card.</div>
       </div>
     </a>
 
   </div>
 
-  <!-- ============================================================
-       INFORMATIONAL PAGES
-  ============================================================ -->
+  <!-- SHOPPING AND CHECKOUT -->
+  <div class="section-heading">Shopping and Checkout Pages</div>
+
+  <div class="link-grid">
+
+    <a class="wf-link" href="wireframes/wireframe-04-cart.html">
+      <span class="wf-num confirmed">WF 04</span>
+      <div class="wf-info">
+        <div class="wf-title">Cart Page</div>
+        <div class="wf-desc">Shopping cart with quantity controls, shipping estimate, and browse-catalog prompt when empty. Customers can order multiple fans of the same plant.</div>
+      </div>
+    </a>
+
+    <a class="wf-link" href="wireframes/wireframe-05-checkout.html">
+      <span class="wf-num confirmed">WF 05</span>
+      <div class="wf-info">
+        <div class="wf-title">Checkout Page</div>
+        <div class="wf-desc">Updated with local pickup toggle, preferred ship date field, and coupon code field. Shipping vs. pickup automatically zeroes the shipping charge. Blocked and flagged state handling included.</div>
+      </div>
+    </a>
+
+    <a class="wf-link" href="wireframes/wireframe-06-order-confirmation.html">
+      <span class="wf-num confirmed">WF 06</span>
+      <div class="wf-info">
+        <div class="wf-title">Order Confirmation Page</div>
+        <div class="wf-desc">Thank-you page after a successful order. Includes alternate version for local pickup orders. Care instructions reference removed from &ldquo;What Happens Next&rdquo; step 3.</div>
+      </div>
+    </a>
+
+    <a class="wf-link" href="wireframes/wireframe-07-order-status.html">
+      <span class="wf-num confirmed">WF 07</span>
+      <div class="wf-info">
+        <div class="wf-title">Order Status Page</div>
+        <div class="wf-desc">Order lookup by order number plus email. Three-step status tracker ending at Shipped. Plain text tracking display. Ready for Pickup status added for local pickup orders.</div>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- INFORMATIONAL PAGES -->
   <div class="section-heading">Informational Pages</div>
 
   <div class="link-grid single">
-    <a class="wf-link" href="Wireframes/wireframe-08-shipping-info.html">
-      <span class="wf-num original">WF 08</span>
+    <a class="wf-link" href="wireframes/wireframe-08-shipping-info.html">
+      <span class="wf-num confirmed">WF 08</span>
       <div class="wf-info">
         <div class="wf-title">Shipping Information Page</div>
-        <div class="wf-desc">Public shipping policy page. Rates, season dates, state restrictions explanation, and bare-root care instructions on arrival. Rates and dates pull from your admin Settings automatically.</div>
+        <div class="wf-desc">Shipping rates, season dates (with individual line toggles for each plant type), state restrictions, bare-root care instructions, and admin-managed FAQ section. All rates and dates pull from your Settings automatically. California moved to the hard-blocked list.</div>
       </div>
     </a>
   </div>
 
-  <!-- ============================================================
-       ADMIN PAGES
-  ============================================================ -->
+  <!-- ADMIN PAGES -->
   <div class="section-heading">Admin Pages (Jean Only &mdash; Behind Secure Login)</div>
   <div class="section-intro">
-    These are the pages you will use to manage your catalog, orders, photos, and settings.
-    Customers never see these pages. Review them to confirm everything you need is here
-    and that the layout makes sense for your workflow.
+    These are the pages you use to manage your catalog, orders, photos, and settings.
+    Customers never see these pages.
   </div>
 
   <div class="link-grid">
 
-    <a class="wf-link" href="Wireframes/wireframe-09-admin-dashboard.html">
-      <span class="wf-num original">WF 09</span>
+    <a class="wf-link" href="wireframes/wireframe-09-admin-dashboard.html">
+      <span class="wf-num confirmed">WF 09</span>
       <div class="wf-info">
         <div class="wf-title">Admin Dashboard</div>
-        <div class="wf-desc">Your home screen after logging in. Stats, new order alerts, recent orders table, sold-out plants list, Google Analytics summary.</div>
+        <div class="wf-desc">Your home screen after logging in. Calendar-year stats, new order alerts, recent orders, low-stock warnings, and Google Analytics summary at a glance.</div>
       </div>
     </a>
 
-    <a class="wf-link" href="Wireframes/wireframe-10-admin-plants-list.html">
-      <span class="wf-num original">WF 10</span>
+    <a class="wf-link" href="wireframes/wireframe-10-admin-plants-list.html">
+      <span class="wf-num confirmed">WF 10</span>
       <div class="wf-info">
         <div class="wf-title">Admin Plants List</div>
-        <div class="wf-desc">Manage your full catalog. Search, filter by type and status, active/sold-out toggles, bulk actions, add new plant button.</div>
+        <div class="wf-desc">Manage your full catalog. Search by name, filter by type and status, 25 per page with view-all option, immediate active toggle, bulk actions, add new plant button, and toggle to public site view.</div>
       </div>
     </a>
 
-    <a class="wf-link" href="Wireframes/wireframe-11-admin-plant-editor.html">
-      <span class="wf-num compare">WF 11</span>
-      <div class="wf-info">
-        <div class="wf-title">Plant Editor &mdash; Original <span class="wf-badge badge-original">Original</span></div>
-        <div class="wf-desc">Original plant editor without bundle configuration fields. Kept for comparison. Use the Revised version below for feedback.</div>
-      </div>
-    </a>
-
-    <a class="wf-link" href="Wireframes/wireframe-11-revised-plant-editor.html">
+    <a class="wf-link" href="wireframes/wireframe-11-revised-plant-editor.html">
       <span class="wf-num revised">WF 11</span>
       <div class="wf-info">
-        <div class="wf-title">Plant Editor &mdash; With Bundle Config <span class="wf-badge badge-revised">Revised</span></div>
-        <div class="wf-desc">All plant fields plus bundle configuration: enable toggle, bundle name, price, description, and live price preview. This is the version with feedback questions.</div>
+        <div class="wf-title">Plant Editor <span class="wf-badge badge-confirmed">Confirmed Version</span></div>
+        <div class="wf-desc">All plant fields including the new status dropdown (Active, Sold Out, Held for Increase, Draft), quantity field, DF/SF ships-as field, abbreviated attribute display, collection configuration, and waitlist indicator. Japanese Iris and Dahlias added to plant type dropdown.</div>
       </div>
     </a>
 
-    <a class="wf-link" href="Wireframes/wireframe-12-admin-photo-uploader.html">
-      <span class="wf-num original">WF 12</span>
+    <a class="wf-link" href="wireframes/wireframe-12-admin-photo-uploader.html">
+      <span class="wf-num confirmed">WF 12</span>
       <div class="wf-info">
         <div class="wf-title">Bulk Photo Uploader</div>
-        <div class="wf-desc">Drag-and-drop upload of up to 100 photos at once. Automatic matching by filename to plant slugs. Review table, manual reassignment, confirm and save.</div>
+        <div class="wf-desc">Drag-and-drop upload. Automatic matching by filename to plant slugs. Save is blocked until every photo is matched or manually discarded. Up to 3 photos per plant.</div>
       </div>
     </a>
 
-    <a class="wf-link" href="Wireframes/wireframe-13-admin-orders-list.html">
-      <span class="wf-num original">WF 13</span>
+    <a class="wf-link" href="wireframes/wireframe-13-admin-orders-list.html">
+      <span class="wf-num confirmed">WF 13</span>
       <div class="wf-info">
         <div class="wf-title">Admin Orders List</div>
-        <div class="wf-desc">All orders with status tabs (New, Processing, Shipped), search, filters, amber highlight for new orders needing attention, CSV export.</div>
+        <div class="wf-desc">All orders with status tabs, search, filters, amber highlight for new orders, CSV export, and batch shipping label printing (select multiple orders, print all on one Avery 5163 sheet).</div>
       </div>
     </a>
 
-    <a class="wf-link" href="Wireframes/wireframe-14-admin-order-detail.html">
-      <span class="wf-num original">WF 14</span>
+    <a class="wf-link" href="wireframes/wireframe-14-admin-order-detail.html">
+      <span class="wf-num confirmed">WF 14</span>
       <div class="wf-info">
         <div class="wf-title">Admin Order Detail</div>
-        <div class="wf-desc">Full order view. Customer info, plants ordered with thumbnails, status controls, tracking number entry, Print Order Sheet, Print Shipping Label, internal notes.</div>
+        <div class="wf-desc">Full order view with local pickup indicator, preferred ship date, coupon discount line, plant thumbnails, status controls, tracking entry, and separate fulfillment actions for shipped vs. pickup orders.</div>
       </div>
     </a>
 
-    <a class="wf-link" href="Wireframes/wireframe-15-admin-settings.html">
-      <span class="wf-num original">WF 15</span>
+    <a class="wf-link" href="wireframes/wireframe-15-admin-settings.html">
+      <span class="wf-num confirmed">WF 15</span>
       <div class="wf-info">
         <div class="wf-title">Admin Settings</div>
-        <div class="wf-desc">Shipping rates, season dates, restricted states, plant-type tab toggles, Bundles tab toggle, shipping policy text, email settings, Mailchimp config.</div>
+        <div class="wf-desc">Shipping rates, multi-line season dates with individual toggles, shipping season banner control, all-50-states restriction manager, coupon code manager, FAQ editor, plant-type tab toggles (including Japanese Iris and Dahlias), thank-you note, care instructions, and return address block.</div>
       </div>
     </a>
 
   </div>
 
-  <!-- ============================================================
-       PRINT OUTPUTS
-  ============================================================ -->
+  <!-- PRINT OUTPUTS -->
   <div class="section-heading">Print Outputs</div>
 
   <div class="link-grid">
 
-    <a class="wf-link" href="Wireframes/wireframe-16-printable-order-sheet.html">
-      <span class="wf-num original">WF 16</span>
+    <a class="wf-link" href="wireframes/wireframe-16-printable-order-sheet.html">
+      <span class="wf-num confirmed">WF 16</span>
       <div class="wf-info">
         <div class="wf-title">Printable Order Sheet</div>
-        <div class="wf-desc">8.5x11 sheet Jean prints and includes in every shipment. Plant thumbnails (non-negotiable per Jean's request), customer address, totals, and a personal thank-you note.</div>
+        <div class="wf-desc">8.5x11 sheet included in every shipment. Plant thumbnails, customer address, totals, preferred ship date, coupon discount line, editable thank-you note, quick care reminder, and LOCAL PICKUP label for pickup orders. Large PAID stamp. Up to 2 pages per order.</div>
       </div>
     </a>
 
-    <a class="wf-link" href="Wireframes/wireframe-17-shipping-label.html">
-      <span class="wf-num original">WF 17</span>
+    <a class="wf-link" href="wireframes/wireframe-17-shipping-label.html">
+      <span class="wf-num confirmed">WF 17</span>
       <div class="wf-info">
         <div class="wf-title">Printable Shipping Label</div>
-        <div class="wf-desc">4x6 inch address label. From and To addresses, order reference number, Live Plants notice. Two variations shown: standard and with fragile notice.</div>
+        <div class="wf-desc">Formatted for Avery 5163 label sheets (10 per sheet). Return address, ship-to address, order reference number, and enlarged Live Plants notice. Batch printing: select multiple orders and print all labels on one sheet.</div>
+      </div>
+    </a>
+
+    <a class="wf-link pending" href="#">
+      <span class="wf-num pending-wf">WF 18</span>
+      <div class="wf-info">
+        <div class="wf-title">Printable Inventory Report <span class="wf-badge badge-pending">Coming Soon</span></div>
+        <div class="wf-desc">Hard copy of your full inventory by plant category, sorted alphabetically. 9 or 12 plants per page. Being finalized based on your response about whether to include photos.</div>
+      </div>
+    </a>
+
+    <a class="wf-link pending" href="#">
+      <span class="wf-num pending-wf">WF 19</span>
+      <div class="wf-info">
+        <div class="wf-title">End of Season Reports <span class="wf-badge badge-pending">Coming Soon</span></div>
+        <div class="wf-desc">Sales by plant category with subtotals and grand total. Sales by customer. Details being confirmed with Jean before this wireframe is built.</div>
       </div>
     </a>
 
   </div>
 
-  <!-- ============================================================
-       FLOW DIAGRAMS AND DECISIONS
-  ============================================================ -->
+  <!-- FLOW DIAGRAMS AND DECISIONS -->
   <div class="section-heading">Flow Diagrams and Design Decisions</div>
   <div class="section-intro">
-    These documents are mainly for Edward and Jean to review together.
-    The flow diagrams show how customers and Jean move through key workflows.
-    The decisions document lists every design choice made in the wireframes,
-    with open questions that need answers before coding begins.
+    Reference documents for Edward and Jean. The flow diagrams show how customers and Jean
+    move through key workflows. The decisions document tracks every confirmed decision
+    made during the wireframe phase.
   </div>
 
   <div class="link-grid triple">
@@ -410,7 +411,7 @@
       <span class="wf-num doc">FD 01</span>
       <div class="wf-info">
         <div class="wf-title">Customer Journey Flow</div>
-        <div class="wf-desc">How a customer moves from homepage through checkout, including the blocked and flagged state branches.</div>
+        <div class="wf-desc">How a customer moves from homepage through checkout, including blocked and flagged state branches and local pickup path.</div>
       </div>
     </a>
 
@@ -418,7 +419,7 @@
       <span class="wf-num doc">FD 02</span>
       <div class="wf-info">
         <div class="wf-title">Admin Order Processing Flow</div>
-        <div class="wf-desc">Jean's workflow from receiving a new order notification through packing, shipping, and personal follow-up.</div>
+        <div class="wf-desc">Jean's workflow from receiving a new order through packing, shipping or pickup coordination, and personal follow-up.</div>
       </div>
     </a>
 
@@ -426,7 +427,7 @@
       <span class="wf-num doc">DOC</span>
       <div class="wf-info">
         <div class="wf-title">Design Decisions Document</div>
-        <div class="wf-desc">37 decisions across 10 sections. Open questions, committed decisions, content Jean must provide, and database schema notes.</div>
+        <div class="wf-desc">All decisions confirmed during wireframe review. Open items and pending answers tracked here.</div>
       </div>
     </a>
 
@@ -435,9 +436,9 @@
 </div><!-- /.main -->
 
 <div class="page-footer">
-  Dazzling Daylilies Wireframe Review &bull; Prepared by Edward G. McKeown, Doc Bear Enterprises LLC &bull;
+  Dazzling Daylilies Wireframe Approval Review &bull; Prepared by Edward G. McKeown, Doc Bear Enterprises LLC &bull;
   These are wireframes only. Colors, photography, fonts, and finished styling are determined in the design
-  phase after wireframe approval. &bull; Questions? Contact Edward: docbear71@gmail.com
+  phase after wireframe approval. &bull; Questions? Contact Edward: edward@docbear-ent.com
 </div>
 
 </body>
