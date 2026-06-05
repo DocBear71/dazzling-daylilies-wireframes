@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wireframe 19: End of Season Reports — Dazzling Daylilies</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 15px;
+    background: #f0f0f0;
+    color: #222;
+  }
+
+  /* ============================================================
+     ADMIN CHROME — matches WF09 through WF15
+  ============================================================ */
+  .admin-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .admin-topbar {
+    background: #2c3e50;
+    color: #ecf0f1;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    height: 52px;
+    gap: 0;
+    flex-shrink: 0;
+  }
+  .admin-brand {
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    margin-right: 32px;
+    white-space: nowrap;
+  }
+  .admin-brand span {
+    font-weight: 400;
+    color: #95a5a6;
+    margin-left: 6px;
+    font-size: 12px;
+  }
+  .admin-nav {
+    display: flex;
+    align-items: stretch;
+    height: 100%;
+    flex: 1;
+  }
+  .admin-nav-item {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 18px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #bdc3c7;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .admin-nav-item:hover { color: #fff; }
+  .admin-nav-item.active {
+    color: #fff;
+    border-bottom-color: #4a90d9;
+  }
+  .admin-nav-spacer { flex: 1; }
+  .admin-nav-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .admin-view-site {
+    font-size: 12px;
+    color: #7fb3d3;
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .admin-view-site:hover { color: #fff; }
+  .admin-logout {
+    font-size: 12px;
+    color: #95a5a6;
+    cursor: pointer;
+    white-space: nowrap;
+    background: none;
+    border: 1px solid #4a5568;
+    border-radius: 3px;
+    padding: 4px 12px;
+  }
+  .admin-logout:hover { color: #fff; border-color: #7a8898; }
+  .admin-body {
+    padding: 28px 24px 48px;
+    flex: 1;
+  }
+
+  /* ============================================================
+     PAGE HEADER + TAB BAR
+  ============================================================ */
+  .page-heading {
+    font-size: 22px; font-weight: 700; color: #222; margin-bottom: 4px;
+  }
+  .page-subhead {
+    font-size: 13px; color: #888; margin-bottom: 20px;
+  }
+
+  /* Date range filter bar */
+  .filter-bar {
+    display: flex; align-items: center; gap: 12px;
+    background: #f8f8f8; border: 1px solid #ddd;
+    border-radius: 6px; padding: 12px 16px;
+    margin-bottom: 20px; flex-wrap: wrap;
+  }
+  .filter-label {
+    font-size: 12px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.07em; color: #888;
+  }
+  .filter-input {
+    padding: 7px 10px; border: 1px solid #ccc; border-radius: 4px;
+    font-size: 13px; color: #333; background: #fff;
+  }
+  .filter-sep { font-size: 13px; color: #aaa; }
+  .filter-btn {
+    background: #4a90d9; color: #fff; border: none;
+    padding: 8px 18px; border-radius: 4px;
+    font-size: 13px; font-weight: 700; cursor: pointer;
+  }
+  .filter-presets { display: flex; gap: 6px; }
+  .preset-btn {
+    background: #fff; color: #555; border: 1px solid #ccc;
+    padding: 5px 12px; border-radius: 4px;
+    font-size: 12px; font-weight: 600; cursor: pointer;
+  }
+  .preset-btn.active {
+    background: #2c3e50; color: #fff; border-color: #2c3e50;
+  }
+
+  /* Report tabs */
+  .report-tabs {
+    display: flex; gap: 0;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 24px;
+  }
+  .report-tab {
+    padding: 10px 22px; font-size: 14px; font-weight: 600;
+    color: #888; cursor: pointer; border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+  }
+  .report-tab.active {
+    color: #1a5276; border-bottom-color: #4a90d9;
+  }
+
+  /* Export button */
+  .export-row {
+    display: flex; justify-content: flex-end; margin-bottom: 16px;
+  }
+  .export-btn {
+    background: #fff; color: #27ae60; border: 1.5px solid #27ae60;
+    padding: 8px 18px; border-radius: 4px;
+    font-size: 13px; font-weight: 700; cursor: pointer;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .export-btn:hover { background: #f0faf5; }
+
+  /* ============================================================
+     REPORT 1: SALES BY CATEGORY
+  ============================================================ */
+  .report-section {
+    margin-bottom: 28px;
+  }
+
+  .report-section-heading {
+    font-size: 13px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; color: #fff;
+    padding: 7px 14px; border-radius: 4px; margin-bottom: 0;
+  }
+  .cat-daylilies   { background: #c8a020; }
+  .cat-iris        { background: #4a6fa5; }
+  .cat-lilies      { background: #4a7c59; }
+  .cat-dahlias     { background: #a05070; }
+  .cat-japanese    { background: #6a4a8a; }
+  .cat-other       { background: #8a6030; }
+
+  .report-table {
+    width: 100%; border-collapse: collapse; margin-bottom: 4px;
+  }
+  .report-table thead tr {
+    border-bottom: 2px solid #222;
+  }
+  .report-table th {
+    padding: 8px 12px 8px 0;
+    text-align: left; font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em; color: #888;
+  }
+  .report-table th.right { text-align: right; padding-right: 0; }
+  .report-table tbody tr { border-bottom: 1px solid #f0f0f0; }
+  .report-table tbody tr:last-child { border-bottom: none; }
+  .report-table td {
+    padding: 9px 12px 9px 0; font-size: 13px; color: #333; vertical-align: middle;
+  }
+  .report-table td.right { text-align: right; padding-right: 0; font-weight: 600; }
+  .report-table td.plant-name { font-weight: 600; color: #1a2a3a; }
+
+  .subtotal-row {
+    display: flex; justify-content: flex-end;
+    padding: 8px 0; border-top: 1px solid #ddd;
+    font-size: 13px; font-weight: 700; color: #333;
+    margin-bottom: 24px;
+  }
+  .subtotal-row span { margin-left: 32px; }
+
+  /* ============================================================
+     COLOR-CODED SUMMARY BOX
+  ============================================================ */
+  .summary-box {
+    border: 1px solid #ddd; border-radius: 6px;
+    overflow: hidden; margin-top: 8px;
+  }
+  .summary-box-heading {
+    background: #2c3e50; color: #fff;
+    font-size: 12px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; padding: 8px 16px;
+  }
+  .summary-row {
+    display: flex; align-items: center;
+    padding: 9px 16px; font-size: 13px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .summary-row:last-of-type { border-bottom: none; }
+  .summary-swatch {
+    width: 12px; height: 12px; border-radius: 2px;
+    flex-shrink: 0; margin-right: 10px;
+  }
+  /* Soft pastel versions of Jean's requested colors */
+  .swatch-daylilies   { background: #ffe680; }
+  .swatch-iris        { background: #aad4f5; }
+  .swatch-lilies      { background: #a8e6c0; }
+  .swatch-dahlias     { background: #f5b8d0; }
+  .swatch-japanese    { background: #d0aaee; }
+  .swatch-other       { background: #ffd0a0; }
+
+  .summary-row-bg-daylilies { background: #fffde6; }
+  .summary-row-bg-iris      { background: #eaf4fd; }
+  .summary-row-bg-lilies    { background: #eaf7ef; }
+  .summary-row-bg-dahlias   { background: #fdf0f5; }
+  .summary-row-bg-japanese  { background: #f5eeff; }
+  .summary-row-bg-other     { background: #fff5ea; }
+
+  .summary-cat-name { flex: 1; font-weight: 600; color: #333; }
+  .summary-qty      { width: 80px; color: #555; }
+  .summary-amt      { width: 90px; text-align: right; font-weight: 700; color: #1a2a3a; }
+
+  .summary-total-row {
+    display: flex; align-items: center; padding: 10px 16px;
+    background: #f5f5f5; border-top: 2px solid #ddd;
+    font-size: 14px; font-weight: 700; color: #222;
+  }
+  .summary-total-row .summary-cat-name { font-size: 13px; }
+  .summary-total-row .summary-amt { font-size: 15px; }
+
+  /* ============================================================
+     REPORT 2: SALES BY CUSTOMER
+  ============================================================ */
+  .customer-block {
+    border: 1px solid #e8e8e8; border-radius: 4px;
+    margin-bottom: 14px; overflow: hidden;
+  }
+  .customer-block-header {
+    background: #f5f5f5; padding: 10px 16px;
+    display: flex; align-items: baseline; justify-content: space-between;
+    border-bottom: 1px solid #e8e8e8;
+  }
+  .customer-name { font-size: 14px; font-weight: 700; color: #1a2a3a; }
+  .customer-meta { font-size: 12px; color: #888; margin-left: 10px; }
+  .customer-total { font-size: 14px; font-weight: 700; color: #27ae60; }
+
+  .customer-orders-table {
+    width: 100%; border-collapse: collapse;
+    font-size: 13px;
+  }
+  .customer-orders-table th {
+    padding: 7px 12px 7px 14px; text-align: left;
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.07em; color: #aaa;
+    border-bottom: 1px solid #eee;
+  }
+  .customer-orders-table th.right { text-align: right; }
+  .customer-orders-table td {
+    padding: 8px 12px 8px 14px; color: #444;
+    border-bottom: 1px solid #f5f5f5;
+  }
+  .customer-orders-table td.right { text-align: right; font-weight: 600; }
+  .customer-orders-table tr:last-child td { border-bottom: none; }
+  .order-num-link { color: #4a90d9; font-weight: 600; font-size: 12px; }
+
+  /* Grand total bar */
+  .grand-total-bar {
+    background: #2c3e50; color: #fff;
+    padding: 12px 20px; border-radius: 4px;
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 16px; font-size: 14px; font-weight: 700;
+  }
+
+  /* ============================================================
+     ANNOTATIONS + APPROVAL FORM
+  ============================================================ */
+  .approval-intro {
+    background: #2c3e50; color: #ecf0f1; padding: 24px 32px;
+    font-size: 14px; line-height: 1.7; margin-top: 40px;
+  }
+  .approval-intro h2 { font-size: 18px; font-weight: 700; margin-bottom: 6px; color: #fff; }
+  .approval-intro p  { color: #bdc3c7; max-width: 680px; }
+
+  .annotations {
+    max-width: 860px; margin: 0 auto; padding: 0 24px 48px;
+    background: #fffbe6; border-top: 4px solid #f5c518;
+  }
+  .ann-section-inner { padding-top: 8px; }
+
+  .ann-item {
+    background: #fff; border: 1px solid #e0e0e0; border-left: 4px solid #2c3e50;
+    border-radius: 4px; padding: 14px 18px; margin-bottom: 14px; font-size: 14px;
+    line-height: 1.7; color: #333;
+  }
+  .ann-item strong { display: block; font-size: 14px; font-weight: 700; margin-bottom: 4px; color: #1a2a3a; }
+  .ann-item p { margin: 0; }
+
+  .ann-tag {
+    display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; padding: 2px 8px; border-radius: 10px; margin-top: 8px;
+  }
+  .ann-tag.confirmed { background: #d5f5e3; color: #1a5c2a; }
+  .ann-tag.info      { background: #f0f0f0; color: #555; }
+
+  .approval-form-wrap {
+    background: #f0f7ff; border-top: 3px solid #2c3e50;
+    padding: 32px 32px 40px; margin-top: 8px;
+  }
+  .approval-form-heading {
+    font-size: 18px; font-weight: 700; color: #1a2a3a; margin-bottom: 6px;
+  }
+  .approval-form-desc {
+    font-size: 13px; color: #555; margin-bottom: 24px; line-height: 1.6;
+  }
+  .approval-radio-group { display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
+  .approval-radio-label {
+    display: flex; align-items: center; gap: 8px; cursor: pointer;
+    font-size: 15px; font-weight: 600; color: #1a2a3a; padding: 12px 20px;
+    border: 2px solid #c8d8e8; border-radius: 6px; background: #fff;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .approval-radio-label input[type="radio"] { accent-color: #2c3e50; width: 18px; height: 18px; }
+  .approval-radio-label.approved  { border-color: #6abf6a; }
+  .approval-radio-label.changes   { border-color: #e8a040; }
+  .approval-radio-label input:checked ~ span.approved-text  { color: #1a5c2a; }
+  .approval-radio-label input:checked ~ span.changes-text   { color: #7a4400; }
+
+  .reason-field { margin-bottom: 20px; display: none; }
+  .reason-field.visible { display: block; }
+  .approval-label {
+    display: block; font-size: 12px; font-weight: 700; color: #555;
+    text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;
+  }
+  .approval-textarea {
+    width: 100%; padding: 10px 12px; border: 1px solid #c0c8d0;
+    border-radius: 4px; font-size: 14px; color: #333; background: #fff;
+    resize: vertical; min-height: 90px; line-height: 1.6; font-family: inherit;
+    box-sizing: border-box;
+  }
+  .approval-textarea:focus { outline: 2px solid #2c3e50; border-color: transparent; }
+  .approval-textarea::placeholder { color: #bbb; }
+
+  .approval-name-row { display: flex; gap: 14px; margin-bottom: 20px; flex-wrap: wrap; }
+  .approval-name-field { flex: 1; min-width: 180px; }
+  .approval-name-field label {
+    display: block; font-size: 12px; font-weight: 700; color: #555;
+    text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 5px;
+  }
+  .approval-name-field input {
+    width: 100%; padding: 10px 12px; border: 1px solid #c0c8d0;
+    border-radius: 4px; font-size: 14px; color: #333; background: #fff;
+    box-sizing: border-box;
+  }
+
+  .approval-submit-btn {
+    display: inline-block; background: #2c3e50; color: #fff;
+    padding: 13px 36px; border-radius: 4px; font-size: 15px;
+    font-weight: 700; border: none; cursor: pointer; letter-spacing: 0.02em;
+  }
+  .approval-submit-btn:hover { background: #1a2a3a; }
+  .approval-submit-btn:disabled { background: #999; cursor: default; }
+  .approval-submit-note { font-size: 12px; color: #888; margin-top: 10px; line-height: 1.6; }
+
+  .approval-success {
+    display: none; background: #d5f5e3; border: 1px solid #6abf6a;
+    border-radius: 6px; padding: 20px 24px; margin-top: 16px;
+    font-size: 14px; color: #1a5c2a; line-height: 1.7;
+  }
+  .approval-success strong { display: block; font-size: 16px; margin-bottom: 4px; }
+  .approval-error {
+    display: none; background: #fdf2f2; border: 1px solid #e8b4b4;
+    border-radius: 6px; padding: 14px 18px; margin-top: 12px;
+    font-size: 13px; color: #7a2020;
+  }
+
+  /* Tab switching: hide inactive panels */
+  .report-panel { display: none; }
+  .report-panel.active { display: block; }
+</style>
+</head>
+<body>
+
+<div class="admin-wrapper">
+<div class="admin-topbar">
+  <div class="admin-brand">Dazzling Daylilies <span>Admin</span></div>
+  <nav class="admin-nav">
+    <a class="admin-nav-item" href="#">Dashboard</a>
+    <a class="admin-nav-item" href="#">Plants</a>
+    <a class="admin-nav-item" href="#">Orders</a>
+    <a class="admin-nav-item" href="#">Photos</a>
+    <a class="admin-nav-item" href="#">Settings</a>
+    <a class="admin-nav-item active" href="#">Reports</a>
+    <div class="admin-nav-spacer"></div>
+    <div class="admin-nav-right">
+      <a class="admin-view-site" href="#">View Public Site &rarr;</a>
+      <button class="admin-logout">Log Out</button>
+    </div>
+  </nav>
+</div>
+<div class="admin-body">
+
+    <div class="page-heading">End of Season Reports</div>
+    <p class="page-subhead">View sales by category or by customer. Filter by date range and export to Excel.</p>
+
+    <!-- DATE RANGE FILTER -->
+    <div class="filter-bar">
+      <span class="filter-label">Date Range</span>
+      <input class="filter-input" type="date" value="2027-01-01">
+      <span class="filter-sep">to</span>
+      <input class="filter-input" type="date" value="2027-12-31">
+      <button class="filter-btn">Apply</button>
+      <div class="filter-presets">
+        <button class="preset-btn active">Full Season</button>
+        <button class="preset-btn">Spring</button>
+        <button class="preset-btn">Fall</button>
+        <button class="preset-btn">Custom</button>
+      </div>
+    </div>
+
+    <!-- REPORT TABS -->
+    <div class="report-tabs">
+      <div class="report-tab active" id="tab-category" onclick="switchTab('category')">Sales by Category</div>
+      <div class="report-tab" id="tab-customer" onclick="switchTab('customer')">Sales by Customer</div>
+    </div>
+
+    <!-- EXPORT BUTTON -->
+    <div class="export-row">
+      <button class="export-btn">&#8595; Export to Excel</button>
+    </div>
+
+    <!-- ====================================================
+         REPORT PANEL 1: SALES BY CATEGORY
+    ==================================================== -->
+    <div class="report-panel active" id="panel-category">
+
+      <!-- DAYLILIES -->
+      <div class="report-section">
+        <div class="report-section-heading cat-daylilies">Daylilies</div>
+        <table class="report-table">
+          <thead>
+            <tr>
+              <th>Plant Name</th>
+              <th style="width:90px;">Qty Sold</th>
+              <th class="right" style="width:100px;">Unit Price</th>
+              <th class="right" style="width:110px;">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="plant-name">Acapulco Sunset</td>
+              <td>3</td>
+              <td class="right">$28.00</td>
+              <td class="right">$84.00</td>
+            </tr>
+            <tr>
+              <td class="plant-name">Frank Gladney</td>
+              <td>5</td>
+              <td class="right">$30.00</td>
+              <td class="right">$150.00</td>
+            </tr>
+            <tr>
+              <td class="plant-name">Happy Returns</td>
+              <td>7</td>
+              <td class="right">$18.00</td>
+              <td class="right">$126.00</td>
+            </tr>
+            <tr>
+              <td class="plant-name">Strawberry Candy</td>
+              <td>4</td>
+              <td class="right">$22.00</td>
+              <td class="right">$88.00</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="subtotal-row">
+          Daylilies Subtotal: <span>19 sold &nbsp;&mdash;&nbsp; $448.00</span>
+        </div>
+      </div>
+
+      <!-- IRIS -->
+      <div class="report-section">
+        <div class="report-section-heading cat-iris">Iris</div>
+        <table class="report-table">
+          <thead>
+            <tr>
+              <th>Plant Name</th>
+              <th style="width:90px;">Qty Sold</th>
+              <th class="right" style="width:100px;">Unit Price</th>
+              <th class="right" style="width:110px;">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="plant-name">Immortality</td>
+              <td>2</td>
+              <td class="right">$18.00</td>
+              <td class="right">$36.00</td>
+            </tr>
+            <tr>
+              <td class="plant-name">Midnight Caller</td>
+              <td>1</td>
+              <td class="right">$24.00</td>
+              <td class="right">$24.00</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="subtotal-row">
+          Iris Subtotal: <span>3 sold &nbsp;&mdash;&nbsp; $60.00</span>
+        </div>
+      </div>
+
+      <!-- COLOR-CODED SUMMARY BOX -->
+      <div class="summary-box">
+        <div class="summary-box-heading">Season Summary at a Glance</div>
+
+        <div class="summary-row summary-row-bg-daylilies">
+          <div class="summary-swatch swatch-daylilies"></div>
+          <div class="summary-cat-name">Daylilies</div>
+          <div class="summary-qty">19 sold</div>
+          <div class="summary-amt">$448.00</div>
+        </div>
+        <div class="summary-row summary-row-bg-iris">
+          <div class="summary-swatch swatch-iris"></div>
+          <div class="summary-cat-name">Iris</div>
+          <div class="summary-qty">3 sold</div>
+          <div class="summary-amt">$60.00</div>
+        </div>
+        <div class="summary-row summary-row-bg-lilies">
+          <div class="summary-swatch swatch-lilies"></div>
+          <div class="summary-cat-name">Lilies</div>
+          <div class="summary-qty">0 sold</div>
+          <div class="summary-amt">$0.00</div>
+        </div>
+        <div class="summary-row summary-row-bg-dahlias">
+          <div class="summary-swatch swatch-dahlias"></div>
+          <div class="summary-cat-name">Dahlias</div>
+          <div class="summary-qty">0 sold</div>
+          <div class="summary-amt">$0.00</div>
+        </div>
+        <div class="summary-row summary-row-bg-japanese">
+          <div class="summary-swatch swatch-japanese"></div>
+          <div class="summary-cat-name">Japanese Iris</div>
+          <div class="summary-qty">0 sold</div>
+          <div class="summary-amt">$0.00</div>
+        </div>
+        <div class="summary-row summary-row-bg-other">
+          <div class="summary-swatch swatch-other"></div>
+          <div class="summary-cat-name">Other Perennials</div>
+          <div class="summary-qty">0 sold</div>
+          <div class="summary-amt">$0.00</div>
+        </div>
+
+        <div class="summary-total-row">
+          <div class="summary-cat-name">Total for Season</div>
+          <div class="summary-qty">22 sold</div>
+          <div class="summary-amt">$508.00</div>
+        </div>
+      </div>
+
+    </div><!-- /#panel-category -->
+
+    <!-- ====================================================
+         REPORT PANEL 2: SALES BY CUSTOMER
+    ==================================================== -->
+    <div class="report-panel" id="panel-customer">
+
+      <div class="customer-block">
+        <div class="customer-block-header">
+          <div>
+            <span class="customer-name">Linda Sorensen</span>
+            <span class="customer-meta">linda.s.garden@yahoo.com &bull; Austin, TX</span>
+          </div>
+          <div class="customer-total">$171.00 total</div>
+        </div>
+        <table class="customer-orders-table">
+          <thead>
+            <tr>
+              <th>Order #</th>
+              <th>Date</th>
+              <th>Plants</th>
+              <th class="right">Order Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="order-num-link">DD-2027-0036</span></td>
+              <td>May 19, 2027</td>
+              <td>Acapulco Sunset, Strawberry Candy, Happy Returns, Frank Gladney, Morning Mist</td>
+              <td class="right">$171.00</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="customer-block">
+        <div class="customer-block-header">
+          <div>
+            <span class="customer-name">Patricia Hammond</span>
+            <span class="customer-meta">phammond.garden@gmail.com &bull; Des Moines, IA</span>
+          </div>
+          <div class="customer-total">$112.00 total</div>
+        </div>
+        <table class="customer-orders-table">
+          <thead>
+            <tr>
+              <th>Order #</th>
+              <th>Date</th>
+              <th>Plants</th>
+              <th class="right">Order Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="order-num-link">DD-2027-0021</span></td>
+              <td>May 4, 2027</td>
+              <td>Happy Returns (x2), Immortality, Frank Gladney</td>
+              <td class="right">$112.00</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="customer-block">
+        <div class="customer-block-header">
+          <div>
+            <span class="customer-name">Robert Whitfield</span>
+            <span class="customer-meta">rwhitfield@outlook.com &bull; Omaha, NE</span>
+          </div>
+          <div class="customer-total">$225.00 total</div>
+        </div>
+        <table class="customer-orders-table">
+          <thead>
+            <tr>
+              <th>Order #</th>
+              <th>Date</th>
+              <th>Plants</th>
+              <th class="right">Order Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="order-num-link">DD-2027-0008</span></td>
+              <td>April 22, 2027</td>
+              <td>Bamboo Blackout (x2), Midnight Magic, Pleasure Acres, Frank Gladney</td>
+              <td class="right">$147.00</td>
+            </tr>
+            <tr>
+              <td><span class="order-num-link">DD-2027-0044</span></td>
+              <td>June 1, 2027</td>
+              <td>Strawberry Candy (x2), Happy Returns</td>
+              <td class="right">$78.00</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- GRAND TOTAL BAR -->
+      <div class="grand-total-bar">
+        <span>Season Grand Total &mdash; All Customers</span>
+        <span>$508.00</span>
+      </div>
+
+    </div><!-- /#panel-customer -->
+
+</div><!-- /.admin-body -->
+</div><!-- /.admin-wrapper -->
+
+
+<!-- ANNOTATIONS -->
+<div class="approval-intro">
+  <h2>Wireframe Notes: WF19 &mdash; End of Season Reports</h2>
+  <p>Hi Jean! The notes below explain what each part of this page does and confirm
+    the decisions we have already made together. When you have finished reading,
+    please use the <strong>Approval Form</strong> at the bottom of this page to let
+    Edward know whether the page looks right or whether you would like any changes.</p>
+</div>
+
+<div class="annotations">
+  <div class="ann-section-inner">
+
+    <div class="ann-item">
+      <strong>How This Page Works</strong>
+      <p>The Reports page lives in your admin area, accessible from the left-hand menu. You choose a date range at the top, click Apply, and the two reports update to show only orders within that window. You can then switch between Report 1 (Sales by Category) and Report 2 (Sales by Customer) using the tabs. The Export to Excel button downloads a spreadsheet of whichever report tab you are currently viewing.</p>
+    </div>
+
+    <div class="ann-item">
+      <strong>Date Range Filter: Confirmed by Jean</strong>
+      <p>You can enter any start and end date to filter the reports. The preset buttons (Full Season, Spring, Fall, Custom) let you jump to common date ranges without typing. Full Season covers the full calendar year. Spring and Fall will match Jean's shipping season windows as configured in Settings. Custom lets you pick any dates you like.</p>
+      <span class="ann-tag confirmed">Confirmed: Jean requested date range filtering in her June 5, 2026 reply</span>
+    </div>
+
+    <div class="ann-item">
+      <strong>Export to Excel: Confirmed by Jean</strong>
+      <p>The Export to Excel button downloads an .xlsx file of the currently visible report. The spreadsheet includes all the same columns shown on screen, with formulas for subtotals and the grand total so you can do your own calculations. This works for both Report 1 and Report 2. The filename will include the report name and date range (for example, "SalesByCategory-2027.xlsx").</p>
+      <span class="ann-tag confirmed">Confirmed: Jean requested Excel export in her June 5, 2026 reply</span>
+    </div>
+
+    <div class="ann-item">
+      <strong>Report 1: Sales by Category</strong>
+      <p>This report lists every plant that sold during the selected period, grouped under its category heading. Each category shows the plant name, quantity sold, unit price, and line total. Below each category's plant list is a subtotal line showing the category quantity and dollar total. Below all the categories is the color-coded summary box Jean requested.</p>
+    </div>
+
+    <div class="ann-item">
+      <strong>Color-Coded Summary Box: Confirmed by Jean</strong>
+      <p>At the bottom of Report 1, a summary box shows all six plant categories side by side with their season quantity and dollar total. Each category row has a soft background color matching Jean's requested colors: yellow for Daylilies, blue for Iris, green for Lilies, pink for Dahlias, purple for Japanese Iris, and orange for Other Perennials. The colors shown here are soft pastel versions. Categories with zero sales still appear in the box so the full picture is always visible. The grand total appears below the category rows without a color background.</p>
+      <span class="ann-tag confirmed">Confirmed: Jean requested this summary box with these category colors in her June 5, 2026 reply</span>
+    </div>
+
+    <div class="ann-item">
+      <strong>Report 2: Sales by Customer</strong>
+      <p>This report groups sales by customer. Each customer block shows the customer's name, email, and city, followed by a table of their orders during the selected period. Each order row shows the order number (which links back to that order's detail page), the order date, a list of plants ordered, and the order total. The customer's season total appears in the header of their block. A grand total bar at the bottom shows the season total across all customers.</p>
+      <span class="ann-tag confirmed">Confirmed: Jean approved this report format in her June 5, 2026 reply</span>
+    </div>
+
+    <div class="ann-item">
+      <strong>Season Definition</strong>
+      <p>A "season" in these reports is a calendar year (January 1 through December 31). The default date range when you open the page will be the current calendar year. You can change this at any time using the date range filter.</p>
+      <span class="ann-tag confirmed">Confirmed: calendar year as season definition</span>
+    </div>
+
+    <div class="ann-item">
+      <strong>Only Completed Orders Counted</strong>
+      <p>Only orders with a payment status of "Paid" are included in these reports. Cancelled orders, failed payments, and refunded orders are excluded from all totals. This keeps the numbers clean and accurate.</p>
+      <span class="ann-tag info">Business rule: reports exclude non-paid orders</span>
+    </div>
+
+  </div>
+
+  <!-- APPROVAL FORM -->
+  <div class="approval-form-wrap">
+    <div class="approval-form-heading">Wireframe Approval: WF19 &mdash; End of Season Reports</div>
+    <p class="approval-form-desc">
+      Please review the wireframe above and the notes on this page, then let Edward know
+      whether this page is approved as shown or whether you would like changes made before
+      the build begins. Your response goes directly to Edward by email.
+    </p>
+
+    <form id="approval-form-wf19">
+      <input type="hidden" name="_subject" value="WF19 End of Season Reports Approval - Dazzling Daylilies">
+      <input type="hidden" name="wireframe" value="WF19 - End of Season Reports">
+      <input type="hidden" name="approval_status" id="h-approval-approval-form-wf19">
+      <input type="hidden" name="change_reason"   id="h-reason-approval-form-wf19">
+      <input type="hidden" name="general_comments" id="h-comments-approval-form-wf19">
+
+      <div class="approval-radio-group">
+        <label class="approval-radio-label approved">
+          <input type="radio" name="approval_choice" value="Approved" id="radio-approved-approval-form-wf19">
+          <span class="approved-text">&#10003;&nbsp; Approved &mdash; looks great!</span>
+        </label>
+        <label class="approval-radio-label changes">
+          <input type="radio" name="approval_choice" value="Changes Needed" id="radio-changes-approval-form-wf19">
+          <span class="changes-text">&#9998;&nbsp; Changes Needed</span>
+        </label>
+      </div>
+
+      <div class="reason-field" id="reason-field-approval-form-wf19">
+        <label class="approval-label" for="textarea-reason-approval-form-wf19">
+          What would you like changed? (required)
+        </label>
+        <textarea class="approval-textarea" id="textarea-reason-approval-form-wf19"
+          placeholder="Please describe what you would like adjusted on this page..."></textarea>
+      </div>
+
+      <div style="margin-bottom: 20px;">
+        <label class="approval-label" for="textarea-comments-approval-form-wf19">
+          Any other comments or questions? (optional)
+        </label>
+        <textarea class="approval-textarea" id="textarea-comments-approval-form-wf19"
+          placeholder="Any other thoughts, questions, or notes for Edward..."></textarea>
+      </div>
+
+      <div class="approval-name-row">
+        <div class="approval-name-field">
+          <label for="name-approval-form-wf19">Your Name</label>
+          <input type="text" id="name-approval-form-wf19" name="reviewer_name" value="Jean" placeholder="Your name">
+        </div>
+        <div class="approval-name-field">
+          <label for="email-approval-form-wf19">Your Email (so Edward can reply)</label>
+          <input type="email" id="email-approval-form-wf19" name="email" placeholder="dazzlingdaylilies@yahoo.com">
+        </div>
+      </div>
+
+      <button type="submit" class="approval-submit-btn">Send My Response &rarr;</button>
+      <p class="approval-submit-note">Your response is sent directly and securely to Edward. This page does not store any personal information.</p>
+
+      <div class="approval-success" id="success-approval-form-wf19">
+        <strong>Thank you, Jean!</strong>
+        Your response on WF19 (End of Season Reports) has been sent to Edward successfully.
+        You can now close this tab or continue reviewing other wireframes from the main review page.
+      </div>
+      <div class="approval-error" id="error-approval-form-wf19">
+        Something went wrong. Please try again, or email Edward directly at
+        <a href="mailto:edward@docbear-ent.com">edward@docbear-ent.com</a> with your notes.
+      </div>
+    </form>
+  </div><!-- /.approval-form-wrap -->
+
+</div><!-- /.annotations -->
+
+<script>
+/* Tab switching */
+function switchTab(which) {
+  document.querySelectorAll('.report-tab').forEach(function(t) { t.classList.remove('active'); });
+  document.querySelectorAll('.report-panel').forEach(function(p) { p.classList.remove('active'); });
+  document.getElementById('tab-' + which).classList.add('active');
+  document.getElementById('panel-' + which).classList.add('active');
+}
+
+/* Approval form */
+(function() {
+  var form     = document.getElementById('approval-form-wf19');
+  if (!form) return;
+
+  var radios    = form.querySelectorAll('input[type="radio"]');
+  var reasonFld = document.getElementById('reason-field-approval-form-wf19');
+  var reasonTA  = document.getElementById('textarea-reason-approval-form-wf19');
+
+  radios.forEach(function(r) {
+    r.addEventListener('change', function() {
+      if (r.value === 'Changes Needed' && r.checked) {
+        reasonFld.classList.add('visible');
+        reasonTA.required = true;
+      } else {
+        reasonFld.classList.remove('visible');
+        reasonTA.required = false;
+      }
+    });
+  });
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    var chosen = form.querySelector('input[name="approval_choice"]:checked');
+    if (!chosen) {
+      alert('Please select Approved or Changes Needed before sending.');
+      return;
+    }
+    if (chosen.value === 'Changes Needed' && !reasonTA.value.trim()) {
+      reasonTA.focus();
+      alert('Please describe what you would like changed.');
+      return;
+    }
+
+    document.getElementById('h-approval-approval-form-wf19').value = chosen.value;
+    document.getElementById('h-reason-approval-form-wf19').value   = reasonTA.value.trim() || '(no changes requested)';
+    document.getElementById('h-comments-approval-form-wf19').value = document.getElementById('textarea-comments-approval-form-wf19').value.trim() || '(none)';
+
+    var btn = form.querySelector('.approval-submit-btn');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    fetch('https://formspree.io/f/mvzyrrrv', {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(function(r) {
+      if (r.ok) {
+        document.getElementById('success-approval-form-wf19').style.display = 'block';
+        document.getElementById('success-approval-form-wf19').scrollIntoView({ behavior: 'smooth' });
+        btn.textContent = 'Response Sent';
+      } else { throw new Error(); }
+    })
+    .catch(function() {
+      document.getElementById('error-approval-form-wf19').style.display = 'block';
+      btn.textContent = 'Send My Response \u2192';
+      btn.disabled = false;
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

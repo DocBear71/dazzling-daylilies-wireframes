@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wireframe 18: Printable Inventory Report — Dazzling Daylilies</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 15px;
+    background: #f0f0f0;
+    color: #222;
+  }
+
+  /* ============================================================
+     ADMIN CHROME — matches WF09 through WF15
+  ============================================================ */
+  .admin-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .admin-topbar {
+    background: #2c3e50;
+    color: #ecf0f1;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    height: 52px;
+    gap: 0;
+    flex-shrink: 0;
+  }
+  .admin-brand {
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    margin-right: 32px;
+    white-space: nowrap;
+  }
+  .admin-brand span {
+    font-weight: 400;
+    color: #95a5a6;
+    margin-left: 6px;
+    font-size: 12px;
+  }
+  .admin-nav {
+    display: flex;
+    align-items: stretch;
+    height: 100%;
+    flex: 1;
+  }
+  .admin-nav-item {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 18px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #bdc3c7;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .admin-nav-item:hover { color: #fff; }
+  .admin-nav-item.active {
+    color: #fff;
+    border-bottom-color: #4a90d9;
+  }
+  .admin-nav-spacer { flex: 1; }
+  .admin-nav-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .admin-view-site {
+    font-size: 12px;
+    color: #7fb3d3;
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .admin-view-site:hover { color: #fff; }
+  .admin-logout {
+    font-size: 12px;
+    color: #95a5a6;
+    cursor: pointer;
+    white-space: nowrap;
+    background: none;
+    border: 1px solid #4a5568;
+    border-radius: 3px;
+    padding: 4px 12px;
+  }
+  .admin-logout:hover { color: #fff; border-color: #7a8898; }
+
+  /* ============================================================
+     SCREEN WRAPPER
+  ============================================================ */
+  .screen-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 24px 48px;
+  }
+
+  .screen-header {
+    margin-bottom: 20px;
+  }
+  .screen-header h1 {
+    font-size: 20px; font-weight: 700; color: #222; margin-bottom: 4px;
+  }
+  .screen-header p {
+    font-size: 13px; color: #888; line-height: 1.6;
+  }
+
+  .print-controls {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 24px; flex-wrap: wrap;
+  }
+  .print-btn {
+    background: #4a90d9; color: #fff; border: none;
+    padding: 10px 22px; border-radius: 4px;
+    font-size: 14px; font-weight: 700; cursor: pointer;
+  }
+  .close-btn {
+    background: #fff; color: #555; border: 1px solid #d0d0d0;
+    padding: 9px 20px; border-radius: 4px;
+    font-size: 14px; font-weight: 600; cursor: pointer;
+  }
+  .print-note {
+    font-size: 12px; color: #aaa; line-height: 1.5;
+  }
+
+  /* ============================================================
+     REPORT SHEET: designed for 8.5 x 11 inch paper
+  ============================================================ */
+  .report-sheet {
+    background: #fff;
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+    padding: 36px 40px 40px;
+    border-radius: 2px;
+  }
+
+  /* --- REPORT HEADER --- */
+  .report-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #222;
+  }
+  .report-business-name {
+    font-size: 24px; font-weight: 700; color: #222;
+    letter-spacing: -0.01em; margin-bottom: 3px;
+  }
+  .report-business-sub {
+    font-size: 12px; color: #666; line-height: 1.6;
+  }
+  .report-meta-block {
+    text-align: right;
+  }
+  .report-title {
+    font-size: 16px; font-weight: 700; color: #222; margin-bottom: 4px;
+  }
+  .report-date {
+    font-size: 12px; color: #888;
+  }
+  .report-total-badge {
+    display: inline-block;
+    background: #eef5fb; color: #1a5276;
+    font-size: 11px; font-weight: 700;
+    padding: 3px 10px; border-radius: 3px;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    margin-top: 6px;
+  }
+
+  /* --- CATEGORY SECTION --- */
+  .category-section {
+    margin-bottom: 32px;
+  }
+  .category-heading {
+    font-size: 13px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.1em; color: #fff;
+    background: #555; padding: 6px 12px;
+    margin-bottom: 14px; border-radius: 3px;
+  }
+  .category-heading.daylilies   { background: #b8860b; }
+  .category-heading.iris        { background: #4a6fa5; }
+  .category-heading.lilies      { background: #4a7c59; }
+  .category-heading.dahlias     { background: #a05070; }
+  .category-heading.japanese-iris { background: #6a4a8a; }
+  .category-heading.other       { background: #7a5a30; }
+
+  /* --- PLANT GRID: 4 per page with photos --- */
+  .plant-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+
+  .plant-card {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .plant-photo-box {
+    width: 100%;
+    aspect-ratio: 1;
+    background: #b0b0b0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .plant-photo-box.alt1 { background: #9a9a9a; }
+  .plant-photo-box.alt2 { background: #c0c0c0; }
+  .plant-photo-box.alt3 { background: #a8a8a8; }
+  .plant-photo-box.alt4 { background: #b8b8b8; }
+  .plant-photo-box.alt5 { background: #929292; }
+  .plant-photo-box.alt6 { background: #acacac; }
+  .plant-photo-box.alt7 { background: #bdbdbd; }
+
+  .plant-card-info {
+    padding: 7px 8px 8px;
+  }
+  .plant-card-name {
+    font-size: 11px; font-weight: 700; color: #222;
+    line-height: 1.3; margin-bottom: 3px;
+  }
+  .plant-card-attrs {
+    font-size: 9px; color: #888; line-height: 1.5;
+  }
+  .plant-card-price {
+    font-size: 11px; font-weight: 700; color: #333;
+    margin-top: 4px;
+  }
+  .plant-card-status {
+    display: inline-block;
+    font-size: 8px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.05em; padding: 1px 5px; border-radius: 3px;
+    margin-top: 3px;
+  }
+  .status-active     { background: #d5f5e3; color: #1a5c2a; }
+  .status-sold-out   { background: #fde8e8; color: #7a1a1a; }
+  .status-held       { background: #fff3cd; color: #7a4a00; }
+
+  /* --- CATEGORY SUMMARY LINE --- */
+  .category-summary {
+    font-size: 11px; color: #888; text-align: right;
+    padding: 4px 0 16px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+  }
+  .category-summary span { font-weight: 700; color: #333; }
+
+  /* --- REPORT FOOTER TOTALS --- */
+  .report-footer-totals {
+    margin-top: 8px;
+    border-top: 2px solid #222;
+    padding-top: 14px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .footer-totals-table {
+    width: 240px;
+  }
+  .footer-totals-row {
+    display: flex; justify-content: space-between;
+    font-size: 12px; padding: 3px 0;
+  }
+  .footer-totals-row .fl { color: #888; }
+  .footer-totals-row .fv { font-weight: 600; color: #333; }
+  .footer-totals-row.grand {
+    font-size: 14px; font-weight: 700;
+    border-top: 1px solid #ddd;
+    padding-top: 6px; margin-top: 4px;
+  }
+  .footer-totals-row.grand .fl,
+  .footer-totals-row.grand .fv { color: #222; }
+
+  /* ============================================================
+     PRINT MEDIA QUERY
+  ============================================================ */
+  @media print {
+    body { background: #fff; }
+    .admin-topbar,
+    .screen-header,
+    .print-controls,
+    .annotations { display: none !important; }
+    .screen-wrapper { padding: 0; max-width: 100%; }
+    .report-sheet {
+      box-shadow: none;
+      max-width: 100%;
+      padding: 20px 28px;
+    }
+    .category-section { page-break-inside: avoid; }
+    .plant-card { page-break-inside: avoid; }
+  }
+
+  /* ============================================================
+     ANNOTATIONS
+  ============================================================ */
+  .approval-intro {
+    background: #2c3e50; color: #ecf0f1; padding: 24px 32px;
+    font-size: 14px; line-height: 1.7;
+    margin-top: 40px;
+  }
+  .approval-intro h2 { font-size: 18px; font-weight: 700; margin-bottom: 6px; color: #fff; }
+  .approval-intro p  { color: #bdc3c7; max-width: 680px; }
+
+  .annotations {
+    max-width: 860px; margin: 0 auto; padding: 0 24px 48px;
+    background: #fffbe6; border-top: 4px solid #f5c518;
+  }
+  .ann-section-inner { padding-top: 8px; }
+  .ann-subtitle { font-size: 13px; color: #888; margin-bottom: 20px; margin-top: 2px; }
+
+  .ann-item {
+    background: #fff; border: 1px solid #e0e0e0; border-left: 4px solid #2c3e50;
+    border-radius: 4px; padding: 14px 18px; margin-bottom: 14px; font-size: 14px;
+    line-height: 1.7; color: #333;
+  }
+  .ann-item strong { display: block; font-size: 14px; font-weight: 700; margin-bottom: 4px; color: #1a2a3a; }
+  .ann-item p { margin: 0; }
+
+  .ann-tag {
+    display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; padding: 2px 8px; border-radius: 10px; margin-top: 8px;
+  }
+  .ann-tag.confirmed { background: #d5f5e3; color: #1a5c2a; }
+  .ann-tag.info      { background: #f0f0f0; color: #555; }
+  .ann-tag.business  { background: #f8d7da; color: #721c24; }
+
+  /* Approval form */
+  .approval-form-wrap {
+    background: #f0f7ff; border-top: 3px solid #2c3e50;
+    padding: 32px 32px 40px; margin-top: 8px;
+  }
+  .approval-form-heading {
+    font-size: 18px; font-weight: 700; color: #1a2a3a; margin-bottom: 6px;
+  }
+  .approval-form-desc {
+    font-size: 13px; color: #555; margin-bottom: 24px; line-height: 1.6;
+  }
+  .approval-radio-group { display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
+  .approval-radio-label {
+    display: flex; align-items: center; gap: 8px; cursor: pointer;
+    font-size: 15px; font-weight: 600; color: #1a2a3a; padding: 12px 20px;
+    border: 2px solid #c8d8e8; border-radius: 6px; background: #fff;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .approval-radio-label input[type="radio"] { accent-color: #2c3e50; width: 18px; height: 18px; }
+  .approval-radio-label.approved  { border-color: #6abf6a; }
+  .approval-radio-label.changes   { border-color: #e8a040; }
+  .approval-radio-label input:checked ~ span.approved-text  { color: #1a5c2a; }
+  .approval-radio-label input:checked ~ span.changes-text   { color: #7a4400; }
+
+  .reason-field { margin-bottom: 20px; display: none; }
+  .reason-field.visible { display: block; }
+  .approval-label {
+    display: block; font-size: 12px; font-weight: 700; color: #555;
+    text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;
+  }
+  .approval-textarea {
+    width: 100%; padding: 10px 12px; border: 1px solid #c0c8d0;
+    border-radius: 4px; font-size: 14px; color: #333; background: #fff;
+    resize: vertical; min-height: 90px; line-height: 1.6; font-family: inherit;
+    box-sizing: border-box;
+  }
+  .approval-textarea:focus { outline: 2px solid #2c3e50; border-color: transparent; }
+  .approval-textarea::placeholder { color: #bbb; }
+
+  .approval-name-row { display: flex; gap: 14px; margin-bottom: 20px; flex-wrap: wrap; }
+  .approval-name-field { flex: 1; min-width: 180px; }
+  .approval-name-field label {
+    display: block; font-size: 12px; font-weight: 700; color: #555;
+    text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 5px;
+  }
+  .approval-name-field input {
+    width: 100%; padding: 10px 12px; border: 1px solid #c0c8d0;
+    border-radius: 4px; font-size: 14px; color: #333; background: #fff;
+    box-sizing: border-box;
+  }
+
+  .approval-submit-btn {
+    display: inline-block; background: #2c3e50; color: #fff;
+    padding: 13px 36px; border-radius: 4px; font-size: 15px;
+    font-weight: 700; border: none; cursor: pointer; letter-spacing: 0.02em;
+  }
+  .approval-submit-btn:hover { background: #1a2a3a; }
+  .approval-submit-btn:disabled { background: #999; cursor: default; }
+  .approval-submit-note { font-size: 12px; color: #888; margin-top: 10px; line-height: 1.6; }
+
+  .approval-success {
+    display: none; background: #d5f5e3; border: 1px solid #6abf6a;
+    border-radius: 6px; padding: 20px 24px; margin-top: 16px;
+    font-size: 14px; color: #1a5c2a; line-height: 1.7;
+  }
+  .approval-success strong { display: block; font-size: 16px; margin-bottom: 4px; }
+  .approval-error {
+    display: none; background: #fdf2f2; border: 1px solid #e8b4b4;
+    border-radius: 6px; padding: 14px 18px; margin-top: 12px;
+    font-size: 13px; color: #7a2020;
+  }
+</style>
+</head>
+<body>
+
+<div class="admin-wrapper">
+<div class="admin-topbar">
+  <div class="admin-brand">Dazzling Daylilies <span>Admin</span></div>
+  <nav class="admin-nav">
+    <a class="admin-nav-item" href="#">Dashboard</a>
+    <a class="admin-nav-item" href="#">Plants</a>
+    <a class="admin-nav-item" href="#">Orders</a>
+    <a class="admin-nav-item" href="#">Photos</a>
+    <a class="admin-nav-item" href="#">Settings</a>
+    <a class="admin-nav-item active" href="#">Reports</a>
+    <div class="admin-nav-spacer"></div>
+    <div class="admin-nav-right">
+      <a class="admin-view-site" href="#">View Public Site &rarr;</a>
+      <button class="admin-logout">Log Out</button>
+    </div>
+  </nav>
+</div>
+
+<div class="screen-wrapper">
+
+  <!-- SCREEN CHROME -->
+  <div class="screen-header">
+    <h1>Wireframe 18: Printable Inventory Report</h1>
+    <p>
+      This is Jean's printable inventory list, accessible from the Admin area.
+      It shows all active plants organized by category, sorted alphabetically, each
+      with a small photo and key information. When printed, only the white report area
+      renders; the header, button, and notes below are hidden.
+    </p>
+  </div>
+
+  <div class="print-controls">
+    <button class="print-btn">&#9113; Print Inventory Report</button>
+    <button class="close-btn">&larr; Back to Plants List</button>
+    <span class="print-note">
+      Formatted for standard 8.5&Prime; &times; 11&Prime; paper, portrait orientation.
+      Use your browser's Print dialog to send to your printer.
+    </span>
+  </div>
+
+  <!-- ===== REPORT SHEET ===== -->
+  <div class="report-sheet">
+
+    <!-- REPORT HEADER -->
+    <div class="report-header">
+      <div>
+        <div class="report-business-name">Dazzling Daylilies</div>
+        <div class="report-business-sub">
+          Fairfax, Iowa<br>
+          dazzlingdaylilies@yahoo.com
+        </div>
+      </div>
+      <div class="report-meta-block">
+        <div class="report-title">Inventory Report</div>
+        <div class="report-date">Printed: June 5, 2027</div>
+        <div class="report-total-badge">47 Plants Active</div>
+      </div>
+    </div>
+
+    <!-- CATEGORY: DAYLILIES -->
+    <div class="category-section">
+      <div class="category-heading daylilies">Daylilies</div>
+
+      <div class="plant-grid">
+
+        <div class="plant-card">
+          <div class="plant-photo-box">[ photo ]</div>
+          <div class="plant-card-info">
+            <div class="plant-card-name">Acapulco Sunset</div>
+            <div class="plant-card-attrs">5&Prime; &bull; TET &bull; DOR &bull; Dip &bull; RE &bull; 28&Prime;</div>
+            <div class="plant-card-price">$28.00</div>
+            <div class="plant-card-status status-active">Active</div>
+          </div>
+        </div>
+
+        <div class="plant-card">
+          <div class="plant-photo-box alt1">[ photo ]</div>
+          <div class="plant-card-info">
+            <div class="plant-card-name">Bamboo Blackout</div>
+            <div class="plant-card-attrs">6&Prime; &bull; TET &bull; DOR &bull; Dip &bull; 32&Prime;</div>
+            <div class="plant-card-price">$35.00</div>
+            <div class="plant-card-status status-active">Active</div>
+          </div>
+        </div>
+
+        <div class="plant-card">
+          <div class="plant-photo-box alt2">[ photo ]</div>
+          <div class="plant-card-info">
+            <div class="plant-card-name">Cherry Eyed Pumpkin</div>
+            <div class="plant-card-attrs">4.5&Prime; &bull; DIP &bull; DOR &bull; RE &bull; 24&Prime;</div>
+            <div class="plant-card-price">$22.00</div>
+            <div class="plant-card-status status-sold-out">Sold Out</div>
+          </div>
+        </div>
+
+        <div class="plant-card">
+          <div class="plant-photo-box alt3">[ photo ]</div>
+          <div class="plant-card-info">
+            <div class="plant-card-name">Frank Gladney</div>
+            <div class="plant-card-attrs">7&Prime; &bull; DIP &bull; EV &bull; 24&Prime;</div>
+            <div class="plant-card-price">$30.00</div>
+            <div class="plant-card-status status-active">Active</div>
+          </div>
+        </div>
+
+        <div class="plant-card">
+          <div class="plant-photo-box alt4">[ photo ]</div>
+          <div class="plant-card-info">
+            <div class="plant-card-name">Happy Returns</div>
+            <div class="plant-card-attrs">3.5&Prime; &bull; DIP &bull; SEV &bull; RE &bull; 18&Prime;</div>
+            <div class="plant-card-price">$18.00</div>
+            <div class="plant-card-status status-active">Active</div>
+          </div>
+        </div>
+
+        <div class="plant-card">
+          <div class="plant-photo-box alt5">[ photo ]</div>
+          <div class="plant-card-info">
+            <div class="plant-card-name">Midnight Magic</div>
+            <div class="plant-card-attrs">5&Prime; &bull; TET &bull; DOR &bull; 26&Prime;</div>
+            <div class="plant-card-price">$32.00</div>
+            <div class="plant-card-status status-held">Held for Increase</div>
+          </div>
+        </div>
+
+        <div class="plant-card">
+          <div class="plant-photo-box alt6">[ photo ]</div>
+          <div class="plant-card-info">
+            <div class="plant-card-name">Pleasure Acres</div>
+            <div class="plant-card-attrs">5&Prime; &bull; DIP &bull; DOR &bull; RE &bull; 28&Prime;</div>
+            <div class="plant-card-price">$25.00</div>
+            <div class="plant-card-status status-active">Active</div>
+          </div>
+        </div>
+
+        <div class="plant-card">
+          <div class="plant-photo-box alt7">[ photo ]</div>
+          <div class="plant-card-info">
+            <div class="plant-card-name">Strawberry Candy</div>
+            <div class="plant-card-attrs">4.25&Prime; &bull; DIP &bull; SEV &bull; RE &bull; 22&Prime;</div>
+            <div class="plant-card-price">$22.00</div>
+            <div class="plant-card-status status-active">Active</div>
+          </div>
+        </div>
+
+      </div><!-- /.plant-grid -->
+
+      <div class="category-summary">
+        Daylilies: <span>38 plants</span> &nbsp;&bull;&nbsp; 34 active &nbsp;&bull;&nbsp; 2 sold out &nbsp;&bull;&nbsp; 2 held for increase
+      </div>
+    </div><!-- /.category-section daylilies -->
+
+    <!-- CATEGORY: IRIS (inactive at launch, shown here for layout reference) -->
+    <div class="category-section">
+      <div class="category-heading iris">Iris</div>
+
+      <div class="plant-grid">
+        <div class="plant-card">
+          <div class="plant-photo-box">[ photo ]</div>
+          <div class="plant-card-info">
+            <div class="plant-card-name">Caesar's Brother</div>
+            <div class="plant-card-attrs">Siberian &bull; 36&Prime;</div>
+            <div class="plant-card-price">$20.00</div>
+            <div class="plant-card-status status-active">Active</div>
+          </div>
+        </div>
+        <div class="plant-card">
+          <div class="plant-photo-box alt2">[ photo ]</div>
+          <div class="plant-card-info">
+            <div class="plant-card-name">Immortality</div>
+            <div class="plant-card-attrs">Bearded &bull; RE &bull; 28&Prime;</div>
+            <div class="plant-card-price">$18.00</div>
+            <div class="plant-card-status status-active">Active</div>
+          </div>
+        </div>
+        <div class="plant-card">
+          <div class="plant-photo-box alt4">[ photo ]</div>
+          <div class="plant-card-info">
+            <div class="plant-card-name">Midnight Caller</div>
+            <div class="plant-card-attrs">Bearded &bull; 30&Prime;</div>
+            <div class="plant-card-price">$24.00</div>
+            <div class="plant-card-status status-active">Active</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="category-summary">
+        Iris: <span>9 plants</span> &nbsp;&bull;&nbsp; 9 active
+      </div>
+    </div><!-- /.category-section iris -->
+
+    <!-- REPORT FOOTER TOTALS -->
+    <div class="report-footer-totals">
+      <div class="footer-totals-table">
+        <div class="footer-totals-row">
+          <span class="fl">Total Active</span>
+          <span class="fv">43 plants</span>
+        </div>
+        <div class="footer-totals-row">
+          <span class="fl">Total Sold Out</span>
+          <span class="fv">2 plants</span>
+        </div>
+        <div class="footer-totals-row">
+          <span class="fl">Total Held for Increase</span>
+          <span class="fv">2 plants</span>
+        </div>
+        <div class="footer-totals-row grand">
+          <span class="fl">Total in Report</span>
+          <span class="fv">47 plants</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.report-sheet -->
+
+</div><!-- /.screen-wrapper -->
+</div><!-- /.admin-wrapper -->
+
+
+<!-- ANNOTATIONS -->
+<div class="approval-intro">
+  <h2>Wireframe Notes: WF18 &mdash; Printable Inventory Report</h2>
+  <p>Hi Jean! The notes below explain what each part of this page does and confirm
+    the decisions we have already made together. When you have finished reading,
+    please use the <strong>Approval Form</strong> at the bottom of this page to let
+    Edward know whether the page looks right or whether you would like any changes.</p>
+</div>
+
+<div class="annotations">
+  <div class="ann-section-inner">
+
+    <div class="ann-item">
+      <strong>How This Page Works</strong>
+      <p>You access this report from the Admin area by clicking "Print Inventory Report." A new browser tab opens showing this page. Click the "Print Inventory Report" button at the top to open your browser's print dialog, then select your printer. Everything outside the white report area (the button, this header, and the notes below) disappears when printing so only the clean report goes to the printer. You can also use the browser's print-to-PDF option to save a copy.</p>
+    </div>
+
+    <div class="ann-item">
+      <strong>Photos: Confirmed by Jean</strong>
+      <p>Each plant shows a square photo above the plant's name and details, roughly 3 inches by 3 inches when printed. The report fits four plants across each row. Depending on your plant count per category, you will fit approximately six to eight plants per page including the category heading and summary line. This layout lets you flip through the list visually and identify plants at a glance.</p>
+      <span class="ann-tag confirmed">Confirmed: Jean requested photos in her June 5, 2026 reply</span>
+    </div>
+
+    <div class="ann-item">
+      <strong>Organization: By Category, Alphabetically Within Each</strong>
+      <p>Plants are grouped under their category heading (Daylilies, Iris, Lilies, Dahlias, Japanese Iris, Other Perennials). Within each category, plants are sorted alphabetically by name. Only categories that are active in your settings appear on the report. At launch, that means Daylilies only; as you activate other tabs, those categories appear automatically.</p>
+      <span class="ann-tag confirmed">Confirmed: category grouping and alphabetical sort</span>
+    </div>
+
+    <div class="ann-item">
+      <strong>What Each Plant Card Shows</strong>
+      <p>Each card shows: the plant photo, the plant name, abbreviated attributes (bloom size, ploidy, foliage type, rebloom, scape height), the price, and the current status (Active, Sold Out, or Held for Increase). Draft plants do not appear on this report since they are not yet ready for sale or display. The status label uses color coding so sold-out and held plants are easy to spot at a glance: green for active, red for sold out, yellow for held for increase.</p>
+    </div>
+
+    <div class="ann-item">
+      <strong>Category Summary Line</strong>
+      <p>Below each category's plant grid, a small summary line shows the total count for that category broken down by status. This gives you a quick count of how many are active, sold out, or held without having to count cards manually.</p>
+    </div>
+
+    <div class="ann-item">
+      <strong>Report Footer Totals</strong>
+      <p>At the very bottom of the report, a small totals block shows the grand total plant count across all categories, broken down by status. This lets you see your full inventory picture at a glance.</p>
+    </div>
+
+    <div class="ann-item">
+      <strong>Paper Format and Print Settings</strong>
+      <p>Designed for standard US letter paper (8.5 x 11 inches, portrait). In your browser's print dialog, set: Paper size: Letter, Orientation: Portrait, Margins: Default or Narrow. Uncheck "Print headers and footers" so the browser does not add its own URL and date lines to the printed pages. These instructions will be in your admin guide as a step-by-step reminder.</p>
+    </div>
+
+    <div class="ann-item">
+      <strong>Multi-Page Reports</strong>
+      <p>If you have many plants, the report will naturally span multiple pages. Category headings and plant cards are formatted to avoid awkward page breaks in the middle of a card. If a category does not fit on the remaining space of a page, it starts at the top of the next page.</p>
+      <span class="ann-tag info">At launch with Daylilies only, the report will likely be 3 to 5 pages depending on your plant count.</span>
+    </div>
+
+  </div>
+
+  <!-- APPROVAL FORM -->
+  <div class="approval-form-wrap">
+    <div class="approval-form-heading">Wireframe Approval: WF18 &mdash; Printable Inventory Report</div>
+    <p class="approval-form-desc">
+      Please review the wireframe above and the notes on this page, then let Edward know
+      whether this page is approved as shown or whether you would like changes made before
+      the build begins. Your response goes directly to Edward by email.
+    </p>
+
+    <form id="approval-form-wf18">
+      <input type="hidden" name="_subject" value="WF18 Printable Inventory Report Approval - Dazzling Daylilies">
+      <input type="hidden" name="wireframe" value="WF18 - Printable Inventory Report">
+      <input type="hidden" name="approval_status" id="h-approval-approval-form-wf18">
+      <input type="hidden" name="change_reason"   id="h-reason-approval-form-wf18">
+      <input type="hidden" name="general_comments" id="h-comments-approval-form-wf18">
+
+      <div class="approval-radio-group">
+        <label class="approval-radio-label approved">
+          <input type="radio" name="approval_choice" value="Approved" id="radio-approved-approval-form-wf18">
+          <span class="approved-text">&#10003;&nbsp; Approved &mdash; looks great!</span>
+        </label>
+        <label class="approval-radio-label changes">
+          <input type="radio" name="approval_choice" value="Changes Needed" id="radio-changes-approval-form-wf18">
+          <span class="changes-text">&#9998;&nbsp; Changes Needed</span>
+        </label>
+      </div>
+
+      <div class="reason-field" id="reason-field-approval-form-wf18">
+        <label class="approval-label" for="textarea-reason-approval-form-wf18">
+          What would you like changed? (required)
+        </label>
+        <textarea class="approval-textarea" id="textarea-reason-approval-form-wf18"
+          placeholder="Please describe what you would like adjusted on this page..."></textarea>
+      </div>
+
+      <div style="margin-bottom: 20px;">
+        <label class="approval-label" for="textarea-comments-approval-form-wf18">
+          Any other comments or questions? (optional)
+        </label>
+        <textarea class="approval-textarea" id="textarea-comments-approval-form-wf18"
+          placeholder="Any other thoughts, questions, or notes for Edward..."></textarea>
+      </div>
+
+      <div class="approval-name-row">
+        <div class="approval-name-field">
+          <label for="name-approval-form-wf18">Your Name</label>
+          <input type="text" id="name-approval-form-wf18" name="reviewer_name" value="Jean" placeholder="Your name">
+        </div>
+        <div class="approval-name-field">
+          <label for="email-approval-form-wf18">Your Email (so Edward can reply)</label>
+          <input type="email" id="email-approval-form-wf18" name="email" placeholder="dazzlingdaylilies@yahoo.com">
+        </div>
+      </div>
+
+      <button type="submit" class="approval-submit-btn">Send My Response &rarr;</button>
+      <p class="approval-submit-note">Your response is sent directly and securely to Edward. This page does not store any personal information.</p>
+
+      <div class="approval-success" id="success-approval-form-wf18">
+        <strong>Thank you, Jean!</strong>
+        Your response on WF18 (Printable Inventory Report) has been sent to Edward successfully.
+        You can now close this tab or continue reviewing other wireframes from the main review page.
+      </div>
+      <div class="approval-error" id="error-approval-form-wf18">
+        Something went wrong. Please try again, or email Edward directly at
+        <a href="mailto:edward@docbear-ent.com">edward@docbear-ent.com</a> with your notes.
+      </div>
+    </form>
+  </div><!-- /.approval-form-wrap -->
+
+</div><!-- /.annotations -->
+
+<script>
+(function() {
+  var form     = document.getElementById('approval-form-wf18');
+  if (!form) return;
+
+  var radios    = form.querySelectorAll('input[type="radio"]');
+  var reasonFld = document.getElementById('reason-field-approval-form-wf18');
+  var reasonTA  = document.getElementById('textarea-reason-approval-form-wf18');
+
+  radios.forEach(function(r) {
+    r.addEventListener('change', function() {
+      if (r.value === 'Changes Needed' && r.checked) {
+        reasonFld.classList.add('visible');
+        reasonTA.required = true;
+      } else {
+        reasonFld.classList.remove('visible');
+        reasonTA.required = false;
+      }
+    });
+  });
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    var chosen = form.querySelector('input[name="approval_choice"]:checked');
+    if (!chosen) {
+      alert('Please select Approved or Changes Needed before sending.');
+      return;
+    }
+    if (chosen.value === 'Changes Needed' && !reasonTA.value.trim()) {
+      reasonTA.focus();
+      alert('Please describe what you would like changed.');
+      return;
+    }
+
+    document.getElementById('h-approval-approval-form-wf18').value = chosen.value;
+    document.getElementById('h-reason-approval-form-wf18').value   = reasonTA.value.trim() || '(no changes requested)';
+    document.getElementById('h-comments-approval-form-wf18').value = document.getElementById('textarea-comments-approval-form-wf18').value.trim() || '(none)';
+
+    var btn = form.querySelector('.approval-submit-btn');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    fetch('https://formspree.io/f/mvzyrrrv', {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(function(r) {
+      if (r.ok) {
+        document.getElementById('success-approval-form-wf18').style.display = 'block';
+        document.getElementById('success-approval-form-wf18').scrollIntoView({ behavior: 'smooth' });
+        btn.textContent = 'Response Sent';
+      } else { throw new Error(); }
+    })
+    .catch(function() {
+      document.getElementById('error-approval-form-wf18').style.display = 'block';
+      btn.textContent = 'Send My Response \u2192';
+      btn.disabled = false;
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

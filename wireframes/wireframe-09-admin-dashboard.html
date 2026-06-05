@@ -606,6 +606,7 @@
       <a class="admin-nav-item" href="#">Orders</a>
       <a class="admin-nav-item" href="#">Photos</a>
       <a class="admin-nav-item" href="#">Settings</a>
+      <a class="admin-nav-item" href="#">Reports</a>
       <div class="admin-nav-spacer"></div>
       <div class="admin-nav-right">
         <a class="admin-view-site" href="#">View Public Site &rarr;</a>
@@ -899,7 +900,7 @@
 
   <div class="ann-item">
     <strong>Admin Top Bar (dark navigation)</strong>
-    <p>Completely separate from the public site navigation. The dark color immediately signals to Jean that she is in the admin area, not browsing as a customer. The five navigation items are: Dashboard, Plants, Orders, Photos, and Settings. "View Public Site" opens the customer-facing site in a new tab so Jean can check how things look without logging out. "Log Out" ends her session.</p>
+    <p>Completely separate from the public site navigation. The dark color immediately signals to Jean that she is in the admin area, not browsing as a customer. The six navigation items are: Dashboard, Plants, Orders, Photos, Settings, and Reports. "View Public Site" opens the customer-facing site in a new tab so Jean can check how things look without logging out. "Log Out" ends her session.</p>
     <span class="ann-tag business">Security note: The admin area is protected by Laravel Breeze authentication. Jean must log in with her username and password to access any admin page. If she is not logged in and tries to reach an admin URL, she is redirected to the login page automatically.</span>
   </div>
 
@@ -911,8 +912,7 @@
   <div class="ann-item">
     <strong>Stat Cards (four cards across the top)</strong>
     <p>Four at-a-glance numbers Jean needs every time she opens the admin: orders needing attention (red, because action is required), total orders this season with dollar amount, active plants in the catalog, and plants currently sold out (amber, because it may need attention). Clicking any card navigates to the relevant section. "Orders needing attention" means orders in Received status that Jean has not yet marked as Processing or Shipped.</p>
-    <span class="ann-tag decision">Decision needed: "This season" for the total orders card needs a definition. Does a season reset on January 1st, or does Jean have a specific shipping season (spring/fall) where she would want to see the count reset? Jean should clarify so the stat shows a number that is meaningful to her.</span>
-  </div>
+    </div>
 
   <div class="ann-item">
     <strong>Quick Action Buttons</strong>
@@ -923,14 +923,12 @@
     <strong>Recent Orders Table</strong>
     <p>Shows the 10 most recent orders. New orders (status: Received, not yet processed) are highlighted in yellow with a red dot indicator. A visual divider separates the new orders from earlier ones. Clicking any row opens the Admin Order Detail page for that order. Columns: order number, date, customer first name and last initial, plant count, total, and status badge.</p>
     <span class="ann-tag business">Business rule: "New" and "Received" are the same status in the database (fulfillment_status = 'received'). The dashboard shows them as "New" with a red dot to make them visually urgent. The order detail page and orders list use the full status labels (Received, Processing, Shipped, Delivered).</span>
-    <span class="ann-tag decision">Decision needed: The table shows first name and last initial only (e.g., "Margaret T.") for privacy and readability. Should it show the full name? Full names are easier to search mentally but wider columns may crowd the table on smaller screens. Jean's preference.</span>
-  </div>
+    </div>
 
   <div class="ann-item">
     <strong>Site Visitors Panel (Google Analytics summary)</strong>
     <p>A compact summary of the last 7 days pulled from Google Analytics 4: total visitors, page views, most-viewed plant, and top referrer source. The mini bar chart shows daily visitor counts with today highlighted in blue. This is a read-only summary; Jean clicks "View full analytics" (not shown in this wireframe) to open the full GA4 dashboard in a new tab.</p>
-    <span class="ann-tag decision">Decision needed: The GA4 integration requires embedding the GA4 embed API or using a server-side reporting API to pull these numbers. The simpler alternative is to skip the embedded summary entirely and just put a "View Google Analytics" link that opens GA4 in a new tab. The embedded version is nicer but adds meaningful development complexity. Worth discussing whether Jean would actually use it or just open GA4 directly anyway.</span>
-  </div>
+    </div>
 
   <div class="ann-item">
     <strong>Sold-Out Plants Panel</strong>
@@ -940,8 +938,7 @@
   <div class="ann-item">
     <strong>Reminders Panel (yellow card)</strong>
     <p>A simple list of contextual reminders generated from the current state of the database: unprocessed orders, approaching shipping season end dates, sold-out plant count. These are not configurable by Jean; they generate automatically based on system state. The reminders panel is hidden if there is nothing to remind her of.</p>
-    <span class="ann-tag decision">Decision needed: What other automatic reminders would be useful? Possibilities include: "Your Mailchimp list has 50 new subscribers since last login," "3 plants have no photos uploaded," or "Shipping season dates in Settings have not been updated this year." Jean and Edward can add to this list during development.</span>
-  </div>
+    </div>
 
   <div class="ann-item">
     <strong>Admin Footer</strong>
@@ -959,18 +956,10 @@
     please use the <strong>Approval Form</strong> at the bottom of this page to let
     Edward know whether the page looks right or whether you would like any changes.</p>
 </div>
-<div style="background:#fffbe6; border-top:4px solid #f5c518; padding:0;">
-  <div style="padding:24px 32px 0;">
-  <h2 style="font-size:18px; font-weight:700; padding-bottom:8px;">Admin Dashboard (WF09)</h2>
-    <div class="ann-item" style="padding:20px 0; border-bottom:1px solid #eedc6a;">
-    </div>
-  <div class="ann-item" style="padding:20px 0; border-bottom:1px solid #eedc6a;">
-    </div>
-  <div class="ann-item" style="padding:20px 0; border-bottom:1px solid #eedc6a;">
-    </div>
-  <div class="ann-item" style="padding:20px 0; border-bottom:1px solid #eedc6a;">
-    </div>
-  </div>
+<div class="annotations">
+  <div class="ann-section-inner">
+  <p style="color:#888;font-size:13px;padding:20px 0;">All decisions for this page have been confirmed. Please use the approval form below.</p>
+</div>
 
 
   <!-- APPROVAL FORM -->
