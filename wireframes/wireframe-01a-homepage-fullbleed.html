@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wireframe 01A: Homepage — Full-Bleed Header Option — Dazzling Daylilies</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 15px;
+    background: #f0f0f0;
+    color: #222;
+    /* No horizontal scrollbar, ever */
+    overflow-x: hidden;
+  }
+
+  a { color: #4a90d9; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .btn-primary {
+    display: inline-block; background: #4a90d9; color: #fff;
+    padding: 10px 22px; border-radius: 4px; font-size: 14px;
+    font-weight: 600; cursor: pointer; border: none;
+  }
+  .btn-secondary {
+    display: inline-block; background: #fff; color: #4a90d9;
+    padding: 9px 22px; border-radius: 4px; font-size: 14px;
+    font-weight: 600; cursor: pointer; border: 2px solid #4a90d9;
+  }
+  .btn-ghost {
+    display: inline-block; background: transparent; color: #aaa;
+    padding: 9px 22px; border-radius: 4px; font-size: 14px;
+    font-weight: 600; cursor: default; border: 2px solid #d0d0d0;
+  }
+
+  .page-wrapper {
+    max-width: 1160px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+    /* Prevent any child from causing horizontal overflow */
+    overflow-x: hidden;
+  }
+
+  /* Cookie Banner */
+  .cookie-banner {
+    background: #333; color: #eee; padding: 10px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 13px; gap: 16px;
+  }
+  .cookie-dismiss {
+    background: #4a90d9; color: #fff; border: none;
+    padding: 5px 14px; border-radius: 3px; cursor: pointer; font-size: 12px; white-space: nowrap;
+  }
+
+  /* Site Header — OPTION A: sits INSIDE the hero, no separate background.
+     The hero photo extends from top of page behind the header and nav. */
+  .site-header {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    z-index: 10;
+    padding: 20px 24px 0;
+    text-align: center;
+    background: transparent;
+  }
+  .site-header h1 {
+    font-size: 32px; font-weight: 700; color: #fff; margin-bottom: 4px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.55);
+  }
+  .site-header .tagline {
+    font-size: 14px; color: rgba(255,255,255,0.88); font-style: italic;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.45);
+  }
+
+  /* ============================================================
+     TOP NAV: Double-stacked to prevent horizontal overflow
+     Row 1: Daylilies, Iris, Lilies, Bundles, Cart
+     Row 2: Dahlias, Japanese Iris, Other Perennials
+     This pattern ensures no horizontal scrollbar on any screen width.
+  ============================================================ */
+  /* Nav — OPTION A: floats over the hero photo, semi-transparent */
+  .top-nav {
+    position: absolute;
+    left: 0; right: 0;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(2px);
+    border-bottom: none;
+    padding: 0 24px;
+  }
+  .nav-row {
+    display: flex;
+    align-items: stretch;
+    min-height: 44px;
+    flex-wrap: nowrap;
+  }
+  .nav-row-2 {
+    border-top: 1px solid #f0f0f0;
+  }
+  .nav-tab {
+    display: inline-flex; align-items: center; padding: 0 16px;
+    font-size: 13px; font-weight: 600; color: #555;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -3px;
+    cursor: pointer; white-space: nowrap;
+  }
+  .nav-tab { color: rgba(255,255,255,0.85); }
+  .nav-tab.active { color: #fff; border-bottom-color: #fff; }
+  .nav-tab.inactive { color: rgba(255,255,255,0.4); cursor: not-allowed; }
+  .nav-tab .inactive-note { font-size: 10px; font-weight: 400; color: rgba(255,255,255,0.35); margin-left: 4px; }
+  .nav-tab.bundles-tab { color: #7de8a8; }
+  .nav-tab.bundles-tab.active { border-bottom-color: #7de8a8; }
+  .nav-spacer { flex: 1; }
+  .nav-cart-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 0 16px; font-size: 13px; font-weight: 600; color: #7ab8f5; cursor: pointer;
+  }
+  .cart-badge {
+    background: #4a90d9; color: #fff; border-radius: 50%;
+    width: 18px; height: 18px; font-size: 11px;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+
+  /* Nav layout note strip */
+  .nav-layout-note {
+    background: #eef5fb; border-bottom: 1px solid #c0d8f0;
+    padding: 8px 24px; font-size: 12px; color: #1a4a7a;
+  }
+
+  /* Hero — OPTION A: taller to include header and nav area */
+  .hero {
+    position: relative; height: 520px;
+    display: flex; align-items: center; justify-content: center; overflow: hidden;
+  }
+  /* Hero background — OPTION A: gradient simulates photo darkening at top
+     so the site name and nav are readable over the image */
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(20,20,20,0.72) 0%,
+      rgba(20,20,20,0.25) 35%,
+      rgba(80,80,80,0.10) 60%,
+      rgba(100,100,100,0.05) 100%
+    ), #7a9a7a;
+    display: flex; align-items: flex-end; justify-content: center;
+    padding-bottom: 60px;
+    color: rgba(255,255,255,0.3); font-size: 13px; font-weight: 600;
+    letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  .hero-overlay {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 8px;
+    padding: 32px 40px;
+    max-width: 540px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+  }
+  .hero-overlay h2 { font-size: 22px; font-weight: 700; margin-bottom: 12px; }
+  .hero-overlay p { font-size: 14px; color: #555; margin-bottom: 20px; line-height: 1.6; }
+
+  /* Sections */
+  .section-heading { font-size: 20px; font-weight: 700; color: #222; margin-bottom: 4px; }
+  .section-subheading { font-size: 13px; color: #888; margin-bottom: 24px; }
+  .section-divider { border: none; border-top: 2px solid #e8e8e8; margin: 0 24px; }
+
+  /* Featured Plants */
+  .featured-section { padding: 40px 24px; }
+  .plant-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .plant-card { border: 1px solid #d0d0d0; border-radius: 6px; overflow: hidden; }
+  .plant-card-photo {
+    width: 100%; height: 160px; background: #b0b0b0;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; color: #fff; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.04em; text-transform: uppercase; text-align: center;
+    position: relative; gap: 4px; padding: 8px;
+  }
+  .sold-out-badge {
+    position: absolute; top: 8px; right: 8px;
+    background: #888; color: #fff; font-size: 10px; font-weight: 700;
+    padding: 3px 8px; border-radius: 3px; text-transform: uppercase;
+  }
+  .plant-card-body { padding: 12px 14px 14px; }
+  .plant-name { font-size: 14px; font-weight: 700; color: #222; margin-bottom: 4px; }
+  .plant-desc { font-size: 12px; color: #666; line-height: 1.5; margin-bottom: 10px; }
+  .plant-price { font-size: 15px; font-weight: 700; color: #222; margin-bottom: 10px; }
+  .plant-price.sold-out { color: #aaa; }
+  .plant-card .btn-primary,
+  .plant-card .btn-ghost { width: 100%; text-align: center; padding: 8px 0; font-size: 13px; display: block; }
+
+  /* About */
+  .about-section { padding: 40px 24px; display: grid; grid-template-columns: 200px 1fr; gap: 32px; align-items: start; }
+  .about-photo {
+    width: 100%; aspect-ratio: 3/4; background: #b0b0b0; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.04em; text-align: center; padding: 8px;
+  }
+  .about-content h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+  .about-content p { font-size: 14px; color: #555; line-height: 1.7; margin-bottom: 12px; }
+
+  /* Footer */
+  .site-footer { background: #333; color: #ccc; padding: 32px 24px 20px; }
+  .footer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; margin-bottom: 28px; }
+  .footer-col h4 {
+    font-size: 13px; font-weight: 700; color: #fff; text-transform: uppercase;
+    letter-spacing: 0.07em; margin-bottom: 12px;
+  }
+  .footer-col p, .footer-col address {
+    font-size: 13px; line-height: 1.7; font-style: normal; color: #bbb;
+  }
+  .footer-col a { color: #7ab8f5; }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 6px; }
+  .footer-links a { font-size: 13px; color: #7ab8f5; }
+  .mc-signup label { display: block; font-size: 12px; color: #bbb; margin-bottom: 6px; }
+  .mc-input-row { display: flex; gap: 8px; }
+  .mc-input {
+    flex: 1; background: #555; border: 1px solid #777; color: #fff;
+    padding: 7px 10px; border-radius: 3px; font-size: 13px;
+    /* Prevent this input from causing overflow */
+    min-width: 0;
+  }
+  .mc-btn {
+    background: #4a90d9; color: #fff; border: none; padding: 7px 14px;
+    border-radius: 3px; font-size: 13px; cursor: pointer; white-space: nowrap;
+  }
+  .footer-bottom {
+    border-top: 1px solid #555; padding-top: 16px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px; color: #888; flex-wrap: wrap; gap: 8px;
+  }
+  .footer-bottom a { color: #7ab8f5; }
+
+  /* ============================================================
+     FEEDBACK FORM STYLES
+  ============================================================ */
+
+  .annotations {
+    background: #fffbe6; border-top: 4px solid #f5c518;
+    padding: 0; font-size: 14px; color: #333; line-height: 1.7;
+    overflow-x: hidden;
+  }
+  .ann-section-inner { padding: 32px 32px 0; }
+  .annotations h2 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .ann-subtitle { font-size: 13px; color: #888; margin-bottom: 28px; }
+
+  .ann-tag.decision { background: #ffd580; }
+  .ann-tag.content { background: #c8e6c9; color: #1b5e20; }
+  .ann-tag.contract { background: #d5f5e3; color: #1a5c2a; }
+
+
+
+
+
+
+  /* ── Approval form styles ───────────────────────── */
+  .approval-intro {
+    background: #2c3e50; color: #ecf0f1; padding: 24px 32px;
+    font-size: 14px; line-height: 1.7;
+  }
+  .approval-intro h2 { font-size: 18px; font-weight: 700; margin-bottom: 6px; color: #fff; }
+  .approval-intro p  { color: #bdc3c7; max-width: 680px; }
+
+  .annotations { max-width: 860px; margin: 0 auto; padding: 0 24px 48px; }
+  .ann-section-inner { padding-top: 8px; }
+  .ann-subtitle { font-size: 13px; color: #888; margin-bottom: 20px; margin-top: 2px; }
+
+  .ann-item {
+    background: #fff; border: 1px solid #e0e0e0; border-left: 4px solid #2c3e50;
+    border-radius: 4px; padding: 14px 18px; margin-bottom: 14px; font-size: 14px;
+    line-height: 1.7; color: #333;
+  }
+  .ann-item strong { display: block; font-size: 14px; font-weight: 700; margin-bottom: 4px; color: #1a2a3a; }
+  .ann-item p { margin: 0; }
+
+  .ann-tag {
+    display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; padding: 2px 8px; border-radius: 10px; margin-top: 8px;
+  }
+  .ann-tag.decision  { background: #fde8c8; color: #7a3c00; }
+  .ann-tag.content   { background: #ddeeff; color: #003366; }
+  .ann-tag.contract  { background: #d5f5e3; color: #1a5c2a; }
+  .ann-tag.confirmed { background: #d5f5e3; color: #1a5c2a; }
+  .ann-tag.info      { background: #f0f0f0; color: #555; }
+
+  /* Approval form */
+  .approval-form-wrap {
+    background: #f0f7ff; border-top: 3px solid #2c3e50;
+    padding: 32px 32px 40px; margin-top: 8px;
+  }
+  .approval-form-heading {
+    font-size: 18px; font-weight: 700; color: #1a2a3a; margin-bottom: 6px;
+  }
+  .approval-form-desc {
+    font-size: 13px; color: #555; margin-bottom: 24px; line-height: 1.6;
+  }
+  .approval-radio-group { display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
+  .approval-radio-label {
+    display: flex; align-items: center; gap: 8px; cursor: pointer;
+    font-size: 15px; font-weight: 600; color: #1a2a3a; padding: 12px 20px;
+    border: 2px solid #c8d8e8; border-radius: 6px; background: #fff;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .approval-radio-label input[type="radio"] { accent-color: #2c3e50; width: 18px; height: 18px; }
+  .approval-radio-label.approved  { border-color: #6abf6a; }
+  .approval-radio-label.changes   { border-color: #e8a040; }
+  .approval-radio-label input:checked ~ span.approved-text  { color: #1a5c2a; }
+  .approval-radio-label input:checked ~ span.changes-text   { color: #7a4400; }
+
+  .reason-field { margin-bottom: 20px; display: none; }
+  .reason-field.visible { display: block; }
+  .approval-label {
+    display: block; font-size: 12px; font-weight: 700; color: #555;
+    text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;
+  }
+  .approval-textarea {
+    width: 100%; padding: 10px 12px; border: 1px solid #c0c8d0;
+    border-radius: 4px; font-size: 14px; color: #333; background: #fff;
+    resize: vertical; min-height: 90px; line-height: 1.6; font-family: inherit;
+    box-sizing: border-box;
+  }
+  .approval-textarea:focus { outline: 2px solid #2c3e50; border-color: transparent; }
+  .approval-textarea::placeholder { color: #bbb; }
+
+  .approval-name-row { display: flex; gap: 14px; margin-bottom: 20px; flex-wrap: wrap; }
+  .approval-name-field { flex: 1; min-width: 180px; }
+  .approval-name-field label {
+    display: block; font-size: 12px; font-weight: 700; color: #555;
+    text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 5px;
+  }
+  .approval-name-field input {
+    width: 100%; padding: 10px 12px; border: 1px solid #c0c8d0;
+    border-radius: 4px; font-size: 14px; color: #333; background: #fff;
+    box-sizing: border-box;
+  }
+
+  .approval-submit-btn {
+    display: inline-block; background: #2c3e50; color: #fff;
+    padding: 13px 36px; border-radius: 4px; font-size: 15px;
+    font-weight: 700; border: none; cursor: pointer; letter-spacing: 0.02em;
+  }
+  .approval-submit-btn:hover { background: #1a2a3a; }
+  .approval-submit-btn:disabled { background: #999; cursor: default; }
+  .approval-submit-note { font-size: 12px; color: #888; margin-top: 10px; line-height: 1.6; }
+
+  .approval-success {
+    display: none; background: #d5f5e3; border: 1px solid #6abf6a;
+    border-radius: 6px; padding: 20px 24px; margin-top: 16px;
+    font-size: 14px; color: #1a5c2a; line-height: 1.7;
+  }
+  .approval-success strong { display: block; font-size: 16px; margin-bottom: 4px; }
+  .approval-error {
+    display: none; background: #fdf2f2; border: 1px solid #e8b4b4;
+    border-radius: 6px; padding: 14px 18px; margin-top: 12px;
+    font-size: 13px; color: #7a2020;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- COOKIE BANNER -->
+  <!-- OPTION LABEL -->
+  <div style="background:#1a2a3a;color:#fff;padding:14px 24px;font-size:14px;font-weight:700;text-align:center;letter-spacing:0.03em;">
+    &#9312; OPTION A: Full-Bleed Header &mdash;
+    <span style="font-weight:400;">The hero photo extends to the very top of the page. "Dazzling Daylilies" and the navigation float over the photo with a dark gradient behind them for readability.</span>
+  </div>
+
+  <div class="cookie-banner">
+    <span>This site uses only essential cookies to keep your shopping cart working. No tracking or advertising cookies are used.</span>
+    <button class="cookie-dismiss">Got it</button>
+  </div>
+
+  <!-- SITE HEADER -->
+  <!-- HERO — OPTION A: photo extends from top of page.
+       Site name, tagline, and tab nav all float over the photo. -->
+  <div class="hero">
+    <div class="hero-bg">[ Full-width hero photo: garden scene or featured bloom ]</div>
+
+    <!-- Site name and tagline float over the top of the photo -->
+    <div class="site-header" style="position:absolute;top:0;left:0;right:0;text-align:center;padding:20px 24px 0;">
+      <h1>Dazzling Daylilies</h1>
+      <p class="tagline">Hand-dug daylilies grown with care in Fairfax, Iowa</p>
+    </div>
+
+    <!-- Tab nav floats just below the site name -->
+    <nav class="top-nav" style="position:absolute;top:90px;left:0;right:0;">
+      <div class="nav-row">
+        <a class="nav-tab active" href="#">Daylilies</a>
+        <a class="nav-tab bundles-tab" href="#">Collections</a>
+        <div class="nav-spacer"></div>
+        <a class="nav-cart-btn" href="#">Cart <span class="cart-badge">0</span></a>
+      </div>
+    </nav>
+
+    <!-- Frosted text overlay centered in the photo -->
+    <div class="hero-overlay">
+      <!-- Semi-transparent white box: background: rgba(255,255,255,0.85)
+           with backdrop-filter: blur(4px) for the frosted glass effect.
+           The flowers in the background photo show through softly. -->
+      <h2>Beautiful Daylilies, Grown with Care</h2>
+      <p>Welcome to Dazzling Daylilies in Fairfax, Iowa. Jean grows and ships
+        bare-root daylilies to gardeners across the country.
+        Every plant is dug fresh and shipped with growing instructions.</p>
+      <a class="btn-primary" href="#">Browse the Daylily Catalog</a>
+    </div>
+  </div>
+
+  <!-- FEATURED PLANTS -->
+  <div class="featured-section">
+    <div class="section-heading">Featured Daylilies</div>
+    <div class="section-subheading">A few favorites from this season's catalog</div>
+
+    <div class="plant-grid">
+
+      <div class="plant-card">
+        <div class="plant-card-photo">[ plant photo ]<br>Acapulco Sunset</div>
+        <div class="plant-card-body">
+          <div class="plant-name">Acapulco Sunset</div>
+          <div class="plant-desc">Rich orange and gold blend with a deep throat. A standout rebloomer that puts on a show all summer.</div>
+          <div class="plant-price">$28.00</div>
+          <a class="btn-primary" href="#">View Details</a>
+        </div>
+      </div>
+
+      <div class="plant-card">
+        <div class="plant-card-photo">[ plant photo ]<br>Strawberry Candy</div>
+        <div class="plant-card-body">
+          <div class="plant-name">Strawberry Candy</div>
+          <div class="plant-desc">Classic pink and rose blend with a striking eye. One of the most-loved daylilies for good reason.</div>
+          <div class="plant-price">$22.00</div>
+          <a class="btn-primary" href="#">View Details</a>
+        </div>
+      </div>
+
+      <div class="plant-card">
+        <div class="plant-card-photo">
+          [ plant photo ]<br>Purple Pleasure
+          <span class="sold-out-badge">Sold Out</span>
+        </div>
+        <div class="plant-card-body">
+          <div class="plant-name">Purple Pleasure</div>
+          <div class="plant-desc">Deep violet blooms with a near-black eye. Tall scapes and strong rebloom make this a garden workhorse.</div>
+          <div class="plant-price sold-out">$34.00 &nbsp;&bull;&nbsp; Sold Out</div>
+          <span class="btn-ghost">Currently Unavailable</span>
+        </div>
+      </div>
+
+      <div class="plant-card">
+        <div class="plant-card-photo">[ plant photo ]<br>Morning Mist</div>
+        <div class="plant-card-body">
+          <div class="plant-name">Morning Mist</div>
+          <div class="plant-desc">Soft lavender and cream with a delicate watermark. Fragrant and early-blooming.</div>
+          <div class="plant-price">$26.00</div>
+          <a class="btn-primary" href="#">View Details</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center; margin-top:28px;">
+      <a class="btn-secondary" href="#">See All Daylilies</a>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- ABOUT JEAN -->
+  <div class="about-section">
+    <div class="about-photo">
+      [ Photo of Jean ]<br>
+      <span style="font-size:11px;color:#aaa;display:block;margin-top:6px;">
+        Jean's photo will go here.<br>Placeholder until photo is available.
+      </span>
+    </div>
+    <div class="about-content">
+      <h3>About Jean and Dazzling Daylilies</h3>
+      <p>Hi, I'm Jean, and I've been growing daylilies in Fairfax, Iowa for over thirty years.
+        What started as a few plants in my flower beds has grown into a garden full of hundreds
+        of varieties in every color imaginable. Every plant I sell has been grown right here
+        in my garden, and I dig and ship them fresh when the season is right.</p>
+      <p><strong>Questions?</strong> Email me at <a href="mailto:dazzlingdaylilies@yahoo.com">dazzlingdaylilies@yahoo.com</a>.</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <address>
+          Dazzling Daylilies<br>
+          Fairfax, Iowa<br>
+          <a href="mailto:dazzlingdaylilies@yahoo.com">dazzlingdaylilies@yahoo.com</a>
+        </address>
+      </div>
+
+      <div class="footer-col">
+        <h4>Information</h4>
+        <ul class="footer-links">
+          <li><a href="#">Shipping Information</a></li>
+          <li><a href="#">Order Status Lookup</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Stay in Touch</h4>
+        <p style="margin-bottom:10px;">Get updates on new varieties, availability, and garden tips.</p>
+        <div class="mc-signup">
+          <label for="mc-email">Your email address</label>
+          <div class="mc-input-row">
+            <input class="mc-input" id="mc-email" type="email" placeholder="you@example.com">
+            <button class="mc-btn">Subscribe</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2027 Dazzling Daylilies &bull; Fairfax, Iowa</span>
+      <span>
+        <a href="#">Privacy Policy</a> &bull;
+        <a href="#">Terms of Service</a>
+      </span>
+    </div>
+  </footer>
+
+</div><!-- /.page-wrapper -->
+
+
+<!-- ============================================================
+     ANNOTATIONS WITH FEEDBACK FORMS
+============================================================ -->
+<div class="approval-intro">
+  <h2>Wireframe Notes: WF01A &mdash; Homepage (Option A: Full-Bleed Header)</h2>
+  <p>Hi Jean! The notes below explain what each part of this page does and confirm
+    the decisions we have already made together. When you have finished reading,
+    please use the <strong>Approval Form</strong> at the bottom of this page to let
+    Edward know whether the page looks right or whether you would like any changes.</p>
+</div>
+
+<div class="annotations">
+  <div class="ann-section-inner">
+  <h2 style="padding-top:24px;">Homepage (Wireframe 01)</h2>
+  <p class="ann-subtitle">Reference notes for WF01. Decisions confirmed during wireframe review are noted below.</p>
+
+  <div class="ann-item">
+    <strong>Cookie Notice (dark strip at the very top)</strong>
+    <p>Appears once when a customer first visits. It tells them the site only uses cookies to make the
+    shopping cart work, nothing else. They click "Got it" and it disappears permanently. This is just
+    basic legal housekeeping for a US-only site. No decision needed here.</p>
+  </div>
+
+  <div class="ann-item">
+    <strong>Option A: Full-Bleed Header &mdash; Photo Behind Everything</strong>
+    <p>In this version, the hero photo extends all the way to the very top of the page.
+    "Dazzling Daylilies" and the navigation bar float directly over the flowers, with a dark
+    gradient at the top of the photo to keep the text readable regardless of what the photo looks like.
+    This creates a dramatic, modern look where the first thing customers see is your flowers from
+    edge to edge.</p>
+    <p style="margin-top:8px;">The gradient fades from dark at the very top (behind the site name)
+    to fully transparent in the middle of the photo, so the flowers still show beautifully.
+    The frosted text box with your introduction sits in the center as before.</p>
+    <span class="ann-tag decision">Option A &mdash; please compare with Option B and let Edward know which you prefer</span>
+    </div>
+
+  <div class="ann-item">
+    <strong>Navigation: Tab Bar (showing launch state)</strong>
+    <p>The tab bar now shows exactly what customers will see on launch day: Daylilies, Collections,
+    and the Cart link. Iris, Lilies, Dahlias, Japanese Iris, and Other Perennials are turned off
+    completely and do not appear at all until you activate them from your admin Settings page.
+    When you are ready to add Iris next year, you flip a switch and it appears. No code changes needed.
+    The wireframe has been updated to show this launch state rather than all possible tabs.</p>
+    <p style="margin-top:8px;">The site is also designed to optionally show a "Coming Soon" label
+    on a tab a few months before you open it for sales, so customers know something new is on the way.</p>
+    <span class="ann-tag confirmed">Updated &mdash; wireframe now shows actual launch state</span>
+    </div>
+
+  <div class="ann-item">
+    <strong>Hero Section (large banner photo with frosted text overlay)</strong>
+    <p>A big welcoming photo fills this area. A semi-transparent frosted white box sits over it with
+    a short introduction and a button taking customers to the catalog. The box is see-through enough
+    that the flowers in the background photo are still visible behind the text, as Jean requested.
+    The frosted glass effect keeps text readable while still showing the beauty of the photo.</p>
+    <span class="ann-tag confirmed">Confirmed &mdash; frosted semi-transparent overlay per Jean's preference</span>
+    <span class="ann-tag content">Content needed &mdash; hero photo still needed from Jean</span>
+    </div>
+
+  <div class="ann-item">
+    <strong>Featured Plants (4 cards)</strong>
+    <p>Shows four plants from your catalog in this section. You control how they are chosen from a simple
+    dropdown in your admin settings. Three options are available:</p>
+    <ul style="margin:8px 0 8px 20px;line-height:1.8;">
+      <li><strong>Featured (hand-picked):</strong> You check a box on individual plants in your plant editor
+      and those exact plants appear here. Full control, change them any time.</li>
+      <li><strong>Newest Additions:</strong> The site automatically shows your 4 most recently added plants.
+      Good for keeping the homepage feeling fresh as you add inventory.</li>
+      <li><strong>Random:</strong> The site picks 4 active plants at random each time the page loads.
+      A nice way to give every plant in your catalog a chance to be seen.</li>
+    </ul>
+    <p>Which option would you prefer?</p>
+    <span class="ann-tag decision">Decision needed &mdash; please let Edward know your preference</span>
+    </div>
+
+  <div class="ann-item">
+    <strong>About Jean Section</strong>
+    <p>Your photo on the left, a personal introduction on the right. This is one of the most important
+    sections on the homepage because your customers are buying from you personally, not a faceless company.
+    The text shown is placeholder copy.</p>
+    <span class="ann-tag content">Content needed</span>
+    </div>
+
+  <div class="ann-item">
+    <strong>Footer: Three Columns</strong>
+    <p>Left: contact info (email address shown; street address omitted unless you want it public).
+    Middle: links to Shipping Information, Order Status, Privacy Policy, Terms of Service.
+    Right: email newsletter signup.</p>
+    </div>
+
+  <div class="ann-item">
+    <strong>Footer: Email Signup</strong>
+    <p>Customers type their email and click Subscribe. The contract specifies a Mailchimp signup form.
+    Email addresses collected here go into your Mailchimp list so you can send seasonal updates, new
+    variety announcements, and shipping window reminders. Customers only receive emails if they sign up
+    here; nothing is sent without their permission.</p>
+  </div>
+
+  <div class="ann-item">
+    <strong>Page Width</strong>
+    <p>Content is contained in a 1,160-pixel-wide column centered on screen, matching the width PlantFans
+    uses. On wide monitors there will be some white space on the sides. On phones everything reflows to
+    a single column with no sideways scrolling.</p>
+    </div>
+
+  <div class="ann-item">
+    <strong>General Feedback on This Page</strong>
+    </div>
+
+  </div><!-- /.ann-section-inner -->
+
+
+  <!-- APPROVAL FORM -->
+  <div class="approval-form-wrap">
+    <div class="approval-form-heading">Wireframe Approval: WF01 &mdash; Homepage</div>
+    <p class="approval-form-desc">
+      Please review the wireframe above and the notes on this page, then let Edward know
+      whether this page is approved as shown or whether you would like changes made before
+      the build begins. Your response goes directly to Edward by email.
+    </p>
+
+    <form id="approval-form-wf01a">
+      <input type="hidden" name="_subject" value="WF01A Homepage Option A Full-Bleed Header Approval - Dazzling Daylilies">
+      <input type="hidden" name="wireframe" value="WF01A - Homepage Option A: Full-Bleed Header">
+      <input type="hidden" name="approval_status" id="h-approval-approval-form-wf01a">
+      <input type="hidden" name="change_reason"   id="h-reason-approval-form-wf01a">
+      <input type="hidden" name="general_comments" id="h-comments-approval-form-wf01a">
+
+      <div class="approval-radio-group">
+        <label class="approval-radio-label approved">
+          <input type="radio" name="approval_choice" value="Approved" id="radio-approved-approval-form-wf01a">
+          <span class="approved-text">&#10003;&nbsp; Approved &mdash; looks great!</span>
+        </label>
+        <label class="approval-radio-label changes">
+          <input type="radio" name="approval_choice" value="Changes Needed" id="radio-changes-approval-form-wf01a">
+          <span class="changes-text">&#9998;&nbsp; Changes Needed</span>
+        </label>
+      </div>
+
+      <div class="reason-field" id="reason-field-approval-form-wf01a">
+        <label class="approval-label" for="textarea-reason-approval-form-wf01a">
+          What would you like changed? (required)
+        </label>
+        <textarea class="approval-textarea" id="textarea-reason-approval-form-wf01a"
+          placeholder="Please describe what you would like adjusted on this page..."></textarea>
+      </div>
+
+      <div style="margin-bottom: 20px;">
+        <label class="approval-label" for="textarea-comments-approval-form-wf01a">
+          Any other comments or questions? (optional)
+        </label>
+        <textarea class="approval-textarea" id="textarea-comments-approval-form-wf01a"
+          placeholder="Any other thoughts, questions, or notes for Edward..."></textarea>
+      </div>
+
+      <div class="approval-name-row">
+        <div class="approval-name-field">
+          <label for="name-approval-form-wf01a">Your Name</label>
+          <input type="text" id="name-approval-form-wf01a" name="reviewer_name" value="Jean" placeholder="Your name">
+        </div>
+        <div class="approval-name-field">
+          <label for="email-approval-form-wf01a">Your Email (so Edward can reply)</label>
+          <input type="email" id="email-approval-form-wf01a" name="email" placeholder="dazzlingdaylilies@yahoo.com">
+        </div>
+      </div>
+
+      <button type="submit" class="approval-submit-btn">Send My Response &rarr;</button>
+      <p class="approval-submit-note">Your response is sent directly and securely to Edward. This page does not store any personal information.</p>
+
+      <div class="approval-success" id="success-approval-form-wf01a">
+        <strong>Thank you, Jean!</strong>
+        Your response on WF01A (Homepage Option A: Full-Bleed Header) has been sent to Edward successfully.
+        You can now close this tab or continue reviewing other wireframes from the main review page.
+      </div>
+      <div class="approval-error" id="error-approval-form-wf01a">
+        Something went wrong. Please try again, or email Edward directly at
+        <a href="mailto:edward@docbear-ent.com">edward@docbear-ent.com</a> with your notes.
+      </div>
+    </form>
+  </div><!-- /.approval-form-wrap -->
+
+</div><!-- /.annotations -->
+
+<script>
+(function() {
+  var form     = document.getElementById('approval-form-wf01aa');
+  if (!form) return;
+
+  var radios   = form.querySelectorAll('input[type="radio"]');
+  var reasonFld = document.getElementById('reason-field-approval-form-wf01a');
+  var reasonTA  = document.getElementById('textarea-reason-approval-form-wf01a');
+
+  radios.forEach(function(r) {
+    r.addEventListener('change', function() {
+      if (r.value === 'Changes Needed' && r.checked) {
+        reasonFld.classList.add('visible');
+        reasonTA.required = true;
+      } else {
+        reasonFld.classList.remove('visible');
+        reasonTA.required = false;
+      }
+    });
+  });
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    var chosen = form.querySelector('input[name="approval_choice"]:checked');
+    if (!chosen) {
+      alert('Please select Approved or Changes Needed before sending.');
+      return;
+    }
+    if (chosen.value === 'Changes Needed' && !reasonTA.value.trim()) {
+      reasonTA.focus();
+      alert('Please describe what you would like changed.');
+      return;
+    }
+
+    document.getElementById('h-approval-approval-form-wf01a').value = chosen.value;
+    document.getElementById('h-reason-approval-form-wf01a').value   = reasonTA.value.trim() || '(no changes requested)';
+    document.getElementById('h-comments-approval-form-wf01a').value = document.getElementById('textarea-comments-approval-form-wf01a').value.trim() || '(none)';
+
+    var btn = form.querySelector('.approval-submit-btn');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    fetch('https://formspree.io/f/mvzyrrrv', {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(function(r) {
+      if (r.ok) {
+        document.getElementById('success-approval-form-wf01a').style.display = 'block';
+        document.getElementById('success-approval-form-wf01a').scrollIntoView({ behavior: 'smooth' });
+        btn.textContent = 'Response Sent';
+      } else { throw new Error(); }
+    })
+    .catch(function() {
+      document.getElementById('error-approval-form-wf01a').style.display = 'block';
+      btn.textContent = 'Send My Response →';
+      btn.disabled = false;
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

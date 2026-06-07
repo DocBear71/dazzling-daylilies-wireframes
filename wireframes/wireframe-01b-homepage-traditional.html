@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wireframe 01: Homepage — Dazzling Daylilies</title>
+<title>Wireframe 01B: Homepage — Traditional Header Option — Dazzling Daylilies</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -55,13 +55,26 @@
     padding: 5px 14px; border-radius: 3px; cursor: pointer; font-size: 12px; white-space: nowrap;
   }
 
-  /* Site Header */
+  /* Site Header — OPTION B: clean separate branded bar above the hero.
+     Solid background, always readable, always consistent regardless of photo. */
   .site-header {
-    background: #e8e8e8; border-bottom: 1px solid #d0d0d0;
-    padding: 28px 24px 20px; text-align: center;
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 20px 24px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
   }
-  .site-header h1 { font-size: 32px; font-weight: 700; color: #222; margin-bottom: 6px; }
-  .site-header .tagline { font-size: 15px; color: #666; font-style: italic; }
+  .site-header-left { display: flex; flex-direction: column; }
+  .site-header h1 {
+    font-size: 28px; font-weight: 700; color: #1a5c1a; margin-bottom: 3px;
+    letter-spacing: -0.01em;
+  }
+  .site-header .tagline { font-size: 13px; color: #888; font-style: italic; }
+  .site-header-right { display: flex; align-items: center; gap: 20px; font-size: 13px; }
+  .site-header-right a { color: #555; font-weight: 600; text-decoration: none; }
+  .site-header-right a:hover { color: #1a5c1a; }
 
   /* ============================================================
      TOP NAV: Double-stacked to prevent horizontal overflow
@@ -344,15 +357,28 @@
 <div class="page-wrapper">
 
   <!-- COOKIE BANNER -->
+  <!-- OPTION LABEL -->
+  <div style="background:#1a5c1a;color:#fff;padding:14px 24px;font-size:14px;font-weight:700;text-align:center;letter-spacing:0.03em;">
+    &#9313; OPTION B: Traditional Header &mdash;
+    <span style="font-weight:400;">"Dazzling Daylilies" sits in its own clean bar above the photo. Simple, clear, and easy to read on any device.</span>
+  </div>
+
   <div class="cookie-banner">
     <span>This site uses only essential cookies to keep your shopping cart working. No tracking or advertising cookies are used.</span>
     <button class="cookie-dismiss">Got it</button>
   </div>
 
   <!-- SITE HEADER -->
+  <!-- OPTION B: Traditional separate header bar above everything -->
   <div class="site-header">
-    <h1>Dazzling Daylilies</h1>
-    <p class="tagline">Hand-dug daylilies grown with care in Fairfax, Iowa</p>
+    <div class="site-header-left">
+      <h1>Dazzling Daylilies</h1>
+      <p class="tagline">Hand-dug daylilies grown with care in Fairfax, Iowa</p>
+    </div>
+    <div class="site-header-right">
+      <a href="#">Shipping</a>
+      <a href="#">Order Status</a>
+    </div>
   </div>
 
   <!-- TOP NAVIGATION: shows only active tabs at launch -->
@@ -365,7 +391,7 @@
     </div>
   </nav>
 
-  <!-- HERO: frosted semi-transparent overlay per Jean's confirmed preference -->
+  <!-- HERO — OPTION B: photo begins below the header and nav, not behind them -->
   <div class="hero">
     <div class="hero-bg">[ Full-width hero photo: garden scene or featured bloom ]</div>
     <div class="hero-overlay">
@@ -509,7 +535,7 @@
      ANNOTATIONS WITH FEEDBACK FORMS
 ============================================================ -->
 <div class="approval-intro">
-  <h2>Wireframe Notes: WF01 &mdash; Homepage</h2>
+  <h2>Wireframe Notes: WF01B &mdash; Homepage (Option B: Traditional Header)</h2>
   <p>Hi Jean! The notes below explain what each part of this page does and confirm
     the decisions we have already made together. When you have finished reading,
     please use the <strong>Approval Form</strong> at the bottom of this page to let
@@ -529,11 +555,15 @@
   </div>
 
   <div class="ann-item">
-    <strong>Site Header: Business Name and Tagline</strong>
-    <p>Your business name is the main heading. The tagline below is placeholder copy and needs your approval.
-    This area will also hold your logo once it is finalized. The logo work we have been doing together
-    will live here.</p>
-    <span class="ann-tag content">Content needed</span>
+    <strong>Option B: Traditional Header &mdash; Separate Bar Above the Photo</strong>
+    <p>In this version, "Dazzling Daylilies" sits in its own clean white bar at the very top of the page,
+    with the tagline below it and utility links (Shipping, Order Status) to the right. The tab navigation
+    sits just below, and the hero photo begins underneath both.</p>
+    <p style="margin-top:8px;">This is the simpler, more traditional approach. It is always easy to read
+    regardless of what the hero photo looks like, and it keeps the brand name clearly separate from the
+    photo. Some customers find this easier to navigate because the site name and links are always in a
+    predictable, consistent location.</p>
+    <span class="ann-tag decision">Option B &mdash; please compare with Option A and let Edward know which you prefer</span>
     </div>
 
   <div class="ann-item">
@@ -620,60 +650,60 @@
       the build begins. Your response goes directly to Edward by email.
     </p>
 
-    <form id="approval-form-wf01">
-      <input type="hidden" name="_subject" value="WF01 Homepage Approval - Dazzling Daylilies">
-      <input type="hidden" name="wireframe" value="WF01 - Homepage">
-      <input type="hidden" name="approval_status" id="h-approval-approval-form-wf01">
-      <input type="hidden" name="change_reason"   id="h-reason-approval-form-wf01">
-      <input type="hidden" name="general_comments" id="h-comments-approval-form-wf01">
+    <form id="approval-form-wf01b">
+      <input type="hidden" name="_subject" value="WF01B Homepage Option B Traditional Header Approval - Dazzling Daylilies">
+      <input type="hidden" name="wireframe" value="WF01B - Homepage Option B: Traditional Header">
+      <input type="hidden" name="approval_status" id="h-approval-approval-form-wf01b">
+      <input type="hidden" name="change_reason"   id="h-reason-approval-form-wf01b">
+      <input type="hidden" name="general_comments" id="h-comments-approval-form-wf01b">
 
       <div class="approval-radio-group">
         <label class="approval-radio-label approved">
-          <input type="radio" name="approval_choice" value="Approved" id="radio-approved-approval-form-wf01">
+          <input type="radio" name="approval_choice" value="Approved" id="radio-approved-approval-form-wf01b">
           <span class="approved-text">&#10003;&nbsp; Approved &mdash; looks great!</span>
         </label>
         <label class="approval-radio-label changes">
-          <input type="radio" name="approval_choice" value="Changes Needed" id="radio-changes-approval-form-wf01">
+          <input type="radio" name="approval_choice" value="Changes Needed" id="radio-changes-approval-form-wf01b">
           <span class="changes-text">&#9998;&nbsp; Changes Needed</span>
         </label>
       </div>
 
-      <div class="reason-field" id="reason-field-approval-form-wf01">
-        <label class="approval-label" for="textarea-reason-approval-form-wf01">
+      <div class="reason-field" id="reason-field-approval-form-wf01b">
+        <label class="approval-label" for="textarea-reason-approval-form-wf01b">
           What would you like changed? (required)
         </label>
-        <textarea class="approval-textarea" id="textarea-reason-approval-form-wf01"
+        <textarea class="approval-textarea" id="textarea-reason-approval-form-wf01b"
           placeholder="Please describe what you would like adjusted on this page..."></textarea>
       </div>
 
       <div style="margin-bottom: 20px;">
-        <label class="approval-label" for="textarea-comments-approval-form-wf01">
+        <label class="approval-label" for="textarea-comments-approval-form-wf01b">
           Any other comments or questions? (optional)
         </label>
-        <textarea class="approval-textarea" id="textarea-comments-approval-form-wf01"
+        <textarea class="approval-textarea" id="textarea-comments-approval-form-wf01b"
           placeholder="Any other thoughts, questions, or notes for Edward..."></textarea>
       </div>
 
       <div class="approval-name-row">
         <div class="approval-name-field">
-          <label for="name-approval-form-wf01">Your Name</label>
-          <input type="text" id="name-approval-form-wf01" name="reviewer_name" value="Jean" placeholder="Your name">
+          <label for="name-approval-form-wf01b">Your Name</label>
+          <input type="text" id="name-approval-form-wf01b" name="reviewer_name" value="Jean" placeholder="Your name">
         </div>
         <div class="approval-name-field">
-          <label for="email-approval-form-wf01">Your Email (so Edward can reply)</label>
-          <input type="email" id="email-approval-form-wf01" name="email" placeholder="dazzlingdaylilies@yahoo.com">
+          <label for="email-approval-form-wf01b">Your Email (so Edward can reply)</label>
+          <input type="email" id="email-approval-form-wf01b" name="email" placeholder="dazzlingdaylilies@yahoo.com">
         </div>
       </div>
 
       <button type="submit" class="approval-submit-btn">Send My Response &rarr;</button>
       <p class="approval-submit-note">Your response is sent directly and securely to Edward. This page does not store any personal information.</p>
 
-      <div class="approval-success" id="success-approval-form-wf01">
+      <div class="approval-success" id="success-approval-form-wf01b">
         <strong>Thank you, Jean!</strong>
-        Your response on WF01 (Homepage) has been sent to Edward successfully.
+        Your response on WF01B (Homepage Option B: Traditional Header) has been sent to Edward successfully.
         You can now close this tab or continue reviewing other wireframes from the main review page.
       </div>
-      <div class="approval-error" id="error-approval-form-wf01">
+      <div class="approval-error" id="error-approval-form-wf01b">
         Something went wrong. Please try again, or email Edward directly at
         <a href="mailto:edward@docbear-ent.com">edward@docbear-ent.com</a> with your notes.
       </div>
@@ -684,12 +714,12 @@
 
 <script>
 (function() {
-  var form     = document.getElementById('approval-form-wf01');
+  var form     = document.getElementById('approval-form-wf01bb');
   if (!form) return;
 
   var radios   = form.querySelectorAll('input[type="radio"]');
-  var reasonFld = document.getElementById('reason-field-approval-form-wf01');
-  var reasonTA  = document.getElementById('textarea-reason-approval-form-wf01');
+  var reasonFld = document.getElementById('reason-field-approval-form-wf01b');
+  var reasonTA  = document.getElementById('textarea-reason-approval-form-wf01b');
 
   radios.forEach(function(r) {
     r.addEventListener('change', function() {
@@ -717,9 +747,9 @@
       return;
     }
 
-    document.getElementById('h-approval-approval-form-wf01').value = chosen.value;
-    document.getElementById('h-reason-approval-form-wf01').value   = reasonTA.value.trim() || '(no changes requested)';
-    document.getElementById('h-comments-approval-form-wf01').value = document.getElementById('textarea-comments-approval-form-wf01').value.trim() || '(none)';
+    document.getElementById('h-approval-approval-form-wf01b').value = chosen.value;
+    document.getElementById('h-reason-approval-form-wf01b').value   = reasonTA.value.trim() || '(no changes requested)';
+    document.getElementById('h-comments-approval-form-wf01b').value = document.getElementById('textarea-comments-approval-form-wf01b').value.trim() || '(none)';
 
     var btn = form.querySelector('.approval-submit-btn');
     btn.textContent = 'Sending...';
@@ -732,13 +762,13 @@
     })
     .then(function(r) {
       if (r.ok) {
-        document.getElementById('success-approval-form-wf01').style.display = 'block';
-        document.getElementById('success-approval-form-wf01').scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('success-approval-form-wf01b').style.display = 'block';
+        document.getElementById('success-approval-form-wf01b').scrollIntoView({ behavior: 'smooth' });
         btn.textContent = 'Response Sent';
       } else { throw new Error(); }
     })
     .catch(function() {
-      document.getElementById('error-approval-form-wf01').style.display = 'block';
+      document.getElementById('error-approval-form-wf01b').style.display = 'block';
       btn.textContent = 'Send My Response →';
       btn.disabled = false;
     });

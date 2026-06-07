@@ -570,16 +570,9 @@
   <nav class="top-nav">
     <div class="nav-row">
       <a class="nav-tab active" href="#">Daylilies</a>
-      <a class="nav-tab inactive" href="#">Iris <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Lilies <span class="inactive-note">(coming soon)</span></a>
       <a class="nav-tab bundles-tab" href="#">Collections</a>
       <div class="nav-spacer"></div>
       <a class="nav-cart-btn" href="#">Cart <span class="cart-badge">4</span></a>
-    </div>
-    <div class="nav-row nav-row-2">
-      <a class="nav-tab inactive" href="#">Dahlias <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Japanese Iris <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Other Perennials <span class="inactive-note">(coming soon)</span></a>
     </div>
   </nav>
 
@@ -650,22 +643,35 @@
             <label for="state">State</label>
             <select class="form-select" id="state">
               <option value="">-- Select --</option>
-              <option>AL</option><option>AR</option><option>CO</option>
-              <option>IA</option><option>IL</option><option>IN</option>
-              <option>KS</option><option>KY</option><option>MI</option>
-              <option>MN</option><option>MO</option><option>MT</option>
-              <option>NE</option><option>ND</option><option>OH</option>
-              <option>OK</option><option>SD</option><option>TN</option>
-              <option>WI</option><option>WY</option>
-              <option disabled>&#8212;</option>
-              <option>AZ (notice)</option>
-              <option>CA (notice)</option>
-              <option>FL (notice)</option>
-              <option>TX (notice)</option>
-              <option disabled>&#8212;</option>
-              <option>AK (blocked)</option>
-              <option>HI (blocked)</option>
-              <option>PR (blocked)</option>
+              <!-- All 50 states + territories in alphabetical order.
+                   Flagged states (AZ, FL, TX) show a notice that Jean can activate/deactivate
+                   in Admin Settings. Blocked states (AK, CA, HI, PR) cannot ship at all.
+                   Jean controls which states are flagged vs blocked from Admin > Settings. -->
+              <option>AL</option>
+              <option>AK (cannot ship)</option>
+              <option>AR</option>
+              <option>AZ (notice required)</option>
+              <option>CA (cannot ship)</option>
+              <option>CO</option><option>CT</option><option>DE</option>
+              <option>FL (notice required)</option>
+              <option>GA</option><option>ID</option><option>IL</option>
+              <option>IN</option><option>IA</option><option>KS</option>
+              <option>KY</option><option>LA</option><option>ME</option>
+              <option>MD</option><option>MA</option><option>MI</option>
+              <option>MN</option><option>MS</option><option>MO</option>
+              <option>MT</option><option>NE</option><option>NV</option>
+              <option>NH</option><option>NJ</option><option>NM</option>
+              <option>NY</option><option>NC</option><option>ND</option>
+              <option>OH</option><option>OK</option><option>OR</option>
+              <option>PA</option>
+              <option>PR (cannot ship)</option>
+              <option>RI</option><option>SC</option><option>SD</option>
+              <option>TN</option>
+              <option>TX (notice required)</option>
+              <option>UT</option><option>VT</option><option>VA</option>
+              <option>WA</option><option>WV</option><option>WI</option>
+              <option>WY</option>
+              <option>HI (cannot ship)</option>
             </select>
           </div>
           <div class="form-field">
@@ -685,7 +691,7 @@
             <button class="notice-btn-proceed">I understand &mdash; continue to payment</button>
             <button class="notice-btn-contact">Email Jean instead</button>
           </div>
-          <div class="notice-annotation">[ This notice appears automatically when TX, AZ, or FL is selected. The customer must click "I understand" before the payment section unlocks. ]</div>
+          <div class="notice-annotation">[ This notice appears automatically when a flagged state is selected. Jean controls which states are flagged vs blocked from Admin &gt; Settings. The customer must click "I understand" before the payment section unlocks. Jean can add or remove states from the flagged list at any time without code changes. ]</div>
         </div>
 
       </div>
@@ -844,16 +850,9 @@
   <nav class="top-nav">
     <div class="nav-row">
       <a class="nav-tab active" href="#">Daylilies</a>
-      <a class="nav-tab inactive" href="#">Iris <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Lilies <span class="inactive-note">(coming soon)</span></a>
       <a class="nav-tab bundles-tab" href="#">Collections</a>
       <div class="nav-spacer"></div>
       <a class="nav-cart-btn" href="#">Cart <span class="cart-badge">4</span></a>
-    </div>
-    <div class="nav-row nav-row-2">
-      <a class="nav-tab inactive" href="#">Dahlias <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Japanese Iris <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Other Perennials <span class="inactive-note">(coming soon)</span></a>
     </div>
   </nav>
 

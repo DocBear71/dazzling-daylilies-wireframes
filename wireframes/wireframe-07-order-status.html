@@ -639,16 +639,9 @@
   <nav class="top-nav">
     <div class="nav-row">
       <a class="nav-tab active" href="#">Daylilies</a>
-      <a class="nav-tab inactive" href="#">Iris <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Lilies <span class="inactive-note">(coming soon)</span></a>
       <a class="nav-tab bundles-tab" href="#">Collections</a>
       <div class="nav-spacer"></div>
       <a class="nav-cart-btn" href="#">Cart <span class="cart-badge">0</span></a>
-    </div>
-    <div class="nav-row nav-row-2">
-      <a class="nav-tab inactive" href="#">Dahlias <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Japanese Iris <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Other Perennials <span class="inactive-note">(coming soon)</span></a>
     </div>
   </nav>
 
@@ -719,16 +712,9 @@
   <nav class="top-nav">
     <div class="nav-row">
       <a class="nav-tab active" href="#">Daylilies</a>
-      <a class="nav-tab inactive" href="#">Iris <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Lilies <span class="inactive-note">(coming soon)</span></a>
       <a class="nav-tab bundles-tab" href="#">Collections</a>
       <div class="nav-spacer"></div>
       <a class="nav-cart-btn" href="#">Cart <span class="cart-badge">0</span></a>
-    </div>
-    <div class="nav-row nav-row-2">
-      <a class="nav-tab inactive" href="#">Dahlias <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Japanese Iris <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Other Perennials <span class="inactive-note">(coming soon)</span></a>
     </div>
   </nav>
 
@@ -777,12 +763,9 @@
           <div class="step-label pending">Shipped</div>
           <div class="step-date">&nbsp;</div>
         </div>
-
-        <div class="tracker-step">
-          <div class="step-circle pending"></div>
-          <div class="step-label pending">Delivered</div>
-          <div class="step-date">&nbsp;</div>
-        </div>
+        <!-- "Delivered" step removed per Jean's request: this status often doesn't
+             get updated reliably. Jean marks orders shipped and customers track
+             delivery directly with the carrier. Delivered status remains in admin only. -->
 
       </div>
     </div>
@@ -925,16 +908,9 @@
   <nav class="top-nav">
     <div class="nav-row">
       <a class="nav-tab active" href="#">Daylilies</a>
-      <a class="nav-tab inactive" href="#">Iris <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Lilies <span class="inactive-note">(coming soon)</span></a>
       <a class="nav-tab bundles-tab" href="#">Collections</a>
       <div class="nav-spacer"></div>
       <a class="nav-cart-btn" href="#">Cart <span class="cart-badge">0</span></a>
-    </div>
-    <div class="nav-row nav-row-2">
-      <a class="nav-tab inactive" href="#">Dahlias <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Japanese Iris <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Other Perennials <span class="inactive-note">(coming soon)</span></a>
     </div>
   </nav>
 
@@ -992,14 +968,17 @@
       </div>
     </div>
 
-    <!-- Tracking number box -->
+    <!-- Tracking number box: carrier-neutral per Jean's request.
+         Jean enters any carrier's tracking number manually.
+         The system is not locked to USPS. She can use USPS, FedEx, UPS,
+         or any carrier and the tracking number is simply stored as text. -->
     <div class="tracking-box">
       <div>
-        <div class="tracking-label">USPS Tracking Number</div>
+        <div class="tracking-label">Tracking Number</div>
         <div class="tracking-number">9400111899223756430891</div>
         <div class="tracking-note">Jean shipped your order on May 27, 2027.</div>
       </div>
-      <button class="track-btn">Track on USPS &rarr;</button>
+      <button class="track-btn">Track Your Package &rarr;</button>
     </div>
 
     <!-- Detail layout (same items, same sidebar with updated status) -->
