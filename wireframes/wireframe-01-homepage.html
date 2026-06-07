@@ -124,9 +124,18 @@
     letter-spacing: 0.05em; text-transform: uppercase;
   }
   .hero-overlay {
-    position: relative; background: rgba(255,255,255,0.90);
-    border-radius: 6px; padding: 32px 40px; max-width: 520px;
-    text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 8px;
+    padding: 32px 40px;
+    max-width: 540px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
   }
   .hero-overlay h2 { font-size: 22px; font-weight: 700; margin-bottom: 12px; }
   .hero-overlay p { font-size: 14px; color: #555; margin-bottom: 20px; line-height: 1.6; }
@@ -343,35 +352,29 @@
   <!-- SITE HEADER -->
   <div class="site-header">
     <h1>Dazzling Daylilies</h1>
-    <p class="tagline">Hand-dug daylilies and perennials, grown with care in Fairfax, Iowa</p>
+    <p class="tagline">Hand-dug daylilies grown with care in Fairfax, Iowa</p>
   </div>
 
-  <!-- TOP NAVIGATION: double-stacked to prevent horizontal overflow -->
+  <!-- TOP NAVIGATION: shows only active tabs at launch -->
   <nav class="top-nav">
-    <!-- Row 1: primary tabs + cart -->
     <div class="nav-row">
       <a class="nav-tab active" href="#">Daylilies</a>
-      <a class="nav-tab inactive" href="#">Iris <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Lilies <span class="inactive-note">(coming soon)</span></a>
       <a class="nav-tab bundles-tab" href="#">Collections</a>
       <div class="nav-spacer"></div>
       <a class="nav-cart-btn" href="#">Cart <span class="cart-badge">0</span></a>
     </div>
-    <!-- Row 2: additional plant types -->
-    <div class="nav-row nav-row-2">
-      <a class="nav-tab inactive" href="#">Dahlias <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Japanese Iris <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Other Perennials <span class="inactive-note">(coming soon)</span></a>
-    </div>
   </nav>
 
-  <!-- HERO -->
+  <!-- HERO: frosted semi-transparent overlay per Jean's confirmed preference -->
   <div class="hero">
     <div class="hero-bg">[ Full-width hero photo: garden scene or featured bloom ]</div>
     <div class="hero-overlay">
+      <!-- Semi-transparent white box: background: rgba(255,255,255,0.85)
+           with backdrop-filter: blur(4px) for the frosted glass effect.
+           The flowers in the background photo show through softly. -->
       <h2>Beautiful Daylilies, Grown with Care</h2>
       <p>Welcome to Dazzling Daylilies in Fairfax, Iowa. Jean grows and ships
-        bare-root daylilies and perennials to gardeners across the country.
+        bare-root daylilies to gardeners across the country.
         Every plant is dug fresh and shipped with growing instructions.</p>
       <a class="btn-primary" href="#">Browse the Daylily Catalog</a>
     </div>
@@ -438,16 +441,18 @@
 
   <!-- ABOUT JEAN -->
   <div class="about-section">
-    <div class="about-photo">[ photo of Jean or the garden ]</div>
+    <div class="about-photo">
+      [ Photo of Jean ]<br>
+      <span style="font-size:11px;color:#aaa;display:block;margin-top:6px;">
+        Jean's photo will go here.<br>Placeholder until photo is available.
+      </span>
+    </div>
     <div class="about-content">
       <h3>About Jean and Dazzling Daylilies</h3>
-      <p>Hi, I'm Jean, and I've been growing daylilies in Fairfax, Iowa for over twenty years.
-        What started as a few plants along the fence has grown into a garden full of hundreds
+      <p>Hi, I'm Jean, and I've been growing daylilies in Fairfax, Iowa for over thirty years.
+        What started as a few plants in my flower beds has grown into a garden full of hundreds
         of varieties in every color imaginable. Every plant I sell has been grown right here
-        in my own yard, and I dig and ship them fresh when the season is right.</p>
-      <p>I love connecting with other gardeners and helping people find the perfect plant for
-        their space. If you have a question about a variety, a tricky spot in your yard, or
-        you just want to talk daylilies, feel free to reach out. I'm always happy to chat.</p>
+        in my garden, and I dig and ship them fresh when the season is right.</p>
       <p><strong>Questions?</strong> Email me at <a href="mailto:dazzlingdaylilies@yahoo.com">dazzlingdaylilies@yahoo.com</a>.</p>
     </div>
   </div>
@@ -532,30 +537,41 @@
     </div>
 
   <div class="ann-item">
-    <strong>Navigation: Two-Row Tab Bar</strong>
-    <p>Because your contract includes six plant-type tabs (Daylilies, Iris, Lilies, Dahlias, Japanese Iris,
-    and Other Perennials) plus a Collections tab, fitting everything in one row would cause the page to scroll
-    sideways on smaller screens. To prevent that, the navigation uses two rows. Row 1 holds Daylilies,
-    Iris, Lilies, and Collections. Row 2 holds Dahlias, Japanese Iris, and Other Perennials. At launch,
-    only Daylilies is clickable. All others show "(coming soon)" until you activate them from your
-    admin Settings page.</p>
-    <span class="ann-tag contract">Per signed contract Section 3.1: six plant-type tabs</span>
+    <strong>Navigation: Tab Bar (showing launch state)</strong>
+    <p>The tab bar now shows exactly what customers will see on launch day: Daylilies, Collections,
+    and the Cart link. Iris, Lilies, Dahlias, Japanese Iris, and Other Perennials are turned off
+    completely and do not appear at all until you activate them from your admin Settings page.
+    When you are ready to add Iris next year, you flip a switch and it appears. No code changes needed.
+    The wireframe has been updated to show this launch state rather than all possible tabs.</p>
+    <p style="margin-top:8px;">The site is also designed to optionally show a "Coming Soon" label
+    on a tab a few months before you open it for sales, so customers know something new is on the way.</p>
+    <span class="ann-tag confirmed">Updated &mdash; wireframe now shows actual launch state</span>
     </div>
 
   <div class="ann-item">
-    <strong>Hero Section (large banner photo with text overlay)</strong>
-    <p>A big welcoming photo fills this area. A white text box sits over it with a short introduction
-    and a button taking customers to the catalog. The white box keeps text readable regardless of what
-    the photo looks like underneath.</p>
-    <span class="ann-tag content">Content needed</span>
+    <strong>Hero Section (large banner photo with frosted text overlay)</strong>
+    <p>A big welcoming photo fills this area. A semi-transparent frosted white box sits over it with
+    a short introduction and a button taking customers to the catalog. The box is see-through enough
+    that the flowers in the background photo are still visible behind the text, as Jean requested.
+    The frosted glass effect keeps text readable while still showing the beauty of the photo.</p>
+    <span class="ann-tag confirmed">Confirmed &mdash; frosted semi-transparent overlay per Jean's preference</span>
+    <span class="ann-tag content">Content needed &mdash; hero photo still needed from Jean</span>
     </div>
 
   <div class="ann-item">
     <strong>Featured Plants (4 cards)</strong>
-    <p>Shows four hand-picked plants from your catalog. You control which ones appear here from the admin panel.
-    On phones the cards stack vertically. One card shows how a "Sold Out" plant looks: gray badge, grayed price,
-    disabled button reading "Currently Unavailable."</p>
-    <span class="ann-tag decision">Decision needed</span>
+    <p>Shows four plants from your catalog in this section. You control how they are chosen from a simple
+    dropdown in your admin settings. Three options are available:</p>
+    <ul style="margin:8px 0 8px 20px;line-height:1.8;">
+      <li><strong>Featured (hand-picked):</strong> You check a box on individual plants in your plant editor
+      and those exact plants appear here. Full control, change them any time.</li>
+      <li><strong>Newest Additions:</strong> The site automatically shows your 4 most recently added plants.
+      Good for keeping the homepage feeling fresh as you add inventory.</li>
+      <li><strong>Random:</strong> The site picks 4 active plants at random each time the page loads.
+      A nice way to give every plant in your catalog a chance to be seen.</li>
+    </ul>
+    <p>Which option would you prefer?</p>
+    <span class="ann-tag decision">Decision needed &mdash; please let Edward know your preference</span>
     </div>
 
   <div class="ann-item">

@@ -209,14 +209,27 @@
     background: #888; color: #fff; font-size: 10px; font-weight: 700;
     padding: 3px 8px; border-radius: 3px; text-transform: uppercase; letter-spacing: 0.04em;
   }
+  .held-badge {
+    position: absolute; top: 8px; right: 8px;
+    background: #9b59b6; color: #fff; font-size: 10px; font-weight: 700;
+    padding: 3px 8px; border-radius: 3px; text-transform: uppercase; letter-spacing: 0.04em;
+  }
   .plant-card-body { padding: 12px 14px 14px; }
-  .plant-name { font-size: 14px; font-weight: 700; color: #222; margin-bottom: 3px; }
-  .plant-meta { font-size: 11px; color: #999; margin-bottom: 6px; }
+  .plant-name { font-size: 16px; font-weight: 700; color: #222; margin-bottom: 4px; }
+  .plant-meta { font-size: 13px; color: #777; margin-bottom: 8px; font-weight: 500; }
   .plant-desc { font-size: 12px; color: #666; line-height: 1.5; margin-bottom: 10px; }
   .plant-price { font-size: 15px; font-weight: 700; color: #222; margin-bottom: 10px; }
   .plant-price.sold-out { color: #aaa; }
   .plant-card .btn-primary,
   .plant-card .btn-ghost { width: 100%; display: block; padding: 8px 0; font-size: 13px; }
+  .plant-card-actions { display: flex; gap: 8px; }
+  .plant-card-actions .btn-primary { flex: 1; }
+  .btn-add-cart {
+    display: inline-flex; align-items: center; justify-content: center;
+    background: #27ae60; color: #fff; border: none; border-radius: 4px;
+    padding: 8px 12px; font-size: 12px; font-weight: 700; cursor: pointer;
+    white-space: nowrap;
+  }
 
   .pagination {
     display: flex; align-items: center; justify-content: center;
@@ -365,16 +378,9 @@
   <nav class="top-nav">
     <div class="nav-row">
       <a class="nav-tab active" href="#">Daylilies</a>
-      <a class="nav-tab inactive" href="#">Iris <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Lilies <span class="inactive-note">(coming soon)</span></a>
       <a class="nav-tab bundles-tab" href="#">Collections</a>
       <div class="nav-spacer"></div>
       <a class="nav-cart-btn" href="#">Cart <span class="cart-badge">2</span></a>
-    </div>
-    <div class="nav-row nav-row-2">
-      <a class="nav-tab inactive" href="#">Dahlias <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Japanese Iris <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Other Perennials <span class="inactive-note">(coming soon)</span></a>
     </div>
   </nav>
 
@@ -470,7 +476,10 @@
             <div class="plant-meta">Tetraploid &bull; Midseason &bull; 28&Prime; scape</div>
             <div class="plant-desc">Rich orange and gold blend with a deep throat. Strong rebloomer with wide, ruffled petals.</div>
             <div class="plant-price">$28.00</div>
-            <a class="btn-primary" href="#">View Details</a>
+            <div class="plant-card-actions">
+              <a class="btn-primary" href="#">View Details</a>
+              <button class="btn-add-cart">+ Cart</button>
+            </div>
           </div>
         </div>
 
@@ -481,7 +490,10 @@
             <div class="plant-meta">Tetraploid &bull; Midseason &bull; 22&Prime; scape</div>
             <div class="plant-desc">Dusty mauve and purple with a bold purple eye. One of the most distinctive patterns in the catalog.</div>
             <div class="plant-price">$32.00</div>
-            <a class="btn-primary" href="#">View Details</a>
+            <div class="plant-card-actions">
+              <a class="btn-primary" href="#">View Details</a>
+              <button class="btn-add-cart">+ Cart</button>
+            </div>
           </div>
         </div>
 
@@ -492,7 +504,10 @@
             <div class="plant-meta">Tetraploid &bull; Early-Midseason &bull; 34&Prime; scape</div>
             <div class="plant-desc">Deep, saturated purple with a green-yellow throat. A classic for a reason. Tall, dramatic scapes.</div>
             <div class="plant-price">$24.00</div>
-            <a class="btn-primary" href="#">View Details</a>
+            <div class="plant-card-actions">
+              <a class="btn-primary" href="#">View Details</a>
+              <button class="btn-add-cart">+ Cart</button>
+            </div>
           </div>
         </div>
 
@@ -517,7 +532,24 @@
             <div class="plant-meta">Tetraploid &bull; Midseason-Late &bull; 26&Prime; scape</div>
             <div class="plant-desc">Bright red with a yellow-green throat. Vivid, clean color that holds well even in afternoon heat.</div>
             <div class="plant-price">$26.00</div>
-            <a class="btn-primary" href="#">View Details</a>
+            <div class="plant-card-actions">
+              <a class="btn-primary" href="#">View Details</a>
+              <button class="btn-add-cart">+ Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="plant-card">
+          <div class="plant-card-photo" style="background:#b0a0c0;">
+            [ plant photo ]<br>Edge of Darkness
+            <span class="held-badge">Held for Increase</span>
+          </div>
+          <div class="plant-card-body">
+            <div class="plant-name">Edge of Darkness</div>
+            <div class="plant-meta">Tetraploid &bull; Midseason &bull; 26&Prime; scape</div>
+            <div class="plant-desc">Deep burgundy with a near-black eye. A new variety Jean is growing out before offering for sale.</div>
+            <div class="plant-price" style="color:#9b59b6;font-size:13px;">Held for Increase &mdash; not yet available</div>
+            <span class="btn-ghost" style="width:100%;display:block;padding:8px 0;font-size:13px;">Not Available</span>
           </div>
         </div>
 
@@ -528,7 +560,10 @@
             <div class="plant-meta">Diploid &bull; Early &bull; 18&Prime; scape</div>
             <div class="plant-desc">Rosy pink with a bold burgundy eye and green throat. Compact and early, excellent for borders.</div>
             <div class="plant-price">$20.00</div>
-            <a class="btn-primary" href="#">View Details</a>
+            <div class="plant-card-actions">
+              <a class="btn-primary" href="#">View Details</a>
+              <button class="btn-add-cart">+ Cart</button>
+            </div>
           </div>
         </div>
 
@@ -539,7 +574,10 @@
             <div class="plant-meta">Diploid &bull; Midseason &bull; 24&Prime; scape</div>
             <div class="plant-desc">Coral pink blend of exceptional size. Very large blooms on branched scapes. A showstopper.</div>
             <div class="plant-price">$30.00</div>
-            <a class="btn-primary" href="#">View Details</a>
+            <div class="plant-card-actions">
+              <a class="btn-primary" href="#">View Details</a>
+              <button class="btn-add-cart">+ Cart</button>
+            </div>
           </div>
         </div>
 
@@ -550,7 +588,10 @@
             <div class="plant-meta">Diploid &bull; Early &bull; 18&Prime; scape</div>
             <div class="plant-desc">Clear lemon yellow. One of the most reliable rebloomers available, blooming from June through frost.</div>
             <div class="plant-price">$18.00</div>
-            <a class="btn-primary" href="#">View Details</a>
+            <div class="plant-card-actions">
+              <a class="btn-primary" href="#">View Details</a>
+              <button class="btn-add-cart">+ Cart</button>
+            </div>
           </div>
         </div>
 
@@ -561,7 +602,10 @@
             <div class="plant-meta">Tetraploid &bull; Midseason &bull; 28&Prime; scape</div>
             <div class="plant-desc">Pale cream with a lavender blush and soft purple eye. Ruffled and elegant, with subtle fragrance.</div>
             <div class="plant-price">$36.00</div>
-            <a class="btn-primary" href="#">View Details</a>
+            <div class="plant-card-actions">
+              <a class="btn-primary" href="#">View Details</a>
+              <button class="btn-add-cart">+ Cart</button>
+            </div>
           </div>
         </div>
 
@@ -572,7 +616,10 @@
             <div class="plant-meta">Diploid &bull; Early-Midseason &bull; 25&Prime; scape</div>
             <div class="plant-desc">Creamy near-white with a lime-green throat. One of the best near-whites available. Dependable bloomer.</div>
             <div class="plant-price">$22.00</div>
-            <a class="btn-primary" href="#">View Details</a>
+            <div class="plant-card-actions">
+              <a class="btn-primary" href="#">View Details</a>
+              <button class="btn-add-cart">+ Cart</button>
+            </div>
           </div>
         </div>
 
@@ -583,7 +630,10 @@
             <div class="plant-meta">Diploid &bull; Midseason &bull; 32&Prime; scape</div>
             <div class="plant-desc">Lavender pink with heavily laced and ruffled edges. An AHS award winner with outstanding substance.</div>
             <div class="plant-price">$28.00</div>
-            <a class="btn-primary" href="#">View Details</a>
+            <div class="plant-card-actions">
+              <a class="btn-primary" href="#">View Details</a>
+              <button class="btn-add-cart">+ Cart</button>
+            </div>
           </div>
         </div>
 
@@ -594,7 +644,10 @@
             <div class="plant-meta">Diploid &bull; Early &bull; 20&Prime; scape</div>
             <div class="plant-desc">Soft lavender and cream with a delicate watermark. Fragrant and early-blooming. A lovely start to the season.</div>
             <div class="plant-price">$26.00</div>
-            <a class="btn-primary" href="#">View Details</a>
+            <div class="plant-card-actions">
+              <a class="btn-primary" href="#">View Details</a>
+              <button class="btn-add-cart">+ Cart</button>
+            </div>
           </div>
         </div>
 
@@ -640,7 +693,33 @@
 </div>
 <div class="annotations">
   <div class="ann-section-inner">
-  <p style="color:#888;font-size:13px;padding:20px 0;">All decisions for this page have been confirmed. Please use the approval form below.</p>
+  <div class="ann-item">
+    <strong>Quick Add to Cart button (updated per Jean's request)</strong>
+    <p>Each active plant card now shows both a "View Details" button and a green "+ Cart" button.
+    Clicking "+ Cart" adds one of that plant directly to the cart without needing to visit the detail page first.
+    Sold-out plants still show "Currently Unavailable." Held for Increase plants show "Not Available" with no cart option.</p>
+    <span class="ann-tag confirmed">Updated &mdash; Jean requested June 2026</span>
+  </div>
+  <div class="ann-item">
+    <strong>Held for Increase badge (purple, matches Sold Out badge position)</strong>
+    <p>Plants Jean is holding for increase show a purple "Held for Increase" badge in the top-right corner of the photo,
+    matching the position and style of the gray "Sold Out" badge. The price line is replaced with a note explaining
+    the plant is not yet available. No cart button appears on these cards.</p>
+    <span class="ann-tag confirmed">Updated &mdash; Jean requested June 2026</span>
+  </div>
+  <div class="ann-item">
+    <strong>Plant name and attribute line font size (increased per Jean's request)</strong>
+    <p>The plant name is now slightly larger and the attribute line (ploidy, bloom time, scape height) is
+    more readable. The description text below is unchanged.</p>
+    <span class="ann-tag confirmed">Updated &mdash; Jean requested June 2026</span>
+  </div>
+  <div class="ann-item">
+    <strong>Tab navigation (updated to show launch state)</strong>
+    <p>The tab bar now shows only the tabs that will be active at launch: Daylilies and Collections.
+    Iris, Lilies, Dahlias, Japanese Iris, and Other Perennials are turned off in admin Settings and
+    will not appear at all until Jean activates them. This is how the site will look on day one.</p>
+    <span class="ann-tag confirmed">Updated &mdash; reflects actual launch state</span>
+  </div>
 </div>
 
   <!-- APPROVAL FORM -->

@@ -526,16 +526,9 @@
     <nav class="top-nav">
     <div class="nav-row">
       <a class="nav-tab active" href="#">Daylilies</a>
-      <a class="nav-tab inactive" href="#">Iris <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Lilies <span class="inactive-note">(coming soon)</span></a>
       <a class="nav-tab bundles-tab" href="#">Collections</a>
       <div class="nav-spacer"></div>
       <a class="nav-cart-btn" href="#">Cart <span class="cart-badge">2</span></a>
-    </div>
-    <div class="nav-row nav-row-2">
-      <a class="nav-tab inactive" href="#">Dahlias <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Japanese Iris <span class="inactive-note">(coming soon)</span></a>
-      <a class="nav-tab inactive" href="#">Other Perennials <span class="inactive-note">(coming soon)</span></a>
     </div>
   </nav>
 
@@ -562,7 +555,12 @@
 
     <div>
       <h1 class="plant-name-heading">Acapulco Sunset</h1>
+      <!-- Hybridizer and Year Introduced are both optional fields.
+           When filled in, they appear here. When left blank, this line is hidden entirely. -->
       <div class="plant-byline">Hybridizer: Stamile &nbsp;&bull;&nbsp; Introduced: 1995</div>
+      <div class="plant-byline" style="color:#aaa;font-size:11px;margin-top:2px;">
+        &#9432; Both fields above are optional. If left blank in the plant editor, this line does not appear.
+      </div>
       <div class="plant-price-display">$28.00</div>
 
       <table class="attr-table">
@@ -611,7 +609,17 @@
        COORDINATED FLOWERS SECTION (REVISED)
        Contains NEW collection panel + EXISTING editorial grid
   ============================================================ -->
+  <!-- ============================================================
+       COORDINATED FLOWERS: only visible when Jean has set up coordinations
+       for this plant. When no coordinations exist, this entire section
+       is hidden from customers and does not appear on the page at all.
+  ============================================================ -->
   <div class="coord-section">
+    <div style="background:#fff8e6;border:1px solid #f5c518;border-radius:4px;padding:10px 14px;margin-bottom:16px;font-size:12px;color:#5a4000;">
+      &#9432; <strong>This section only appears when coordinated plants have been configured.</strong>
+      When no coordinations are set up for a plant, customers see nothing here.
+      Jean plans to add coordinations after January 1st.
+    </div>
     <div class="coord-heading">Coordinated Flowers</div>
     <div class="coord-subheading">
       Plants that pair beautifully with Acapulco Sunset
