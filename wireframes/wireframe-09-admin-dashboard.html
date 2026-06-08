@@ -315,6 +315,7 @@
   }
   .badge.new { background: #fdebd0; color: #935116; }
   .badge.received { background: #fdebd0; color: #935116; }
+  .badge.pending-payment { background: #fde8c8; color: #7a3c00; border: 1px solid #e67e22; }
   .badge.processing { background: #d6eaf8; color: #1a5276; }
   .badge.shipped { background: #d5f5e3; color: #1a5c2a; }
   .badge.delivered { background: #e8e8e8; color: #666; }
@@ -635,6 +636,15 @@
         </div>
       </div>
 
+      <div class="stat-card" style="border-left:4px solid #e67e22;">
+        <div class="stat-card-label">Pending Payment</div>
+        <div class="stat-card-value" style="color:#e67e22;">2</div>
+        <div class="stat-card-sub">
+          Flagged-state orders awaiting payment<br>
+          <a href="#">View pending &rarr;</a>
+        </div>
+      </div>
+
       <div class="stat-card orders-total">
         <div class="stat-card-label">Total Orders This Season</div>
         <div class="stat-card-value">38</div>
@@ -867,6 +877,11 @@
           <div class="reminder-item">
             <div class="reminder-dot"></div>
             <span>4 new orders need to be reviewed and processed.</span>
+          </div>
+          <div class="reminder-item" style="border-left:3px solid #e67e22;padding-left:10px;">
+            <div class="reminder-dot" style="background:#e67e22;"></div>
+            <span><strong>2 orders awaiting payment</strong> from flagged states.
+            Contact these customers to confirm shipping cost and send payment links.</span>
           </div>
           <div class="reminder-item">
             <div class="reminder-dot"></div>

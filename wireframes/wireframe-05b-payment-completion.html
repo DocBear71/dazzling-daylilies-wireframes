@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wireframe 05B: Payment Completion — Dazzling Daylilies</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 15px; background: #f0f0f0; color: #222;
+  }
+
+  .page-wrapper {
+    max-width: 900px; margin: 0 auto; background: #fff;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.10); min-height: 100vh;
+  }
+
+  /* Header */
+  .site-header {
+    background: #fff; border-bottom: 1px solid #e0e0e0;
+    padding: 20px 24px 18px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .site-header h1 { font-size: 26px; font-weight: 700; color: #1a5c1a; }
+  .site-header .tagline { font-size: 13px; color: #888; font-style: italic; }
+
+  /* Nav */
+  .top-nav { background: #fff; border-bottom: 3px solid #d0d0d0; padding: 0 24px; }
+  .nav-row { display: flex; align-items: stretch; min-height: 44px; }
+  .nav-tab {
+    display: inline-flex; align-items: center; padding: 0 16px;
+    font-size: 13px; font-weight: 600; color: #555;
+    border-bottom: 3px solid transparent; margin-bottom: -3px;
+    white-space: nowrap; text-decoration: none;
+  }
+  .nav-tab.active { color: #4a90d9; border-bottom-color: #4a90d9; }
+  .nav-tab.bundles-tab { color: #27ae60; }
+  .nav-spacer { flex: 1; }
+  .nav-cart-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 0 16px; font-size: 13px; font-weight: 600; color: #4a90d9;
+  }
+  .cart-badge {
+    background: #4a90d9; color: #fff; border-radius: 50%;
+    width: 18px; height: 18px; display: inline-flex;
+    align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700;
+  }
+
+  /* Page title */
+  .page-title-bar {
+    background: #f5f5f5; border-bottom: 1px solid #e0e0e0;
+    padding: 14px 24px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .page-title-bar h2 { font-size: 20px; font-weight: 700; color: #222; }
+  .page-title-bar .order-ref { font-size: 13px; color: #888; }
+
+  /* Main layout */
+  .payment-layout {
+    display: grid; grid-template-columns: 1fr 300px;
+    gap: 32px; padding: 28px 24px; align-items: start;
+  }
+
+  /* Left: payment form */
+  .payment-form-col {}
+
+  /* Context notice */
+  .context-notice {
+    background: #fff8e6; border: 1px solid #f5c518; border-radius: 6px;
+    padding: 16px 20px; margin-bottom: 24px;
+  }
+  .context-notice-heading {
+    font-size: 14px; font-weight: 700; color: #5a4000; margin-bottom: 6px;
+  }
+  .context-notice p { font-size: 13px; color: #5a4000; line-height: 1.6; }
+
+  /* Payment card */
+  .payment-section {
+    background: #fff; border: 1px solid #e0e0e0; border-radius: 6px;
+    overflow: hidden; margin-bottom: 20px;
+  }
+  .payment-section-heading {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 20px; border-bottom: 1px solid #f0f0f0;
+    background: #fafafa; font-size: 15px; font-weight: 700; color: #222;
+  }
+  .section-number {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 24px; height: 24px; background: #4a90d9; color: #fff;
+    border-radius: 50%; font-size: 12px; font-weight: 700; flex-shrink: 0;
+  }
+
+  /* Contact read-only */
+  .readonly-info {
+    padding: 16px 20px; font-size: 13px; color: #555; line-height: 1.8;
+    background: #fafafa; border-bottom: 1px solid #f0f0f0;
+  }
+  .readonly-label { font-size: 11px; font-weight: 700; color: #aaa;
+    text-transform: uppercase; letter-spacing: 0.05em; }
+
+  /* Square card area */
+  .card-area { padding: 20px; }
+  .card-placeholder {
+    background: #e8e8e8; border-radius: 4px; height: 90px;
+    display: flex; align-items: center; justify-content: center;
+    color: #888; font-size: 13px; margin-bottom: 16px;
+  }
+  .card-icons { display: flex; gap: 8px; margin-bottom: 16px; }
+  .card-icon {
+    background: #f0f0f0; border: 1px solid #d0d0d0; border-radius: 4px;
+    padding: 4px 10px; font-size: 12px; color: #666; font-weight: 600;
+  }
+
+  /* Place order */
+  .place-order-btn {
+    display: block; width: 100%; padding: 14px;
+    background: #4a90d9; color: #fff; font-size: 16px; font-weight: 700;
+    border: none; border-radius: 4px; cursor: pointer; text-align: center;
+    margin-bottom: 12px;
+  }
+  .place-order-note {
+    font-size: 12px; color: #888; text-align: center; line-height: 1.6;
+  }
+  .place-order-note a { color: #4a90d9; }
+
+  /* Right: order summary */
+  .order-summary {
+    background: #f9f9f9; border: 1px solid #e0e0e0; border-radius: 6px;
+    padding: 20px; position: sticky; top: 20px;
+  }
+  .summary-heading { font-size: 16px; font-weight: 700; color: #222; margin-bottom: 16px; }
+  .summary-item {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
+  }
+  .summary-thumb {
+    width: 48px; height: 48px; border-radius: 4px; background: #c8b080;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px; color: #fff; font-weight: 700; flex-shrink: 0;
+  }
+  .summary-thumb.alt { background: #80a8c8; }
+  .summary-item-name { font-size: 13px; font-weight: 600; color: #222; }
+  .summary-item-qty { font-size: 12px; color: #888; }
+  .summary-item-price { font-size: 13px; font-weight: 600; color: #222;
+    margin-left: auto; white-space: nowrap; }
+  .summary-divider { border: none; border-top: 1px solid #e0e0e0; margin: 12px 0; }
+  .summary-row {
+    display: flex; justify-content: space-between; font-size: 13px;
+    color: #555; margin-bottom: 8px;
+  }
+  .summary-total {
+    display: flex; justify-content: space-between;
+    font-size: 16px; font-weight: 700; color: #222; margin-bottom: 4px;
+  }
+  .summary-confirmed-note {
+    font-size: 11px; color: #27ae60; text-align: right; margin-bottom: 16px;
+  }
+
+  /* Footer */
+  .site-footer {
+    border-top: 1px solid #e0e0e0; background: #f8f8f8;
+    padding: 20px 24px; text-align: center;
+    font-size: 12px; color: #aaa; margin-top: 32px;
+  }
+
+  /* Annotations */
+  .annotations {
+    max-width: 860px; margin: 0 auto; padding: 0 24px 48px;
+  }
+  .annotations h2 {
+    font-size: 20px; font-weight: 700; color: #222;
+    padding: 32px 0 8px; border-top: 2px solid #e0e0e0; margin-top: 32px;
+  }
+  .ann-subtitle { font-size: 13px; color: #888; margin-bottom: 24px; }
+  .ann-item {
+    background: #fff; border: 1px solid #e0e0e0; border-left: 4px solid #2c3e50;
+    border-radius: 4px; padding: 14px 18px; margin-bottom: 14px;
+    font-size: 14px; line-height: 1.7; color: #333;
+  }
+  .ann-item strong { display: block; font-size: 14px; font-weight: 700;
+    margin-bottom: 4px; color: #1a2a3a; }
+  .ann-item p { margin: 0; }
+  .ann-tag {
+    display: inline-block; font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 2px 8px; border-radius: 10px; margin-top: 8px;
+  }
+  .ann-tag.confirmed { background: #d5f5e3; color: #1a5c2a; }
+  .ann-tag.info      { background: #f0f0f0; color: #555; }
+
+  /* Approval form */
+  .approval-form-wrap {
+    background: #f0f7ff; border-top: 3px solid #2c3e50;
+    padding: 32px 32px 40px; margin-top: 8px;
+  }
+  .approval-form-heading { font-size: 18px; font-weight: 700; color: #1a2a3a; margin-bottom: 6px; }
+  .approval-form-desc { font-size: 13px; color: #555; margin-bottom: 24px; line-height: 1.6; }
+  .form-group { margin-bottom: 18px; }
+  .form-label { display: block; font-size: 13px; font-weight: 700; color: #333; margin-bottom: 6px; }
+  .form-input, .form-select, .form-textarea {
+    width: 100%; padding: 10px 12px; border: 1px solid #d0d0d0;
+    border-radius: 4px; font-size: 14px; font-family: inherit;
+  }
+  .form-textarea { min-height: 90px; resize: vertical; }
+  .radio-group { display: flex; flex-direction: column; gap: 8px; }
+  .radio-option { display: flex; align-items: center; gap: 10px; font-size: 14px; }
+  .submit-btn {
+    background: #2c3e50; color: #fff; border: none; border-radius: 4px;
+    padding: 12px 28px; font-size: 15px; font-weight: 700; cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <div class="site-header">
+    <div>
+      <h1>Dazzling Daylilies</h1>
+      <p class="tagline">Hand-dug daylilies grown with care in Fairfax, Iowa</p>
+    </div>
+  </div>
+
+  <nav class="top-nav">
+    <div class="nav-row">
+      <a class="nav-tab active" href="#">Daylilies</a>
+      <a class="nav-tab bundles-tab" href="#">Collections</a>
+      <div class="nav-spacer"></div>
+      <a class="nav-cart-btn" href="#">Cart <span class="cart-badge">0</span></a>
+    </div>
+  </nav>
+
+  <div class="page-title-bar">
+    <h2>Complete Your Payment</h2>
+    <span class="order-ref">Order DD-2027-0043</span>
+  </div>
+
+  <div class="payment-layout">
+
+    <!-- LEFT: Payment form -->
+    <div class="payment-form-col">
+
+      <!-- Context notice -->
+      <div class="context-notice">
+        <div class="context-notice-heading">&#10003; Jean has confirmed your order</div>
+        <p>
+          Jean has reviewed your order and confirmed the shipping cost to Texas.
+          Your confirmed total is shown in the order summary to the right.
+          Please enter your card details below to complete your payment.
+          You will only be charged once.
+        </p>
+      </div>
+
+      <!-- Section 1: Your info (read-only) -->
+      <div class="payment-section">
+        <div class="payment-section-heading">
+          <span class="section-number">1</span>
+          Your Information
+        </div>
+        <div class="readonly-info">
+          <div class="readonly-label">Name</div>
+          <div style="margin-bottom:8px;">Maria Garcia</div>
+          <div class="readonly-label">Email</div>
+          <div style="margin-bottom:8px;">maria@example.com</div>
+          <div class="readonly-label">Ship To</div>
+          <div>456 Oak Street, Austin, TX 78701</div>
+          <div style="font-size:11px;color:#aaa;margin-top:8px;">
+            If any of this information is incorrect, please email
+            <a href="mailto:dazzlingdaylilies@yahoo.com" style="color:#4a90d9;">dazzlingdaylilies@yahoo.com</a>
+            before completing your payment.
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Payment -->
+      <div class="payment-section">
+        <div class="payment-section-heading">
+          <span class="section-number">2</span>
+          Payment
+        </div>
+        <div class="card-area">
+          <div class="card-placeholder">
+            [ Square secure card entry form ]<br>
+            Card number &bull; Expiration &bull; CVV
+          </div>
+          <div class="card-icons">
+            <span class="card-icon">Visa</span>
+            <span class="card-icon">MC</span>
+            <span class="card-icon">Amex</span>
+            <span class="card-icon">Disc</span>
+          </div>
+          <button class="place-order-btn">Complete Payment &rarr;</button>
+          <div class="place-order-note">
+            By completing your payment you agree to our
+            <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.<br>
+            Your card will be charged <strong>$98.00</strong> once.
+            A receipt will be emailed to maria@example.com.
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.payment-form-col -->
+
+    <!-- RIGHT: Order summary with confirmed shipping -->
+    <div class="order-summary">
+      <div class="summary-heading">Order Summary</div>
+
+      <div class="summary-item">
+        <div class="summary-thumb">photo</div>
+        <div>
+          <div class="summary-item-name">Acapulco Sunset</div>
+          <div class="summary-item-qty">Qty: 1</div>
+        </div>
+        <div class="summary-item-price">$28.00</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-thumb alt">photo</div>
+        <div>
+          <div class="summary-item-name">Strawberry Candy</div>
+          <div class="summary-item-qty">Qty: 2</div>
+        </div>
+        <div class="summary-item-price">$44.00</div>
+      </div>
+
+      <hr class="summary-divider">
+
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <span>$72.00</span>
+      </div>
+      <div class="summary-row">
+        <span>Shipping (Texas)</span>
+        <span style="color:#27ae60;font-weight:700;">$26.00</span>
+      </div>
+
+      <hr class="summary-divider">
+
+      <div class="summary-total">
+        <span>Total</span>
+        <span>$98.00</span>
+      </div>
+      <div class="summary-confirmed-note">&#10003; Shipping confirmed by Jean</div>
+    </div>
+
+  </div><!-- /.payment-layout -->
+
+  <footer class="site-footer">
+    &copy; 2027 Dazzling Daylilies &bull; Fairfax, Iowa &bull;
+    <a href="#" style="color:#4a90d9;">DazzlingDaylilies@yahoo.com</a>
+  </footer>
+
+</div><!-- /.page-wrapper -->
+
+
+<!-- ANNOTATIONS -->
+<div class="annotations">
+  <h2>Wireframe Notes: WF05B &mdash; Payment Completion Page</h2>
+  <p class="ann-subtitle">
+    This page is only reached by customers who placed a "Request Order" from a flagged state
+    (AZ, FL, TX) and received a payment link from Jean by email after she confirmed the shipping cost.
+  </p>
+
+  <div class="ann-item">
+    <strong>How the Customer Reaches This Page</strong>
+    <p>Jean enters the confirmed shipping amount in the admin order detail page and clicks
+    "Send Payment Link." The system emails the customer a secure, unique link. The customer
+    clicks the link and lands here. The link is tied to their specific order and cannot be
+    reused or shared. It expires after a reasonable time window (to be determined during build,
+    likely 7 days).</p>
+    <span class="ann-tag confirmed">Confirmed &mdash; Option A flow selected by Jean June 2026</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>Section 1: Your Information (read-only)</strong>
+    <p>The customer's name, email, and shipping address are pre-filled and read-only. They cannot
+    be changed on this page. If anything is incorrect, the customer is directed to email Jean
+    directly before completing payment. This prevents confusion from the customer re-entering
+    a different shipping address after the shipping cost has already been confirmed.</p>
+    <span class="ann-tag info">Read-only fields prevent mismatch between confirmed address and payment</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>Section 2: Payment</strong>
+    <p>The Square Web Payments SDK card form is embedded here, identical to the standard checkout
+    page. The customer enters their card details and clicks "Complete Payment." The confirmed total
+    is shown clearly both in the order summary and in the button note so there are no surprises.
+    After payment, the order updates to payment_status = paid and the customer is redirected to
+    the standard order confirmation page (WF06).</p>
+    <span class="ann-tag confirmed">Same Square integration as standard checkout</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>Order Summary: Confirmed Shipping</strong>
+    <p>The shipping line shows the amount Jean confirmed, not the original TBD placeholder.
+    A green "&#10003; Shipping confirmed by Jean" note appears below the total so the customer
+    knows this is the final, agreed amount. This is the only place in the customer flow where
+    the confirmed shipping amount appears before payment.</p>
+    <span class="ann-tag info">Shipping amount comes from what Jean entered in the admin panel</span>
+  </div>
+
+  <div class="ann-item">
+    <strong>What Happens After Payment</strong>
+    <p>On successful payment: order payment_status updates to "paid," the cart session is cleared,
+    and the customer is redirected to the standard WF06 order confirmation page. Jean receives
+    the standard admin order notification email. The order then proceeds through the normal
+    fulfillment workflow: Jean digs, packs, ships, and emails tracking personally.</p>
+    <span class="ann-tag confirmed">After payment, flow rejoins the standard order flow</span>
+  </div>
+
+</div><!-- /.annotations -->
+
+
+<!-- APPROVAL FORM -->
+<div class="approval-form-wrap">
+  <div class="approval-form-heading">Your Response on WF05B (Payment Completion Page)</div>
+  <div class="approval-form-desc">
+    Please review the wireframe above and let Edward know if this page looks right for
+    the flagged-state payment flow, or if you would like any changes.
+  </div>
+  <form action="https://formspree.io/f/xzzdqdwa" method="POST">
+    <input type="hidden" name="wireframe" value="WF05B - Payment Completion Page">
+    <div class="form-group">
+      <label class="form-label">Your Name</label>
+      <input type="text" name="reviewer_name" class="form-input" placeholder="Jean">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Approval Status</label>
+      <div class="radio-group">
+        <label class="radio-option">
+          <input type="radio" name="approval_status" value="Approved"> Approved as shown
+        </label>
+        <label class="radio-option">
+          <input type="radio" name="approval_status" value="Changes Needed"> Changes needed
+        </label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Comments or Changes Requested</label>
+      <textarea name="general_comments" class="form-textarea"
+        placeholder="If you selected Changes Needed, please describe what you would like changed."></textarea>
+    </div>
+    <button type="submit" class="submit-btn">Send My Response</button>
+  </form>
+</div>
+
+</body>
+</html>

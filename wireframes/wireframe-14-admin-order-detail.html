@@ -123,6 +123,7 @@
   .badge.received { background: #fdebd0; color: #935116; }
   .badge.processing { background: #d6eaf8; color: #1a5276; }
   .badge.shipped    { background: #d5f5e3; color: #1a5c2a; }
+  .badge.pending-payment { background: #fde8c8; color: #7a3c00; border: 1px solid #e67e22; }
   .badge.delivered  { background: #e8e8e8; color: #666; }
 
   /* Restricted state notice */
@@ -668,6 +669,40 @@
                 </div>
               </div>
 
+              <!-- PENDING PAYMENT ACTION PANEL
+                   Only shown when order has payment_status = pending
+                   (i.e. flagged-state orders placed via "Request Order") -->
+              <div style="background:#fff8e6;border:2px solid #e67e22;border-radius:6px;padding:16px;margin-bottom:16px;">
+                <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#e67e22;margin-bottom:10px;">
+                  &#9888; Payment Pending &mdash; Action Required
+                </div>
+                <p style="font-size:13px;color:#5a4000;line-height:1.6;margin-bottom:12px;">
+                  This order is from a flagged state. The customer has not been charged yet.
+                  Contact them to confirm the shipping cost, then enter the confirmed amount
+                  below and send them a payment link.
+                </p>
+
+                <div style="margin-bottom:10px;">
+                  <label style="display:block;font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;">
+                    Confirmed Shipping Amount
+                  </label>
+                  <div style="display:flex;align-items:center;border:1px solid #e67e22;border-radius:4px;overflow:hidden;max-width:200px;">
+                    <span style="padding:8px 10px;background:#fff3e0;color:#e67e22;font-weight:700;font-size:13px;border-right:1px solid #e67e22;">$</span>
+                    <input type="number" placeholder="e.g. 2800 for $28.00"
+                           style="flex:1;padding:8px 10px;border:none;font-size:13px;outline:none;">
+                  </div>
+                  <div style="font-size:11px;color:#aaa;margin-top:4px;">Enter in cents: 2800 = $28.00</div>
+                </div>
+
+                <button style="display:block;width:100%;padding:10px 16px;background:#e67e22;color:#fff;border:none;border-radius:4px;font-size:14px;font-weight:700;cursor:pointer;margin-bottom:8px;">
+                  Send Payment Link to Customer &rarr;
+                </button>
+                <div style="font-size:11px;color:#888;text-align:center;line-height:1.5;">
+                  Sends a secure Square payment link to <strong>jane@example.com</strong>.<br>
+                  The customer pays once for the confirmed total.
+                </div>
+              </div>
+
               <div class="tracking-entry">
                 <div class="tracking-label">Shipping Carrier &amp; Tracking Number <span style="font-weight:400; text-transform:none; color:#aaa;">(optional)</span></div>
 
@@ -804,6 +839,17 @@
   </div>
 
   <div class="ann-item">
+  <div class="ann-item" style="border-left-color:#e67e22;">
+    <strong>Pending Payment Action Panel (flagged-state orders only)</strong>
+    <p>When an order has payment_status = pending (a flagged-state order placed via "Request Order"),
+    this orange panel appears at the top of the Order Status sidebar card. Jean enters the confirmed
+    shipping cost in cents, clicks "Send Payment Link," and the system emails the customer a secure
+    Square-hosted payment link for the full confirmed total (subtotal + confirmed shipping).
+    Once the customer pays, payment_status updates to "paid" and the order proceeds normally.
+    This panel is completely hidden on regular paid orders.</p>
+    <span class="ann-tag confirmed">Confirmed &mdash; Option A selected by Jean June 2026</span>
+  </div>
+
     <strong>Order Status Card (sidebar): Mark as Processing and Mark as Shipped</strong>
     <p>Two status advancement buttons. "Mark as Processing" moves the order from New to Processing, the amber highlight disappears from the orders list, and no email is sent. "Mark as Shipped" records the shipped date, advances the status to Shipped, and again no automatic email is sent. The note below each button makes this explicit so Jean is not surprised. Jean emails the customer personally with tracking information, which is her stated preference.</p>
     <span class="ann-tag confirmed">Confirmed: no auto-email when status changes to Shipped</span>
