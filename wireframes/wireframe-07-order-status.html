@@ -968,17 +968,25 @@
       </div>
     </div>
 
-    <!-- Tracking number box: carrier-neutral per Jean's request.
-         Jean enters any carrier's tracking number manually.
-         The system is not locked to USPS. She can use USPS, FedEx, UPS,
-         or any carrier and the tracking number is simply stored as text. -->
+    <!-- Tracking box: carrier and tracking number stored together on the order.
+         The system builds the correct tracking link automatically based on
+         whichever carrier Jean selected in the admin when marking the order shipped.
+         USPS, UPS, and FedEx get a direct tracking link. "Other" shows plain text. -->
     <div class="tracking-box">
       <div>
-        <div class="tracking-label">Tracking Number</div>
+        <div class="tracking-label">USPS Tracking</div>
         <div class="tracking-number">9400111899223756430891</div>
         <div class="tracking-note">Jean shipped your order on May 27, 2027.</div>
       </div>
-      <button class="track-btn">Track Your Package &rarr;</button>
+      <a class="track-btn" href="#" style="display:inline-flex;align-items:center;background:#27ae60;color:#fff;border:none;border-radius:4px;padding:10px 18px;font-size:13px;font-weight:700;cursor:pointer;text-decoration:none;white-space:nowrap;">
+        Track on USPS &rarr;
+      </a>
+    </div>
+    <div class="notice-annotation" style="margin-top:8px;font-size:11px;">
+      [ The carrier name and link update automatically based on what Jean selected in admin.
+      USPS shows "Track on USPS" linking to usps.com, UPS shows "Track on UPS" linking to
+      ups.com, FedEx shows "Track on FedEx" linking to fedex.com.
+      If Jean selected "Other," just the tracking number appears as plain text with no button. ]
     </div>
 
     <!-- Detail layout (same items, same sidebar with updated status) -->

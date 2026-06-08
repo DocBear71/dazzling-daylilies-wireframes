@@ -669,13 +669,29 @@
               </div>
 
               <div class="tracking-entry">
-                <div class="tracking-label">Tracking Number <span style="font-weight:400; text-transform:none; color:#aaa;">(optional)</span></div>
+                <div class="tracking-label">Shipping Carrier &amp; Tracking Number <span style="font-weight:400; text-transform:none; color:#aaa;">(optional)</span></div>
+
+                <!-- Carrier selector -->
+                <div style="margin-bottom:8px;">
+                  <select style="width:100%;padding:8px 10px;border:1px solid #d0d0d0;border-radius:4px;font-size:13px;background:#fff;">
+                    <option value="">-- Select carrier --</option>
+                    <option value="usps">USPS</option>
+                    <option value="ups">UPS</option>
+                    <option value="fedex">FedEx</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+
+                <!-- Tracking number input -->
                 <div class="tracking-input-row">
-                  <input class="tracking-input" type="text" placeholder="Enter USPS tracking...">
+                  <input class="tracking-input" type="text" placeholder="Enter tracking number...">
                   <button class="tracking-save">Save</button>
                 </div>
+
                 <div style="font-size:11px; color:#aaa; margin-top:6px; line-height:1.5;">
-                  Saved tracking number is visible to the customer on the Order Status page.
+                  Once saved, the tracking number appears on the customer-facing Order Status page
+                  with a direct link to the selected carrier's tracking site.<br>
+                  If "Other" is selected, the number displays as plain text with no link.
                 </div>
               </div>
 
@@ -796,7 +812,7 @@
 
   <div class="ann-item">
     <strong>Tracking Number Entry</strong>
-    <p>A separate text input and Save button for entering the USPS tracking number. Once saved, the tracking number appears on the customer-facing Order Status page. Jean can enter or update the tracking number at any time, independently of the status advancement buttons. The input uses monospace font to make long tracking numbers easier to read and compare.</p>
+    <p>A carrier dropdown and tracking number field. Jean selects her shipping carrier (USPS, UPS, FedEx, or Other) then enters the tracking number. Once saved, the tracking number appears on the customer-facing Order Status page with a direct link to the correct carrier's tracking site pre-filled with the number. If "Other" is selected, the number displays as plain text with no link. Jean can update both the carrier and the tracking number at any time, independently of the status advancement buttons. This approach is carrier-neutral: switching from USPS to FedEx simply means selecting FedEx from the dropdown on the next order.</p>
   </div>
 
   <div class="ann-item">
