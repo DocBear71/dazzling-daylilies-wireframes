@@ -133,20 +133,20 @@
 
 <div class="status-banner">
   <span class="dot"></span>
-  One decision remaining: WF01 Homepage header layout. Please review Option A and Option B below and let Edward know which you prefer.
+  Updated June 2026: WF05B (Payment Completion) added. Flagged-state payment flow updated across WF05, WF06, WF09, WF13, and WF14. WF01 header layout decision still needed.
 </div>
 
 <div class="instructions">
   <div class="instructions-box">
     <p>
-      <strong>Hi Jean!</strong> Almost everything is approved and ready to build. There is
-      just one decision remaining before we can finalize the homepage: the header layout.
-      Two options are shown below so you can see exactly what each looks like.
+      <strong>Hi Jean!</strong> Several wireframes have been updated based on your decision
+      to use Option A for flagged-state shipping (Arizona, Florida, Texas). A new page has
+      been added (WF05B) showing what customers see when they click your payment link.
+      Updated pages are noted below.
     </p>
     <p>
-      Click each option to open the full wireframe, then use the approval form at the bottom
-      of that page to let Edward know which one you prefer. Once you have chosen, the homepage
-      is fully approved and the build can begin.
+      The homepage header layout decision is still needed. Please review WF01A and WF01B
+      below and use the approval form on your preferred version to let Edward know your choice.
     </p>
   </div>
 </div>
@@ -169,6 +169,8 @@
       <li><strong>End of Season Reports:</strong> Sales by plant category with totals, and sales by customer. Details being confirmed with Jean.</li>
       <li><strong>Batch Shipping Labels:</strong> Select multiple orders and print all of their shipping labels on one Avery 5163 sheet.</li>
       <li><strong>Printable Inventory Report:</strong> A printable hard copy of your full inventory by plant category, sorted alphabetically. (WF18, coming soon.)</li>
+      <li><strong>Flagged State Payment Flow (Option A):</strong> Customers in AZ, FL, and TX click "Request Order" at checkout. No charge is made. Jean contacts them, confirms shipping, and sends a secure payment link. Customer pays once for the confirmed total. New Payment Completion page (WF05B) added.</li>
+      <li><strong>Carrier-Neutral Tracking:</strong> Jean selects the shipping carrier (USPS, UPS, FedEx, or Other) when marking an order shipped. The customer's Order Status page shows a direct tracking link to the correct carrier automatically.</li>
     </ul>
   </div>
 
@@ -278,26 +280,34 @@
     </a>
 
     <a class="wf-link" href="wireframes/wireframe-05-checkout.html">
-      <span class="wf-num confirmed">WF 05</span>
+      <span class="wf-num revised">WF 05</span>
       <div class="wf-info">
-        <div class="wf-title">Checkout Page</div>
-        <div class="wf-desc">Updated with local pickup toggle, preferred ship date field, and coupon code field. Shipping vs. pickup automatically zeroes the shipping charge. Blocked and flagged state handling included.</div>
+        <div class="wf-title">Checkout Page <span class="wf-badge badge-revised">Updated</span></div>
+        <div class="wf-desc">Updated with local pickup toggle, delivery method selector, preferred ship date, and coupon code. Flagged states (AZ, FL, TX) now show a &ldquo;Request Order&rdquo; button with no charge taken. Customer pays later via a payment link Jean sends after confirming shipping cost.</div>
+      </div>
+    </a>
+
+    <a class="wf-link" href="wireframes/wireframe-05b-payment-completion.html" style="border-color:#e67e22;border-width:2px;">
+      <span class="wf-num" style="background:#e67e22;color:#fff;">WF 05B</span>
+      <div class="wf-info">
+        <div class="wf-title">Payment Completion Page <span class="wf-badge" style="background:#fde8c8;color:#7a3c00;">New</span></div>
+        <div class="wf-desc">The page flagged-state customers see after clicking Jean&rsquo;s payment link. Shows their confirmed order summary with the agreed shipping cost, and the Square card form to complete payment. Customer pays once for the exact confirmed total.</div>
       </div>
     </a>
 
     <a class="wf-link" href="wireframes/wireframe-06-order-confirmation.html">
-      <span class="wf-num confirmed">WF 06</span>
+      <span class="wf-num revised">WF 06</span>
       <div class="wf-info">
-        <div class="wf-title">Order Confirmation Page</div>
-        <div class="wf-desc">Thank-you page after a successful order. Includes alternate version for local pickup orders. Care instructions reference removed from &ldquo;What Happens Next&rdquo; step 3.</div>
+        <div class="wf-title">Order Confirmation Page <span class="wf-badge badge-revised">Updated</span></div>
+        <div class="wf-desc">Thank-you page after a successful order. New variation added for flagged-state orders showing &ldquo;Your Order Has Been Received&rdquo; with a payment pending notice and What Happens Next explanation. Care instructions removed from step 3.</div>
       </div>
     </a>
 
     <a class="wf-link" href="wireframes/wireframe-07-order-status.html">
-      <span class="wf-num confirmed">WF 07</span>
+      <span class="wf-num revised">WF 07</span>
       <div class="wf-info">
-        <div class="wf-title">Order Status Page</div>
-        <div class="wf-desc">Order lookup by order number plus email. Three-step status tracker ending at Shipped. Plain text tracking display. Ready for Pickup status added for local pickup orders.</div>
+        <div class="wf-title">Order Status Page <span class="wf-badge badge-revised">Updated</span></div>
+        <div class="wf-desc">Order lookup by order number plus email. Three-step status tracker ending at Shipped. Carrier-aware tracking: Jean selects USPS, UPS, FedEx, or Other in admin and the correct tracking link appears automatically for the customer.</div>
       </div>
     </a>
 
@@ -326,10 +336,10 @@
   <div class="link-grid">
 
     <a class="wf-link" href="wireframes/wireframe-09-admin-dashboard.html">
-      <span class="wf-num confirmed">WF 09</span>
+      <span class="wf-num revised">WF 09</span>
       <div class="wf-info">
-        <div class="wf-title">Admin Dashboard</div>
-        <div class="wf-desc">Your home screen after logging in. Calendar-year stats, new order alerts, recent orders, low-stock warnings, and Google Analytics summary at a glance.</div>
+        <div class="wf-title">Admin Dashboard <span class="wf-badge badge-revised">Updated</span></div>
+        <div class="wf-desc">Your home screen after logging in. New &ldquo;Pending Payment&rdquo; stat card (orange) shows flagged-state orders awaiting payment. Reminder added for orders needing a payment link sent.</div>
       </div>
     </a>
 
@@ -358,18 +368,18 @@
     </a>
 
     <a class="wf-link" href="wireframes/wireframe-13-admin-orders-list.html">
-      <span class="wf-num confirmed">WF 13</span>
+      <span class="wf-num revised">WF 13</span>
       <div class="wf-info">
-        <div class="wf-title">Admin Orders List</div>
-        <div class="wf-desc">All orders with status tabs, search, filters, amber highlight for new orders, CSV export, and batch shipping label printing (select multiple orders, print all on one Avery 5163 sheet).</div>
+        <div class="wf-title">Admin Orders List <span class="wf-badge badge-revised">Updated</span></div>
+        <div class="wf-desc">All orders with status tabs, search, and filters. New &ldquo;Pending Payment&rdquo; tab (orange) for flagged-state orders awaiting payment. Amber highlight for new paid orders. CSV export and batch label printing.</div>
       </div>
     </a>
 
     <a class="wf-link" href="wireframes/wireframe-14-admin-order-detail.html">
-      <span class="wf-num confirmed">WF 14</span>
+      <span class="wf-num revised">WF 14</span>
       <div class="wf-info">
-        <div class="wf-title">Admin Order Detail</div>
-        <div class="wf-desc">Full order view with local pickup indicator, preferred ship date, coupon discount line, plant thumbnails, status controls, tracking entry, and separate fulfillment actions for shipped vs. pickup orders.</div>
+        <div class="wf-title">Admin Order Detail <span class="wf-badge badge-revised">Updated</span></div>
+        <div class="wf-desc">Full order view with status controls, plant thumbnails, and coupon line. New orange &ldquo;Send Payment Link&rdquo; panel for pending-payment orders: enter confirmed shipping, send secure payment link to customer. Carrier dropdown (USPS, UPS, FedEx, Other) added to tracking entry.</div>
       </div>
     </a>
 
