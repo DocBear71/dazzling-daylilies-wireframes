@@ -80,10 +80,12 @@
     background: #f5f5f5; border-radius: 4px; padding: 3px 8px;
     white-space: nowrap; flex-shrink: 0; margin-top: 2px; font-family: monospace;
   }
-  .wf-num.confirmed  { background: #d5f5e3; color: #1a5c2a; }
-  .wf-num.revised    { background: #eef5fb; color: #4a90d9; }
-  .wf-num.pending-wf { background: #fff8e0; color: #8a6000; }
-  .wf-num.doc        { background: #f5f0fb; color: #7a3a9a; }
+  .wf-num.confirmed         { background: #d5f5e3; color: #1a5c2a; }
+  .wf-num.approved-updated  { background: #d5f5e3; color: #1a5c2a; border: 1px solid #6abf6a; }
+  .wf-num.revised           { background: #eef5fb; color: #4a90d9; }
+  .wf-num.awaiting          { background: #fff8e0; color: #8a6000; }
+  .wf-num.pending-wf        { background: #fff8e0; color: #8a6000; }
+  .wf-num.doc               { background: #f5f0fb; color: #7a3a9a; }
 
   .wf-info {}
   .wf-title { font-size: 14px; font-weight: 700; color: #222; margin-bottom: 3px; line-height: 1.3; }
@@ -94,10 +96,12 @@
     border-radius: 8px; margin-left: 6px; vertical-align: middle;
     text-transform: uppercase; letter-spacing: 0.04em;
   }
-  .badge-confirmed { background: #d5f5e3; color: #1a5c2a; }
-  .badge-revised   { background: #d6eaf8; color: #1a5276; }
-  .badge-pending   { background: #fff8e0; color: #8a6000; }
-  .badge-new       { background: #d5f5e3; color: #1a5c2a; }
+  .badge-confirmed        { background: #d5f5e3; color: #1a5c2a; }
+  .badge-approved-updated { background: #d5f5e3; color: #1a5c2a; border: 1px solid #6abf6a; }
+  .badge-revised          { background: #d6eaf8; color: #1a5276; }
+  .badge-awaiting         { background: #fff8e0; color: #8a6000; }
+  .badge-pending          { background: #fff8e0; color: #8a6000; }
+  .badge-new              { background: #fde8c8; color: #7a3c00; }
 
   .new-features-box {
     background: #f0faf4; border: 1px solid #a8ddb8; border-radius: 6px;
@@ -147,6 +151,13 @@
     <p>
       The homepage header layout decision is still needed. Please review WF01A and WF01B
       below and use the approval form on your preferred version to let Edward know your choice.
+    </p>
+    <p style="margin-top:10px;padding-top:10px;border-top:1px solid #c0d8f0;">
+      <strong>Badge guide:</strong>
+      <span style="display:inline-block;background:#d5f5e3;color:#1a5c2a;font-size:11px;font-weight:700;padding:1px 7px;border-radius:8px;margin:0 4px;">Approved</span> Jean approved as shown &nbsp;&bull;&nbsp;
+      <span style="display:inline-block;background:#d5f5e3;color:#1a5c2a;border:1px solid #6abf6a;font-size:11px;font-weight:700;padding:1px 7px;border-radius:8px;margin:0 4px;">Approved with Updates</span> Jean approved after changes &nbsp;&bull;&nbsp;
+      <span style="display:inline-block;background:#fff8e0;color:#8a6000;font-size:11px;font-weight:700;padding:1px 7px;border-radius:8px;margin:0 4px;">Awaiting Re-Approval</span> Updated, needs Jean&rsquo;s review &nbsp;&bull;&nbsp;
+      <span style="display:inline-block;background:#fde8c8;color:#7a3c00;font-size:11px;font-weight:700;padding:1px 7px;border-radius:8px;margin:0 4px;">New</span> New page added
     </p>
   </div>
 </div>
@@ -215,9 +226,9 @@
     </a>
 
     <a class="wf-link" href="wireframes/wireframe-02-catalog.html">
-      <span class="wf-num confirmed">WF 02</span>
+      <span class="wf-num approved-updated">WF 02</span>
       <div class="wf-info">
-        <div class="wf-title">Catalog Page</div>
+        <div class="wf-title">Catalog Page <span class="wf-badge badge-approved-updated">Approved with Updates</span></div>
         <div class="wf-desc">Main browsing page. Collapsible filter sidebar, 4-column grid with abbreviated plant info, alphabet jump bar for navigation within the selected tab. Sold-out badge shown on unavailable plants.</div>
       </div>
     </a>
@@ -236,7 +247,7 @@
     <a class="wf-link" href="wireframes/wireframe-03-revised-plant-detail.html">
       <span class="wf-num confirmed">WF 03</span>
       <div class="wf-info">
-        <div class="wf-title">Plant Detail Page </div>
+        <div class="wf-title">Plant Detail Page <span class="wf-badge badge-confirmed">Approved</span></div>
         <div class="wf-desc">Two-column layout: photos left, plant info right. Abbreviated attribute display (e.g. 5.5&quot; Dor Tet M FR Re 28&quot;), abbreviation key, DF/SF fan size, quantity selector, Coordinated Flowers grid, and collection panel. Updated per your confirmed decisions.</div>
       </div>
     </a>
@@ -251,7 +262,7 @@
     <a class="wf-link" href="wireframes/wireframe-03b-bundle-page.html">
       <span class="wf-num confirmed">WF 03b</span>
       <div class="wf-info">
-        <div class="wf-title">Collection Detail Page</div>
+        <div class="wf-title">Collection Detail Page <span class="wf-badge badge-confirmed">Approved</span></div>
         <div class="wf-desc">Individual collection page. collection price with automatic savings display, optional description, component plant list, Add Collection to Cart button. collection panel appears after the Coordinated Flowers grid.</div>
       </div>
     </a>
@@ -259,7 +270,7 @@
     <a class="wf-link" href="wireframes/wireframe-03c-bundles-page.html">
       <span class="wf-num confirmed">WF 03c</span>
       <div class="wf-info">
-        <div class="wf-title">Collections Catalog Page</div>
+        <div class="wf-title">Collections Catalog Page <span class="wf-badge badge-confirmed">Approved</span></div>
         <div class="wf-desc">Browsing page for all available collections. Two-row photo grid for 7 and 9-plant collections. &ldquo;Curated with&rdquo; anchor plant shown. Direct Add Collection to Cart button on each card.</div>
       </div>
     </a>
@@ -274,15 +285,15 @@
     <a class="wf-link" href="wireframes/wireframe-04-cart.html">
       <span class="wf-num confirmed">WF 04</span>
       <div class="wf-info">
-        <div class="wf-title">Cart Page</div>
+        <div class="wf-title">Cart Page <span class="wf-badge badge-confirmed">Approved</span></div>
         <div class="wf-desc">Shopping cart with quantity controls, shipping estimate, and browse-catalog prompt when empty. Customers can order multiple fans of the same plant.</div>
       </div>
     </a>
 
     <a class="wf-link" href="wireframes/wireframe-05-checkout.html">
-      <span class="wf-num revised">WF 05</span>
+      <span class="wf-num awaiting">WF 05</span>
       <div class="wf-info">
-        <div class="wf-title">Checkout Page <span class="wf-badge badge-revised">Updated</span></div>
+        <div class="wf-title">Checkout Page <span class="wf-badge badge-awaiting">Awaiting Re-Approval</span></div>
         <div class="wf-desc">Updated with local pickup toggle, delivery method selector, preferred ship date, and coupon code. Flagged states (AZ, FL, TX) now show a &ldquo;Request Order&rdquo; button with no charge taken. Customer pays later via a payment link Jean sends after confirming shipping cost.</div>
       </div>
     </a>
@@ -296,17 +307,17 @@
     </a>
 
     <a class="wf-link" href="wireframes/wireframe-06-order-confirmation.html">
-      <span class="wf-num revised">WF 06</span>
+      <span class="wf-num approved-updated">WF 06</span>
       <div class="wf-info">
-        <div class="wf-title">Order Confirmation Page <span class="wf-badge badge-revised">Updated</span></div>
+        <div class="wf-title">Order Confirmation Page <span class="wf-badge badge-approved-updated">Approved with Updates</span></div>
         <div class="wf-desc">Thank-you page after a successful order. New variation added for flagged-state orders showing &ldquo;Your Order Has Been Received&rdquo; with a payment pending notice and What Happens Next explanation. Care instructions removed from step 3.</div>
       </div>
     </a>
 
     <a class="wf-link" href="wireframes/wireframe-07-order-status.html">
-      <span class="wf-num revised">WF 07</span>
+      <span class="wf-num awaiting">WF 07</span>
       <div class="wf-info">
-        <div class="wf-title">Order Status Page <span class="wf-badge badge-revised">Updated</span></div>
+        <div class="wf-title">Order Status Page <span class="wf-badge badge-awaiting">Awaiting Re-Approval</span></div>
         <div class="wf-desc">Order lookup by order number plus email. Three-step status tracker ending at Shipped. Carrier-aware tracking: Jean selects USPS, UPS, FedEx, or Other in admin and the correct tracking link appears automatically for the customer.</div>
       </div>
     </a>
@@ -318,9 +329,9 @@
 
   <div class="link-grid single">
     <a class="wf-link" href="wireframes/wireframe-08-shipping-info.html">
-      <span class="wf-num confirmed">WF 08</span>
+      <span class="wf-num approved-updated">WF 08</span>
       <div class="wf-info">
-        <div class="wf-title">Shipping Information Page</div>
+        <div class="wf-title">Shipping Information Page <span class="wf-badge badge-approved-updated">Approved with Updates</span></div>
         <div class="wf-desc">Shipping rates, season dates (with individual line toggles for each plant type), state restrictions, bare-root care instructions, and admin-managed FAQ section. All rates and dates pull from your Settings automatically. California moved to the hard-blocked list.</div>
       </div>
     </a>
@@ -336,9 +347,9 @@
   <div class="link-grid">
 
     <a class="wf-link" href="wireframes/wireframe-09-admin-dashboard.html">
-      <span class="wf-num revised">WF 09</span>
+      <span class="wf-num awaiting">WF 09</span>
       <div class="wf-info">
-        <div class="wf-title">Admin Dashboard <span class="wf-badge badge-revised">Updated</span></div>
+        <div class="wf-title">Admin Dashboard <span class="wf-badge badge-awaiting">Awaiting Re-Approval</span></div>
         <div class="wf-desc">Your home screen after logging in. New &ldquo;Pending Payment&rdquo; stat card (orange) shows flagged-state orders awaiting payment. Reminder added for orders needing a payment link sent.</div>
       </div>
     </a>
@@ -368,17 +379,17 @@
     </a>
 
     <a class="wf-link" href="wireframes/wireframe-13-admin-orders-list.html">
-      <span class="wf-num revised">WF 13</span>
+      <span class="wf-num awaiting">WF 13</span>
       <div class="wf-info">
-        <div class="wf-title">Admin Orders List <span class="wf-badge badge-revised">Updated</span></div>
+        <div class="wf-title">Admin Orders List <span class="wf-badge badge-awaiting">Awaiting Re-Approval</span></div>
         <div class="wf-desc">All orders with status tabs, search, and filters. New &ldquo;Pending Payment&rdquo; tab (orange) for flagged-state orders awaiting payment. Amber highlight for new paid orders. CSV export and batch label printing.</div>
       </div>
     </a>
 
     <a class="wf-link" href="wireframes/wireframe-14-admin-order-detail.html">
-      <span class="wf-num revised">WF 14</span>
+      <span class="wf-num awaiting">WF 14</span>
       <div class="wf-info">
-        <div class="wf-title">Admin Order Detail <span class="wf-badge badge-revised">Updated</span></div>
+        <div class="wf-title">Admin Order Detail <span class="wf-badge badge-awaiting">Awaiting Re-Approval</span></div>
         <div class="wf-desc">Full order view with status controls, plant thumbnails, and coupon line. New orange &ldquo;Send Payment Link&rdquo; panel for pending-payment orders: enter confirmed shipping, send secure payment link to customer. Carrier dropdown (USPS, UPS, FedEx, Other) added to tracking entry.</div>
       </div>
     </a>
