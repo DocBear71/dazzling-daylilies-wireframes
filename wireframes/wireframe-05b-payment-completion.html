@@ -412,36 +412,27 @@
 
 
 <!-- APPROVAL FORM -->
-<div class="approval-form-wrap">
-  <div class="approval-form-heading">Your Response on WF05B (Payment Completion Page)</div>
-  <div class="approval-form-desc">
-    Please review the wireframe above and let Edward know if this page looks right for
-    the flagged-state payment flow, or if you would like any changes.
+<!-- APPROVED - form removed -->
+<div style="
+  max-width: 860px;
+  margin: 40px auto 0;
+  padding: 32px 32px 40px;
+  background: #f0faf4;
+  border-top: 3px solid #27ae60;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+">
+  <div style="
+    display: inline-block;
+    border: 3px solid #27ae60;
+    border-radius: 8px;
+    padding: 20px 40px;
+  ">
+    <div style="font-size: 32px; color: #27ae60; margin-bottom: 8px;">&#10003;</div>
+    <div style="font-size: 22px; font-weight: 700; color: #1a5c2a; margin-bottom: 6px;">Approved</div>
+    <div style="font-size: 14px; color: #555; margin-bottom: 4px;">WF05B &mdash; Payment Completion Page</div>
+    <div style="font-size: 13px; color: #888;">Approved by Jean &bull; June 9, 2026</div>
   </div>
-  <form action="https://formspree.io/f/mvzyrrrv" method="POST">
-    <input type="hidden" name="wireframe" value="WF05B - Payment Completion Page">
-    <div class="form-group">
-      <label class="form-label">Your Name</label>
-      <input type="text" name="reviewer_name" class="form-input" placeholder="Jean">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Approval Status</label>
-      <div class="radio-group">
-        <label class="radio-option">
-          <input type="radio" name="approval_status" value="Approved"> Approved as shown
-        </label>
-        <label class="radio-option">
-          <input type="radio" name="approval_status" value="Changes Needed"> Changes needed
-        </label>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="form-label">Comments or Changes Requested</label>
-      <textarea name="general_comments" class="form-textarea"
-        placeholder="If you selected Changes Needed, please describe what you would like changed."></textarea>
-    </div>
-    <button type="submit" class="submit-btn">Send My Response</button>
-  </form>
 </div>
 
 </body>
