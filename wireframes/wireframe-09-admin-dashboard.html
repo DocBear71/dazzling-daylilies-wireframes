@@ -978,139 +978,29 @@
 
 
   <!-- APPROVAL FORM -->
-  <div class="approval-form-wrap">
-    <div class="approval-form-heading">Wireframe Approval: WF09 &mdash; Admin Dashboard</div>
-    <p class="approval-form-desc">
-      Please review the wireframe above and the notes on this page, then let Edward know
-      whether this page is approved as shown or whether you would like changes made before
-      the build begins. Your response goes directly to Edward by email.
-    </p>
-
-    <form id="approval-form-wf09">
-      <input type="hidden" name="_subject" value="WF09 Admin Dashboard Approval - Dazzling Daylilies">
-      <input type="hidden" name="wireframe" value="WF09 - Admin Dashboard">
-      <input type="hidden" name="approval_status" id="h-approval-approval-form-wf09">
-      <input type="hidden" name="change_reason"   id="h-reason-approval-form-wf09">
-      <input type="hidden" name="general_comments" id="h-comments-approval-form-wf09">
-
-      <div class="approval-radio-group">
-        <label class="approval-radio-label approved">
-          <input type="radio" name="approval_choice" value="Approved" id="radio-approved-approval-form-wf09">
-          <span class="approved-text">&#10003;&nbsp; Approved &mdash; looks great!</span>
-        </label>
-        <label class="approval-radio-label changes">
-          <input type="radio" name="approval_choice" value="Changes Needed" id="radio-changes-approval-form-wf09">
-          <span class="changes-text">&#9998;&nbsp; Changes Needed</span>
-        </label>
-      </div>
-
-      <div class="reason-field" id="reason-field-approval-form-wf09">
-        <label class="approval-label" for="textarea-reason-approval-form-wf09">
-          What would you like changed? (required)
-        </label>
-        <textarea class="approval-textarea" id="textarea-reason-approval-form-wf09"
-          placeholder="Please describe what you would like adjusted on this page..."></textarea>
-      </div>
-
-      <div style="margin-bottom: 20px;">
-        <label class="approval-label" for="textarea-comments-approval-form-wf09">
-          Any other comments or questions? (optional)
-        </label>
-        <textarea class="approval-textarea" id="textarea-comments-approval-form-wf09"
-          placeholder="Any other thoughts, questions, or notes for Edward..."></textarea>
-      </div>
-
-      <div class="approval-name-row">
-        <div class="approval-name-field">
-          <label for="name-approval-form-wf09">Your Name</label>
-          <input type="text" id="name-approval-form-wf09" name="reviewer_name" value="Jean" placeholder="Your name">
-        </div>
-        <div class="approval-name-field">
-          <label for="email-approval-form-wf09">Your Email (so Edward can reply)</label>
-          <input type="email" id="email-approval-form-wf09" name="email" placeholder="dazzlingdaylilies@yahoo.com">
-        </div>
-      </div>
-
-      <button type="submit" class="approval-submit-btn">Send My Response &rarr;</button>
-      <p class="approval-submit-note">Your response is sent directly and securely to Edward. This page does not store any personal information.</p>
-
-      <div class="approval-success" id="success-approval-form-wf09">
-        <strong>Thank you, Jean!</strong>
-        Your response on WF09 (Admin Dashboard) has been sent to Edward successfully.
-        You can now close this tab or continue reviewing other wireframes from the main review page.
-      </div>
-      <div class="approval-error" id="error-approval-form-wf09">
-        Something went wrong. Please try again, or email Edward directly at
-        <a href="mailto:edward@docbear-ent.com">edward@docbear-ent.com</a> with your notes.
-      </div>
-    </form>
-  </div><!-- /.approval-form-wrap -->
-
-</div><!-- /.annotations -->
-
-<script>
-(function() {
-  var form     = document.getElementById('approval-form-wf09');
-  if (!form) return;
-
-  var radios   = form.querySelectorAll('input[type="radio"]');
-  var reasonFld = document.getElementById('reason-field-approval-form-wf09');
-  var reasonTA  = document.getElementById('textarea-reason-approval-form-wf09');
-
-  radios.forEach(function(r) {
-    r.addEventListener('change', function() {
-      if (r.value === 'Changes Needed' && r.checked) {
-        reasonFld.classList.add('visible');
-        reasonTA.required = true;
-      } else {
-        reasonFld.classList.remove('visible');
-        reasonTA.required = false;
-      }
-    });
-  });
-
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    var chosen = form.querySelector('input[name="approval_choice"]:checked');
-    if (!chosen) {
-      alert('Please select Approved or Changes Needed before sending.');
-      return;
-    }
-    if (chosen.value === 'Changes Needed' && !reasonTA.value.trim()) {
-      reasonTA.focus();
-      alert('Please describe what you would like changed.');
-      return;
-    }
-
-    document.getElementById('h-approval-approval-form-wf09').value = chosen.value;
-    document.getElementById('h-reason-approval-form-wf09').value   = reasonTA.value.trim() || '(no changes requested)';
-    document.getElementById('h-comments-approval-form-wf09').value = document.getElementById('textarea-comments-approval-form-wf09').value.trim() || '(none)';
-
-    var btn = form.querySelector('.approval-submit-btn');
-    btn.textContent = 'Sending...';
-    btn.disabled = true;
-
-    fetch('https://formspree.io/f/mvzyrrrv', {
-      method: 'POST',
-      body: new FormData(form),
-      headers: { 'Accept': 'application/json' }
-    })
-    .then(function(r) {
-      if (r.ok) {
-        document.getElementById('success-approval-form-wf09').style.display = 'block';
-        document.getElementById('success-approval-form-wf09').scrollIntoView({ behavior: 'smooth' });
-        btn.textContent = 'Response Sent';
-      } else { throw new Error(); }
-    })
-    .catch(function() {
-      document.getElementById('error-approval-form-wf09').style.display = 'block';
-      btn.textContent = 'Send My Response →';
-      btn.disabled = false;
-    });
-  });
-})();
-</script>
+  <!-- APPROVED - form removed -->
+<div style="
+  max-width: 860px;
+  margin: 40px auto 0;
+  padding: 32px 32px 40px;
+  background: #f0faf4;
+  border-top: 3px solid #27ae60;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+">
+  <div style="
+    display: inline-block;
+    border: 3px solid #27ae60;
+    border-radius: 8px;
+    padding: 20px 40px;
+  ">
+    <div style="font-size: 32px; color: #27ae60; margin-bottom: 8px;">&#10003;</div>
+    <div style="font-size: 22px; font-weight: 700; color: #1a5c2a; margin-bottom: 6px;">Approved</div>
+    <div style="font-size: 14px; color: #555; margin-bottom: 4px;">WF09 &mdash; Admin Dashboard</div>
+    <div style="font-size: 13px; color: #888;">Approved by Jean &bull; June 14, 2026</div>
+    
+  </div>
+</div>
 
 </body>
 </html>
