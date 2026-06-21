@@ -96,13 +96,12 @@
     background: #f5f5f5;
     border-bottom: 1px solid #e0e0e0;
     padding: 12px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
   }
-  .ra-label {
-    font-size: 9px; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.12em;
-    color: #aaa; margin-bottom: 5px;
-  }
-  .ra-business { font-size: 13px; font-weight: 700; color: #222; margin-bottom: 2px; }
+  .ra-logo { display: block; height: 52px; width: auto; }
   .ra-address { font-size: 12px; color: #555; line-height: 1.5; }
 
   .label-center {
@@ -406,11 +405,10 @@
   <!-- Label: basic (no tracking number yet) -->
   <div class="label-canvas">
     <div class="return-address-strip">
-      <div class="ra-label">From</div>
-      <div class="ra-business">Dazzling Daylilies &nbsp;&bull;&nbsp; Jean [ Last Name ]</div>
+      <img src="../NewBeginningLogoForJean.png" alt="Dazzling Daylilies" class="ra-logo">
       <div class="ra-address">
-        [ Jean's street address ]<br>
-        Fairfax, IA &nbsp;[ ZIP ]
+        11247 Scotch Grove Lane<br>
+        Fairfax, IA &nbsp;52228
       </div>
     </div>
     <div class="label-center">
@@ -462,11 +460,10 @@
   <div class="variation-label">Variation: Label with USPS Tracking Number Pre-Printed</div>
   <div class="label-canvas">
     <div class="return-address-strip">
-      <div class="ra-label">From</div>
-      <div class="ra-business">Dazzling Daylilies &nbsp;&bull;&nbsp; Jean [ Last Name ]</div>
+      <img src="../NewBeginningLogoForJean.png" alt="Dazzling Daylilies" class="ra-logo">
       <div class="ra-address">
-        [ Jean's street address ]<br>
-        Fairfax, IA &nbsp;[ ZIP ]
+        11247 Scotch Grove Lane<br>
+        Fairfax, IA &nbsp;52228
       </div>
     </div>
     <div class="label-center">
@@ -587,7 +584,7 @@
     <div class="avery-label selected">
       <div class="al-from">
         <span class="al-from-biz">Dazzling Daylilies</span>
-        <span class="al-from-addr">Jean Stallman &bull; 11247 Scotch Grove Ln &bull; Fairfax, IA 52228</span>
+        <span class="al-from-addr">11247 Scotch Grove Lane &bull; Fairfax, IA 52228</span>
       </div>
       <div class="al-to-name">Linda Sorensen</div>
       <div class="al-to-addr">4821 Bluebonnet Trail<br>Austin, TX &nbsp;78704</div>
@@ -598,7 +595,7 @@
     <div class="avery-label selected">
       <div class="al-from">
         <span class="al-from-biz">Dazzling Daylilies</span>
-        <span class="al-from-addr">Jean Stallman &bull; 11247 Scotch Grove Ln &bull; Fairfax, IA 52228</span>
+        <span class="al-from-addr">11247 Scotch Grove Lane &bull; Fairfax, IA 52228</span>
       </div>
       <div class="al-to-name">Robert Kaminski</div>
       <div class="al-to-addr">992 Aspen Ridge Drive<br>Denver, CO &nbsp;80203</div>
@@ -610,7 +607,7 @@
     <div class="avery-label selected">
       <div class="al-from">
         <span class="al-from-biz">Dazzling Daylilies</span>
-        <span class="al-from-addr">Jean Stallman &bull; 11247 Scotch Grove Ln &bull; Fairfax, IA 52228</span>
+        <span class="al-from-addr">11247 Scotch Grove Lane &bull; Fairfax, IA 52228</span>
       </div>
       <div class="al-to-name">Patricia Walsh</div>
       <div class="al-to-addr">317 Cedarwood Court<br>Nashville, TN &nbsp;37201</div>
@@ -651,9 +648,9 @@
     </div>
 
   <div class="ann-item">
-    <strong>Return Address Strip (top)</strong>
-    <p>Grey background to visually distinguish the from-address from the to-address. Shows Jean's business name and full return address. The business name is shown as "Dazzling Daylilies &bull; Jean [ Last Name ]" as a placeholder. Jean should confirm how she wants her name to appear: business name only, or business name and personal name.</p>
-    </div>
+    <strong>Return Address</strong>
+    <p>The logo appears at the top of the return address section, above the street address. Return address confirmed as: 11247 Scotch Grove Lane, Fairfax, IA 52228. Jean's personal name is not included on the label; she signs the order sheet by hand. The logo serves as the brand identifier.</p>
+  </div>
 
   <div class="ann-item">
     <strong>To Address (main body)</strong>
@@ -681,8 +678,8 @@
   </div>
 
   <div class="ann-item">
-    <strong>Print Setup Instructions for Jean</strong>
-    <p>Jean should set her print dialog to: Paper/label size 4 x 6 inches, no scaling (100%), no margins, landscape or portrait depending on her label printer. "Fit to page" must be off or the label will scale down and addresses may print too small. These exact steps will appear in the admin guide for Jean with screenshots if possible.</p>
+    <strong>Print Setup</strong>
+    <p>Jean confirmed she will use her own inkjet or laser printer with Avery label sheets. Individual labels use Avery 4x6 sheet stock; batch labels use Avery 5163 (2x4 inch, 10 per sheet). Print dialog settings: paper size 4x6 (individual) or 8.5x11 (batch), no scaling (100%), no margins, fit-to-page off. These exact steps will appear in the admin guide with screenshots.</p>
   </div>
 
   <div class="ann-item">
@@ -696,10 +693,13 @@
 <!-- FEEDBACK INTRO -->
 <div class="approval-intro">
   <h2>Updated: WF17 &mdash; Shipping Label</h2>
-  <p>Hi Jean! Edward has made the change you requested. Here is a summary of what was updated. Please review the wireframe above and use the form below to let Edward know whether everything looks right now.</p>
+  <p>Hi Jean! Edward has made all three changes you requested. Here is a summary. Please review the wireframe above and use the form below to let Edward know whether everything looks right now.</p>
   <ul style="margin:12px 0 0 20px;font-size:14px;line-height:1.7;">
-    <li><strong>Individual label view restored:</strong> The single 4&Prime; &times; 6&Prime; label (basic and tracking variation) now appears at the top of the page, so you can see exactly what prints for one order. The Dymo or Rollo label printer will use this format.</li>
-    <li><strong>Batch Avery sheet:</strong> The 10-label Avery 5163 sheet view is still below for printing multiple labels at once.</li>
+    <li><strong>Logo added to return address:</strong> The Dazzling Daylilies logo now appears at the top of the return address section on the label, above the street address.</li>
+    <li><strong>Real return address filled in:</strong> 11247 Scotch Grove Lane, Fairfax, IA 52228.</li>
+    <li><strong>Name removed:</strong> The return address shows the business name (via logo) and address only. Jean's personal name has been removed since she signs the order sheet by hand.</li>
+    <li><strong>Avery labels updated:</strong> The batch sheet mini-labels reflect the same changes.</li>
+    <li><strong>Noted:</strong> Jean will use her own printer with Avery label sheets. Print setup instructions in the admin guide will be written for that workflow.</li>
   </ul>
 </div>
 <div class="annotations">
