@@ -53,6 +53,110 @@
 
 
   /* ── Batch controls ──────────────────────────────────────────── */
+  /* ============================================================
+     INDIVIDUAL LABEL SECTION heading
+  ============================================================ */
+  .section-heading {
+    max-width: 860px;
+    margin: 32px auto 8px;
+    padding: 0 24px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a2a3a;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 10px;
+  }
+  .section-subhead {
+    max-width: 860px;
+    margin: 0 auto 24px;
+    padding: 0 24px;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  /* ============================================================
+     LABEL CANVAS: 4 x 6 inch label at 96dpi = 384 x 576px
+     Displayed slightly larger for screen readability.
+  ============================================================ */
+  .label-canvas {
+    background: #fff;
+    width: 480px;
+    min-height: 720px;
+    margin: 0 auto;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .return-address-strip {
+    background: #f5f5f5;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 12px 20px;
+  }
+  .ra-label {
+    font-size: 9px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: #aaa; margin-bottom: 5px;
+  }
+  .ra-business { font-size: 13px; font-weight: 700; color: #222; margin-bottom: 2px; }
+  .ra-address { font-size: 12px; color: #555; line-height: 1.5; }
+
+  .label-center {
+    flex: 1; padding: 24px 20px 20px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .to-label {
+    font-size: 9px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: #aaa; margin-bottom: 10px;
+  }
+  .to-name { font-size: 22px; font-weight: 700; color: #222; margin-bottom: 6px; line-height: 1.2; }
+  .to-address-line { font-size: 16px; color: #333; line-height: 1.6; }
+
+  .label-divider { border: none; border-top: 1px solid #ddd; margin: 16px 0; }
+
+  .order-ref { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .order-ref-label {
+    font-size: 9px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: #aaa; margin-bottom: 4px;
+  }
+  .order-ref-num { font-size: 16px; font-weight: 700; color: #222; letter-spacing: 0.02em; }
+  .order-ref-date { font-size: 11px; color: #888; margin-top: 2px; }
+
+  .barcode-placeholder {
+    width: 100px; height: 48px; background: #e8e8e8;
+    border: 1px dashed #bbb; border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 3px;
+  }
+  .barcode-lines { display: flex; gap: 2px; align-items: flex-end; height: 24px; }
+  .b-line { width: 2px; background: #aaa; border-radius: 1px; }
+  .barcode-note { font-size: 8px; color: #bbb; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+
+  .tracking-section { margin-top: 0; padding: 10px 20px; background: #f5f5f5; border-top: 1px solid #e0e0e0; }
+  .tracking-ref-label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #aaa; margin-bottom: 4px; }
+  .tracking-num-display { font-size: 12px; font-weight: 700; color: #333; font-family: monospace; letter-spacing: 0.06em; }
+
+  .live-plants-strip {
+    background: #d5f5e3; border-top: 2px solid #6abf6a;
+    padding: 10px 20px; display: flex; align-items: center; gap: 10px;
+  }
+  .live-plants-icon { font-size: 20px; flex-shrink: 0; }
+  .live-plants-text { font-size: 14px; font-weight: 700; color: #1a5c1a; }
+  .live-plants-sub { font-size: 11px; color: #2d8a2d; }
+
+  .variation-label {
+    max-width: 480px; margin: 32px auto 12px;
+    font-size: 12px; font-weight: 700; color: #888;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    text-align: center;
+  }
+
   .batch-controls {
     background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 6px;
     padding: 24px 28px; margin-bottom: 28px;
@@ -292,6 +396,135 @@
     </p>
   </div>
 
+  <!-- INDIVIDUAL LABEL: Single label view -->
+  <div class="section-heading">Individual Label: Single Order</div>
+  <p class="section-subhead">
+    This is what prints when Jean clicks "Print Shipping Label" on a single order.
+    Formatted for a 4&Prime; &times; 6&Prime; label (Dymo, Rollo, or Avery 4x6 sheet stock).
+  </p>
+
+  <!-- Label: basic (no tracking number yet) -->
+  <div class="label-canvas">
+    <div class="return-address-strip">
+      <div class="ra-label">From</div>
+      <div class="ra-business">Dazzling Daylilies &nbsp;&bull;&nbsp; Jean [ Last Name ]</div>
+      <div class="ra-address">
+        [ Jean's street address ]<br>
+        Fairfax, IA &nbsp;[ ZIP ]
+      </div>
+    </div>
+    <div class="label-center">
+      <div class="to-section">
+        <div class="to-label">Ship To</div>
+        <div class="to-name">Linda Sorensen</div>
+        <div class="to-address-line">
+          4821 Bluebonnet Trail<br>
+          Austin, TX &nbsp;78704
+        </div>
+      </div>
+      <hr class="label-divider">
+      <div class="order-ref">
+        <div class="order-ref-left">
+          <div class="order-ref-label">Order Reference</div>
+          <div class="order-ref-num">DD-2027-0036</div>
+          <div class="order-ref-date">May 19, 2027</div>
+        </div>
+        <div class="barcode-placeholder">
+          <div class="barcode-lines">
+            <div class="b-line" style="height:100%;"></div>
+            <div class="b-line" style="height:80%;"></div>
+            <div class="b-line" style="height:100%;"></div>
+            <div class="b-line" style="height:60%;"></div>
+            <div class="b-line" style="height:100%;"></div>
+            <div class="b-line" style="height:80%;"></div>
+            <div class="b-line" style="height:100%;"></div>
+            <div class="b-line" style="height:70%;"></div>
+            <div class="b-line" style="height:100%;"></div>
+            <div class="b-line" style="height:90%;"></div>
+            <div class="b-line" style="height:100%;"></div>
+            <div class="b-line" style="height:65%;"></div>
+            <div class="b-line" style="height:100%;"></div>
+          </div>
+          <div class="barcode-note">[ barcode ]</div>
+        </div>
+      </div>
+    </div>
+    <div class="live-plants-strip">
+      <div class="live-plants-icon">&#127807;</div>
+      <div>
+        <div class="live-plants-text">Live Plants</div>
+        <div class="live-plants-sub">Open promptly &bull; Do not leave in heat or cold</div>
+      </div>
+    </div>
+  </div><!-- /.label-canvas -->
+
+  <!-- Variation: label with tracking number -->
+  <div class="variation-label">Variation: Label with USPS Tracking Number Pre-Printed</div>
+  <div class="label-canvas">
+    <div class="return-address-strip">
+      <div class="ra-label">From</div>
+      <div class="ra-business">Dazzling Daylilies &nbsp;&bull;&nbsp; Jean [ Last Name ]</div>
+      <div class="ra-address">
+        [ Jean's street address ]<br>
+        Fairfax, IA &nbsp;[ ZIP ]
+      </div>
+    </div>
+    <div class="label-center">
+      <div class="to-section">
+        <div class="to-label">Ship To</div>
+        <div class="to-name">Linda Sorensen</div>
+        <div class="to-address-line">
+          4821 Bluebonnet Trail<br>
+          Austin, TX &nbsp;78704
+        </div>
+      </div>
+      <hr class="label-divider">
+      <div class="order-ref">
+        <div class="order-ref-left">
+          <div class="order-ref-label">Order Reference</div>
+          <div class="order-ref-num">DD-2027-0036</div>
+          <div class="order-ref-date">May 19, 2027</div>
+        </div>
+        <div class="barcode-placeholder">
+          <div class="barcode-lines">
+            <div class="b-line" style="height:100%;"></div>
+            <div class="b-line" style="height:80%;"></div>
+            <div class="b-line" style="height:100%;"></div>
+            <div class="b-line" style="height:60%;"></div>
+            <div class="b-line" style="height:100%;"></div>
+            <div class="b-line" style="height:80%;"></div>
+            <div class="b-line" style="height:100%;"></div>
+            <div class="b-line" style="height:70%;"></div>
+            <div class="b-line" style="height:100%;"></div>
+            <div class="b-line" style="height:90%;"></div>
+            <div class="b-line" style="height:100%;"></div>
+            <div class="b-line" style="height:65%;"></div>
+            <div class="b-line" style="height:100%;"></div>
+          </div>
+          <div class="barcode-note">[ barcode ]</div>
+        </div>
+      </div>
+    </div>
+    <div class="tracking-section">
+      <div class="tracking-ref-label">USPS Tracking</div>
+      <div class="tracking-num-display">9400111899223756430891</div>
+    </div>
+    <div class="live-plants-strip">
+      <div class="live-plants-icon">&#127807;</div>
+      <div>
+        <div class="live-plants-text">Live Plants</div>
+        <div class="live-plants-sub">Open promptly &bull; Do not leave in heat or cold</div>
+      </div>
+    </div>
+  </div><!-- /.label-canvas (with tracking) -->
+
+  <!-- BATCH LABEL SECTION heading -->
+  <div class="section-heading" style="margin-top:56px;">Batch Labels: Avery 5163 Sheet (10 labels)</div>
+  <p class="section-subhead">
+    For printing multiple labels at once. Select orders below, then click Print Labels.
+    All selected labels print on one Avery 5163 sheet (2 columns &times; 5 rows).
+  </p>
+
   <!-- BATCH ORDER SELECTION -->
   <div class="batch-controls">
     <div class="batch-controls-heading">Select Orders to Print</div>
@@ -462,29 +695,28 @@
 
 <!-- FEEDBACK INTRO -->
 <div class="approval-intro">
-  <h2>Wireframe Notes: WF17 &mdash; Shipping Label</h2>
-  <p>Hi Jean! The notes below explain what each part of this page does and confirm
-    the decisions we have already made together. When you have finished reading,
-    please use the <strong>Approval Form</strong> at the bottom of this page to let
-    Edward know whether the page looks right or whether you would like any changes.</p>
+  <h2>Updated: WF17 &mdash; Shipping Label</h2>
+  <p>Hi Jean! Edward has made the change you requested. Here is a summary of what was updated. Please review the wireframe above and use the form below to let Edward know whether everything looks right now.</p>
+  <ul style="margin:12px 0 0 20px;font-size:14px;line-height:1.7;">
+    <li><strong>Individual label view restored:</strong> The single 4&Prime; &times; 6&Prime; label (basic and tracking variation) now appears at the top of the page, so you can see exactly what prints for one order. The Dymo or Rollo label printer will use this format.</li>
+    <li><strong>Batch Avery sheet:</strong> The 10-label Avery 5163 sheet view is still below for printing multiple labels at once.</li>
+  </ul>
 </div>
 <div class="annotations">
   <div class="ann-section-inner">
-  <p style="color:#888;font-size:13px;padding:20px 0;">All decisions for this page have been confirmed. Please use the approval form below.</p>
+  <p style="color:#888;font-size:13px;padding:20px 0;">Changes applied June 21, 2026. Please re-approve using the form below.</p>
 </div>
-
 
   <!-- APPROVAL FORM -->
   <div class="approval-form-wrap">
-    <div class="approval-form-heading">Wireframe Approval: WF17 &mdash; Shipping Label</div>
+    <div class="approval-form-heading">Re-Approval: WF17 &mdash; Shipping Label</div>
     <p class="approval-form-desc">
-      Please review the wireframe above and the notes on this page, then let Edward know
-      whether this page is approved as shown or whether you would like changes made before
-      the build begins. Your response goes directly to Edward by email.
+      Edward has applied your requested change. Please review the wireframe above and let him know
+      whether it looks right now or whether you have additional changes.
     </p>
 
-    <form id="approval-form-wf17">
-      <input type="hidden" name="_subject" value="WF17 Shipping Label Approval - Dazzling Daylilies">
+    <form id="approval-form-wf17" action="https://formspree.io/f/mvzyrrrv" method="POST">
+      <input type="hidden" name="_subject" value="WF17 Shipping Label Re-Approval - Dazzling Daylilies">
       <input type="hidden" name="wireframe" value="WF17 - Shipping Label">
       <input type="hidden" name="approval_status" id="h-approval-approval-form-wf17">
       <input type="hidden" name="change_reason"   id="h-reason-approval-form-wf17">
