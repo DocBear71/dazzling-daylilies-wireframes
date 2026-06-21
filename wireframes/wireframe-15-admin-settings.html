@@ -371,7 +371,7 @@
 
   <!-- ADMIN TOP BAR -->
   <div class="admin-topbar">
-    <div class="admin-brand"><img src="../NewBeginningLogoForJean.png" alt="Dazzling Daylilies" style="height:60px;width:auto;vertical-align:middle;margin-top:20px;margin-right:10px;"><span>Admin</span></div>
+    <div class="admin-brand"><img src="../NewBeginningLogoForJean.png" alt="Dazzling Daylilies" style="height:44px;max-height:44px;width:auto;vertical-align:middle;margin-right:10px;"><span>Admin</span></div>
     <nav class="admin-nav">
       <a class="admin-nav-item" href="#">Dashboard</a>
       <a class="admin-nav-item" href="#">Plants</a>
@@ -642,6 +642,32 @@
 
             <div class="setting-row">
               <div class="setting-row-label">
+                <strong>Dahlias tab</strong>
+                <span>Show when Jean has dahlia varieties ready to sell.</span>
+              </div>
+              <div class="setting-row-control">
+                <div class="toggle-wrap">
+                  <div class="toggle off" title="Inactive"></div>
+                  <span class="toggle-text off">Inactive</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-row-label">
+                <strong>Japanese Iris tab</strong>
+                <span>Show when Jean has Japanese iris varieties ready to sell.</span>
+              </div>
+              <div class="setting-row-control">
+                <div class="toggle-wrap">
+                  <div class="toggle off" title="Inactive"></div>
+                  <span class="toggle-text off">Inactive</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-row-label">
                 <strong>Other Perennials tab</strong>
                 <span>Show when Jean has other perennial varieties ready to sell.</span>
               </div>
@@ -696,7 +722,7 @@ Jean will email you personally when your order ships with the tracking number an
               <label style="display:block; font-size:12px; font-weight:700; color:#555; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:6px;">
                 "Caring for Your Plants" section text
               </label>
-              <textarea class="policy-textarea">Open the box right away and do not leave plants sealed for more than a day. Inspect your plants — bare-root daylilies may look rough after shipping, which is normal. Soak the roots in water for 1 to 2 hours before planting. Plant as soon as possible in a spot with at least 6 hours of sun and well-drained soil, with the crown just at or slightly below soil level. Water thoroughly after planting and keep the soil consistently moist for the first two to three weeks. Be patient — newly planted daylilies may not bloom the first season but will bloom beautifully in their second season and beyond.</textarea>
+              <textarea class="policy-textarea">Open the box right away and do not leave plants sealed for more than a day. Inspect your plants — bare-root daylilies may look rough after shipping, which is normal. Soak the roots in water for 1 to 2 hours before planting. Plant as soon as possible in a spot with at least 6 hours of sun and well-drained soil, with the crown just at or slightly below soil level. Water thoroughly after planting. Be patient — newly planted daylilies may not bloom the first season but will bloom beautifully in their second season and beyond.</textarea>
             </div>
 
             <div class="policy-note">
@@ -806,7 +832,7 @@ Jean will email you personally when your order ships with the tracking number an
 
   <div class="ann-item">
     <strong>Section 4: Plant Category Tabs</strong>
-    <p>Four toggles, one per plant type: Daylilies, Iris, Lilies, Other Perennials. Daylilies is on at launch; the others are off. When Jean toggles a tab on, it immediately appears in the public site navigation. When she toggles it off, it disappears. This is the mechanism described throughout the wireframes for controlling which tabs customers see.</p>
+    <p>Six toggles, one per plant type: Daylilies, Iris, Lilies, Dahlias, Japanese Iris, Other Perennials. Daylilies is on at launch; the others are off. When Jean toggles a tab on, it immediately appears in the public site navigation. When she toggles it off, it disappears. This is the mechanism described throughout the wireframes for controlling which tabs customers see.</p>
     <span class="ann-tag info">Business rule</span>
   </div>
 
@@ -833,18 +859,22 @@ Jean will email you personally when your order ships with the tracking number an
 <!-- FEEDBACK INTRO -->
 <div style="background:#fffbe6; border-top:4px solid #f5c518; padding:0;">
   <div style="padding:24px 32px 0;">
-  <h2 style="font-size:18px; font-weight:700; padding-bottom:8px;">Admin Settings (WF15)</h2>
+  <h2 style="font-size:18px; font-weight:700; padding-bottom:8px;">Updated: WF15 &mdash; Admin Settings</h2>
+  <p style="font-size:14px; color:#555; margin-bottom:12px;">Hi Jean! Edward has made the changes you requested. Here is a summary of what was updated. Please review the wireframe above and use the form below to let Edward know whether everything looks right now.</p>
+  <ul style="margin:0 0 16px 20px; font-size:14px; line-height:1.7; color:#333;">
+    <li><strong>Plant Category Tabs:</strong> Dahlias and Japanese Iris have been added to the tab list, each with their own toggle.</li>
+    <li><strong>Caring for Your Plants:</strong> The sentence "and keep the soil consistently moist for the first two to three weeks" has been removed from the care instructions text.</li>
+  </ul>
 
   <!-- APPROVAL FORM -->
   <div class="approval-form-wrap">
-    <div class="approval-form-heading">Wireframe Approval: WF15 &mdash; Admin Settings</div>
+    <div class="approval-form-heading">Re-Approval: WF15 &mdash; Admin Settings</div>
     <p class="approval-form-desc">
-      Please review the wireframe above and the notes on this page, then let Edward know
-      whether this page is approved as shown or whether you would like changes made before
-      the build begins. Your response goes directly to Edward by email.
+      Edward has applied your requested changes. Please review the wireframe above and let him know
+      whether it looks right now or whether you have additional changes.
     </p>
-    <form id="approval-form-wf15">
-      <input type="hidden" name="_subject" value="WF15 Admin Settings Approval - Dazzling Daylilies">
+    <form id="approval-form-wf15" action="https://formspree.io/f/mvzyrrrv" method="POST">
+      <input type="hidden" name="_subject" value="WF15 Admin Settings Re-Approval - Dazzling Daylilies">
       <input type="hidden" name="wireframe" value="WF15 - Admin Settings">
       <input type="hidden" name="approval_status" id="h-approval-approval-form-wf15">
       <input type="hidden" name="change_reason" id="h-reason-approval-form-wf15">
