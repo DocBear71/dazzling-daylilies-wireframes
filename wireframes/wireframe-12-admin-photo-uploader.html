@@ -436,7 +436,7 @@
 
   <!-- ADMIN TOP BAR -->
   <div class="admin-topbar">
-    <div class="admin-brand"><img src="../NewBeginningLogoForJean.png" alt="Dazzling Daylilies" style="height:90px;max-height:90px;width:90px;vertical-align:middle;margin-top:10px;margin-right:10px;"><span>Admin</span></div>
+    <div class="admin-brand"><img src="../NewBeginningLogoForJean.png" alt="Dazzling Daylilies" style="height:44px;max-height:44px;width:auto;vertical-align:middle;margin-right:10px;"><span>Admin</span></div>
     <nav class="admin-nav">
       <a class="admin-nav-item" href="#">Dashboard</a>
       <a class="admin-nav-item" href="#">Plants</a>
@@ -785,6 +785,7 @@
   <div class="ann-item">
     <strong>WebP Conversion Note</strong>
     <p>A short note at the bottom of the page reminds Jean that her photos will be converted automatically. She does not need to do anything special; the system handles the conversion. The originals are kept in case re-conversion is needed. Jean never interacts with the WebP files directly.</p>
+    <p>Jean asked: <em>"How do I get the original photos if needed if I have no interaction with WebP?"</em> The originals are kept in storage on the server exactly as uploaded. If Jean ever needs them (to re-edit a photo, use it elsewhere, or troubleshoot), Edward can retrieve them via the server file manager or SSH. Jean does not need to do anything to preserve them; they are retained automatically. This is also why the wireframe says "originals kept on file" rather than implying they are deleted.</p>
   </div>
 
 </div>
@@ -804,75 +805,18 @@
 </div>
 
 
-  <!-- APPROVAL FORM -->
-  <div class="approval-form-wrap">
-    <div class="approval-form-heading">Wireframe Approval: WF12 &mdash; Admin Photo Uploader</div>
-    <p class="approval-form-desc">
-      Please review the wireframe above and the notes on this page, then let Edward know
-      whether this page is approved as shown or whether you would like changes made before
-      the build begins. Your response goes directly to Edward by email.
-    </p>
-
-    <form id="approval-form-wf12">
-      <input type="hidden" name="_subject" value="WF12 Admin Photo Uploader Approval - Dazzling Daylilies">
-      <input type="hidden" name="wireframe" value="WF12 - Admin Photo Uploader">
-      <input type="hidden" name="approval_status" id="h-approval-approval-form-wf12">
-      <input type="hidden" name="change_reason"   id="h-reason-approval-form-wf12">
-      <input type="hidden" name="general_comments" id="h-comments-approval-form-wf12">
-
-      <div class="approval-radio-group">
-        <label class="approval-radio-label approved">
-          <input type="radio" name="approval_choice" value="Approved" id="radio-approved-approval-form-wf12">
-          <span class="approved-text">&#10003;&nbsp; Approved &mdash; looks great!</span>
-        </label>
-        <label class="approval-radio-label changes">
-          <input type="radio" name="approval_choice" value="Changes Needed" id="radio-changes-approval-form-wf12">
-          <span class="changes-text">&#9998;&nbsp; Changes Needed</span>
-        </label>
-      </div>
-
-      <div class="reason-field" id="reason-field-approval-form-wf12">
-        <label class="approval-label" for="textarea-reason-approval-form-wf12">
-          What would you like changed? (required)
-        </label>
-        <textarea class="approval-textarea" id="textarea-reason-approval-form-wf12"
-          placeholder="Please describe what you would like adjusted on this page..."></textarea>
-      </div>
-
-      <div style="margin-bottom: 20px;">
-        <label class="approval-label" for="textarea-comments-approval-form-wf12">
-          Any other comments or questions? (optional)
-        </label>
-        <textarea class="approval-textarea" id="textarea-comments-approval-form-wf12"
-          placeholder="Any other thoughts, questions, or notes for Edward..."></textarea>
-      </div>
-
-      <div class="approval-name-row">
-        <div class="approval-name-field">
-          <label for="name-approval-form-wf12">Your Name</label>
-          <input type="text" id="name-approval-form-wf12" name="reviewer_name" value="Jean" placeholder="Your name">
-        </div>
-        <div class="approval-name-field">
-          <label for="email-approval-form-wf12">Your Email (so Edward can reply)</label>
-          <input type="email" id="email-approval-form-wf12" name="email" placeholder="dazzlingdaylilies@yahoo.com">
-        </div>
-      </div>
-
-      <button type="submit" class="approval-submit-btn">Send My Response &rarr;</button>
-      <p class="approval-submit-note">Your response is sent directly and securely to Edward. This page does not store any personal information.</p>
-
-      <div class="approval-success" id="success-approval-form-wf12">
-        <strong>Thank you, Jean!</strong>
-        Your response on WF12 (Admin Photo Uploader) has been sent to Edward successfully.
-        You can now close this tab or continue reviewing other wireframes from the main review page.
-      </div>
-      <div class="approval-error" id="error-approval-form-wf12">
-        Something went wrong. Please try again, or email Edward directly at
-        <a href="mailto:edward@docbear-ent.com">edward@docbear-ent.com</a> with your notes.
-      </div>
-    </form>
-  </div><!-- /.approval-form-wrap -->
-
+<!-- APPROVED - form removed -->
+<div style="max-width:860px;margin:40px auto 0;padding:32px 32px 40px;
+  background:#f0faf4;border-top:3px solid #27ae60;text-align:center;
+  font-family:-apple-system,sans-serif;">
+  <div style="display:inline-block;border:3px solid #27ae60;
+    border-radius:8px;padding:20px 40px;">
+    <div style="font-size:32px;color:#27ae60;margin-bottom:8px;">&#10003;</div>
+    <div style="font-size:22px;font-weight:700;color:#1a5c2a;margin-bottom:6px;">Approved</div>
+    <div style="font-size:14px;color:#555;margin-bottom:4px;">WF12 &mdash; Admin Photo Uploader</div>
+    <div style="font-size:13px;color:#888;">Approved by Jean &bull; June 21, 2026</div>
+  </div>
+</div>
 </div><!-- /.annotations -->
 
 <script>

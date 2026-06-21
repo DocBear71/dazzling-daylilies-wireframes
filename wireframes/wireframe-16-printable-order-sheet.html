@@ -496,7 +496,7 @@
     <!-- HEADER: business name + order number -->
     <div class="sheet-header">
       <div class="sheet-logo-area">
-        <img src="../NewBeginningLogoForJean.png" alt="Dazzling Daylilies" style="height:100px;width:100px;display:block;">
+        <img src="../NewBeginningLogoForJean.png" alt="Dazzling Daylilies" style="height:80px;width:auto;display:block;margin-bottom:6px;">
         <div class="sheet-business-sub">
           Fairfax, Iowa<br>
           dazzlingdaylilies@yahoo.com
@@ -685,7 +685,6 @@
     <!-- CARE REMINDER STRIP -->
     <div class="care-strip">
       <strong>Quick care reminder:</strong>
-      Open this box right away &mdash; do not leave plants sealed for more than a day.
       Soak roots in water for 1 to 2 hours before planting. Plant in a sunny,
       well-drained spot with the crown at or just below soil level. Water
       thoroughly after planting. Questions? Email Jean any time.
@@ -734,7 +733,7 @@
 
   <div class="ann-item">
     <strong>Care Reminder Strip</strong>
-    <p>A compact care summary at the bottom of the sheet reminding customers to open the box promptly, soak the roots, and plant soon. This reduces "my plants looked dead when they arrived" support emails. Jean should review and approve the wording. This text could also be editable in Settings for the same reason as the thank-you note.</p>
+    <p>A compact care summary at the bottom of the sheet reminding customers to soak the roots and plant soon. The "open this box right away" line was removed at Jean's request, since customers will already have opened the box before reading the sheet. This reduces "my plants looked dead when they arrived" support emails. The wording is editable in Settings so Jean can adjust it without a code change.</p>
   </div>
 
   <div class="ann-item">
@@ -752,29 +751,31 @@
 
 <!-- FEEDBACK INTRO -->
 <div class="approval-intro">
-  <h2>Wireframe Notes: WF16 &mdash; Printable Order Sheet</h2>
-  <p>Hi Jean! The notes below explain what each part of this page does and confirm
-    the decisions we have already made together. When you have finished reading,
-    please use the <strong>Approval Form</strong> at the bottom of this page to let
-    Edward know whether the page looks right or whether you would like any changes.</p>
+  <h2>Updated: WF16 &mdash; Printable Order Sheet</h2>
+  <p>Hi Jean! Edward has made the change you requested. Here is a summary of what was updated.
+    Please review the wireframe above and use the <strong>Approval Form</strong> at the bottom
+    to let Edward know whether the page looks right now.</p>
+  <ul style="margin:12px 0 0 20px;font-size:14px;line-height:1.7;">
+    <li><strong>Quick Care Reminder:</strong> The "Open this box right away" sentence has been removed. You are absolutely right that the customer will already have opened the box by the time they read the sheet.</li>
+    <li><strong>Multi-page orders:</strong> Great observation about large orders. The order sheet is built using standard HTML with CSS print rules, so it will naturally flow across as many pages as needed. The header, logo, and order number appear on the first page; the plant rows continue across pages until the order is complete, then the care reminder and thank-you note appear at the end. Edward will do a print test with a large seeded order before launch to confirm everything paginates cleanly.</li>
+  </ul>
 </div>
 <div class="annotations">
   <div class="ann-section-inner">
-  <p style="color:#888;font-size:13px;padding:20px 0;">All decisions for this page have been confirmed. Please use the approval form below.</p>
+  <p style="color:#888;font-size:13px;padding:20px 0;">Changes applied June 21, 2026. Please re-approve using the form below.</p>
 </div>
 
 
   <!-- APPROVAL FORM -->
   <div class="approval-form-wrap">
-    <div class="approval-form-heading">Wireframe Approval: WF16 &mdash; Printable Order Sheet</div>
+    <div class="approval-form-heading">Re-Approval: WF16 &mdash; Printable Order Sheet</div>
     <p class="approval-form-desc">
-      Please review the wireframe above and the notes on this page, then let Edward know
-      whether this page is approved as shown or whether you would like changes made before
-      the build begins. Your response goes directly to Edward by email.
+      Edward has applied your requested change. Please review the wireframe above and let him know
+      whether it looks right now or whether you have additional changes.
     </p>
 
-    <form id="approval-form-wf16">
-      <input type="hidden" name="_subject" value="WF16 Printable Order Sheet Approval - Dazzling Daylilies">
+    <form id="approval-form-wf16" action="https://formspree.io/f/mvzyrrrv" method="POST">
+      <input type="hidden" name="_subject" value="WF16 Printable Order Sheet Re-Approval - Dazzling Daylilies">
       <input type="hidden" name="wireframe" value="WF16 - Printable Order Sheet">
       <input type="hidden" name="approval_status" id="h-approval-approval-form-wf16">
       <input type="hidden" name="change_reason"   id="h-reason-approval-form-wf16">

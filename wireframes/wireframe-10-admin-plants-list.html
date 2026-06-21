@@ -535,7 +535,7 @@
 
   <!-- ADMIN TOP BAR -->
   <div class="admin-topbar">
-    <div class="admin-brand"><img src="../NewBeginningLogoForJean.png" alt="Dazzling Daylilies" style="height:90px;max-height:90px;width:90px;vertical-align:middle;margin-top:10px;margin-right:10px;"><span>Admin</span></div>
+    <div class="admin-brand"><img src="../NewBeginningLogoForJean.png" alt="Dazzling Daylilies" style="height:44px;max-height:44px;width:auto;vertical-align:middle;margin-right:10px;"><span>Admin</span></div>
     <nav class="admin-nav">
       <a class="admin-nav-item" href="#">Dashboard</a>
       <a class="admin-nav-item active" href="#">Plants</a>
@@ -575,6 +575,8 @@
           <option>Daylily</option>
           <option>Iris</option>
           <option>Lily</option>
+          <option>Dahlia</option>
+          <option>Japanese Iris</option>
           <option>Other Perennial</option>
         </select>
       </div>
@@ -607,7 +609,6 @@
       <select class="bulk-action-select">
         <option>Choose action...</option>
         <option>Mark as In Stock</option>
-        <option>Mark as Sold Out</option>
         <option>Set Active (visible)</option>
         <option>Set Inactive (hidden)</option>
       </select>
@@ -1025,13 +1026,13 @@
 
   <div class="ann-item">
     <strong>Filter Dropdowns (Type, Stock, Visibility)</strong>
-    <p>Three independent filters Jean can combine. Type filters by plant category (Daylily, Iris, Lily, Other Perennial). Stock shows all plants, only in-stock, or only sold-out. Visibility shows all plants, only active ones visible to customers, or only inactive ones currently hidden. The result count in the toolbar updates as filters are applied.</p>
+    <p>Three independent filters Jean can combine. Type filters by plant category (Daylily, Iris, Lily, Dahlia, Japanese Iris, Other Perennial). Stock shows all plants, only in-stock, or only sold-out. Visibility shows all plants, only active ones visible to customers, or only inactive ones currently hidden. The result count in the toolbar updates as filters are applied.</p>
     </div>
 
   <div class="ann-item">
     <strong>Bulk Actions Bar</strong>
-    <p>Appears when Jean checks one or more rows using the checkboxes. Shows how many plants are selected and a dropdown with available bulk actions: Mark as In Stock, Mark as Sold Out, Set Active, Set Inactive. Jean picks the action and clicks Apply. The bar disappears when she cancels or after the action completes. This wireframe shows 3 plants selected (rows for Bela Lugosi, Catherine Woodbery, and Heavenly Angel Ice are checked). This is the fastest way to flip stock status on multiple plants at once after a dig.</p>
-    <span class="ann-tag business">Business rule: Bulk delete is intentionally not offered here. Individual plants can only be deleted from inside the Plant Editor, which requires a confirmation step. This prevents Jean from accidentally mass-deleting her catalog.</span>
+    <p>Appears when Jean checks one or more rows using the checkboxes. Shows how many plants are selected and a dropdown with available bulk actions: Mark as In Stock, Set Active, Set Inactive. Jean picks the action and clicks Apply. The bar disappears when she cancels or after the action completes. This wireframe shows 3 plants selected (rows for Bela Lugosi, Catherine Woodbery, and Heavenly Angel Ice are checked). This is the fastest way to flip stock status on multiple plants at once after a dig.</p>
+    <span class="ann-tag business">Business rule: "Mark as Sold Out" is not offered as a manual bulk action. The sold-out badge applies automatically to a plant's photo and catalog card when its quantity reaches zero. Jean marks plants back to In Stock after re-digging; the system handles the sold-out state itself. Bulk delete is also intentionally not offered here. Individual plants can only be deleted from inside the Plant Editor, which requires a confirmation step.</span>
   </div>
 
   <div class="ann-item">
@@ -1075,29 +1076,31 @@
 
 <!-- FEEDBACK INTRO -->
 <div class="approval-intro">
-  <h2>Wireframe Notes: WF10 &mdash; Admin Plants List</h2>
-  <p>Hi Jean! The notes below explain what each part of this page does and confirm
-    the decisions we have already made together. When you have finished reading,
-    please use the <strong>Approval Form</strong> at the bottom of this page to let
-    Edward know whether the page looks right or whether you would like any changes.</p>
+  <h2>Updated: WF10 &mdash; Admin Plants List</h2>
+  <p>Hi Jean! Edward has made the changes you requested. Here is a summary of what was updated.
+    Please review the wireframe above and use the <strong>Approval Form</strong> at the bottom
+    to let Edward know whether the page looks right now.</p>
+  <ul style="margin:12px 0 0 20px;font-size:14px;line-height:1.7;">
+    <li><strong>Bulk Actions Bar:</strong> "Mark as Sold Out" has been removed. The sold-out badge applies automatically when a plant's last unit sells, exactly as you described. The bulk action to manually mark plants back <em>in</em> stock is still there for after a dig.</li>
+    <li><strong>Type Filter Dropdown:</strong> Dahlia and Japanese Iris have been added.</li>
+  </ul>
 </div>
 <div class="annotations">
   <div class="ann-section-inner">
-  <p style="color:#888;font-size:13px;padding:20px 0;">All decisions for this page have been confirmed. Please use the approval form below.</p>
+  <p style="color:#888;font-size:13px;padding:20px 0;">Changes applied June 21, 2026. Please re-approve using the form below.</p>
 </div>
 
 
   <!-- APPROVAL FORM -->
   <div class="approval-form-wrap">
-    <div class="approval-form-heading">Wireframe Approval: WF10 &mdash; Admin Plants List</div>
+    <div class="approval-form-heading">Re-Approval: WF10 &mdash; Admin Plants List</div>
     <p class="approval-form-desc">
-      Please review the wireframe above and the notes on this page, then let Edward know
-      whether this page is approved as shown or whether you would like changes made before
-      the build begins. Your response goes directly to Edward by email.
+      Edward has applied your requested changes. Please review the wireframe above and let him know
+      whether it looks right now or whether you have additional changes.
     </p>
 
-    <form id="approval-form-wf10">
-      <input type="hidden" name="_subject" value="WF10 Admin Plants List Approval - Dazzling Daylilies">
+    <form id="approval-form-wf10" action="https://formspree.io/f/mvzyrrrv" method="POST">
+      <input type="hidden" name="_subject" value="WF10 Admin Plants List Re-Approval - Dazzling Daylilies">
       <input type="hidden" name="wireframe" value="WF10 - Admin Plants List">
       <input type="hidden" name="approval_status" id="h-approval-approval-form-wf10">
       <input type="hidden" name="change_reason"   id="h-reason-approval-form-wf10">
