@@ -66,13 +66,19 @@
     justify-content: space-between;
     gap: 24px;
   }
-  .site-header-left { display: flex; flex-direction: column; }
-  .site-header h1 {
-    font-size: 28px; font-weight: 700; color: #1a5c1a; margin-bottom: 3px;
-    letter-spacing: -0.01em;
+  .site-header-left {
+    display: flex; flex-direction: column; justify-content: flex-end;
+    flex: 1; gap: 4px;
   }
-  .site-header .tagline { font-size: 13px; color: #888; font-style: italic; }
-  .site-header-right { display: flex; align-items: center; gap: 20px; font-size: 13px; }
+  .site-header .tagline { font-size: 13px; color: #888; font-style: italic; margin: 0; }
+  .site-header-center {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    flex: 0 0 auto;
+  }
+  .site-header-right {
+    display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-end;
+    flex: 1; gap: 4px; font-size: 13px;
+  }
   .site-header-right a { color: #555; font-weight: 600; text-decoration: none; }
   .site-header-right a:hover { color: #1a5c1a; }
 
@@ -371,8 +377,10 @@
   <!-- OPTION B: Traditional separate header bar above everything -->
   <div class="site-header">
     <div class="site-header-left">
-      <img src="../NewBeginningLogoForJean.png" alt="Dazzling Daylilies" style="height:200px;width:200px;display:block;max-width:none;">
       <p class="tagline">Hand-dug daylilies grown with care in Fairfax, Iowa</p>
+    </div>
+    <div class="site-header-center">
+      <img src="../NewBeginningLogoForJean.png" alt="Dazzling Daylilies" style="height:300px;width:auto;display:block;max-width:none;">
     </div>
     <div class="site-header-right">
       <a href="#">Shipping</a>

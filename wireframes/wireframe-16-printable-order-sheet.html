@@ -72,10 +72,11 @@
     align-items: flex-start;
     justify-content: space-between;
     margin-bottom: 24px;
-    padding-bottom: 20px;
     border-bottom: 2px solid #222;
   }
-  .sheet-logo-area {}
+  .sheet-logo-area {
+	margin-top: -20px
+  }
   .sheet-business-name {
     font-size: 26px;
     font-weight: 700;
@@ -496,7 +497,7 @@
     <!-- HEADER: business name + order number -->
     <div class="sheet-header">
       <div class="sheet-logo-area">
-        <img src="../NewBeginningLogoForJean.png" alt="Dazzling Daylilies" style="height:80px;width:auto;display:block;margin-bottom:6px;">
+        <img src="../NewBeginningLogoForJean.png" alt="Dazzling Daylilies" style="height:200px;width:auto;display:block;margin-bottom:0px;">
         <div class="sheet-business-sub">
           Fairfax, Iowa<br>
           dazzlingdaylilies@yahoo.com
@@ -749,91 +750,18 @@
 </div>
 
 
-<!-- FEEDBACK INTRO -->
-<div class="approval-intro">
-  <h2>Updated: WF16 &mdash; Printable Order Sheet</h2>
-  <p>Hi Jean! Edward has made the change you requested. Here is a summary of what was updated.
-    Please review the wireframe above and use the <strong>Approval Form</strong> at the bottom
-    to let Edward know whether the page looks right now.</p>
-  <ul style="margin:12px 0 0 20px;font-size:14px;line-height:1.7;">
-    <li><strong>Quick Care Reminder:</strong> The "Open this box right away" sentence has been removed. You are absolutely right that the customer will already have opened the box by the time they read the sheet.</li>
-    <li><strong>Multi-page orders:</strong> Great observation about large orders. The order sheet is built using standard HTML with CSS print rules, so it will naturally flow across as many pages as needed. The header, logo, and order number appear on the first page; the plant rows continue across pages until the order is complete, then the care reminder and thank-you note appear at the end. Edward will do a print test with a large seeded order before launch to confirm everything paginates cleanly.</li>
-  </ul>
+<!-- APPROVED - form removed -->
+<div style="max-width:860px;margin:40px auto 0;padding:32px 32px 40px;
+  background:#f0faf4;border-top:3px solid #27ae60;text-align:center;
+  font-family:-apple-system,sans-serif;">
+  <div style="display:inline-block;border:3px solid #27ae60;
+    border-radius:8px;padding:20px 40px;">
+    <div style="font-size:32px;color:#27ae60;margin-bottom:8px;">&#10003;</div>
+    <div style="font-size:22px;font-weight:700;color:#1a5c2a;margin-bottom:6px;">Approved</div>
+    <div style="font-size:14px;color:#555;margin-bottom:4px;">WF16 &mdash; Printable Order Sheet</div>
+    <div style="font-size:13px;color:#888;">Approved by Jean &bull; June 21, 2026</div>
+  </div>
 </div>
-<div class="annotations">
-  <div class="ann-section-inner">
-  <p style="color:#888;font-size:13px;padding:20px 0;">Changes applied June 21, 2026. Please re-approve using the form below.</p>
-</div>
-
-
-  <!-- APPROVAL FORM -->
-  <div class="approval-form-wrap">
-    <div class="approval-form-heading">Re-Approval: WF16 &mdash; Printable Order Sheet</div>
-    <p class="approval-form-desc">
-      Edward has applied your requested change. Please review the wireframe above and let him know
-      whether it looks right now or whether you have additional changes.
-    </p>
-
-    <form id="approval-form-wf16" action="https://formspree.io/f/mvzyrrrv" method="POST">
-      <input type="hidden" name="_subject" value="WF16 Printable Order Sheet Re-Approval - Dazzling Daylilies">
-      <input type="hidden" name="wireframe" value="WF16 - Printable Order Sheet">
-      <input type="hidden" name="approval_status" id="h-approval-approval-form-wf16">
-      <input type="hidden" name="change_reason"   id="h-reason-approval-form-wf16">
-      <input type="hidden" name="general_comments" id="h-comments-approval-form-wf16">
-
-      <div class="approval-radio-group">
-        <label class="approval-radio-label approved">
-          <input type="radio" name="approval_choice" value="Approved" id="radio-approved-approval-form-wf16">
-          <span class="approved-text">&#10003;&nbsp; Approved &mdash; looks great!</span>
-        </label>
-        <label class="approval-radio-label changes">
-          <input type="radio" name="approval_choice" value="Changes Needed" id="radio-changes-approval-form-wf16">
-          <span class="changes-text">&#9998;&nbsp; Changes Needed</span>
-        </label>
-      </div>
-
-      <div class="reason-field" id="reason-field-approval-form-wf16">
-        <label class="approval-label" for="textarea-reason-approval-form-wf16">
-          What would you like changed? (required)
-        </label>
-        <textarea class="approval-textarea" id="textarea-reason-approval-form-wf16"
-          placeholder="Please describe what you would like adjusted on this page..."></textarea>
-      </div>
-
-      <div style="margin-bottom: 20px;">
-        <label class="approval-label" for="textarea-comments-approval-form-wf16">
-          Any other comments or questions? (optional)
-        </label>
-        <textarea class="approval-textarea" id="textarea-comments-approval-form-wf16"
-          placeholder="Any other thoughts, questions, or notes for Edward..."></textarea>
-      </div>
-
-      <div class="approval-name-row">
-        <div class="approval-name-field">
-          <label for="name-approval-form-wf16">Your Name</label>
-          <input type="text" id="name-approval-form-wf16" name="reviewer_name" value="Jean" placeholder="Your name">
-        </div>
-        <div class="approval-name-field">
-          <label for="email-approval-form-wf16">Your Email (so Edward can reply)</label>
-          <input type="email" id="email-approval-form-wf16" name="email" placeholder="dazzlingdaylilies@yahoo.com">
-        </div>
-      </div>
-
-      <button type="submit" class="approval-submit-btn">Send My Response &rarr;</button>
-      <p class="approval-submit-note">Your response is sent directly and securely to Edward. This page does not store any personal information.</p>
-
-      <div class="approval-success" id="success-approval-form-wf16">
-        <strong>Thank you, Jean!</strong>
-        Your response on WF16 (Printable Order Sheet) has been sent to Edward successfully.
-        You can now close this tab or continue reviewing other wireframes from the main review page.
-      </div>
-      <div class="approval-error" id="error-approval-form-wf16">
-        Something went wrong. Please try again, or email Edward directly at
-        <a href="mailto:edward@docbear-ent.com">edward@docbear-ent.com</a> with your notes.
-      </div>
-    </form>
-  </div><!-- /.approval-form-wrap -->
-
 </div><!-- /.annotations -->
 
 <script>
