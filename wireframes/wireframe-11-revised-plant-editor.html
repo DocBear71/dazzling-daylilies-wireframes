@@ -136,6 +136,7 @@
     text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 5px;
   }
   .form-field label .optional { font-weight: 400; color: #aaa; text-transform: none; letter-spacing: 0; font-size: 11px; margin-left: 4px; }
+  .form-field label .required { font-weight: 600; color: #c0392b; text-transform: none; letter-spacing: 0; font-size: 11px; margin-left: 4px; }
   .form-input {
     width: 100%; padding: 9px 12px; border: 1px solid #d0d0d0; border-radius: 4px;
     font-size: 14px; color: #333; background: #fafafa;
@@ -399,7 +400,7 @@
 <div class="admin-wrapper">
 
   <div class="admin-topbar">
-    <div class="admin-brand"><img src="../NewBeginningLogoForJean.png" alt="Dazzling Daylilies" style="height:60px;width:auto;vertical-align:middle;margin-top:20px;margin-right:10px;"><span>Admin</span></div>
+    <div class="admin-brand"><img src="../NewBeginningLogoForJean.png" alt="Dazzling Daylilies" style="height:44px;max-height:44px;width:auto;vertical-align:middle;margin-right:10px;"><span>Admin</span></div>
     <nav class="admin-nav">
       <a class="admin-nav-item" href="#">Dashboard</a>
       <a class="admin-nav-item active" href="#">Plants</a>
@@ -603,9 +604,9 @@
 
                 <div class="form-row cols-2" style="margin-top:14px;">
                   <div class="form-field">
-                    <label>Collection Name <span class="optional">(optional)</span></label>
+                    <label>Collection Name <span class="required">* Required</span></label>
                     <input class="form-input" type="text" value="Jean's Sunset Garden Collection"
-                      placeholder="e.g. Jean's Sunset Garden Collection">
+                      placeholder="e.g. Jean's Sunset Garden Collection" required>
                   </div>
                   <div class="form-field">
                     <label>Collection Price</label>
@@ -735,7 +736,7 @@
 
   <div class="ann-item">
     <strong>Collection Name Field</strong>
-    <p>Optional. A human-friendly name for the collection set, like "Jean's Sunset Garden Collection." Shown on the collection detail page (Wireframe 03b) as the page title. If Jean leaves it blank, the system uses a default like "5-Plant Collection." The name adds the personal, curated quality that makes the collection feel like Jean's recommendation rather than an automated upsell.</p>
+    <p>Required. A human-friendly name for the collection set, like "Jean's Sunset Garden Collection." Shown on the collection detail page (Wireframe 03b) as the page title. Jean must provide a name before she can enable a collection, which ensures every collection has a proper, personal title rather than a generic default. The name adds the curated quality that makes the collection feel like Jean's recommendation rather than an automated upsell.</p>
   </div>
 
   <div class="ann-item">
@@ -755,7 +756,7 @@
 
   <div class="ann-item">
     <strong>Database Changes Required</strong>
-    <p>The plant_coordinations table needs three new columns to support collections: collection_enabled (boolean, default false), collection_price_cents (integer, nullable), collection_name (string, nullable), and collection_description (text, nullable). The collection_enabled flag is what controls whether the Collection panel shows on the public page. The price, name, and description are only used when a collection offer is active.</p>
+    <p>The plant_coordinations table needs three new columns to support collections: collection_enabled (boolean, default false), collection_price_cents (integer, nullable), collection_name (string, nullable), and collection_description (text, nullable). The collection_enabled flag is what controls whether the Collection panel shows on the public page. The price, name, and description are only used when a collection offer is active. Note: collection_name is stored as nullable in the database, but the UI enforces it as required before Jean can enable a collection.</p>
     <span class="ann-tag new">Schema change: plant_coordinations table</span>
   </div>
 
